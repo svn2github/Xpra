@@ -1,3 +1,9 @@
+xpra (0.14.2-1) UNRELEASED; urgency=low
+  * fix rgb encoding not honoured
+  * fix systray forwarding error with old gtk versions
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 21 Aug 2014 19:13:52 +0700
+
 xpra (0.14.1-1) UNRELEASED; urgency=low
   * fix invalid encoding switch
   * fix GTK3 build
