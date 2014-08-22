@@ -456,7 +456,7 @@ class ServerSource(object):
             ws = self.window_sources.get(wid)
             if ws:
                 ws.resume(window)
-        self.do_send_cursor()
+        #self.do_send_cursor()
 
 
     def user_event(self):
