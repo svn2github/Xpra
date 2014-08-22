@@ -191,7 +191,8 @@ SWITCHES = ("enc_x264", "x264_static",
             "server", "client", "x11", "gtk_x11",
             "gtk2", "gtk3", "qt4", "html5",
             "sound", "cyxor", "cymaths", "opengl", "argb",
-            "warn", "strict", "shadow", "debug", "PIC", "Xdummy", "verbose", "bundle_tests")
+            "warn", "strict", "shadow", "debug", "PIC",
+            "Xdummy", "Xdummy_wrapper", "verbose", "bundle_tests")
 HELP = "-h" in sys.argv or "--help" in sys.argv
 if HELP:
     setup()
