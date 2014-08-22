@@ -33,7 +33,7 @@
 #we cannot depend on 'avahi-ui-tools' which we need for mdns support
 #(it provides the avahi python bindings)
 #because Fedora and CentOS bring in some insane dependencies with it (vnc)
-%define mdns_deps netifaces
+%define mdns_deps python-netifaces
 
 # any centos / rhel supported:
 %if 0%{?el5}%{?el6}%{?el7}
@@ -235,7 +235,7 @@ fi
 
 
 %changelog
-* Fri Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.2-1
+* Fri Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.2-2
 - fix rgb encoding not honoured
 - fix systray forwarding error with old gtk versions
 - fix RPM netifaces dependencies
