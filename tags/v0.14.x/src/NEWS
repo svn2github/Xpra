@@ -1,7 +1,9 @@
-v0.14.2 (2014-08-21)
+v0.14.2 (2014-08-22)
 ======================
 	-- fix rgb encoding not honoured
 	-- fix systray forwarding error with old gtk versions
+	-- fix RPM netifaces dependencies
+	-- fix webp encoding issues (without opengl or using tray)
 
 
 v0.14.1 (2014-08-20)

@@ -235,9 +235,11 @@ fi
 
 
 %changelog
-* Thu Aug 21 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.2-1
+* Fri Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.2-1
 - fix rgb encoding not honoured
 - fix systray forwarding error with old gtk versions
+- fix RPM netifaces dependencies
+- fix webp encoding issues (without opengl or using tray)
 
 * Wed Aug 20 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.1-1
 - fix invalid encoding switch
