@@ -181,7 +181,7 @@ cdef class WebpBufferWrapper:
             self.buffer_ptr = 0
 
 
-def decompress(data, has_alpha):
+def decompress(data, has_alpha, rgb_format):
     """
         This returns a WebpBufferWrapper, you MUST call free() on it
         once the pixel buffer can be freed.
@@ -190,14 +190,18 @@ def decompress(data, has_alpha):
     config.options.use_threads = 1
     WebPInitDecoderConfig(&config)
     webp_check(WebPGetFeatures(data, len(data), &config.input))
-    log("webp decompress found features: width=%s, height=%s, has_alpha=%s", config.input.width, config.input.height, config.input.has_alpha)
+    log("webp decompress found features: width=%s, height=%s, has_alpha=%s, input rgb_format=%s", config.input.width, config.input.height, config.input.has_alpha, rgb_format)
 
     cdef int stride = 4 * config.input.width
     if has_alpha:
-        rgb_format = "BGRA"
+        if len(rgb_format or "")!=4:
+            #use default if the format given is not valid:
+            rgb_format = "BGRA"
         config.output.colorspace = MODE_bgrA
     else:
-        rgb_format = "RGB"
+        if len(rgb_format or "")!=3:
+            #use default if the format given is not valid:
+            rgb_format = "RGB"
         config.output.colorspace = MODE_RGB
     cdef size_t size = stride * config.input.height
     #allocate the buffer:
