@@ -1,3 +1,11 @@
+v0.14.3 (2014-08-23)
+======================
+	-- fix webp issue caused by the 0.14.2 update
+	-- fix system tray forwarding on many platforms
+	-- fix proxy server mode
+	-- fix osx focus click-through windows on osx
+
+
 v0.14.2 (2014-08-22)
 ======================
 	-- fix rgb encoding not honoured

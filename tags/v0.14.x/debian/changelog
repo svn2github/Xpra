@@ -1,3 +1,11 @@
+xpra (0.14.3-1) UNRELEASED; urgency=low
+  * fix webp issue caused by the 0.14.2 update
+  * fix system tray forwarding on many platforms
+  * fix proxy server mode
+  * fix osx focus click-through windows on osx
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 23 Aug 2014 10:02:49 +0700
+
 xpra (0.14.2-1) UNRELEASED; urgency=low
   * fix rgb encoding not honoured
   * fix systray forwarding error with old gtk versions
