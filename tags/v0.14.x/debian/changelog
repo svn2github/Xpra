@@ -1,10 +1,11 @@
 xpra (0.14.4-1) UNRELEASED; urgency=low
   * fix client disconnection on info request
   * fix X11 server crash due to threading issues
+  * fix X11 server crash with BadCursor on some older platforms
   * make install script more resilient
   * new xorg modelines
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 28 Aug 2014 15:32:13 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 28 Aug 2014 20:36:34 +0700
 
 xpra (0.14.3-1) UNRELEASED; urgency=low
   * fix webp issue caused by the 0.14.2 update

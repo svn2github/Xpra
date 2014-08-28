@@ -238,6 +238,7 @@ fi
 * Thu Aug 28 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.4-2
 - fix client disconnection on info request
 - fix X11 server crash due to threading issues
+- fix X11 server crash with BadCursor on some older platforms
 - make install script more resilient
 - new xorg modelines
 
