@@ -1,3 +1,10 @@
+v0.14.4 (2014-08-28)
+======================
+	-- fix X11 server crash due to threading issues
+	-- make install script more resilient
+	-- new xorg modelines
+
+
 v0.14.3 (2014-08-23)
 ======================
 	-- fix webp issue caused by the 0.14.2 update

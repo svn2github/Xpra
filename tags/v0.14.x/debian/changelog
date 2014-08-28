@@ -1,3 +1,10 @@
+xpra (0.14.4-1) UNRELEASED; urgency=low
+  * fix X11 server crash due to threading issues
+  * make install script more resilient
+  * new xorg modelines
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 28 Aug 2014 11:06:21 +0700
+
 xpra (0.14.3-1) UNRELEASED; urgency=low
   * fix webp issue caused by the 0.14.2 update
   * fix system tray forwarding on many platforms
