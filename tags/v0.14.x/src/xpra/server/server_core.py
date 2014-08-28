@@ -454,18 +454,21 @@ class ServerCore(object):
                 #call from UI thread:
                 self.idle_add(self.handle_command_request, proto, command_req)
                 return
-            #continue processing hello packet:
-            try:
-                self.hello_oked(proto, packet, c, auth_caps)
-            except ClientException, e:
-                log.error("error setting up connection for %s: %s", proto, e)
-                self.disconnect_client(proto, SERVER_ERROR, str(e))
-            except Exception, e:
-                #log full stack trace at debug level,
-                #log exception as error
-                #but don't disclose internal details to the client
-                log.error("server error processing new connection from %s: %s", proto, e, exc_info=True)
-                self.disconnect_client(proto, SERVER_ERROR, "error accepting new connection")
+            #continue processing hello packet in UI thread:
+            self.idle_add(self.call_hello_oked, proto, packet, c, auth_caps)
+
+    def call_hello_oked(self, proto, packet, c, auth_caps):
+        try:
+            self.hello_oked(proto, packet, c, auth_caps)
+        except ClientException, e:
+            log.error("error setting up connection for %s: %s", proto, e)
+            self.disconnect_client(proto, SERVER_ERROR, str(e))
+        except Exception, e:
+            #log full stack trace at debug level,
+            #log exception as error
+            #but don't disclose internal details to the client
+            log.error("server error processing new connection from %s: %s", proto, e, exc_info=True)
+            self.disconnect_client(proto, SERVER_ERROR, "error accepting new connection")
 
     def set_socket_timeout(self, conn, timeout=None):
         #FIXME: this is ugly, but less intrusive than the alternative?
