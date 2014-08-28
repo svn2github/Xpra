@@ -1,5 +1,6 @@
 v0.14.4 (2014-08-28)
 ======================
+	-- fix client disconnection on info request
 	-- fix X11 server crash due to threading issues
 	-- make install script more resilient
 	-- new xorg modelines
