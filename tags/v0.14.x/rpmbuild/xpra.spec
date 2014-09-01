@@ -242,13 +242,13 @@ fi
 - make install script more resilient
 - new xorg modelines
 
-* Sat Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.3-2
+* Sat Aug 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.3-2
 - fix webp issue caused by the 0.14.2 update
 - fix system tray forwarding on many platforms
 - fix proxy server mode
 - fix osx focus click-through windows on osx
 
-* Fri Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.4-2
+* Fri Aug 22 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.2-2
 - fix rgb encoding not honoured
 - fix systray forwarding error with old gtk versions
 - fix RPM netifaces dependencies
