@@ -1,6 +1,8 @@
 v0.14.5 (2014-09-02)
 ======================
 	-- fix sharing access mode
+	-- fix initial position (honour only when requested)
+	-- fix error wrongly reported after client command has been forwarded
 	-- minor build tree cleanups
 
 

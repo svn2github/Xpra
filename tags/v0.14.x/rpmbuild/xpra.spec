@@ -237,6 +237,8 @@ fi
 %changelog
 * Tue Sep 02 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.5-2
 - fix sharing access mode
+- fix initial position (honour only when requested)
+- fix error wrongly reported after client command has been forwarded
 - minor build tree cleanups
 
 * Thu Aug 28 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.4-2

@@ -1,8 +1,10 @@
 xpra (0.14.5-1) UNRELEASED; urgency=low
   * fix sharing access mode
+  * fix initial position (honour only when requested)
+  * fix error wrongly reported after client command has been forwarded
   * minor build tree cleanups
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Sep 2014 11:34:06 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Sep 2014 21:48:25 +0700
 
 xpra (0.14.4-1) UNRELEASED; urgency=low
   * fix client disconnection on info request
