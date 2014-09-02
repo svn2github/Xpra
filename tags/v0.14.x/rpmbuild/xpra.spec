@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.4
+%define version 0.14.5
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -235,6 +235,10 @@ fi
 
 
 %changelog
+* Tue Sep 02 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.5-2
+- fix sharing access mode
+- minor build tree cleanups
+
 * Thu Aug 28 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.4-2
 - fix client disconnection on info request
 - fix X11 server crash due to threading issues

@@ -1,3 +1,9 @@
+v0.14.5 (2014-09-02)
+======================
+	-- fix sharing access mode
+	-- minor build tree cleanups
+
+
 v0.14.4 (2014-08-28)
 ======================
 	-- fix client disconnection on info request

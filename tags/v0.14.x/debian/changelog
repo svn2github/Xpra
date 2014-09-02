@@ -1,3 +1,9 @@
+xpra (0.14.5-1) UNRELEASED; urgency=low
+  * fix sharing access mode
+  * minor build tree cleanups
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Sep 2014 11:34:06 +0700
+
 xpra (0.14.4-1) UNRELEASED; urgency=low
   * fix client disconnection on info request
   * fix X11 server crash due to threading issues
