@@ -1,9 +1,14 @@
-v0.14.5 (2014-09-02)
+v0.14.5 (2014-09-06)
 ======================
 	-- fix sharing access mode
+	-- fix proxy server error with missing compression algorithms
 	-- fix initial position (honour only when requested)
 	-- fix error wrongly reported after client command has been forwarded
-	-- minor build tree cleanups
+	-- fix support for multiple keys pressed at the same time
+	-- fix remote ssh start child command with spaces and quotes
+	-- handle small screen update storms better
+	-- minor build tree cleanups and fixes
+	-- improved bug report data
 
 
 v0.14.4 (2014-08-28)
