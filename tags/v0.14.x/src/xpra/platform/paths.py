@@ -138,7 +138,8 @@ def get_info():
             "app"               : get_app_dir(),
             "app.default"       : default_get_app_dir(),
             "resources"         : get_resources_dir(),
-            "icons"             : get_icon_dir()
+            "icons"             : get_icon_dir(),
+            "home"              : os.path.expanduser("~"),
             }
 
 
