@@ -235,13 +235,14 @@ fi
 
 
 %changelog
-* Sat Sep 06 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.5-2
+* Mon Sep 08 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.5-2
 - fix sharing access mode
 - fix proxy server error with missing compression algorithms
 - fix initial position (honour only when requested)
 - fix error wrongly reported after client command has been forwarded
 - fix support for multiple keys pressed at the same time
 - fix remote ssh start child command with spaces and quotes
+- fix remote ssh start child from MS Windows and OSX clients
 - handle small screen update storms better
 - minor build tree cleanups and fixes
 - improved bug report data

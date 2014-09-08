@@ -5,11 +5,12 @@ xpra (0.14.5-1) UNRELEASED; urgency=low
   * fix error wrongly reported after client command has been forwarded
   * fix support for multiple keys pressed at the same time
   * fix remote ssh start child command with spaces and quotes
+  * fix remote ssh start child from MS Windows and OSX clients
   * handle small screen update storms better
   * minor build tree cleanups and fixes
   * improved bug report data
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 06 Sep 2014 16:40:15 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 08 Sep 2014 15:15:20 +0700
 
 xpra (0.14.4-1) UNRELEASED; urgency=low
   * fix client disconnection on info request
