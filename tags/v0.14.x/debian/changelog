@@ -1,3 +1,8 @@
+xpra (0.14.6-1) UNRELEASED; urgency=low
+  * TODO
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 09 Sep 2014 21:34:55 +0700
+
 xpra (0.14.5-1) UNRELEASED; urgency=low
   * fix sharing access mode
   * fix proxy server error with missing compression algorithms
