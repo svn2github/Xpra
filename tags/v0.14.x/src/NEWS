@@ -1,6 +1,12 @@
-v0.14.6 (2014-09-09)
+v0.14.6 (2014-09-12)
 ======================
-	-- TODO
+	-- fix transparency support on legacy systems
+	-- fix window icons colours swapped in rgb mode
+	-- fix video region refresh error
+	-- fix OpenGL error in logging code
+	-- fix failures to daemonize
+	-- reduce cost of rectangle calculations
+	-- better window debugging information
 
 
 v0.14.5 (2014-09-08)

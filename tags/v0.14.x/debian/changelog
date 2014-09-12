@@ -1,7 +1,13 @@
 xpra (0.14.6-1) UNRELEASED; urgency=low
-  * TODO
+  * fix transparency support on legacy systems
+  * fix window icons colours swapped in rgb mode
+  * fix video region refresh error
+  * fix OpenGL error in logging code
+  * fix failures to daemonize
+  * reduce cost of rectangle calculations
+  * better window debugging information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 09 Sep 2014 21:34:55 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 12 Sep 2014 09:54:48 +0700
 
 xpra (0.14.5-1) UNRELEASED; urgency=low
   * fix sharing access mode

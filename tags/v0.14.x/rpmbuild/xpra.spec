@@ -235,10 +235,16 @@ fi
 
 
 %changelog
-* Mon Sep 08 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
-- TODO
+* Fri Sep 12 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
+- fix transparency support on legacy systems
+- fix window icons colours swapped in rgb mode
+- fix video region refresh error
+- fix OpenGL error in logging code
+- fix failures to daemonize
+- reduce cost of rectangle calculations
+- better window debugging information
 
-* Mon Sep 08 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
+* Mon Sep 08 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.5-2
 - fix sharing access mode
 - fix proxy server error with missing compression algorithms
 - fix initial position (honour only when requested)
