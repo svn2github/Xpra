@@ -18,6 +18,7 @@ keylog = Logger("keyboard")
 from xpra.util import AdHocStruct, bytestostr
 from xpra.gtk_common.gobject_compat import import_gtk, import_gdk, import_cairo, import_pixbufloader
 from xpra.gtk_common.gtk_util import pixbuf_new_from_data, COLORSPACE_RGB
+from xpra.gtk_common.gtk_util import get_pixbuf_from_data 
 from xpra.gtk_common.keymap import KEY_TRANSLATIONS
 from xpra.client.client_window_base import ClientWindowBase
 gtk     = import_gtk()
@@ -51,9 +52,9 @@ if os.name=="posix" and os.environ.get("XPRA_SET_WORKSPACE", "1")!="0":
 
 #optional module providing faster handling of premultiplied argb:
 try:
-    from xpra.codecs.argb.argb import unpremultiply_argb, byte_buffer_to_buffer   #@UnresolvedImport
+    from xpra.codecs.argb.argb import unpremultiply_argb, bgra_to_rgba, byte_buffer_to_buffer  #@UnresolvedImport 
 except:
-    unpremultiply_argb, byte_buffer_to_buffer  = None, None
+    unpremultiply_argb, bgra_to_rgba, byte_buffer_to_buffer  = None, None, None
 
 
 #window types we map to POPUP rather than TOPLEVEL
@@ -515,8 +516,9 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                 log.warn("cannot process premult_argb32 icon without the argb module")
                 return
             #we usually cannot do in-place and this is not performance critical
-            data = byte_buffer_to_buffer(unpremultiply_argb(data))
-            pixbuf = pixbuf_new_from_data(data, COLORSPACE_RGB, True, 8, width, height, width*4)
+            data = unpremultiply_argb(data)
+            rgba = byte_buffer_to_buffer(bgra_to_rgba(data))
+            pixbuf = get_pixbuf_from_data(rgba, True, width, height, width*4)
         else:
             loader = PixbufLoader()
             loader.write(data)
