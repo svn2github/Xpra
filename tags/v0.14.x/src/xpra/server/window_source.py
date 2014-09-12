@@ -261,8 +261,6 @@ class WindowSource(object):
         info = {
                 "dimensions"            : self.window_dimensions,
                 "encoding"              : self.encoding,
-                "encoding.mmap"         : bool(self._mmap) and (self._mmap_size>0),
-                "encoding.last_used"    : self.encoding_last_used or "",
                 "suspended"             : self.suspended or False
                 }
         def up(prefix, d):
@@ -272,14 +270,26 @@ class WindowSource(object):
         up("encoding.lossless_threshold", {
                 "base"                  : self._lossless_threshold_base,
                 "pixel_boost"           : self._lossless_threshold_pixel_boost})
-        info["encoding.rgb_threshold"] = self._rgb_auto_threshold
+        up("encoding", {
+                "rgb_threshold"         : self._rgb_auto_threshold,
+                "mmap"                  : bool(self._mmap) and (self._mmap_size>0),
+                "last_used"             : self.encoding_last_used or "",
+                "full-frames-only"      : self.full_frames_only,
+                "supports-transparency" : self.supports_transparency,
+                })
+        up("encoding",  self.get_quality_speed_info())
         try:
             info["encoding.selection"] = self.get_best_encoding.__name__
         except:
             pass
         up("property",  self.get_property_info())
         up("batch",     self.batch_config.get_info())
-        up("encoding",  self.get_quality_speed_info())
+        up("encodings", {
+                 ""                     : self.encodings,
+                 "core"                 : self.core_encodings,
+                 "auto-refresh"         : self.client_refresh_encodings,
+                 "rgb_formats"          : self.rgb_formats,
+                 })
         info.update(self.statistics.get_info())
         return info
 
