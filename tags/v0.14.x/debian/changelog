@@ -1,3 +1,8 @@
+xpra (0.14.7-1) UNRELEASED; urgency=low
+  * fix python2.4 compatibility in bug report tool
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 15 Sep 2014 18:06:06 +0700
+
 xpra (0.14.6-2) UNRELEASED; urgency=low
   * workaround crashes caused by compilation with Cython 0.21
 
