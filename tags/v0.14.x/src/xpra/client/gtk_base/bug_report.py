@@ -291,7 +291,8 @@ class BugReport(object):
                 info = zipfile.ZipInfo(cfile, date_time=time.localtime(time.time()))
                 info.compress_type = zipfile.ZIP_DEFLATED
                 #very poorly documented:
-                info.external_attr = 0o644 << 16
+                #info.external_attr = 0o644 << 16
+                info.external_attr = 420 << 16
                 info.comment = tooltip
                 zf.writestr(info, s, compress_type=zipfile.ZIP_DEFLATED)
         finally:
