@@ -1,6 +1,12 @@
 v0.14.7 (2014-09-15)
 ======================
 	-- fix python2.4 compatibility in bug report tool
+	-- fix client hangs caused by system tray in gnome 3.12
+	-- fix OpenGL double error in failure case
+	-- fix system tray error message on client start
+	-- fix missing default configuration file
+	-- fix session-info window paint issue when switching tabs
+	-- add new default resolutions for Xdummy
 
 
 v0.14.6 (2014-09-12)

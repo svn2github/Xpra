@@ -237,6 +237,12 @@ fi
 %changelog
 * Mon Sep 15 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
 - fix python2.4 compatibility in bug report tool
+- fix client hangs caused by system tray in gnome 3.12
+- fix OpenGL double error in failure case
+- fix system tray error message on client start
+- fix missing default configuration file
+- fix session-info window paint issue when switching tabs
+- add new default resolutions for Xdummy
 
 * Fri Sep 12 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
 - fix transparency support on legacy systems
