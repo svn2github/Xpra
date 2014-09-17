@@ -190,7 +190,6 @@ class GLPixmapBacking(GTK2WindowBacking):
         self.debug_setup = False
         self.border = None
         self.paint_screen = False
-        self._video_use_swscale = False
         self.draw_needs_refresh = False
         self.offscreen_fbo = None
 
