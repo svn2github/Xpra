@@ -1,5 +1,6 @@
-v0.14.7 (2014-09-15)
+v0.14.7 (2014-09-18)
 ======================
+	-- fix compressor fallback case
 	-- fix python2.4 compatibility in bug report tool
 	-- fix client hangs caused by system tray in gnome 3.12
 	-- fix OpenGL double error in failure case

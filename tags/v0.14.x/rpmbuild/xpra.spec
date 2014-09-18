@@ -235,7 +235,8 @@ fi
 
 
 %changelog
-* Mon Sep 15 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
+* Thu Sep 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
+- fix compressor fallback case
 - fix python2.4 compatibility in bug report tool
 - fix client hangs caused by system tray in gnome 3.12
 - fix OpenGL double error in failure case
