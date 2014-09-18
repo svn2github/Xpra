@@ -375,8 +375,9 @@ class Protocol(object):
             self.enable_compressor("none")
             return
         opts = compression.get_enabled_compressors(order=compression.PERFORMANCE_ORDER)
+        defaults = {"zlib" : True}
         for c in opts:      #ie: [zlib, lz4, lzo]
-            if caps.boolget(c):
+            if caps.boolget(c, defaults.get(c)):
                 self.enable_compressor(c)
                 return
         log.warn("compression disabled: no matching compressor found")
