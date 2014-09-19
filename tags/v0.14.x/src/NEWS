@@ -1,4 +1,4 @@
-v0.14.7 (2014-09-18)
+v0.14.7 (2014-09-19)
 ======================
 	-- fix compressor fallback case
 	-- fix python2.4 compatibility in bug report tool
@@ -7,6 +7,7 @@ v0.14.7 (2014-09-18)
 	-- fix system tray error message on client start
 	-- fix missing default configuration file
 	-- fix session-info window paint issue when switching tabs
+	-- fix default window icon
 	-- add new default resolutions for Xdummy
 
 

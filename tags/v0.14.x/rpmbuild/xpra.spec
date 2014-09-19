@@ -235,7 +235,7 @@ fi
 
 
 %changelog
-* Thu Sep 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
+* Fri Sep 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.7-1
 - fix compressor fallback case
 - fix python2.4 compatibility in bug report tool
 - fix client hangs caused by system tray in gnome 3.12
@@ -243,6 +243,7 @@ fi
 - fix system tray error message on client start
 - fix missing default configuration file
 - fix session-info window paint issue when switching tabs
+- fix default window icon
 - add new default resolutions for Xdummy
 
 * Fri Sep 12 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.6-2
