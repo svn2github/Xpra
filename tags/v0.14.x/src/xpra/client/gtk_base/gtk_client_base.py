@@ -18,7 +18,7 @@ log = Logger("gtk", "main")
 from xpra.gtk_common.quit import (gtk_main_quit_really,
                            gtk_main_quit_on_fatal_exceptions_enable)
 from xpra.gtk_common.cursor_names import cursor_names
-from xpra.gtk_common.gtk_util import get_gtk_version_info, scaled_image, pixbuf_new_from_file, display_get_default
+from xpra.gtk_common.gtk_util import get_gtk_version_info, scaled_image, pixbuf_new_from_file, display_get_default, window_set_default_icon
 from xpra.client.ui_client_base import UIXpraClient
 from xpra.client.gobject_client_base import GObjectXpraClient
 from xpra.client.gtk_base.gtk_keyboard_helper import GTKKeyboardHelper
@@ -46,6 +46,12 @@ class GTKXpraClient(UIXpraClient, GObjectXpraClient):
     def init(self, opts):
         GObjectXpraClient.init(self, opts)
         UIXpraClient.init(self, opts)
+
+    def init_ui(self, opts, extra_args=[]):
+        UIXpraClient.init_ui(self, opts, extra_args)
+        icon = self.get_pixbuf("xpra.png")
+        if icon:
+            window_set_default_icon(icon)
 
     def run(self):
         UIXpraClient.run(self)

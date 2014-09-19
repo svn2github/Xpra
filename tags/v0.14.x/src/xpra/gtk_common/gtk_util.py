@@ -58,6 +58,8 @@ if is_gtk3():
     from gi.repository import GdkPixbuf     #@UnresolvedImport
     image_new_from_pixbuf   = gtk.Image.new_from_pixbuf
     pixbuf_new_from_file    = GdkPixbuf.Pixbuf.new_from_file
+    window_set_default_icon = gtk.Window.set_default_icon
+
     def gdk_cairo_context(cairo_context):
         return cairo_context
     def pixbuf_new_from_data(*args):
@@ -161,6 +163,8 @@ else:
     RESPONSE_CANCEL = gtk.RESPONSE_CANCEL
     RESPONSE_OK     = gtk.RESPONSE_OK
     WINDOW_TOPLEVEL = gdk.WINDOW_TOPLEVEL
+    window_set_default_icon = gtk.window_set_default_icon
+
     FILE_CHOOSER_ACTION_SAVE    = gtk.FILE_CHOOSER_ACTION_SAVE
     FILE_CHOOSER_ACTION_OPEN    = gtk.FILE_CHOOSER_ACTION_OPEN
     PROPERTY_CHANGE_MASK = gdk.PROPERTY_CHANGE_MASK
