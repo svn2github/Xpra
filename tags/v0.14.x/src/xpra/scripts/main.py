@@ -384,7 +384,7 @@ def do_parse_cmdline(cmdline, defaults):
                       help="Disable forwarding of system notifications (default: %s)" % enabled_str(defaults.notifications))
     group.add_option("--system-tray", action="store_true",
                       dest="system_tray", default=defaults.system_tray,
-                      help="Disable forwarding of system tray icons (default: %s)" % enabled_str(defaults.system_tray))
+                      help="Enable forwarding of system tray icons (default: %s)" % enabled_str(defaults.system_tray))
     group.add_option("--no-system-tray", action="store_false",
                       dest="system_tray", default=defaults.system_tray,
                       help="Disable forwarding of system tray icons (default: %s)" % enabled_str(defaults.system_tray))
