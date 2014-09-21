@@ -236,7 +236,12 @@ fi
 
 %changelog
 * Sun Sep 21 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
-- TODO
+- fix shadow servers
+- fix codec version lookup code and add numpy version
+- fix command line parsing on builds without server components
+- fix command line help text for system-tray option
+- try harder to enable webp on some platforms
+- honour nvenc GPU device selection
 
 * Fri Sep 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.7-1
 - fix compressor fallback case

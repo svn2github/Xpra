@@ -1,6 +1,11 @@
 v0.14.8 (2014-09-21)
 ======================
-	-- TODO
+	-- fix shadow servers
+	-- fix codec version lookup code and add numpy version
+	-- fix command line parsing on builds without server components
+	-- fix command line help text for system-tray option
+	-- try harder to enable webp on some platforms
+	-- honour nvenc GPU device selection
 
 
 v0.14.7 (2014-09-19)
