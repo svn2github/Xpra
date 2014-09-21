@@ -51,17 +51,18 @@ def codec_import_check(name, description, top_module, class_module, *classnames)
         log("", exc_info=True)
     return None
 codec_versions = {}
-def add_codec_version(name, top_module, version="get_version()", alt_version=None):
+def add_codec_version(name, top_module, version="get_version()", alt_version="__version__"):
     try:
         fieldnames = [x for x in (version, alt_version) if x is not None]
         for fieldname in fieldnames:
-            if version.endswith("()"):
-                fieldname = version[:-2]
-            module = __import__(top_module, {}, {}, [fieldname])
-            if not hasattr(module, fieldname):
+            f = fieldname
+            if f.endswith("()"):
+                f = version[:-2]
+            module = __import__(top_module, {}, {}, [f])
+            if not hasattr(module, f):
                 continue
-            v = getattr(module, fieldname)
-            if version.endswith("()") and v:
+            v = getattr(module, f)
+            if fieldname.endswith("()") and v:
                 v = v()
             global codec_versions
             codec_versions[name] = v
@@ -254,14 +255,14 @@ def main():
                         print("                         ENCODE: %s" % ", ".join(e))
                         d = get_PIL_decodings(mod)
                         print("                         DECODE: %s" % ", ".join(d))
-                    elif name.find("enc")>=0 or name.find("dec")>=0:
-                        encodings = mod.get_encodings()
-                        print("                         %s" % ", ".join(encodings))
                     elif name.find("csc")>=0:
                         cs = list(mod.get_input_colorspaces())
                         for c in list(cs):
                             cs += list(mod.get_output_colorspaces(c))
                         print("                         %s" % ", ".join(list(set(cs))))
+                    elif name.find("enc")>=0 or name.find("dec")>=0:
+                        encodings = mod.get_encodings()
+                        print("                         %s" % ", ".join(encodings))
                 except:
                     e = sys.exc_info()[1]
                     print("error getting extra information on %s: %s" % (name, e))
