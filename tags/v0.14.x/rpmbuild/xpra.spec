@@ -235,13 +235,18 @@ fi
 
 
 %changelog
-* Sun Sep 21 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
+* Fri Sep 26 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
 - fix shadow servers
 - fix codec version lookup code and add numpy version
 - fix command line parsing on builds without server components
 - fix command line help text for system-tray option
+- fix missing default config on osx
+- fix bug in icon change handler
+- fix MS Windows shadow servers using 100% CPU
+- use new icon consistently
 - try harder to enable webp on some platforms
 - honour nvenc GPU device selection
+- remove old unused code
 
 * Fri Sep 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.7-1
 - fix compressor fallback case

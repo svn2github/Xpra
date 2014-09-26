@@ -3,10 +3,15 @@ xpra (0.14.8-1) UNRELEASED; urgency=low
   * fix codec version lookup code and add numpy version
   * fix command line parsing on builds without server components
   * fix command line help text for system-tray option
+  * fix missing default config on osx
+  * fix bug in icon change handler
+  * fix MS Windows shadow servers using 100% CPU
+  * use new icon consistently
   * try harder to enable webp on some platforms
   * honour nvenc GPU device selection
+  * remove old unused code
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 21 Sep 2014 21:41:56 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 26 Sep 2014 03:43:24 +0700
 
 xpra (0.14.7-1) UNRELEASED; urgency=low
   * fix compressor fallback case

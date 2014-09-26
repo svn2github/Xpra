@@ -4,8 +4,13 @@ v0.14.8 (2014-09-21)
 	-- fix codec version lookup code and add numpy version
 	-- fix command line parsing on builds without server components
 	-- fix command line help text for system-tray option
+	-- fix missing default config on osx
+	-- fix bug in icon change handler
+	-- fix MS Windows shadow servers using 100% CPU
+	-- use new icon consistently
 	-- try harder to enable webp on some platforms
 	-- honour nvenc GPU device selection
+	-- remove old unused code
 
 
 v0.14.7 (2014-09-19)
