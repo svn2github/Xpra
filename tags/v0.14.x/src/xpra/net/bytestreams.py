@@ -10,6 +10,9 @@ import os
 import errno
 import socket
 
+from xpra.log import Logger
+log = Logger("network", "protocol")
+
 #on some platforms (ie: OpenBSD), reading and writing from sockets
 #raises an IOError but we should continue if the error code is EINTR
 #this wrapper takes care of it.
