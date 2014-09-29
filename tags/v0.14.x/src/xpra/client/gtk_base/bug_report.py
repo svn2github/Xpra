@@ -9,6 +9,9 @@ import os.path
 import sys
 import signal
 
+from xpra.platform.gui import init as gui_init
+gui_init()
+
 from xpra.gtk_common.gobject_compat import import_gtk, import_gdk, import_gobject, import_pango
 
 gtk = import_gtk()
@@ -304,9 +307,8 @@ def main():
     gtk_main_quit_on_fatal_exceptions_enable()
 
     from xpra.platform import init as platform_init
-    from xpra.platform.gui import init as gui_init, ready as gui_ready
+    from xpra.platform.gui import ready as gui_ready
     platform_init("Xpra-Bug-Report", "Xpra Bug Report")
-    gui_init()
 
     #logging init:
     if "-v" in sys.argv:
