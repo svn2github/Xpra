@@ -1,4 +1,4 @@
-v0.14.8 (2014-09-29)
+v0.14.8 (2014-10-01)
 ======================
 	-- fix shadow servers
 	-- fix DPI issues with MS Windows client and high DPI displays
@@ -9,6 +9,7 @@ v0.14.8 (2014-09-29)
 	-- fix bug in icon change handler
 	-- fix MS Windows shadow servers using 100% CPU
 	-- fix client side error message when windows disappear
+	-- fix transparency detection for some windows
 	-- use new icon consistently
 	-- try harder to enable webp on some platforms
 	-- honour nvenc GPU device selection

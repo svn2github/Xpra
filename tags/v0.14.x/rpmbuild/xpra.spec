@@ -235,7 +235,7 @@ fi
 
 
 %changelog
-* Mon Sep 29 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
+* Wed Oct 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
 - fix shadow servers
 - fix DPI issues with MS Windows client and high DPI displays
 - fix codec version lookup code and add numpy version
@@ -245,6 +245,7 @@ fi
 - fix bug in icon change handler
 - fix MS Windows shadow servers using 100% CPU
 - fix client side error message when windows disappear
+- fix transparency detection for some windows
 - use new icon consistently
 - try harder to enable webp on some platforms
 - honour nvenc GPU device selection

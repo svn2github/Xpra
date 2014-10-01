@@ -8,12 +8,13 @@ xpra (0.14.8-1) UNRELEASED; urgency=low
   * fix bug in icon change handler
   * fix MS Windows shadow servers using 100% CPU
   * fix client side error message when windows disappear
+  * fix transparency detection for some windows
   * use new icon consistently
   * try harder to enable webp on some platforms
   * honour nvenc GPU device selection
   * remove old unused code
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 29 Sep 2014 21:46:15 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 01 Oct 2014 09:45:42 +0700
 
 xpra (0.14.7-1) UNRELEASED; urgency=low
   * fix compressor fallback case
