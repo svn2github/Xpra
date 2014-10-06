@@ -88,6 +88,8 @@ class Keyboard(KeyboardBase):
             log.error("the server will try to guess your keyboard mapping, which works reasonably well in most cases")
             log.error("however, upgrading 'setxkbmap' to a version that supports the '-query' parameter is preferred")
             xkbmap_query_struct = parse_xkbmap_query(xkbmap_query)
+        else:
+            xkbmap_query_struct = {}
         return xkbmap_print, xkbmap_query, xkbmap_query_struct
 
     def get_keymap_spec_from_xkb(self):
@@ -96,7 +98,8 @@ class Keyboard(KeyboardBase):
             return None
         _query_struct = keyboard_bindings.getXkbProperties()
         _query = xkbmap_query_tostring(_query_struct)
-        return "", _query, _query_struct
+        xkbmap_print = self.exec_get_keyboard_data(["setxkbmap", "-print"])
+        return xkbmap_print or "", _query, _query_struct
 
     def get_keymap_spec(self):
         v = self.get_keymap_spec_from_xkb()
@@ -135,8 +138,7 @@ class Keyboard(KeyboardBase):
                 v = v[2]
         if v:
             layouts = v.split(",")
-            if len(layouts)>0:
-                layout = layouts[0]
+            layout = v
         return layout, layouts, "", None
 
 
