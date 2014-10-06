@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.8
+%define version 0.14.9
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -235,6 +235,12 @@ fi
 
 
 %changelog
+* Mon Oct 06 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.9-1
+- fix x11 keymap layout detection
+- fix clipboard auto-disabled too early
+- fix event handlers wrongly called twce
+- fix command line error message format 
+
 * Wed Oct 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.8-1
 - fix shadow servers
 - fix DPI issues with MS Windows client and high DPI displays

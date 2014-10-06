@@ -1,3 +1,11 @@
+xpra (0.14.9-1) UNRELEASED; urgency=low
+  * fix x11 keymap layout detection
+  * fix clipboard auto-disabled too early
+  * fix event handlers wrongly called twce
+  * fix command line error message format 
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 06 Oct 2014 21:13:31 +0700
+
 xpra (0.14.8-1) UNRELEASED; urgency=low
   * fix shadow servers
   * fix DPI issues with MS Windows client and high DPI displays

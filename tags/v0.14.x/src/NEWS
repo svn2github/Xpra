@@ -1,3 +1,11 @@
+v0.14.9 (2014-10-06)
+======================
+	-- fix x11 keymap layout detection
+	-- fix clipboard auto-disabled too early
+	-- fix event handlers wrongly called twce
+	-- fix command line error message format 
+
+
 v0.14.8 (2014-10-01)
 ======================
 	-- fix shadow servers
