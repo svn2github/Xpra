@@ -1,6 +1,7 @@
 v0.14.9 (2014-10-06)
 ======================
 	-- fix x11 keymap layout detection
+	-- fix IPv6 parsing
 	-- fix clipboard auto-disabled too early
 	-- fix event handlers wrongly called twce
 	-- fix command line error message format 

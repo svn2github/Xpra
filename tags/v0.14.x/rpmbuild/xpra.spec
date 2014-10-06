@@ -237,6 +237,7 @@ fi
 %changelog
 * Mon Oct 06 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.9-1
 - fix x11 keymap layout detection
+- fix IPv6 parsing
 - fix clipboard auto-disabled too early
 - fix event handlers wrongly called twce
 - fix command line error message format 
