@@ -52,10 +52,10 @@ def untilConcludes(is_active_cb, f, *a, **kw):
     while is_active_cb():
         try:
             return f(*a, **kw)
-        except socket.timeout as e:
+        except socket.timeout, e:
             log("untilConcludes(%s, %s, %s, %s) %s", is_active_cb, f, a, kw, e)
             continue
-        except (IOError, OSError) as e:
+        except (IOError, OSError), e:
             code = e.args[0]
             can_continue = CONTINUE.get(code)
             if can_continue:
