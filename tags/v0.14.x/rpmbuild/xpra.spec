@@ -235,7 +235,8 @@ fi
 
 
 %changelog
-* Tue Oct 07 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.9-1
+* Tue Oct 07 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.9-2
+- fix python 2.4 syntax compatibility
 - fix x11 keymap layout detection
 - fix IPv6 parsing
 - fix shellshock bash env compatibility issue
