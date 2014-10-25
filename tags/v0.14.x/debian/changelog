@@ -1,5 +1,11 @@
 xpra (0.14.10-1) UNRELEASED; urgency=low
-  * TODO
+  * fix crash with JPEG encoding and OpenGL
+  * fix deadlocks with sound on connection shutdown
+  * fix server errors with clients supporting very limited encodings
+  * fix compatibility with Fedora 21+ Xorg suid script
+  * fix compatibility with some login shells (ie: tcsh)
+  * fix warnings with NVENC and newer Nvidia driver versions
+  * fix warning with newer versions of Python Pillow
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 25 Oct 2014 10:59:13 +0200
 

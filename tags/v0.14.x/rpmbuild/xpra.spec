@@ -242,7 +242,13 @@ fi
 
 %changelog
 * Sat Oct 25 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.10-2
-- TODO
+- fix crash with JPEG encoding and OpenGL
+- fix deadlocks with sound on connection shutdown
+- fix server errors with clients supporting very limited encodings
+- fix compatibility with Fedora 21+ Xorg suid script
+- fix compatibility with some login shells (ie: tcsh)
+- fix warnings with NVENC and newer Nvidia driver versions
+- fix warning with newer versions of Python Pillow
 
 * Tue Oct 07 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.9-2
 - fix python 2.4 syntax compatibility

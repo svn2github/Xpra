@@ -1,6 +1,12 @@
 v0.14.10 (2014-10-25)
 ======================
-	-- TODO
+	-- fix crash with JPEG encoding and OpenGL
+	-- fix deadlocks with sound on connection shutdown
+	-- fix server errors with clients supporting very limited encodings
+	-- fix compatibility with Fedora 21+ Xorg suid script
+	-- fix compatibility with some login shells (ie: tcsh)
+	-- fix warnings with NVENC and newer Nvidia driver versions
+	-- fix warning with newer versions of Python Pillow
 
 
 v0.14.9 (2014-10-07)
