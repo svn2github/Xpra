@@ -1047,6 +1047,9 @@ CODEC_PROFILES_GUIDS = {
         guidstr(NV_ENC_VC1_PROFILE_SIMPLE_GUID)             : "simple",
         guidstr(NV_ENC_VC1_PROFILE_MAIN_GUID)               : "main",
         guidstr(NV_ENC_VC1_PROFILE_ADVANCED_GUID)           : "advanced",
+        "7ADD423D-D035-4F6F-AEA5-50885658643C"              : "streaming",
+        "D5BFB716-C604-44E7-9BB8-DEA5510FC3AC"              : "lossless",
+        "149998E7-2364-411d-82EF-179888093409"              : "lossless-hp",
         },
     guidstr(NV_ENC_CODEC_JPEG_GUID) : {
         guidstr(NV_ENC_CODEC_PROFILE_AUTOSELECT_GUID)       : "auto",
