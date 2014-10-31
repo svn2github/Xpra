@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.10
+%define version 0.14.11
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -241,6 +241,9 @@ fi
 
 
 %changelog
+* Fri Oct 31 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-2
+- TODO
+
 * Sat Oct 25 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.10-2
 - fix crash with JPEG encoding and OpenGL
 - fix deadlocks with sound on connection shutdown

@@ -1,3 +1,8 @@
+xpra (0.14.11-1) UNRELEASED; urgency=low
+  * TODO
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 31 Oct 2014 15:05:32 +0700
+
 xpra (0.14.10-1) UNRELEASED; urgency=low
   * fix crash with JPEG encoding and OpenGL
   * fix deadlocks with sound on connection shutdown
