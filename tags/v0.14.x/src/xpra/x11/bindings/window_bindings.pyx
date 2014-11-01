@@ -187,6 +187,13 @@ cdef extern from "X11/Xlib.h":
         short x, y
         unsigned short width, height
 
+    ctypedef struct XClassHint:
+        char *res_name
+        char *res_class
+
+    XClassHint *XAllocClassHint()
+    Status XGetClassHint(Display *display, Window w, XClassHint *class_hints_return)
+
     Status XGetGeometry(Display *display, Drawable d, Window *root_return,
                         int *x_return, int *y_return, unsigned int  *width_return, unsigned int *height_return,
                         unsigned int *border_width_return, unsigned int *depth_return)
@@ -757,3 +764,20 @@ cdef class X11WindowBindings(X11CoreBindings):
 
     def XRemoveFromSaveSet(self, Window xwindow):
         XRemoveFromSaveSet(self.display, xwindow)
+
+
+    def getClassHint(self, Window xwindow):
+        cdef XClassHint *classhints = XAllocClassHint()
+        assert classhints!=NULL
+        cdef Status s = XGetClassHint(self.display, xwindow, classhints)
+        if not s:
+            return None
+        _name = ""
+        _class = ""
+        if classhints.res_name!=NULL:
+            _name = classhints.res_name[:]
+        if classhints.res_class!=NULL:
+            _class = classhints.res_class[:]
+        XFree(classhints)
+        log("XGetClassHint(%#x) classhints: %s, %s", xwindow, _name, _class)
+        return (_name, _class)
