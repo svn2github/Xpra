@@ -1,7 +1,9 @@
 xpra (0.14.11-1) UNRELEASED; urgency=low
-  * TODO
+  * fix transparency detection and encoding selection
+  * fix spurious warning on shadow connection close
+  * fix window class detection
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 31 Oct 2014 15:05:32 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 01 Nov 2014 15:05:32 +0700
 
 xpra (0.14.10-1) UNRELEASED; urgency=low
   * fix crash with JPEG encoding and OpenGL

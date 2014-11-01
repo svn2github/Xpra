@@ -241,8 +241,10 @@ fi
 
 
 %changelog
-* Fri Oct 31 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-2
-- TODO
+* Sat Nov 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-2
+- fix transparency detection and encoding selection
+- fix spurious warning on shadow connection close
+- fix window class detection
 
 * Sat Oct 25 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.10-2
 - fix crash with JPEG encoding and OpenGL
