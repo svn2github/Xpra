@@ -4,6 +4,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
+import os
 import gtk
 import gobject
 
@@ -36,7 +37,7 @@ log = Logger("x11", "window")
 focuslog = Logger("x11", "window", "focus")
 
 
-WM_WINDOW_NAME = "Xpra-EWMH"
+XPRA_NET_WM_NAME = os.environ.get("XPRA_NET_WM_NAME", "Xpra")
 
 NotifyPointerRoot   = constants["NotifyPointerRoot"]
 NotifyDetailNone    = constants["NotifyDetailNone"]
@@ -66,7 +67,7 @@ def wm_check(display, upgrading=False):
                 name = prop_get(ewmh_wm, "_NET_WM_NAME", "utf8", ignore_errors=False, raise_xerrors=False)
             except:
                 name = None
-            if upgrading and name and name==WM_WINDOW_NAME:
+            if upgrading and name and name==XPRA_NET_WM_NAME:
                 log.info("found previous Xpra instance")
             else:
                 log.warn("Warning: found an existing window manager on screen %s using window %#x: %s", i, ewmh_wm.xid, name or "unknown")
@@ -430,7 +431,7 @@ class Wm(gobject.GObject):
                                            window_type=gtk.gdk.WINDOW_TOPLEVEL,
                                            event_mask=0, # event mask
                                            wclass=gtk.gdk.INPUT_ONLY,
-                                           title=WM_WINDOW_NAME)
+                                           title=XPRA_NET_WM_NAME)
         prop_set(self._ewmh_window, "_NET_SUPPORTING_WM_CHECK",
                  "window", self._ewmh_window)
         self.root_set("_NET_SUPPORTING_WM_CHECK",
