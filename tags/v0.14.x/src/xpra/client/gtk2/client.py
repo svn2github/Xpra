@@ -27,6 +27,7 @@ from xpra.client.gtk2.tray_menu import GTK2TrayMenu
 from xpra.gtk_common.cursor_names import cursor_names
 from xpra.client.window_border import WindowBorder
 from xpra.net.compression import Uncompressed
+from xpra.platform.gui import get_fixed_cursor_size
 from xpra.log import Logger
 
 log = Logger("gtk", "client")
@@ -366,7 +367,13 @@ class XpraClient(GTKXpraClient):
             smax = cursor_data[10]
             cursorlog("server cursor sizes: default=%s, max=%s", ssize, smax)
         cursorlog("new cursor at %s,%s with serial=%s, dimensions: %sx%s, len(pixels)=%s, default cursor size is %s, maximum=%s", xhot,yhot, serial, w,h, len(pixels), csize, (cmaxw, cmaxh))
-        ratio = 1
+        fw, fh = get_fixed_cursor_size()
+        if fw>0 and fh>0 and (w!=fw or h!=fh):
+            #OS wants a fixed cursor size! (win32 does, and GTK doesn't do this for us)
+            cursorlog("scaling cursor from %ix%i to fixed OS size %ix%i", w, h, fw, fh)
+            pixbuf = pixbuf.scale_simple(fw, fh, gdk.INTERP_BILINEAR)
+            xratio, yratio = float(w)/fw, float(h)/fh
+            x, y = int(x/xratio), int(y/yratio)
         if w>cmaxw or h>cmaxh or (csize>0 and (csize<w or csize<h)):
             ratio = max(float(w)/cmaxw, float(h)/cmaxh, float(max(w,h))/csize)
             cursorlog("downscaling cursor by %.2f", ratio)

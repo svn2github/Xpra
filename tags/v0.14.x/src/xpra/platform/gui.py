@@ -46,6 +46,8 @@ def system_bell(*args):
     return False
 def get_native_notifier_classes():
     return []
+def get_fixed_cursor_size():
+    return -1, -1
 
 def gl_check():
     return None     #no problem
@@ -64,4 +66,5 @@ platform_import(globals(), "gui", False,
                 "get_native_tray_classes",
                 "get_native_system_tray_classes",
                 "get_native_notifier_classes",
+                "get_fixed_cursor_size",
                 "system_bell")

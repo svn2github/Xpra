@@ -50,6 +50,17 @@ def get_native_system_tray_classes(*args):
     #so it cannot be used for application trays
     return get_native_tray_classes()
 
+def get_fixed_cursor_size():
+    try:
+        import win32api, win32con
+        w = win32api.GetSystemMetrics(win32con.SM_CXCURSOR)
+        h = win32api.GetSystemMetrics(win32con.SM_CYCURSOR)
+        return w, h
+    except Exception as e:
+        log.warn("failed to get window frame size information: %s", e)
+        #best to try to use a limit anyway:
+        return 32, 32
+
 def gl_check():
     #This is supposed to help py2exe
     #(must be done after we setup the sys.path in platform.win32.paths):
