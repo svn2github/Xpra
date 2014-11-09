@@ -1,12 +1,15 @@
 xpra (0.14.11-1) UNRELEASED; urgency=low
   * fix crash with zero copy OpenGL pixel upload (now disabled)
+  * fix cursor forwarding with MS Windows clients
   * fix for the tray menu to allow a mix of left and right clicks
   * workaround for Java SDK6 and earlier miscalculating window insets
   * fix transparency detection and encoding selection
   * fix spurious warning on shadow connection close
   * fix window class detection
+  * fix CUDA automatic device selection
+  * better client reporting of remote errors
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 09 Nov 2014 15:05:32 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 09 Nov 2014 21:15:05 +0700
 
 xpra (0.14.10-1) UNRELEASED; urgency=low
   * fix crash with JPEG encoding and OpenGL
