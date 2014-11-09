@@ -17,6 +17,7 @@ from xpra.log import Logger
 log = Logger("opengl", "paint")
 OPENGL_DEBUG = os.environ.get("XPRA_OPENGL_DEBUG", "0")=="1"
 
+from xpra.os_util import memoryview_to_bytes 
 from xpra.codecs.codec_constants import get_subsampling_divs
 from xpra.client.gl.gl_check import get_DISPLAY_MODE, GL_ALPHA_SUPPORTED
 from xpra.client.gl.gl_colorspace_conversions import YUV2RGB_shader, RGBP2RGB_shader
@@ -459,6 +460,11 @@ class GLPixmapBacking(GTK2WindowBacking):
             log("%s._do_paint_rgb(..) drawable is not set!", self)
             return False
 
+        #have to convert buffer to string because we can't handle buffer upload..
+        if type(img_data)==buffer_type:
+            img_data = str(img_data)
+        else: 
+            img_data = memoryview_to_bytes(img_data)
         try:
             self.set_rgb_paint_state()
 
