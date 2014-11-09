@@ -241,7 +241,10 @@ fi
 
 
 %changelog
-* Sat Nov 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-2
+* Sun Nov 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-1
+- fix crash with zero copy OpenGL pixel upload (now disabled)
+- fix for the tray menu to allow a mix of left and right clicks
+- workaround for Java SDK6 and earlier miscalculating window insets
 - fix transparency detection and encoding selection
 - fix spurious warning on shadow connection close
 - fix window class detection
