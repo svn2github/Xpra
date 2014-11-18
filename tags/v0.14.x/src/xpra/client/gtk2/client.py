@@ -22,6 +22,7 @@ from xpra.platform.ui_thread_watcher import get_UI_watcher
 UI_watcher = get_UI_watcher(gobject.timeout_add)
 
 from xpra.gtk_common.gtk2common import gtk2main
+from xpra.gtk_common.gtk_util import get_pixbuf_from_data
 from xpra.client.gtk_base.gtk_client_base import GTKXpraClient, xor_str
 from xpra.client.gtk2.tray_menu import GTK2TrayMenu
 from xpra.gtk_common.cursor_names import cursor_names
@@ -370,17 +371,24 @@ class XpraClient(GTKXpraClient):
         fw, fh = get_fixed_cursor_size()
         if fw>0 and fh>0 and (w!=fw or h!=fh):
             #OS wants a fixed cursor size! (win32 does, and GTK doesn't do this for us)
-            cursorlog("scaling cursor from %ix%i to fixed OS size %ix%i", w, h, fw, fh)
-            pixbuf = pixbuf.scale_simple(fw, fh, gdk.INTERP_BILINEAR)
-            xratio, yratio = float(w)/fw, float(h)/fh
-            x, y = int(x/xratio), int(y/yratio)
+            if w<=fw and h<=fh:
+                cursorlog("pasting cursor of size %ix%i onto clear pixbuf of size %ix%i", w, h, fw, fh)
+                cursor_pixbuf = get_pixbuf_from_data("\0"*fw*fh*4, True, fw, fh, fw*4)
+                pixbuf.copy_area(0, 0, w, h, cursor_pixbuf, 0, 0)
+            else:
+                cursorlog("scaling cursor from %ix%i to fixed OS size %ix%i", w, h, fw, fh)
+                cursor_pixbuf = pixbuf.scale_simple(fw, fh, INTERP_BILINEAR)
+                xratio, yratio = float(w)/fw, float(h)/fh
+                x, y = int(x/xratio), int(y/yratio)
         if w>cmaxw or h>cmaxh or (csize>0 and (csize<w or csize<h)):
             ratio = max(float(w)/cmaxw, float(h)/cmaxh, float(max(w,h))/csize)
             cursorlog("downscaling cursor by %.2f", ratio)
-            pixbuf = pixbuf.scale_simple(int(w/ratio), int(h/ratio), gdk.INTERP_BILINEAR)
             x = int(x/ratio)
             y = int(y/ratio)
-        return gdk.Cursor(gdk.display_get_default(), pixbuf, x, y)
+            cursor_pixbuf = pixbuf.scale_simple(w, h, INTERP_BILINEAR)
+        else:
+            cursor_pixbuf = pixbuf
+        return gdk.Cursor.new_from_pixbuf(display, cursor_pixbuf, x, y)
 
     def set_windows_cursor(self, gtkwindows, cursor_data):
         cursor = None
