@@ -22,7 +22,7 @@ from xpra.platform.ui_thread_watcher import get_UI_watcher
 UI_watcher = get_UI_watcher(gobject.timeout_add)
 
 from xpra.gtk_common.gtk2common import gtk2main
-from xpra.gtk_common.gtk_util import get_pixbuf_from_data
+from xpra.gtk_common.gtk_util import get_pixbuf_from_data, INTERP_BILINEAR
 from xpra.client.gtk_base.gtk_client_base import GTKXpraClient, xor_str
 from xpra.client.gtk2.tray_menu import GTK2TrayMenu
 from xpra.gtk_common.cursor_names import cursor_names
@@ -388,7 +388,7 @@ class XpraClient(GTKXpraClient):
             cursor_pixbuf = pixbuf.scale_simple(w, h, INTERP_BILINEAR)
         else:
             cursor_pixbuf = pixbuf
-        return gdk.Cursor.new_from_pixbuf(display, cursor_pixbuf, x, y)
+        return gdk.Cursor(display, cursor_pixbuf, x, y)
 
     def set_windows_cursor(self, gtkwindows, cursor_data):
         cursor = None
