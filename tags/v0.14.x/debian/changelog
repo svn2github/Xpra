@@ -1,3 +1,10 @@
+xpra (0.14.12-1) UNRELEASED; urgency=low
+  * fix PyOpenGL related crashes when "accelerate" module is missing
+  * re-enable zero copy OpenGL pixel uploads when safe to do so
+  * more accurate cursor shape transforms on MS Windows
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 18 Nov 2014 16:43:45 -0600
+
 xpra (0.14.11-1) UNRELEASED; urgency=low
   * fix crash with zero copy OpenGL pixel upload (now disabled)
   * fix cursor forwarding with MS Windows clients

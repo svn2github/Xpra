@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.11
+%define version 0.14.12
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -241,6 +241,11 @@ fi
 
 
 %changelog
+* Tue Nov 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
+- fix PyOpenGL related crashes when "accelerate" module is missing
+- re-enable zero copy OpenGL pixel uploads when safe to do so
+- more accurate cursor shape transforms on MS Windows
+
 * Sun Nov 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-1
 - fix crash with zero copy OpenGL pixel upload (now disabled)
 - fix cursor forwarding with MS Windows clients

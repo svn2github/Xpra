@@ -1,3 +1,10 @@
+v0.14.12 (2014-11-18)
+======================
+	-- fix PyOpenGL related crashes when "accelerate" module is missing
+	-- re-enable zero copy OpenGL pixel uploads when safe to do so
+	-- more accurate cursor shape transforms on MS Windows
+
+
 v0.14.11 (2014-11-09)
 ======================
 	-- fix crash with zero copy OpenGL pixel upload (now disabled)
