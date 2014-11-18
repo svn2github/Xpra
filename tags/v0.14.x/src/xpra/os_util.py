@@ -72,6 +72,14 @@ else:
         return x.decode()
 
 
+def memoryview_to_bytes(v):
+    if not has_memoryview:
+        return v
+    if _memoryview and isinstance(v, _memoryview):
+        return v.tobytes()
+    return v
+
+
 def data_to_buffer(in_data):
     if sys.version>='3':
         data = bytearray(in_data.encode("latin1"))

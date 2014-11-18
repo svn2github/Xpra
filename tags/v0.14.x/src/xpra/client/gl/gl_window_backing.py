@@ -19,7 +19,7 @@ OPENGL_DEBUG = os.environ.get("XPRA_OPENGL_DEBUG", "0")=="1"
 
 from xpra.os_util import memoryview_to_bytes 
 from xpra.codecs.codec_constants import get_subsampling_divs
-from xpra.client.gl.gl_check import get_DISPLAY_MODE, GL_ALPHA_SUPPORTED
+from xpra.client.gl.gl_check import get_DISPLAY_MODE, GL_ALPHA_SUPPORTED, is_pyopengl_memoryview_safe
 from xpra.client.gl.gl_colorspace_conversions import YUV2RGB_shader, RGBP2RGB_shader
 from xpra.client.gtk2.window_backing import GTK2WindowBacking, fire_paint_callbacks
 from OpenGL import version as OpenGL_version
@@ -99,6 +99,21 @@ if OPENGL_DEBUG:
             gl_debug_callback, glInitStringMarkerGREMEDY, glStringMarkerGREMEDY,
             glInitFrameTerminatorGREMEDY, glFrameTerminatorGREMEDY)
 from ctypes import c_char_p
+
+try:
+    import OpenGL_accelerate
+except:
+    OpenGL_accelerate = None
+zerocopy_upload = is_pyopengl_memoryview_safe(OpenGL_version.__version__) and OpenGL_accelerate
+try:
+    memoryview_type = memoryview
+except:
+    memoryview_type = None
+try:
+    buffer_type = buffer
+except:
+    #not defined in py3k..
+    buffer_type = None
 
 
 # Texture number assignment
@@ -460,11 +475,26 @@ class GLPixmapBacking(GTK2WindowBacking):
             log("%s._do_paint_rgb(..) drawable is not set!", self)
             return False
 
-        #have to convert buffer to string because we can't handle buffer upload..
-        if type(img_data)==buffer_type:
+        #prepare the pixel buffer for upload:
+        t = type(img_data)
+        if t==memoryview_type:
+            if not zerocopy_upload:
+                #not safe, make a copy :(
+                img_data = memoryview_to_bytes(img_data)
+                upload = "copy:memoryview_to_bytes"
+            else:
+                upload = "zerocopy:memoryview"
+        elif t in (str, buffer_type) and zerocopy_upload:
+            #we can zerocopy if we wrap it:
+            img_data = memoryview_type(img_data)
+            upload = "zerocopy:memoryview", t
+        elif t!=str:
+            #everything else.. copy to bytes (aka str):
             img_data = str(img_data)
-        else: 
-            img_data = memoryview_to_bytes(img_data)
+            upload = "copy:str", t
+        else:
+            upload = "copy:str"
+
         try:
             self.set_rgb_paint_state()
 
@@ -494,7 +524,7 @@ class GLPixmapBacking(GTK2WindowBacking):
             if (rowstride - width * bytes_per_pixel) >= alignment:
                 row_length = width + (rowstride - width * bytes_per_pixel) / bytes_per_pixel
 
-            self.gl_marker("%s %sbpp update at (%d,%d) size %dx%d (%s bytes), stride=%d, row length %d, alignment %d, using GL upload format=%s" % (rgb_format, bpp, x, y, width, height, len(img_data), rowstride, row_length, alignment, CONSTANT_TO_PIXEL_FORMAT.get(pformat)))
+            self.gl_marker("%s %sbpp update at (%d,%d) size %dx%d (%s bytes), stride=%d, row length %d, alignment %d, using GL %s format=%s" % (rgb_format, bpp, x, y, width, height, len(img_data), rowstride, row_length, alignment, upload, CONSTANT_TO_PIXEL_FORMAT.get(pformat)))
 
             # Upload data as temporary RGB texture
             glBindTexture(GL_TEXTURE_RECTANGLE_ARB, self.textures[TEX_RGB])
