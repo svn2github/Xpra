@@ -23,6 +23,7 @@
 #some of these dependencies may get turned off (empty) on some platforms:
 %define requires_lzo , python-lzo
 %define requires_lz4 , python-lz4
+%define requires_rencode , python-rencode
 #OpenGL bits:
 %define requires_opengl , PyOpenGL, PyOpenGL-accelerate, pygtkglext, numpy
 #Anything extra (distro specific):
@@ -78,6 +79,7 @@
 %define requires_lz4 %{nil}
 %define dummy --without-Xdummy
 #not available:
+%define requires_rencode %{nil}
 %define requires_opengl %{nil}
 %define requires_xim %{nil}
 %define no_sound 1
@@ -109,7 +111,7 @@ Vendor: http://xpra.org/
 Source: xpra-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
-Requires: python %{requires_extra} %{requires_opengl} %{requires_sound} %{requires_lz4} %{requires_lzo} %{requires_xim}
+Requires: python %{requires_extra} %{requires_opengl} %{requires_sound} %{requires_lz4} %{requires_lzo} %{requires_rencode} %{requires_xim}
 Requires: pygtk2
 Requires: python-imaging
 Requires: dbus-python
