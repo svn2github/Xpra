@@ -245,9 +245,12 @@ fi
 
 
 %changelog
-* Tue Nov 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
+* Wed Nov 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
 - fix PyOpenGL related crashes when "accelerate" module is missing
+- fix error with automatic display selection and use-display switch
+- fix csc modules error with missing but very rarely used function
 - re-enable zero copy OpenGL pixel uploads when safe to do so
+- add Python lz4 and PIL (or pillow) as dependencies for RPMs
 - more accurate cursor shape transforms on MS Windows
 
 * Sun Nov 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.11-1

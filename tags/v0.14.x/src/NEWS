@@ -1,7 +1,10 @@
-v0.14.12 (2014-11-18)
+v0.14.12 (2014-11-19)
 ======================
 	-- fix PyOpenGL related crashes when "accelerate" module is missing
+	-- fix error with automatic display selection and use-display switch
+	-- fix csc modules error with missing but very rarely used function
 	-- re-enable zero copy OpenGL pixel uploads when safe to do so
+	-- add Python lz4 and PIL (or pillow) as dependencies for RPMs
 	-- more accurate cursor shape transforms on MS Windows
 
 
