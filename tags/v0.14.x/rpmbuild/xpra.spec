@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.12
+%define version 0.14.13
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -245,6 +245,10 @@ fi
 
 
 %changelog
+* Sun Nov 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
+- launcher fixes: honour encoding selection, tray cleanup on exit
+- fix encryption error handling
+
 * Wed Nov 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
 - fix PyOpenGL related crashes when "accelerate" module is missing
 - fix error with automatic display selection and use-display switch

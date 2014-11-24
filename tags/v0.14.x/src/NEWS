@@ -1,3 +1,9 @@
+v0.14.13 (2014-11-23)
+======================
+	-- launcher fixes: honour encoding selection, tray cleanup on exit
+	-- fix encryption error handling
+
+
 v0.14.12 (2014-11-19)
 ======================
 	-- fix PyOpenGL related crashes when "accelerate" module is missing

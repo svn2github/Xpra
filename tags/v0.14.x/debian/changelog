@@ -1,3 +1,9 @@
+xpra (0.14.13-1) UNRELEASED; urgency=low
+  * launcher fixes: honour encoding selection, tray cleanup on exit
+  * fix encryption error handling
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 23 Nov 2014 15:58:43 -0800
+
 xpra (0.14.12-1) UNRELEASED; urgency=low
   * fix PyOpenGL related crashes when "accelerate" module is missing
   * fix error with automatic display selection and use-display switch
