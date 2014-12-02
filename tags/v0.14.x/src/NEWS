@@ -1,7 +1,11 @@
-v0.14.13 (2014-11-23)
+v0.14.13 (2014-12-01)
 ======================
-	-- launcher fixes: honour encoding selection, tray cleanup on exit
+	-- fix dummy Xorg resolutions and add new ones
+	-- blacklist Intel OpenGL driver on MS Windows as well as OSX
+	-- launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode
+	-- fix pygst metadata signed long value
 	-- fix encryption error handling
+	-- fix Python Pillow server warning
 
 
 v0.14.12 (2014-11-19)

@@ -245,9 +245,13 @@ fi
 
 
 %changelog
-* Sun Nov 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
-- launcher fixes: honour encoding selection, tray cleanup on exit
+* Mon Dec 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.13-1
+- fix dummy Xorg resolutions and add new ones
+- blacklist Intel OpenGL driver on MS Windows as well as OSX
+- launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode
+- fix pygst metadata signed long value
 - fix encryption error handling
+- fix Python Pillow server warning
 
 * Wed Nov 19 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.12-1
 - fix PyOpenGL related crashes when "accelerate" module is missing
