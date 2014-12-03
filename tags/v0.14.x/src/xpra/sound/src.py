@@ -14,15 +14,14 @@ from xpra.log import Logger
 log = Logger("sound")
 
 
-SOURCES = ["autoaudiosrc"]
-if has_pa():
-
-
 def normv(v):
     if v==2**64-1:
         return -1
     return v
 
+
+SOURCES = ["autoaudiosrc"]
+if has_pa():
     SOURCES.append("pulsesrc")
 if sys.platform.startswith("darwin"):
     SOURCES.append("osxaudiosrc")
