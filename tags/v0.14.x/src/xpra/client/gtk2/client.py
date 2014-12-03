@@ -383,8 +383,7 @@ class XpraClient(GTKXpraClient):
         if w>cmaxw or h>cmaxh or (csize>0 and (csize<w or csize<h)):
             ratio = max(float(w)/cmaxw, float(h)/cmaxh, float(max(w,h))/csize)
             cursorlog("downscaling cursor by %.2f", ratio)
-            x = int(x/ratio)
-            y = int(y/ratio)
+            x, y, w, h = int(x/ratio), int(y/ratio), int(w/ratio), int(h/ratio)
             cursor_pixbuf = pixbuf.scale_simple(w, h, INTERP_BILINEAR)
         else:
             cursor_pixbuf = pixbuf
