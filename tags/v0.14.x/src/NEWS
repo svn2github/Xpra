@@ -1,5 +1,6 @@
-v0.14.13 (2014-12-01)
+v0.14.13 (2014-12-03)
 ======================
+	-- fix exit-with-children with older python versions
 	-- fix dummy Xorg resolutions and add new ones
 	-- blacklist Intel OpenGL driver on MS Windows as well as OSX
 	-- launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode

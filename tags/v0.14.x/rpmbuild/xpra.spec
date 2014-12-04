@@ -245,7 +245,8 @@ fi
 
 
 %changelog
-* Mon Dec 01 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.13-1
+* Wed Dec 03 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.13-1
+- fix exit-with-children with older python versions
 - fix dummy Xorg resolutions and add new ones
 - blacklist Intel OpenGL driver on MS Windows as well as OSX
 - launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode

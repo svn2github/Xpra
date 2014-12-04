@@ -1,4 +1,5 @@
 xpra (0.14.13-1) UNRELEASED; urgency=low
+  * fix exit-with-children with older python versions
   * fix dummy Xorg resolutions and add new ones
   * blacklist Intel OpenGL driver on MS Windows as well as OSX
   * launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode
@@ -6,7 +7,7 @@ xpra (0.14.13-1) UNRELEASED; urgency=low
   * fix encryption error handling
   * fix Python Pillow server warning
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 01 Dec 2014 19:40:19 -0800
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 03 Dec 2014 16:40:03 -0800
 
 xpra (0.14.12-1) UNRELEASED; urgency=low
   * fix PyOpenGL related crashes when "accelerate" module is missing
