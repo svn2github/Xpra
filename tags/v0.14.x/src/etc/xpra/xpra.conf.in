@@ -215,7 +215,8 @@ key-shortcut = Meta+Shift+F11:show_session_info
 log-file = $DISPLAY.log
 
 # Publish sessions:
-mdns = yes
+#mdns = yes
+mdns = no
 
 # Input methods
 # To disable input method completely:
