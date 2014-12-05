@@ -430,9 +430,9 @@ class GLPixmapBacking(GTK2WindowBacking):
             glDisable(GL_TEXTURE_RECTANGLE_ARB)
             #double size since half the line will be off-screen
             glLineWidth(self.border.size*2)
-            glColor4f(self.border.red, self.border.green, self.border.blue, self.border.alpha)
             glBegin(GL_LINE_LOOP)
-            for x,y in ((0, 0), (w, 0), (w, h), (0, h)):
+            glColor4f(self.border.red, self.border.green, self.border.blue, self.border.alpha)
+            for x,y in ((0, 0), (ww, 0), (ww, wh), (0, wh)):
                 glVertex2i(x, y)
             glEnd()
             #reset color to default
