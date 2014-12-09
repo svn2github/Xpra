@@ -3,13 +3,15 @@ xpra (0.14.13-1) UNRELEASED; urgency=low
   * fix timer execution vs cleanup races
   * fix screen information parsing error
   * fix dummy Xorg resolutions and add new ones
+  * fix utility window decorations
+  * ignore message for background image changes on win32
   * blacklist Intel OpenGL driver on MS Windows as well as OSX
   * launcher fixes: ssh mode, honour encoding selection, tray cleanup on exit, improved debug mode
   * fix pygst metadata signed long value
   * fix encryption error handling
   * fix Python Pillow server warning
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 03 Dec 2014 16:40:03 -0800
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 09 Dec 2014 16:40:03 -0800
 
 xpra (0.14.12-1) UNRELEASED; urgency=low
   * fix PyOpenGL related crashes when "accelerate" module is missing
