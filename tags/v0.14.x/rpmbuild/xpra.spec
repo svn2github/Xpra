@@ -246,6 +246,7 @@ fi
 
 %changelog
 * Tue Dec 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.13-1
+- fix auto-refresh: encoding selection and requirements
 - fix exit-with-children with older python versions
 - fix timer execution vs cleanup races
 - fix screen information parsing error
