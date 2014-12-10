@@ -1,5 +1,6 @@
 v0.14.13 (2014-12-09)
 ======================
+	-- fix cursor scaling (aka "giant cursors")
 	-- fix auto-refresh: encoding selection and requirements
 	-- fix exit-with-children with older python versions
 	-- fix timer execution vs cleanup races
