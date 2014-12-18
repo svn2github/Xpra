@@ -241,6 +241,7 @@ fi
 
 %changelog
 * Thu Dec 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.14-1
+- fix Python < 2.6 compatibility (syntax errors)
 - remove window decorations from non-normal transient windows
 - fix error message of X11 client started without a valid display
 - fix invalid time recorded in statistics and heuristics

@@ -1,5 +1,6 @@
 v0.14.14 (2014-12-18)
 ======================
+	-- fix Python < 2.6 compatibility (syntax errors)
 	-- remove window decorations from non-normal transient windows
 	-- fix error message of X11 client started without a valid display
 	-- fix invalid time recorded in statistics and heuristics
