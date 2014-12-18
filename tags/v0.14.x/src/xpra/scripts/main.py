@@ -1106,9 +1106,13 @@ def run_client(error_cb, opts, extra_args, mode):
         from xpra.client.gobject_client_base import DetachXpraClient
         app = DetachXpraClient(connect(), opts)
     else:
-        from xpra.platform.gui import init as gui_init
-        gui_init()
-        app = make_client(error_cb, opts)
+        try:
+            from xpra.platform.gui import init as gui_init
+            gui_init()
+            app = make_client(error_cb, opts)
+        except RuntimeError, e:
+            #exceptions at this point are still initialization exceptions
+            raise InitException(e.message)
         layouts = app.get_supported_window_layouts() or ["default"]
         layouts_str = ", ".join(layouts)
         if opts.window_layout and opts.window_layout.lower()=="help":
