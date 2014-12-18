@@ -56,7 +56,7 @@ def get_fixed_cursor_size():
         w = win32api.GetSystemMetrics(win32con.SM_CXCURSOR)
         h = win32api.GetSystemMetrics(win32con.SM_CYCURSOR)
         return w, h
-    except Exception as e:
+    except Exception, e:
         log.warn("failed to get window frame size information: %s", e)
         #best to try to use a limit anyway:
         return 32, 32

@@ -157,7 +157,7 @@ def fix_unicode_out():
                     if self._hConsole is None:
                         try:
                             self._stream.flush()
-                        except Exception as e:
+                        except Exception, e:
                             _complain("%s.flush: %r from %r" % (self.name, e, self._stream))
                             raise
 
@@ -206,7 +206,7 @@ def fix_unicode_out():
                 sys.stderr = UnicodeOutput(hStderr, None, STDERR_FILENO, '<Unicode console stderr>')
             else:
                 sys.stderr = UnicodeOutput(None, sys.stderr, old_stderr_fileno, '<Unicode redirected stderr>')
-    except Exception as e:
+    except Exception, e:
         _complain("exception %r while fixing up sys.stdout and sys.stderr" % (e,))
 
 _wait_for_input = False
