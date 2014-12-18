@@ -1365,6 +1365,7 @@ def run_stopexit(mode, error_cb, opts, extra_args):
 
     display_desc = pick_display(error_cb, opts, extra_args)
     conn = connect_or_fail(display_desc)
+    app = None
     e = 1
     try:
         if mode=="stop":
@@ -1377,7 +1378,8 @@ def run_stopexit(mode, error_cb, opts, extra_args):
             raise Exception("invalid mode: %s" % mode)
         e = app.run()
     finally:
-        app.cleanup()
+        if app:
+            app.cleanup()
     if display_desc["local"]:
         show_final_state(display_desc["display"])
     else:
