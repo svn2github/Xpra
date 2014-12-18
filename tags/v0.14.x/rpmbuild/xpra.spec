@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.13
+%define version 0.14.14
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -240,6 +240,13 @@ fi
 
 
 %changelog
+* Thu Dec 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.14-1
+- remove window decorations from non-normal transient windows
+- fix error message of X11 client started without a valid display
+- fix invalid time recorded in statistics and heuristics
+- fix video stream decoding errors by restarting the stream
+- blacklist mesa's "Software Rasterizer" (user reported visual corruption)
+
 * Tue Dec 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.13-1
 - fix cursor scaling (aka "giant cursors")
 - fix auto-refresh: encoding selection and requirements
