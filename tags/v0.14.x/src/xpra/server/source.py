@@ -75,6 +75,9 @@ def make_window_metadata(window, propname, generic_window_types=False, client_su
         if hints is not None:
             hints_metadata = hints.to_dict()
         return {"size-constraints": hints_metadata}
+    elif propname in ("iconic", ):
+        #always send this one when requested
+        return {propname : bool(window.get_property(propname))}
     elif propname == "class-instance":
         c_i = window.get_property("class-instance")
         if c_i is None:

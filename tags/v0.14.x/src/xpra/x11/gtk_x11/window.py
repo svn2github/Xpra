@@ -603,7 +603,11 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
                 self.set_property("maximized", maximized)
             else:
                 log("do_xpra_client_message_event(%s) atom=%s", event, atom1)
-        if event.message_type=="_NET_ACTIVE_WINDOW" and event.data and len(event.data)==5 and event.data[0] in (0, 1):
+        elif event.message_type=="WM_CHANGE_STATE" and event.data and len(event.data)==5:
+            log("WM_CHANGE_STATE: %s", event.data[0])
+            if event.data[0]==IconicState:
+                self._internal_set_property("iconic", True)
+        elif event.message_type=="_NET_ACTIVE_WINDOW" and event.data and len(event.data)==5 and event.data[0] in (0, 1):
             self.set_active()
             self.emit("raised", event)
         else:
@@ -823,7 +827,7 @@ class WindowModel(BaseWindowModel):
 
         self.connect("notify::iconic", self._handle_iconic_update)
 
-        self.property_names += ["title", "icon-title", "size-hints", "class-instance", "icon", "client-machine", "modal"]
+        self.property_names += ["title", "icon-title", "size-hints", "class-instance", "icon", "client-machine", "modal", "iconic"]
         self.call_setup()
 
     def setup(self):

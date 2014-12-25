@@ -120,6 +120,7 @@ class ClientWindowBase(ClientWidgetBase):
         self.set_metadata(metadata)
 
     def set_metadata(self, metadata):
+        log.info("set_metadata(%s)", metadata)
         if "title" in metadata:
             try:
                 title = u(self._client.title)
@@ -226,6 +227,12 @@ class ClientWindowBase(ClientWidgetBase):
         if "fullscreen" in metadata:
             fullscreen = metadata.boolget("fullscreen")
             self.set_fullscreen(fullscreen)
+
+        if "iconic" in metadata:
+            if metadata.boolget("iconic"):
+                self.iconify()
+            else:
+                self.deiconify()
 
 
     def set_window_type(self, window_types):
