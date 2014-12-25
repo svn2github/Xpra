@@ -1,3 +1,11 @@
+v0.14.15 (2014-12-25)
+======================
+	-- fix VP9 decoding support
+	-- fix library linking order (preserve pkg-config order)
+	-- fix windows that iconify programmatically
+	-- fix dialog windows wrongly shown as override redirect
+
+
 v0.14.14 (2014-12-18)
 ======================
 	-- fix Python < 2.6 compatibility (syntax errors)

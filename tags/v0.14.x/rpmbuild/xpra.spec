@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.14
+%define version 0.14.15
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -240,6 +240,12 @@ fi
 
 
 %changelog
+* Thu Dec 25 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1
+- fix VP9 decoding support
+- fix library linking order (preserve pkg-config order)
+- fix windows that iconify programmatically
+- fix dialog windows wrongly shown as override redirect
+
 * Thu Dec 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.14-1
 - fix Python < 2.6 compatibility (syntax errors)
 - remove window decorations from non-normal transient windows
