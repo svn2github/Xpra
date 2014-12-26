@@ -35,6 +35,7 @@ from OpenGL.GL import \
     GL_BLEND, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, \
     GL_TEXTURE_MAX_LEVEL, GL_TEXTURE_2D, \
     glBlendFunc, \
+    glTexEnvi, GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE, \
     glActiveTexture, glTexSubImage2D, \
     glGetString, glViewport, glMatrixMode, glLoadIdentity, glOrtho, \
     glGenTextures, glDisable, \
@@ -414,6 +415,7 @@ class GLPixmapBacking(GTK2WindowBacking):
             # support alpha channel if present:
             glEnablei(GL_BLEND, self.textures[TEX_FBO])
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE)
         glBegin(GL_QUADS)
         glTexCoord2i(0, h)
         glVertex2i(0, 0)
@@ -432,8 +434,8 @@ class GLPixmapBacking(GTK2WindowBacking):
             glLineWidth(self.border.size*2)
             glBegin(GL_LINE_LOOP)
             glColor4f(self.border.red, self.border.green, self.border.blue, self.border.alpha)
-            for x,y in ((0, 0), (w, 0), (w, h), (0, h)):
-                glVertex2i(x, y)
+            for px,py in ((0, 0), (w, 0), (w, h), (0, h)):
+                glVertex2i(px, py)
             glEnd()
             #reset color to default
             glColor4f(1.0, 1.0, 1.0, 1.0)
