@@ -1,9 +1,11 @@
-v0.14.15 (2014-12-25)
+v0.14.15 (2014-12-26)
 ======================
 	-- fix VP9 decoding support
 	-- fix library linking order (preserve pkg-config order)
 	-- fix windows that iconify programmatically
 	-- fix dialog windows wrongly shown as override redirect
+	-- fix border paint mode with OpenGL
+	-- fix maximize / unmaxmize state synchronization
 
 
 v0.14.14 (2014-12-18)

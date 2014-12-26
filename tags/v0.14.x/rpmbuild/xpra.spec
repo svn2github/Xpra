@@ -245,6 +245,8 @@ fi
 - fix library linking order (preserve pkg-config order)
 - fix windows that iconify programmatically
 - fix dialog windows wrongly shown as override redirect
+- fix border paint mode with OpenGL
+- fix maximize / unmaxmize state synchronization
 
 * Thu Dec 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.14-1
 - fix Python < 2.6 compatibility (syntax errors)

@@ -3,8 +3,10 @@ xpra (0.14.15-1) UNRELEASED; urgency=low
   * fix library linking order (preserve pkg-config order)
   * fix windows that iconify programmatically
   * fix dialog windows wrongly shown as override redirect
+  * fix border paint mode with OpenGL
+  * fix maximize / unmaxmize state synchronization
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 25 Dec 2014 18:44:25 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 26 Dec 2014 22:29:37 +0700
 
 xpra (0.14.14-1) UNRELEASED; urgency=low
   * fix Python < 2.6 compatibility (syntax errors)
