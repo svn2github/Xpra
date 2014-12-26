@@ -432,7 +432,7 @@ class GLPixmapBacking(GTK2WindowBacking):
             glLineWidth(self.border.size*2)
             glBegin(GL_LINE_LOOP)
             glColor4f(self.border.red, self.border.green, self.border.blue, self.border.alpha)
-            for x,y in ((0, 0), (ww, 0), (ww, wh), (0, wh)):
+            for x,y in ((0, 0), (w, 0), (w, h), (0, h)):
                 glVertex2i(x, y)
             glEnd()
             #reset color to default
