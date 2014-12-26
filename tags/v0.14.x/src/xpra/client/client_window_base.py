@@ -120,7 +120,7 @@ class ClientWindowBase(ClientWidgetBase):
         self.set_metadata(metadata)
 
     def set_metadata(self, metadata):
-        log.info("set_metadata(%s)", metadata)
+        log("set_metadata(%s)", metadata)
         if "title" in metadata:
             try:
                 title = u(self._client.title)
