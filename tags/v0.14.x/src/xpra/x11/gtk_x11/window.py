@@ -1388,9 +1388,7 @@ class WindowModel(BaseWindowModel):
 
     def _handle_iconic_update(self, *args):
         def set_state(state):
-            trap.swallow_synced(prop_set, self.client_window, "WM_STATE",
-                             ["u32"],
-                             [state, XNone])
+            prop_set(self.client_window, "WM_STATE", "state", state)
 
         if self.get_property("iconic"):
             set_state(IconicState)
