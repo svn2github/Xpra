@@ -1,11 +1,14 @@
-v0.14.15 (2014-12-26)
+v0.14.15 (2014-12-29)
 ======================
 	-- fix VP9 decoding support
+	-- fix full-window update heuristics
 	-- fix library linking order (preserve pkg-config order)
 	-- fix windows that iconify programmatically
 	-- fix dialog windows wrongly shown as override redirect
 	-- fix border paint mode with OpenGL
-	-- fix maximize / unmaxmize state synchronization
+	-- fix maximize / unmaxmize and fullscreen state synchronization
+	-- fix window WM_STATE property handling (Java applications)
+	-- add missing "dbus-proxy" option
 
 
 v0.14.14 (2014-12-18)

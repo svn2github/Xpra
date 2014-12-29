@@ -240,13 +240,16 @@ fi
 
 
 %changelog
-* Thu Dec 25 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1
+* Mon Dec 29 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1
 - fix VP9 decoding support
+- fix full-window update heuristics
 - fix library linking order (preserve pkg-config order)
 - fix windows that iconify programmatically
 - fix dialog windows wrongly shown as override redirect
 - fix border paint mode with OpenGL
-- fix maximize / unmaxmize state synchronization
+- fix maximize / unmaxmize and fullscreen state synchronization
+- fix window WM_STATE property handling (Java applications)
+- add missing "dbus-proxy" option
 
 * Thu Dec 18 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.14-1
 - fix Python < 2.6 compatibility (syntax errors)
