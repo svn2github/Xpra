@@ -156,6 +156,8 @@ class Wm(gobject.GObject):
         # _NET_WM_STATE_ABOVE,
         # _NET_WM_STATE_BELOW,
 
+        "_MOTIF_WM_HINTS",
+        "_MOTIF_WM_INFO",
         # Not at all yet:
         #"_NET_REQUEST_FRAME_EXTENTS",
         #"_NET_CLOSE_WINDOW",

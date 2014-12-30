@@ -106,7 +106,7 @@ def make_window_metadata(window, propname, generic_window_types=False, client_su
     elif propname == "window-type":
         wts = get_generic_window_type(window, strip_net=generic_window_types)
         return {"window-type" : wts}
-    elif propname in ("has-alpha", "override-redirect", "tray", "modal", "fullscreen", "maximized"):
+    elif propname in ("has-alpha", "override-redirect", "tray", "modal", "fullscreen", "maximized", "decorations"):
         return {propname : window.get_property(propname)}
     elif propname in ("role", "opacity"):
         v = window.get_property(propname)

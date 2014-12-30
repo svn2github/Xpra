@@ -234,6 +234,9 @@ class ClientWindowBase(ClientWidgetBase):
             else:
                 self.deiconify()
 
+        if "decorations" in metadata:
+            self.set_decorated(metadata.boolget("decorations"))
+
 
     def set_window_type(self, window_types):
         hints = 0
