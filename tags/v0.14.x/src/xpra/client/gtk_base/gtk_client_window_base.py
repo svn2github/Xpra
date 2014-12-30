@@ -328,6 +328,19 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
         return -1
 
 
+    def initiate_moveresize(self, x_root, y_root, direction, button, source_indication):
+        log("initiate_moveresize%s", (x_root, y_root, direction, button, source_indication))
+        event_mask = SubstructureNotifyMask | SubstructureRedirectMask
+        with xsync:
+            from xpra.gtk_common.gobject_compat import get_xid
+            root = self.get_window().get_screen().get_root_window()
+            root_xid = get_xid(root)
+            xwin = get_xid(self.get_window())
+            X11Core.UngrabPointer()
+            X11Window.sendClientMessage(root_xid, xwin, False, event_mask, "_NET_WM_MOVERESIZE",
+                  x_root, y_root, direction, button, source_indication)
+
+
     def apply_transient_for(self, wid):
         if wid==-1:
             #root is a gdk window, so we need to ensure we have one

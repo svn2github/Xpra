@@ -311,6 +311,7 @@ class ServerSource(object):
         self.pointer_grabs = False
         self.randr_notify = False
         self.named_cursors = False
+        self.window_initiate_moveresize = False
         self.clipboard_enabled = False
         self.clipboard_notifications = False
         self.clipboard_set_enabled = False
@@ -536,6 +537,7 @@ class ServerSource(object):
         self.send_notifications = c.boolget("notifications")
         self.randr_notify = c.boolget("randr_notify")
         self.clipboard_enabled = c.boolget("clipboard", True)
+        self.window_initiate_moveresize = c.boolget("window.initiate-moveresize")
         self.clipboard_notifications = c.boolget("clipboard.notifications")
         self.clipboard_set_enabled = c.boolget("clipboard.set_enabled")
         self.share = c.boolget("share")
@@ -1349,6 +1351,13 @@ class ServerSource(object):
             self.send("desktop_size", root_w, root_h, max_w, max_h)
             return True
         return False
+
+
+    def initiate_moveresize(self, wid, window, x_root, y_root, direction, button, source_indication):
+        if not self.can_send_window(window) or not self.window_initiate_moveresize:
+            return
+        log("initiate_moveresize sending to %s", self)
+        self.send("initiate-moveresize", wid, x_root, y_root, direction, button, source_indication)
 
     def or_window_geometry(self, wid, window, x, y, w, h):
         if not self.can_send_window(window):

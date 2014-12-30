@@ -158,6 +158,8 @@ class Wm(gobject.GObject):
 
         "_MOTIF_WM_HINTS",
         "_MOTIF_WM_INFO",
+        "_NET_WM_MOVERESIZE",
+
         # Not at all yet:
         #"_NET_REQUEST_FRAME_EXTENTS",
         #"_NET_CLOSE_WINDOW",
