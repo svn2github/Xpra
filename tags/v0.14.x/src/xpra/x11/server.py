@@ -110,8 +110,6 @@ class DesktopManager(gtk.Widget):
             win.maybe_recalculate_geometry_for(self)
 
     def hide_window(self, model):
-        if not model.get_property("iconic"):
-            model.set_property("iconic", True)
         self._models[model].shown = False
         model.ownership_election()
 
@@ -654,6 +652,8 @@ class XpraServer(gobject.GObject, X11ServerBase):
         windowlog("client unmapped window %s - %s", wid, window)
         for ss in self._server_sources.values():
             ss.unmap_window(wid, window)
+        if not model.get_property("iconic"):
+            model.set_property("iconic", True)
         self._desktop_manager.hide_window(window)
 
     def _process_configure_window(self, proto, packet):
