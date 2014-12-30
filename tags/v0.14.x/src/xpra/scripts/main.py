@@ -267,7 +267,8 @@ def do_parse_cmdline(cmdline, defaults):
     parser = ModifiedOptionParser(version="xpra v%s" % XPRA_VERSION,
                           usage="\n" + "".join(command_options))
     hidden_options = {"display" : defaults.display,
-                      "displayfd" : defaults.displayfd}
+                      "displayfd" : defaults.displayfd,
+                      "wm_name" : defaults.wm_name}
     group = optparse.OptionGroup(parser, "Server Options",
                 "These options are only relevant on the server when using the %s mode." %
                 " or ".join(["'%s'" % x for x in server_modes]))

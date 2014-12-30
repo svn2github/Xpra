@@ -195,6 +195,12 @@ key-shortcut = Meta+Shift+F11:show_session_info
 # gpg-agent or whatever else might be usually started together with X
 #start-child = /etc/X11/Xsession true
 
+# Set the _NET_WM_NAME,
+# used by some application that make too many assumptions (ie: Java)
+# To workaround JDK6 window positioning issues, use:
+#wm-name = Sawfish
+wm-name = Xpra
+
 # Video encoders loaded by the server
 # (all of them unless specified)
 # examples:
