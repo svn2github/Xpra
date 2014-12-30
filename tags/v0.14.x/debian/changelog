@@ -2,9 +2,10 @@ xpra (0.14.16-1) UNRELEASED; urgency=low
   * fix window decorations handling (large change): _MOTIF_WM_HINTS
   * add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
   * fix window iconification loop on connection
+  * fix maximized state synchronization
   * add ability to disable region merging for debugging purposes
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 30 Dec 2014 15:16:05 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 30 Dec 2014 23:27:09 +0700
 
 xpra (0.14.15-1) UNRELEASED; urgency=low
   * fix VP9 decoding support
