@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.15
+%define version 0.14.16
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -240,6 +240,12 @@ fi
 
 
 %changelog
+* Tue Dec 30 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
+- fix window decorations handling (large change): _MOTIF_WM_HINTS
+- add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
+- fix window iconification loop on connection
+- add ability to disable region merging for debugging purposes
+
 * Mon Dec 29 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1
 - fix VP9 decoding support
 - fix full-window update heuristics
