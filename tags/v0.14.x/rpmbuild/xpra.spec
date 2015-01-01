@@ -240,11 +240,12 @@ fi
 
 
 %changelog
-* Tue Dec 30 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
+* Thu Jan 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
 - fix window decorations handling (large change): _MOTIF_WM_HINTS
 - add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
 - fix maximized state synchronization
 - fix window iconification loop on connection
+- fix OpenCL error with Nvidia hardware
 - add ability to disable region merging for debugging purposes
 
 * Mon Dec 29 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1

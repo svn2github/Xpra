@@ -3,9 +3,10 @@ xpra (0.14.16-1) UNRELEASED; urgency=low
   * add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
   * fix window iconification loop on connection
   * fix maximized state synchronization
+  * fix OpenCL error with Nvidia hardware
   * add ability to disable region merging for debugging purposes
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 30 Dec 2014 23:27:09 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 01 Jan 2015 19:36:46 +0700
 
 xpra (0.14.15-1) UNRELEASED; urgency=low
   * fix VP9 decoding support
