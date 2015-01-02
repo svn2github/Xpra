@@ -30,6 +30,7 @@ class ClientWindowBase(ClientWidgetBase):
     def __init__(self, client, group_leader, wid, x, y, w, h, metadata, override_redirect, client_properties, border):
         log("%s%s", type(self), (client, group_leader, wid, x, y, w, h, metadata, override_redirect, client_properties))
         ClientWidgetBase.__init__(self, client, wid, metadata.boolget("has-alpha"))
+        self._iconified = False
         self._override_redirect = override_redirect
         self.group_leader = group_leader
         self._pos = (x, y)
@@ -230,8 +231,10 @@ class ClientWindowBase(ClientWidgetBase):
 
         if "iconic" in metadata:
             if metadata.boolget("iconic"):
+                self._iconified = True
                 self.iconify()
             else:
+                self._iconified = False
                 self.deiconify()
 
         if "decorations" in metadata:
