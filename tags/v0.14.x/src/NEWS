@@ -1,10 +1,11 @@
-v0.14.16 (2015-01-01)
+v0.14.16 (2015-01-04)
 ======================
 	-- fix window decorations handling (large change): _MOTIF_WM_HINTS
 	-- add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
 	-- fix window iconification loop on connection
 	-- fix maximized state synchronization
 	-- fix OpenCL error with Nvidia hardware
+	-- fix screen update region merging heuristics
 	-- add ability to disable region merging for debugging purposes
 
 
