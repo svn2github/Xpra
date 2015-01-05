@@ -246,7 +246,7 @@ def check_GL_support(gldrawable, glcontext, min_texture_size=0, force_enable=Fal
             glViewport, glMatrixMode, glLoadIdentity, glOrtho, \
             glEnableClientState, glGenTextures, glDisable, \
             glBindTexture, glPixelStorei, glEnable, glBegin, glFlush, \
-            glTexParameteri, \
+            glTexParameteri, glTexEnvi, glHint, glBlendFunc, glLineStipple, \
             glTexImage2D, \
             glMultiTexCoord2i, \
             glVertex2i, glEnd
@@ -254,7 +254,7 @@ def check_GL_support(gldrawable, glcontext, min_texture_size=0, force_enable=Fal
             glViewport, glMatrixMode, glLoadIdentity, glOrtho, \
             glEnableClientState, glGenTextures, glDisable, \
             glBindTexture, glPixelStorei, glEnable, glBegin, glFlush, \
-            glTexParameteri, \
+            glTexParameteri, glTexEnvi, glHint, glBlendFunc, glLineStipple, \
             glTexImage2D, \
             glMultiTexCoord2i, \
             glVertex2i, glEnd)
