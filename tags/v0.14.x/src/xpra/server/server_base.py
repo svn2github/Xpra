@@ -1441,6 +1441,9 @@ class ServerBase(ServerCore):
             #filter out encoding properties, which are expected to be set everytime:
             ncp = {}
             for k,v in new_client_properties.items():
+                if v is None:
+                    log.warn("removing invalid None property for %s", k)
+                    continue
                 if not k.startswith("encoding"):
                     ncp[k] = v
             log("set_client_properties updating window %s with %s", wid, ncp)
