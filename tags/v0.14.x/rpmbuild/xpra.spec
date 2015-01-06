@@ -236,7 +236,7 @@ fi
 
 
 %changelog
-* Mon Jan 05 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
+* Tue Jan 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
 - fix window decorations handling (large change): _MOTIF_WM_HINTS
 - add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
 - fix window iconification loop on connection
@@ -248,6 +248,7 @@ fi
 - fix network dropouts caused by invalid client properties stored
 - honour requests to raise window (Java toFront)
 - add ability to disable region merging for debugging purposes
+- add missing Ubuntu Utopic dependencies
 
 * Mon Dec 29 2014 Antoine Martin <antoine@devloop.org.uk> 0.14.15-1
 - fix VP9 decoding support

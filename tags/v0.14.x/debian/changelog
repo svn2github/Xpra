@@ -10,8 +10,9 @@ xpra (0.14.16-1) UNRELEASED; urgency=low
   * network dropouts caused by invalid client properties stored
   * honour requests to raise window (Java toFront)
   * add ability to disable region merging for debugging purposes
+  * add missing Ubuntu Utopic dependencies
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 05 Jan 2015 10:28:10 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 06 Jan 2015 19:46:28 +0700
 
 xpra (0.14.15-1) UNRELEASED; urgency=low
   * fix VP9 decoding support

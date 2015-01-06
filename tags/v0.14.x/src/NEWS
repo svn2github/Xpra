@@ -1,4 +1,4 @@
-v0.14.16 (2015-01-05)
+v0.14.16 (2015-01-06)
 ======================
 	-- fix window decorations handling (large change): _MOTIF_WM_HINTS
 	-- add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
@@ -11,6 +11,7 @@ v0.14.16 (2015-01-05)
 	-- fix network dropouts caused by invalid client properties stored
 	-- honour requests to raise window (Java toFront)
 	-- add ability to disable region merging for debugging purposes
+	-- add missing Ubuntu Utopic dependencies
 
 
 v0.14.15 (2014-12-29)
