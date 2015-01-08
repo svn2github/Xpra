@@ -236,7 +236,7 @@ fi
 
 
 %changelog
-* Tue Jan 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
+* Thu Jan 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
 - fix window decorations handling (large change): _MOTIF_WM_HINTS
 - add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
 - fix window iconification loop on connection
@@ -246,6 +246,8 @@ fi
 - fix Fedora 21+ dummy detection when building from source
 - fix build with limited Python environments
 - fix network dropouts caused by invalid client properties stored
+- fix throttling of video refresh
+- fix webp transparency compression
 - honour requests to raise window (Java toFront)
 - add ability to disable region merging for debugging purposes
 - add missing Ubuntu Utopic dependencies
