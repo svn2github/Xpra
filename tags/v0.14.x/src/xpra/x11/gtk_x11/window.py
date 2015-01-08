@@ -62,6 +62,7 @@ NotifyNormal        = constants["NotifyNormal"]
 NotifyGrab          = constants["NotifyGrab"]
 NotifyUngrab        = constants["NotifyUngrab"]
 NotifyWhileGrabbed  = constants["NotifyWhileGrabbed"]
+NotifyNonlinearVirtual = constants["NotifyNonlinearVirtual"]
 GRAB_CONSTANTS = {
                   NotifyNormal          : "NotifyNormal",
                   NotifyGrab            : "NotifyGrab",
