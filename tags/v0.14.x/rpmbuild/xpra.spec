@@ -56,6 +56,8 @@
 #only v6.4 onwards have Xdummy support:
 %if %(egrep -q 'release 6.0|release 6.1|release 6.2|release 6.3' /etc/redhat-release && echo 1 || echo 0)
 %define dummy --without-Xdummy
+%else
+%define dummy --with-Xdummy
 %endif
 #don't try to support opengl with anything older than 6.5:
 %if %(egrep -q 'release 6.0|release 6.1|release 6.2|release 6.3|release 6.4' /etc/redhat-release && echo 1 || echo 0)
