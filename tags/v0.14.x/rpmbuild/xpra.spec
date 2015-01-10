@@ -11,12 +11,8 @@
 %define include_egg 1
 %define old_xdg 0
 
-#the only build option we specify:
-%if 0%{?fedora}
-%define dummy --with-Xdummy
-%endif
-
 #some of these dependencies may get turned off (empty) on some platforms:
+%define dummy --with-Xdummy
 %define requires_lzo , python-lzo
 %define requires_lz4 , python-lz4
 %define requires_rencode , python-rencode
