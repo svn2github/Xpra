@@ -338,6 +338,7 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
     def call_setup(self):
         try:
             self._geometry = trap.call_synced(X11Window.geometry_with_border, self.client_window.xid)
+            self._read_initial_X11_properties()
         except XError, e:
             raise Unmanageable(e)
         add_event_receiver(self.client_window, self)
@@ -475,12 +476,14 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
             window_type = self._guess_window_type(transient_for)
             window_types = [gtk.gdk.atom_intern(window_type)]
         self._internal_set_property("window-type", window_types)
-        self._internal_set_property("has-alpha", X11Window.get_depth(self.client_window.xid)==32)
         self._internal_set_property("xid", self.client_window.xid)
         self._internal_set_property("pid", pget("_NET_WM_PID", "u32") or -1)
         self._internal_set_property("role", pget("WM_WINDOW_ROLE", "latin1"))
         for mutable in ["WM_NAME", "_NET_WM_NAME", "_NET_WM_WINDOW_OPACITY"]:
             self._call_property_handler(mutable)
+
+    def _read_initial_X11_properties(self):
+        self._internal_set_property("has-alpha", X11Window.get_depth(self.client_window.xid)==32)
 
 
     def _handle_opacity_change(self):
