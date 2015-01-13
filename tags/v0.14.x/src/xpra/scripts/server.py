@@ -730,7 +730,11 @@ def start_children(child_reaper, commands, fake_xinerama):
     #disable ubuntu's global menu using env vars:
     env.update({
         "UBUNTU_MENUPROXY"          : "",
-        "QT_X11_NO_NATIVE_MENUBAR"  : "1"})
+        "QT_X11_NO_NATIVE_MENUBAR"  : "1",
+        "MWNOCAPTURE"               : "true",
+        "MWNO_RIT"                  : "true",
+        "MWWM"                      : "allwm",
+    })
     for child_cmd in commands:
         if not child_cmd:
             continue
