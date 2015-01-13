@@ -346,6 +346,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
 
     def initiate_moveresize(self, x_root, y_root, direction, button, source_indication):
         log("initiate_moveresize%s", (x_root, y_root, direction, button, source_indication))
+        assert HAS_X11_BINDINGS, "cannot handle initiate-moveresize without X11 bindings"
         event_mask = SubstructureNotifyMask | SubstructureRedirectMask
         def wm_moveresize():
             from xpra.gtk_common.gobject_compat import get_xid

@@ -192,6 +192,9 @@ class GTKXpraClient(UIXpraClient, GObjectXpraClient):
     def make_hello(self):
         capabilities = UIXpraClient.make_hello(self)
         capabilities["named_cursors"] = len(cursor_names)>0
+        #we need the bindings to support initiate-moveresize (posix only for now):
+        from xpra.client.gtk_base.gtk_client_window_base import HAS_X11_BINDINGS
+        capabilities["window.initiate-moveresize"] = HAS_X11_BINDINGS
         capabilities.update(get_gtk_version_info())
         return capabilities
 
