@@ -1,3 +1,13 @@
+xpra (0.14.17-1) UNRELEASED; urgency=low
+  * fix crash caused by X11 calls made in an unsafe order
+  * fix webp codec fallback selection code on older platforms
+  * fix packet compression and encoder switching on server request
+  * fix warning with expired nested loop timers
+  * fix for "MainWin" applications (env vars to workaround their bugs)
+  * fix check for availability of "initiate-moveresize" bindings
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 13 Jan 2015 18:42:53 +0700
+
 xpra (0.14.16-1) UNRELEASED; urgency=low
   * fix window decorations handling (large change): _MOTIF_WM_HINTS
   * add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)

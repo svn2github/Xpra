@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.16
+%define version 0.14.17
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -234,6 +234,14 @@ fi
 
 
 %changelog
+* Tue Jan 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.17-1
+- fix crash caused by X11 calls made in an unsafe order
+- fix webp codec fallback selection code on older platforms
+- fix packet compression and encoder switching on server request
+- fix warning with expired nested loop timers
+- fix for "MainWin" applications (env vars to workaround their bugs)
+- fix check for availability of "initiate-moveresize" bindings
+
 * Thu Jan 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.16-1
 - fix window decorations handling (large change): _MOTIF_WM_HINTS
 - add support for _NET_WM_MOVERESIZE (needed by some undecorated windows)
