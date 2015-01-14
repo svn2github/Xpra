@@ -1,6 +1,8 @@
 v0.14.18 (2015-01-14)
 ======================
 	-- fix window configuration packet errors
+	-- fix error with invalid _MOTIF_WM_HINTS values
+	-- fix warning with invalid atoms in _NET_WM_STATE messages
 
 
 v0.14.17 (2015-01-13)
