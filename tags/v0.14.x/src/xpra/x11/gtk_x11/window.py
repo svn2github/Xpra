@@ -590,27 +590,27 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
         #   _NET_WM_STATE (more fully)
         if event.message_type=="_NET_WM_STATE" and event.data and len(event.data)==5:
             atom1 = get_pyatom(event.window, event.data[1])
-            atom2 = get_pyatom(event.window, event.data[2])
             _NET_WM_STATE_REMOVE = 0
             _NET_WM_STATE_ADD = 1
             if atom1=="_NET_WM_STATE_FULLSCREEN":
                 fullscreen = event.data[0]==_NET_WM_STATE_ADD
                 log("do_xpra_client_message_event(..) setting fullscreen=%s", fullscreen)
                 self.set_property("fullscreen", fullscreen)
-            elif atom1 in ("_NET_WM_STATE_MAXIMIZED_VERT", "_NET_WM_STATE_MAXIMIZED_HORZ") and \
-                 atom2 in ("_NET_WM_STATE_MAXIMIZED_VERT", "_NET_WM_STATE_MAXIMIZED_HORZ"):
-                if event.data[0]==_NET_WM_STATE_ADD:
-                    maximized = True
-                elif event.data[0]==_NET_WM_STATE_REMOVE:
-                    maximized = False
-                elif event.data[0]==_NET_WM_STATE_TOGGLE:
-                    maximized = not self.get_property("maximized")
-                else:
-                    log.warn("invalid mode for _NET_WM_STATE: %s", event.data[0])
-                    return
-                log("do_xpra_client_message_event(%s) window maximized=%s (current state=%s)", event, maximized, self.get_property("maximized"))
-                if maximized!=self.get_property("maximized"):
-                    self.set_property("maximized", maximized)
+            elif atom1 in ("_NET_WM_STATE_MAXIMIZED_VERT", "_NET_WM_STATE_MAXIMIZED_HORZ"):
+                atom2 = get_pyatom(event.window, event.data[2])
+                if atom1!=atom2 and atom2 in ("_NET_WM_STATE_MAXIMIZED_VERT", "_NET_WM_STATE_MAXIMIZED_HORZ"):
+                    if event.data[0]==_NET_WM_STATE_ADD:
+                        maximized = True
+                    elif event.data[0]==_NET_WM_STATE_REMOVE:
+                        maximized = False
+                    elif event.data[0]==_NET_WM_STATE_TOGGLE:
+                        maximized = not self.get_property("maximized")
+                    else:
+                        log.warn("invalid mode for _NET_WM_STATE: %s", event.data[0])
+                        return
+                    log("do_xpra_client_message_event(%s) window maximized=%s (current state=%s)", event, maximized, self.get_property("maximized"))
+                    if maximized!=self.get_property("maximized"):
+                        self.set_property("maximized", maximized)
             else:
                 log("do_xpra_client_message_event(%s) atom=%s", event, atom1)
         elif event.message_type=="WM_CHANGE_STATE" and event.data and len(event.data)==5:
