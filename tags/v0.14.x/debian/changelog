@@ -1,3 +1,8 @@
+xpra (0.14.18-1) UNRELEASED; urgency=low
+  * fix window configuration packet errors
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 14 Jan 2015 10:41:31 +0700
+
 xpra (0.14.17-1) UNRELEASED; urgency=low
   * fix crash caused by X11 calls made in an unsafe order
   * fix webp codec fallback selection code on older platforms

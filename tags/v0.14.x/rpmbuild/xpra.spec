@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.17
+%define version 0.14.18
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if 0%{?build_no} == 0
 %define build_no 0
@@ -234,6 +234,9 @@ fi
 
 
 %changelog
+* Wed Jan 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
+- fix window configuration packet errors
+
 * Tue Jan 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.17-1
 - fix crash caused by X11 calls made in an unsafe order
 - fix webp codec fallback selection code on older platforms
