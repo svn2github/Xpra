@@ -45,7 +45,9 @@ class Keyboard(KeyboardBase):
                     for modifier,keys in mod_mappings.items():
                         for _,keyname in keys:
                             meanings[keyname] = modifier
-                    return  meanings, [], []
+                    #probably a GTK bug? but easier to put here
+                    mod_pointermissing = meanings.get("Num_Lock", [])
+                    return  meanings, [], mod_pointermissing
             except Exception, e:
                 log.error("failed to use native get_modifier_mappings: %s", e, exc_info=True)
         return self.modifiers_fallback()
