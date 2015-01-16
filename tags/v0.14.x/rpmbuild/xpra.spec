@@ -240,6 +240,7 @@ fi
 - fix warning with invalid atoms in _NET_WM_STATE messages
 - fix spurious NumLock key events on mouse move
 - fix error in window-not-found handler
+- fix spurious modifier key presses
 - add new xorg resolutions
 
 * Tue Jan 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.17-1

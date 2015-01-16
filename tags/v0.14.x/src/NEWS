@@ -5,6 +5,7 @@ v0.14.18 (2015-01-16)
 	-- fix warning with invalid atoms in _NET_WM_STATE messages
 	-- fix spurious NumLock key events on mouse move
 	-- fix error in window-not-found handler
+	-- fix spurious modifier key presses
 	-- add new xorg resolutions
 
 
