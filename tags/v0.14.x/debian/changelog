@@ -2,8 +2,11 @@ xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix window configuration packet errors
   * fix error with invalid _MOTIF_WM_HINTS values
   * fix warning with invalid atoms in _NET_WM_STATE messages
+  * fix spurious NumLock key events on mouse move
+  * fix error in window-not-found handler
+  * add new xorg resolutions
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 14 Jan 2015 10:41:31 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 16 Jan 2015 12:24:59 +0700
 
 xpra (0.14.17-1) UNRELEASED; urgency=low
   * fix crash caused by X11 calls made in an unsafe order

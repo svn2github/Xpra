@@ -1,8 +1,11 @@
-v0.14.18 (2015-01-14)
+v0.14.18 (2015-01-16)
 ======================
 	-- fix window configuration packet errors
 	-- fix error with invalid _MOTIF_WM_HINTS values
 	-- fix warning with invalid atoms in _NET_WM_STATE messages
+	-- fix spurious NumLock key events on mouse move
+	-- fix error in window-not-found handler
+	-- add new xorg resolutions
 
 
 v0.14.17 (2015-01-13)

@@ -234,10 +234,13 @@ fi
 
 
 %changelog
-* Wed Jan 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
+* Fri Jan 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
 - fix window configuration packet errors
 - fix error with invalid _MOTIF_WM_HINTS values
 - fix warning with invalid atoms in _NET_WM_STATE messages
+- fix spurious NumLock key events on mouse move
+- fix error in window-not-found handler
+- add new xorg resolutions
 
 * Tue Jan 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.17-1
 - fix crash caused by X11 calls made in an unsafe order
