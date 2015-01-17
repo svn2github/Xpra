@@ -1,5 +1,6 @@
 xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix window configuration packet errors
+  * fix windows wrongly iconified on workspace change
   * fix error with invalid _MOTIF_WM_HINTS values
   * fix warning with invalid atoms in _NET_WM_STATE messages
   * fix spurious NumLock key events on mouse move
@@ -7,7 +8,7 @@ xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix spurious modifier key presses
   * add new xorg resolutions
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 16 Jan 2015 15:49:36 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Jan 2015 13:06:03 +0700
 
 xpra (0.14.17-1) UNRELEASED; urgency=low
   * fix crash caused by X11 calls made in an unsafe order
