@@ -235,6 +235,7 @@ fi
 
 %changelog
 * Sat Jan 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
+- fix lossy window paint not getting refreshed
 - fix window configuration packet errors
 - fix windows wrongly iconified on workspace change
 - fix error with invalid _MOTIF_WM_HINTS values

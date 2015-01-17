@@ -1,4 +1,5 @@
 xpra (0.14.18-1) UNRELEASED; urgency=low
+  * fix lossy window paint not getting refreshed
   * fix window configuration packet errors
   * fix windows wrongly iconified on workspace change
   * fix error with invalid _MOTIF_WM_HINTS values
@@ -8,7 +9,7 @@ xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix spurious modifier key presses
   * add new xorg resolutions
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Jan 2015 13:06:03 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Jan 2015 16:02:47 +0700
 
 xpra (0.14.17-1) UNRELEASED; urgency=low
   * fix crash caused by X11 calls made in an unsafe order
