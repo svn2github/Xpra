@@ -234,7 +234,7 @@ fi
 
 
 %changelog
-* Sat Jan 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
+* Sun Jan 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
 - fix lossy window paint not getting refreshed
 - fix window configuration packet errors
 - fix windows wrongly iconified on workspace change
@@ -243,6 +243,7 @@ fi
 - fix spurious NumLock key events on mouse move
 - fix error in window-not-found handler
 - fix spurious modifier key presses
+- blacklist vulnerable flac DLL on MS Windows
 - add new xorg resolutions
 
 * Tue Jan 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.17-1

@@ -7,9 +7,10 @@ xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix spurious NumLock key events on mouse move
   * fix error in window-not-found handler
   * fix spurious modifier key presses
+  * blacklist vulnerable flac DLL on MS Windows
   * add new xorg resolutions
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Jan 2015 16:02:47 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 18 Jan 2015 17:46:55 +0700
 
 xpra (0.14.17-1) UNRELEASED; urgency=low
   * fix crash caused by X11 calls made in an unsafe order
