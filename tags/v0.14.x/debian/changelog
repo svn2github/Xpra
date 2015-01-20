@@ -1,3 +1,8 @@
+xpra (0.14.19-1) UNRELEASED; urgency=low
+  * fix windows not showing when we fail to set their title
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 20 Jan 2015 13:42:50 +0700
+
 xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix lossy window paint not getting refreshed
   * fix window configuration packet errors

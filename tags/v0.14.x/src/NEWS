@@ -1,3 +1,8 @@
+v0.14.19 (2015-01-20)
+======================
+	-- fix windows not showing when we fail to set their title
+
+
 v0.14.18 (2015-01-18)
 ======================
 	-- fix lossy window paint not getting refreshed
