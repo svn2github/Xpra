@@ -118,7 +118,10 @@ class ClientWindowBase(ClientWidgetBase):
         if not self.is_realized():
             self.set_wmclass(*self._metadata.strlistget("class-instance",
                                                  ("xpra", "Xpra")))
-        self.set_metadata(metadata)
+        try:
+            self.set_metadata(metadata)
+        except Exception, e:
+            log.warn("failed to set window metadata to '%s': %s", metadata, e)
 
     def set_metadata(self, metadata):
         log("set_metadata(%s)", metadata)
