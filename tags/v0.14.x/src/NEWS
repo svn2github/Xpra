@@ -1,6 +1,7 @@
-v0.14.19 (2015-01-20)
+v0.14.19 (2015-01-22)
 ======================
 	-- fix windows not showing when we fail to set their title
+	-- fix handling of null bytes in window and icon titles
 
 
 v0.14.18 (2015-01-18)

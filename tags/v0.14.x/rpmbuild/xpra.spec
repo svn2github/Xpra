@@ -234,8 +234,9 @@ fi
 
 
 %changelog
-* Tue Jan 20 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
+* Thu Jan 22 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title
+- fix handling of null bytes in window and icon titles
 
 * Sun Jan 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
 - fix lossy window paint not getting refreshed
