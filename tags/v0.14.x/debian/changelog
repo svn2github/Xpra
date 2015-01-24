@@ -1,8 +1,10 @@
 xpra (0.14.19-1) UNRELEASED; urgency=low
   * fix windows not showing when we fail to set their title
   * fix handling of null bytes in window and icon titles
+  * fix systray left over on connection failure
+  * add environment override support for fairer benchmark tests
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 22 Jan 2015 18:28:31 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 24 Jan 2015 17:42:12 +0700
 
 xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix lossy window paint not getting refreshed

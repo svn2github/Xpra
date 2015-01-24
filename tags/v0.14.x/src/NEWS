@@ -1,7 +1,9 @@
-v0.14.19 (2015-01-22)
+v0.14.19 (2015-01-24)
 ======================
 	-- fix windows not showing when we fail to set their title
 	-- fix handling of null bytes in window and icon titles
+	-- fix systray left over on connection failure
+	-- add environment override support for fairer benchmark tests
 
 
 v0.14.18 (2015-01-18)
