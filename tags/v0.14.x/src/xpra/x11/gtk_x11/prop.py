@@ -187,6 +187,9 @@ class NetWMStrut(object):
         # will be only length 4 instead of 12, but _force_length will zero-pad
         # and _NET_WM_STRUT is *defined* as a _NET_WM_STRUT_PARTIAL where the
         # extra fields are zero... so it all works out.
+        if len(data)==16:
+            self.left, self.right, self.top, self.bottom = struct.unpack("=IIII", data)
+            return
         data = _force_length("_NET_WM_STRUT or _NET_WM_STRUT_PARTIAL", data, 4 * 12)
         (self.left, self.right, self.top, self.bottom,
          self.left_start_y, self.left_end_y,
@@ -196,11 +199,8 @@ class NetWMStrut(object):
          ) = struct.unpack("=" + "I" * 12, data)
 
     def __str__(self):
-        return "NetWMStrut(%s)" % str(self.left, self.right, self.top, self.bottom,
-                                     self.left_start_y, self.left_end_y,
-                                     self.right_start_y, self.right_end_y,
-                                     self.top_start_x, self.top_end_x,
-                                     self.bottom_start_x, self.bottom_stop_x)
+        return "NetWMStrut(%s)" % self.__dict__
+
 
 class MotifWMHints(object):
     def __init__(self, disp, data):
