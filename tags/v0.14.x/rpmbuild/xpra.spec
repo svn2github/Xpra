@@ -234,11 +234,20 @@ fi
 
 
 %changelog
-* Sat Jan 24 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
+* Thu Jan 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title
 - fix handling of null bytes in window and icon titles
-- fix systray left over on connection failure
-- add environment override support for fairer benchmark tests
+- fix systray left over on connection failure (MS Windows)
+- fix window flags not updated
+- fix MS Windows build BAT file polluting the environment
+- fix double menus on OSX
+- fix rare errors on shutdown
+- fix warning on _NET_WM_STRUT handling
+- hide unusable encodings from menus on OSX
+- increase window iconification delay to try to prevent loops
+- show more helpful network error message
+- improved benchmark test class
+- add all known MS Windows event names to builtin list
 
 * Sun Jan 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.18-1
 - fix lossy window paint not getting refreshed
