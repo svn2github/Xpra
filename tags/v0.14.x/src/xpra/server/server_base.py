@@ -586,8 +586,11 @@ class ServerBase(ServerCore):
             key_repeat = (0, 0)
         else:
             root_w, root_h = self.set_best_screen_size()
-            self.calculate_workarea()
-            self.set_desktop_geometry(dw or root_w, dh or root_h)
+            #prefer desktop size, fallback to screen size:
+            w = dw or root_w
+            h = dh or root_h
+            self.calculate_workarea(w, h)
+            self.set_desktop_geometry(w, h)
             #take the clipboard if no-one else has yet:
             if ss.clipboard_enabled and self._clipboard_helper is not None and \
                 (self._clipboard_client is None or self._clipboard_client.is_closed()):
@@ -1215,10 +1218,12 @@ class ServerBase(ServerCore):
             ss.new_window(ptype, wid, window, x, y, w, h, wprops)
 
 
-    def _screen_size_changed(self, *args):
-        log("_screen_size_changed(%s)", args)
+    def _screen_size_changed(self, screen):
+        log("_screen_size_changed(%s)", screen)
         #randr has resized the screen, tell the client (if it supports it)
-        self.calculate_workarea()
+        w, h = screen.get_width(), screen.get_height()
+        log("new screen dimensions: %s", (w, h))
+        self.calculate_workarea(w, h)
         self.idle_add(self.send_updated_screen_size)
 
     def get_root_window_size(self):
@@ -1267,9 +1272,9 @@ class ServerBase(ServerCore):
             log.info("received updated display dimensions")
             log.info("client root window size is %sx%s with %s displays:", width, height, len(ss.screen_sizes))
             log_screen_sizes(width, height, ss.screen_sizes)
-            self.calculate_workarea()
+            self.calculate_workarea(width, height)
 
-    def calculate_workarea(self):
+    def calculate_workarea(self, w, h):
         raise NotImplementedError()
 
     def set_workarea(self, workarea):

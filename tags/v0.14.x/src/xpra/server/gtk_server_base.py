@@ -94,9 +94,9 @@ class GTKServerBase(ServerBase):
         root_w, root_h = gtk.gdk.get_default_root_window().get_size()
         return root_w, root_h
 
-    def calculate_workarea(self):
-        root_w, root_h = gtk.gdk.get_default_root_window().get_size()
-        workarea = gtk.gdk.Rectangle(0, 0, root_w, root_h)
+    def calculate_workarea(self, maxw, maxh):
+        log("calculate_workarea(%s, %s)", maxw, maxh)
+        workarea = gtk.gdk.Rectangle(0, 0, maxw, maxh)
         for ss in self._server_sources.values():
             screen_sizes = ss.screen_sizes
             log("calculate_workarea() screen_sizes(%s)=%s", ss, screen_sizes)
@@ -115,7 +115,7 @@ class GTKServerBase(ServerBase):
         #sanity checks:
         if workarea.width==0 or workarea.height==0:
             log.warn("failed to calculate a common workarea - using the full display area")
-            workarea = gtk.gdk.Rectangle(0, 0, root_w, root_h)
+            workarea = gtk.gdk.Rectangle(0, 0, maxw, maxh)
         self.set_workarea(workarea)
 
     def set_workarea(self, workarea):
