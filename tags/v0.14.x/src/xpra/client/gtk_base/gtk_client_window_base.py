@@ -102,6 +102,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
     def init_window(self, metadata):
         self._window_state = {}
         self._maximized = False
+        self._iconfified = False
         self._fullscreen = None
         self._resize_counter = 0
         self._window_workspace = self._client_properties.get("workspace", -1)
