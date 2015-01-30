@@ -199,7 +199,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
         log("%s.window_state_updated(%s, %s) changed_mask=%s, new_window_state=%s", self, widget, repr(event), event.changed_mask, event.new_window_state)
         if event.changed_mask & self.WINDOW_STATE_FULLSCREEN:
             fullscreen = bool(event.new_window_state & self.WINDOW_STATE_FULLSCREEN)
-            statelog("fullscreen=%s (was %s)", fullscreen, self._fullscreen)
+            log("fullscreen=%s (was %s)", fullscreen, self._fullscreen)
             if fullscreen!=self._fullscreen:
                 self._window_state["fullscreen"] = fullscreen
                 self._fullscreen = fullscreen
@@ -208,13 +208,13 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
             #or when we get the configure event - which should come straight after
             #if we're changing the maximized state
             maximized = bool(event.new_window_state & self.WINDOW_STATE_MAXIMIZED)
-            statelog("maximized=%s (was %s)", maximized, self._maximized)
+            log("maximized=%s (was %s)", maximized, self._maximized)
             if maximized!=self._maximized:
                 self._maximized = maximized
                 self._window_state["maximized"] = maximized
         if event.changed_mask & self.WINDOW_STATE_ICONIFIED:
             iconified = bool(event.new_window_state & self.WINDOW_STATE_ICONIFIED)
-            statelog("iconified=%s (was %s)", iconified, self._iconified)
+            log("iconified=%s (was %s)", iconified, self._iconified)
             if iconified!=self._iconified:
                 self._iconified = iconified
                 #handle iconification as map events:
