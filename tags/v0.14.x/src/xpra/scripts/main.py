@@ -1140,7 +1140,7 @@ def run_client(error_cb, opts, extra_args, mode):
         try:
             conn = connect()
             app.setup_connection(conn)
-        except Exception as e:
+        except Exception, e:
             app.cleanup()
             raise e
     return do_run_client(app)
