@@ -1,6 +1,7 @@
-v0.14.19 (2015-01-29)
+v0.14.19 (2015-01-30)
 ======================
 	-- fix windows not showing when we fail to set their title
+	-- fix workspace geometry calculations
 	-- fix handling of null bytes in window and icon titles
 	-- fix systray left over on connection failure (MS Windows)
 	-- fix window flags not updated

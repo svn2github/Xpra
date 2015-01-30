@@ -234,8 +234,9 @@ fi
 
 
 %changelog
-* Thu Jan 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
+* Fri Jan 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title
+- fix workspace geometry calculations
 - fix handling of null bytes in window and icon titles
 - fix systray left over on connection failure (MS Windows)
 - fix window flags not updated

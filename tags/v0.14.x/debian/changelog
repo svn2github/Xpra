@@ -1,5 +1,6 @@
 xpra (0.14.19-1) UNRELEASED; urgency=low
   * fix windows not showing when we fail to set their title
+  * fix workspace geometry calculations
   * fix handling of null bytes in window and icon titles
   * fix systray left over on connection failure (MS Windows)
   * fix window flags not updated
@@ -13,7 +14,7 @@ xpra (0.14.19-1) UNRELEASED; urgency=low
   * improved benchmark test class
   * add all known MS Windows event names to builtin list
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 29 Jan 2015 13:57:57 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 30 Jan 2015 13:25:13 +0700
 
 xpra (0.14.18-1) UNRELEASED; urgency=low
   * fix lossy window paint not getting refreshed
