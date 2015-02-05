@@ -474,14 +474,14 @@ class XpraClient(GTKXpraClient):
             log.error(" %s", e, exc_info=True)
             self.opengl_props["info"] = str(e)
 
-    def get_group_leader(self, metadata, override_redirect):
-        if not self.supports_group_leader:
-            return None
-        wid = metadata.intget("transient-for", -1)
-        if wid>0:
-            client_window = self._id_to_window.get(wid)
+
+    def get_group_leader(self, wid, metadata, override_redirect):
+        transient_for = metadata.intget("transient-for", -1)
+        log.info("get_group_leader() transient_for=%s", transient_for)
+        if transient_for>0:
+            client_window = self._id_to_window.get(transient_for)
             if client_window:
-                gdk_window = client_window.gdk_window()
+                gdk_window = client_window.get_window()
                 if gdk_window:
                     return gdk_window
         pid = metadata.intget("pid", -1)
@@ -490,18 +490,30 @@ class XpraClient(GTKXpraClient):
         group_leader_window = self._id_to_window.get(leader_wid)
         if group_leader_window:
             #leader is another managed window
-            log("found group leader window %s for wid=%s", group_leader_window, pid)
+            log("found group leader window %s for wid=%s", group_leader_window, leader_wid)
             return group_leader_window
+        log("get_group_leader: leader pid=%s, xid=%s, wid=%s", pid, leader_xid, leader_wid)
         reftype = "xid"
         ref = leader_xid
-        if ref is None:
-            reftype = "pid"
-            ref = pid
-        if ref is None:
-            #no reference to use! invent a unique one for this window:
-            #(use its wid)
-            reftype = "wid"
-            ref = wid
+        if ref<0:
+            reftype = "leader-wid"
+            ref = leader_wid
+        if ref<0:
+            ci = metadata.strlistget("class-instance")
+            if pid>0:
+                reftype = "pid"
+                ref = pid
+            elif transient_for>0:
+                #this should have matched a client window above..
+                #but try to use it anyway:
+                reftype = "transient-for"
+                ref = transient_for
+            elif ci:
+                reftype = "class"
+                ref = "|".join(ci)
+            else:
+                #no reference to use
+                return None
         refkey = "%s:%s" % (reftype, ref)
         group_leader_window = self._ref_to_group_leader.get(refkey)
         if group_leader_window:
