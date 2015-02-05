@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.19
+%define version 0.14.20
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -234,6 +234,10 @@ fi
 
 
 %changelog
+* Thu Feb 05 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.20-1
+- fix window iconification / maximization loops on win32
+- fix group leader code (window and memory leak)
+
 * Fri Jan 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title
 - fix workspace geometry calculations

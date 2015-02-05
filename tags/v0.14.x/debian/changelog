@@ -1,3 +1,9 @@
+xpra (0.14.20-1) UNRELEASED; urgency=low
+  * fix window iconification / maximization loops on win32
+  * fix group leader code (window and memory leak)
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 05 Feb 2015 13:49:35 +0700
+
 xpra (0.14.19-2) UNRELEASED; urgency=low
   * forced version bump to include tiny window state fixes
 
