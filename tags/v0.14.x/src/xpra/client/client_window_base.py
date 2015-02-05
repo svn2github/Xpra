@@ -223,22 +223,27 @@ class ClientWindowBase(ClientWidgetBase):
 
         if "maximized" in metadata:
             maximized = metadata.boolget("maximized")
-            if maximized:
-                self.maximize()
-            else:
-                self.unmaximize()
+            if maximized!=self._maximized:
+                self._maximized = maximized
+                if maximized:
+                    self.maximize()
+                else:
+                    self.unmaximize()
 
         if "fullscreen" in metadata:
             fullscreen = metadata.boolget("fullscreen")
-            self.set_fullscreen(fullscreen)
+            if self._fullscreen is None or self._fullscreen!=fullscreen:
+                self._fullscreen = fullscreen
+                self.set_fullscreen(fullscreen)
 
         if "iconic" in metadata:
-            if metadata.boolget("iconic"):
-                self._iconified = True
-                self.iconify()
-            else:
-                self._iconified = False
-                self.deiconify()
+            iconified = metadata.boolget("iconic")
+            if self._iconified!=iconified:
+                self._iconified = iconified
+                if self._iconified:
+                    self.iconify()
+                else:
+                    self.deiconify()
 
         if "decorations" in metadata:
             self.set_decorated(metadata.boolget("decorations"))
