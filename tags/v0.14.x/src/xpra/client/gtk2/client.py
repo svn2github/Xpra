@@ -477,7 +477,7 @@ class XpraClient(GTKXpraClient):
 
     def get_group_leader(self, wid, metadata, override_redirect):
         transient_for = metadata.intget("transient-for", -1)
-        log.info("get_group_leader() transient_for=%s", transient_for)
+        log("get_group_leader() transient_for=%s", transient_for)
         if transient_for>0:
             client_window = self._id_to_window.get(transient_for)
             if client_window:
