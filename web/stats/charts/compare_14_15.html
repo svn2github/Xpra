@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Xpra Performance Results</title>
+  <link href="css/xpra.css" rel="stylesheet" type="text/css">
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+  <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
+  <script language="javascript" type="text/javascript" src="js/jquery.flot.categories.js"></script>
+  <script language="javascript" type="text/javascript" src="js/jquery.flot.orderbars_mod.js"></script>
+  <script language="javascript" type="text/javascript" src="js/xpra.js"></script>
+  <script language="javascript" type="text/javascript">
+    var options = {canvas:true, grid: {margin: {top:50}, hoverable: true}, series: {bars: {show: true, barWidth: 0.15}},  xaxis: {mode: "categories", tickLength: 0, min: -0.3, max: 4.3}, colors: ["#89A54E", "#4572A7"]};
+    var e0_jpeg_14 = [["glxgears", 1047.22222222], ["glxspheres", 990.0], ["moebiusgears", 1086.0], ["polytopes", 1241.44444444], ["xterm", 762.555555556], ];
+    var e0_jpeg_15 = [["glxgears", 1801.88888889], ["glxspheres", 1755.77777778], ["moebiusgears", 1829.77777778], ["polytopes", 1976.44444444], ["xterm", 1387.44444444], ];
+    var d0_jpeg = [{label: "v14", data: e0_jpeg_14, bars:{order:0}}, {label: "v15", data: e0_jpeg_15, bars:{order:1}}];
+    var e0_mmap_14 = [["glxgears", 1857.44444444], ["glxspheres", 1845.88888889], ["moebiusgears", 1096.55555556], ["polytopes", 1249.33333333], ["xterm", 983.222222222], ];
+    var e0_mmap_15 = [["glxgears", 2614.11111111], ["glxspheres", 2573.66666667], ["moebiusgears", 1838.88888889], ["polytopes", 1983.44444444], ["xterm", 1727.11111111], ];
+    var d0_mmap = [{label: "v14", data: e0_mmap_14, bars:{order:0}}, {label: "v15", data: e0_mmap_15, bars:{order:1}}];
+    var e0_png_14 = [["glxgears", 999.888888889], ["glxspheres", 1046.11111111], ["moebiusgears", 605.333333333], ["polytopes", 1057.0], ["xterm", 726.0], ];
+    var e0_png_15 = [["glxgears", 2172.22222222], ["glxspheres", 2001.88888889], ["moebiusgears", 1378.66666667], ["polytopes", 1831.22222222], ["xterm", 1347.77777778], ];
+    var d0_png = [{label: "v14", data: e0_png_14, bars:{order:0}}, {label: "v15", data: e0_png_15, bars:{order:1}}];
+    var e0_rgb24_14 = [["glxgears", 1829.51851852], ["glxspheres", 1667.81481481], ["moebiusgears", 1095.22222222], ["polytopes", 1242.51851852], ["xterm", 940.407407407], ];
+    var e0_rgb24_15 = [["glxgears", 2558.11111111], ["glxspheres", 2404.18518519], ["moebiusgears", 1837.62962963], ["polytopes", 1982.55555556], ["xterm", 1520.59259259], ];
+    var d0_rgb24 = [{label: "v14", data: e0_rgb24_14, bars:{order:0}}, {label: "v15", data: e0_rgb24_15, bars:{order:1}}];
+    var e0_vpx_14 = [["glxgears", 522.555555556], ["glxspheres", 478.555555556], ["moebiusgears", 848.888888889], ["polytopes", 1166.44444444], ["xterm", 571.222222222], ];
+    var e0_vpx_15 = [["glxgears", 1274.11111111], ["glxspheres", 1222.77777778], ["moebiusgears", 1363.33333333], ["polytopes", 1903.33333333], ["xterm", 1367.22222222], ];
+    var d0_vpx = [{label: "v14", data: e0_vpx_14, bars:{order:0}}, {label: "v15", data: e0_vpx_15, bars:{order:1}}];
+    var e0_x264_14 = [["glxgears", 889.777777778], ["glxspheres", 907.333333333], ["moebiusgears", 1091.88888889], ["polytopes", 1228.44444444], ["xterm", 1153.22222222], ];
+    var e0_x264_15 = [["glxgears", 1695.77777778], ["glxspheres", 1581.0], ["moebiusgears", 1829.66666667], ["polytopes", 1970.44444444], ["xterm", 1816.22222222], ];
+    var d0_x264 = [{label: "v14", data: e0_x264_14, bars:{order:0}}, {label: "v15", data: e0_x264_15, bars:{order:1}}];
+    var e1_jpeg_14 = [["glxgears", 3360684.88889], ["glxspheres", 6612060.88889], ["moebiusgears", 2126992.0], ["polytopes", 1509135.0], ["xterm", 4178069.0], ];
+    var e1_jpeg_15 = [["glxgears", 3364539.88889], ["glxspheres", 6625134.11111], ["moebiusgears", 1978353.33333], ["polytopes", 1863046.77778], ["xterm", 1907879.88889], ];
+    var d1_jpeg = [{label: "v14", data: e1_jpeg_14, bars:{order:0}}, {label: "v15", data: e1_jpeg_15, bars:{order:1}}];
+    var e1_mmap_14 = [["glxgears", 4165.88888889], ["glxspheres", 4134.66666667], ["moebiusgears", 2223.11111111], ["polytopes", 2614.11111111], ["xterm", 1943.44444444], ];
+    var e1_mmap_15 = [["glxgears", 4232.55555556], ["glxspheres", 4127.44444444], ["moebiusgears", 2254.55555556], ["polytopes", 2623.77777778], ["xterm", 2015.55555556], ];
+    var d1_mmap = [{label: "v14", data: e1_mmap_14, bars:{order:0}}, {label: "v15", data: e1_mmap_15, bars:{order:1}}];
+    var e1_png_14 = [["glxgears", 1826098.0], ["glxspheres", 26848834.6667], ["moebiusgears", 386324.111111], ["polytopes", 599426.333333], ["xterm", 530291.111111], ];
+    var e1_png_15 = [["glxgears", 3174525.44444], ["glxspheres", 35859853.2222], ["moebiusgears", 405308.555556], ["polytopes", 515206.0], ["xterm", 657212.333333], ];
+    var d1_png = [{label: "v14", data: e1_png_14, bars:{order:0}}, {label: "v15", data: e1_png_15, bars:{order:1}}];
+    var e1_rgb24_14 = [["glxgears", 98786416.8148], ["glxspheres", 130396871.963], ["moebiusgears", 13971221.2222], ["polytopes", 16109746.5556], ["xterm", 26144250.6296], ];
+    var e1_rgb24_15 = [["glxgears", 96201453.037], ["glxspheres", 126961635.556], ["moebiusgears", 13633965.0741], ["polytopes", 15410203.1111], ["xterm", 19815502.7407], ];
+    var d1_rgb24 = [{label: "v14", data: e1_rgb24_14, bars:{order:0}}, {label: "v15", data: e1_rgb24_15, bars:{order:1}}];
+    var e1_vpx_14 = [["glxgears", 76150.6666667], ["glxspheres", 172840.222222], ["moebiusgears", 106769.222222], ["polytopes", 28630.1111111], ["xterm", 143458.111111], ];
+    var e1_vpx_15 = [["glxgears", 32146.6666667], ["glxspheres", 59110.4444444], ["moebiusgears", 38745.4444444], ["polytopes", 24021.2222222], ["xterm", 140786.0], ];
+    var d1_vpx = [{label: "v14", data: e1_vpx_14, bars:{order:0}}, {label: "v15", data: e1_vpx_15, bars:{order:1}}];
+    var e1_x264_14 = [["glxgears", 518310.111111], ["glxspheres", 635897.666667], ["moebiusgears", 758005.0], ["polytopes", 1260533.0], ["xterm", 435171.0], ];
+    var e1_x264_15 = [["glxgears", 1643969.0], ["glxspheres", 2837932.55556], ["moebiusgears", 864077.555556], ["polytopes", 1350155.77778], ["xterm", 342578.222222], ];
+    var d1_x264 = [{label: "v14", data: e1_x264_14, bars:{order:0}}, {label: "v15", data: e1_x264_15, bars:{order:1}}];
+    var e2_jpeg_14 = [["glxgears", 32.0], ["glxspheres", 29.4444444444], ["moebiusgears", 33.7777777778], ["polytopes", 40.4444444444], ["xterm", 19.6666666667], ];
+    var e2_jpeg_15 = [["glxgears", 31.7777777778], ["glxspheres", 29.5555555556], ["moebiusgears", 33.0], ["polytopes", 39.2222222222], ["xterm", 13.5555555556], ];
+    var d2_jpeg = [{label: "v14", data: e2_jpeg_14, bars:{order:0}}, {label: "v15", data: e2_jpeg_15, bars:{order:1}}];
+    var e2_mmap_14 = [["glxgears", 67.3333333333], ["glxspheres", 66.7777777778], ["moebiusgears", 34.0], ["polytopes", 40.7777777778], ["xterm", 29.4444444444], ];
+    var e2_mmap_15 = [["glxgears", 67.0], ["glxspheres", 65.1111111111], ["moebiusgears", 33.0], ["polytopes", 39.5555555556], ["xterm", 29.2222222222], ];
+    var d2_mmap = [{label: "v14", data: e2_mmap_14, bars:{order:0}}, {label: "v15", data: e2_mmap_15, bars:{order:1}}];
+    var e2_png_14 = [["glxgears", 29.7777777778], ["glxspheres", 31.6666666667], ["moebiusgears", 13.0], ["polytopes", 32.4444444444], ["xterm", 18.3333333333], ];
+    var e2_png_15 = [["glxgears", 47.5555555556], ["glxspheres", 40.1111111111], ["moebiusgears", 13.0], ["polytopes", 33.0], ["xterm", 11.7777777778], ];
+    var d2_png = [{label: "v14", data: e2_png_14, bars:{order:0}}, {label: "v15", data: e2_png_15, bars:{order:1}}];
+    var e2_rgb24_14 = [["glxgears", 66.0740740741], ["glxspheres", 59.037037037], ["moebiusgears", 34.0], ["polytopes", 40.5555555556], ["xterm", 27.6296296296], ];
+    var e2_rgb24_15 = [["glxgears", 64.4074074074], ["glxspheres", 57.8888888889], ["moebiusgears", 33.0], ["polytopes", 39.5185185185], ["xterm", 19.4814814815], ];
+    var d2_rgb24 = [{label: "v14", data: e2_rgb24_14, bars:{order:0}}, {label: "v15", data: e2_rgb24_15, bars:{order:1}}];
+    var e2_vpx_14 = [["glxgears", 9.22222222222], ["glxspheres", 7.0], ["moebiusgears", 23.5555555556], ["polytopes", 37.2222222222], ["xterm", 11.3333333333], ];
+    var e2_vpx_15 = [["glxgears", 8.77777777778], ["glxspheres", 6.44444444444], ["moebiusgears", 12.6666666667], ["polytopes", 36.2222222222], ["xterm", 13.0], ];
+    var d2_vpx = [{label: "v14", data: e2_vpx_14, bars:{order:0}}, {label: "v15", data: e2_vpx_15, bars:{order:1}}];
+    var e2_x264_14 = [["glxgears", 25.0], ["glxspheres", 26.0], ["moebiusgears", 34.0], ["polytopes", 39.8888888889], ["xterm", 38.2222222222], ];
+    var e2_x264_15 = [["glxgears", 26.8888888889], ["glxspheres", 22.0], ["moebiusgears", 33.0], ["polytopes", 39.2222222222], ["xterm", 33.8888888889], ];
+    var d2_x264 = [{label: "v14", data: e2_x264_14, bars:{order:0}}, {label: "v15", data: e2_x264_15, bars:{order:1}}];
+    var e3_jpeg_14 = [["glxgears", 32.0], ["glxspheres", 29.4444444444], ["moebiusgears", 33.6666666667], ["polytopes", 40.4444444444], ["xterm", 19.6666666667], ];
+    var e3_jpeg_15 = [["glxgears", 31.5555555556], ["glxspheres", 29.4444444444], ["moebiusgears", 33.0], ["polytopes", 39.2222222222], ["xterm", 13.5555555556], ];
+    var d3_jpeg = [{label: "v14", data: e3_jpeg_14, bars:{order:0}}, {label: "v15", data: e3_jpeg_15, bars:{order:1}}];
+    var e3_mmap_14 = [["glxgears", 67.0], ["glxspheres", 66.7777777778], ["moebiusgears", 34.0], ["polytopes", 40.7777777778], ["xterm", 29.3333333333], ];
+    var e3_mmap_15 = [["glxgears", 67.0], ["glxspheres", 65.1111111111], ["moebiusgears", 33.0], ["polytopes", 39.3333333333], ["xterm", 29.0], ];
+    var d3_mmap = [{label: "v14", data: e3_mmap_14, bars:{order:0}}, {label: "v15", data: e3_mmap_15, bars:{order:1}}];
+    var e3_png_14 = [["glxgears", 29.6666666667], ["glxspheres", 31.6666666667], ["moebiusgears", 13.0], ["polytopes", 32.2222222222], ["xterm", 18.3333333333], ];
+    var e3_png_15 = [["glxgears", 47.4444444444], ["glxspheres", 40.0], ["moebiusgears", 13.0], ["polytopes", 33.0], ["xterm", 11.7777777778], ];
+    var d3_png = [{label: "v14", data: e3_png_14, bars:{order:0}}, {label: "v15", data: e3_png_15, bars:{order:1}}];
+    var e3_rgb24_14 = [["glxgears", 65.962962963], ["glxspheres", 58.962962963], ["moebiusgears", 34.0], ["polytopes", 40.5185185185], ["xterm", 27.5925925926], ];
+    var e3_rgb24_15 = [["glxgears", 64.4074074074], ["glxspheres", 57.7777777778], ["moebiusgears", 33.0], ["polytopes", 39.4814814815], ["xterm", 19.4444444444], ];
+    var d3_rgb24 = [{label: "v14", data: e3_rgb24_14, bars:{order:0}}, {label: "v15", data: e3_rgb24_15, bars:{order:1}}];
+    var e3_vpx_14 = [["glxgears", 9.0], ["glxspheres", 7.0], ["moebiusgears", 23.4444444444], ["polytopes", 37.1111111111], ["xterm", 11.1111111111], ];
+    var e3_vpx_15 = [["glxgears", 8.66666666667], ["glxspheres", 6.33333333333], ["moebiusgears", 12.5555555556], ["polytopes", 36.0], ["xterm", 12.7777777778], ];
+    var d3_vpx = [{label: "v14", data: e3_vpx_14, bars:{order:0}}, {label: "v15", data: e3_vpx_15, bars:{order:1}}];
+    var e3_x264_14 = [["glxgears", 25.0], ["glxspheres", 26.0], ["moebiusgears", 34.0], ["polytopes", 39.8888888889], ["xterm", 38.2222222222], ];
+    var e3_x264_15 = [["glxgears", 26.8888888889], ["glxspheres", 22.0], ["moebiusgears", 33.0], ["polytopes", 39.0], ["xterm", 33.7777777778], ];
+    var d3_x264 = [{label: "v14", data: e3_x264_14, bars:{order:0}}, {label: "v15", data: e3_x264_15, bars:{order:1}}];
+    var e4_jpeg_14 = [["glxgears", 25.0], ["glxspheres", 24.6666666667], ["moebiusgears", 24.5555555556], ["polytopes", 24.6666666667], ["xterm", 30.7777777778], ];
+    var e4_jpeg_15 = [["glxgears", 10.0], ["glxspheres", 8.66666666667], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 44.4444444444], ];
+    var d4_jpeg = [{label: "v14", data: e4_jpeg_14, bars:{order:0}}, {label: "v15", data: e4_jpeg_15, bars:{order:1}}];
+    var e4_mmap_14 = [["glxgears", 22.8888888889], ["glxspheres", 22.6666666667], ["moebiusgears", 24.3333333333], ["polytopes", 24.3333333333], ["xterm", 28.5555555556], ];
+    var e4_mmap_15 = [["glxgears", 5.33333333333], ["glxspheres", 5.22222222222], ["moebiusgears", 9.0], ["polytopes", 8.88888888889], ["xterm", 27.2222222222], ];
+    var d4_mmap = [{label: "v14", data: e4_mmap_14, bars:{order:0}}, {label: "v15", data: e4_mmap_15, bars:{order:1}}];
+    var e4_png_14 = [["glxgears", 33.7777777778], ["glxspheres", 39.8888888889], ["moebiusgears", 27.4444444444], ["polytopes", 25.4444444444], ["xterm", 29.1111111111], ];
+    var e4_png_15 = [["glxgears", 23.0], ["glxspheres", 31.6666666667], ["moebiusgears", 15.3333333333], ["polytopes", 10.8888888889], ["xterm", 59.0], ];
+    var d4_png = [{label: "v14", data: e4_png_14, bars:{order:0}}, {label: "v15", data: e4_png_15, bars:{order:1}}];
+    var e4_rgb24_14 = [["glxgears", 22.962962963], ["glxspheres", 22.8888888889], ["moebiusgears", 24.4444444444], ["polytopes", 24.5925925926], ["xterm", 28.7407407407], ];
+    var e4_rgb24_15 = [["glxgears", 5.59259259259], ["glxspheres", 5.92592592593], ["moebiusgears", 9.0], ["polytopes", 8.88888888889], ["xterm", 33.8888888889], ];
+    var d4_rgb24 = [{label: "v14", data: e4_rgb24_14, bars:{order:0}}, {label: "v15", data: e4_rgb24_15, bars:{order:1}}];
+    var e4_vpx_14 = [["glxgears", 54.8888888889], ["glxspheres", 70.2222222222], ["moebiusgears", 52.4444444444], ["polytopes", 29.5555555556], ["xterm", 65.8888888889], ];
+    var e4_vpx_15 = [["glxgears", 73.2222222222], ["glxspheres", 107.0], ["moebiusgears", 158.444444444], ["polytopes", 23.5555555556], ["xterm", 93.6666666667], ];
+    var d4_vpx = [{label: "v14", data: e4_vpx_14, bars:{order:0}}, {label: "v15", data: e4_vpx_15, bars:{order:1}}];
+    var e4_x264_14 = [["glxgears", 29.6666666667], ["glxspheres", 29.6666666667], ["moebiusgears", 24.6666666667], ["polytopes", 24.6666666667], ["xterm", 32.5555555556], ];
+    var e4_x264_15 = [["glxgears", 16.3333333333], ["glxspheres", 20.4444444444], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 41.1111111111], ];
+    var d4_x264 = [{label: "v14", data: e4_x264_14, bars:{order:0}}, {label: "v15", data: e4_x264_15, bars:{order:1}}];
+    var e5_jpeg_14 = [["glxgears", 46.3333333333], ["glxspheres", 46.3333333333], ["moebiusgears", 38.0], ["polytopes", 38.5555555556], ["xterm", 45.8888888889], ];
+    var e5_jpeg_15 = [["glxgears", 25.1111111111], ["glxspheres", 27.4444444444], ["moebiusgears", 16.4444444444], ["polytopes", 15.8888888889], ["xterm", 24.8888888889], ];
+    var d5_jpeg = [{label: "v14", data: e5_jpeg_14, bars:{order:0}}, {label: "v15", data: e5_jpeg_15, bars:{order:1}}];
+    var e5_mmap_14 = [["glxgears", 33.4444444444], ["glxspheres", 33.1111111111], ["moebiusgears", 33.3333333333], ["polytopes", 33.3333333333], ["xterm", 33.4444444444], ];
+    var e5_mmap_15 = [["glxgears", 12.7777777778], ["glxspheres", 12.2222222222], ["moebiusgears", 12.1111111111], ["polytopes", 12.1111111111], ["xterm", 12.6666666667], ];
+    var d5_mmap = [{label: "v14", data: e5_mmap_14, bars:{order:0}}, {label: "v15", data: e5_mmap_15, bars:{order:1}}];
+    var e5_png_14 = [["glxgears", 59.4444444444], ["glxspheres", 82.6666666667], ["moebiusgears", 82.5555555556], ["polytopes", 53.7777777778], ["xterm", 54.0], ];
+    var e5_png_15 = [["glxgears", 25.2222222222], ["glxspheres", 40.5555555556], ["moebiusgears", 61.5555555556], ["polytopes", 29.7777777778], ["xterm", 47.4444444444], ];
+    var d5_png = [{label: "v14", data: e5_png_14, bars:{order:0}}, {label: "v15", data: e5_png_15, bars:{order:1}}];
+    var e5_rgb24_14 = [["glxgears", 34.5925925926], ["glxspheres", 35.7037037037], ["moebiusgears", 33.8888888889], ["polytopes", 33.8518518519], ["xterm", 34.4074074074], ];
+    var e5_rgb24_15 = [["glxgears", 13.8888888889], ["glxspheres", 16.4074074074], ["moebiusgears", 12.5555555556], ["polytopes", 12.5925925926], ["xterm", 13.4074074074], ];
+    var d5_rgb24 = [{label: "v14", data: e5_rgb24_14, bars:{order:0}}, {label: "v15", data: e5_rgb24_15, bars:{order:1}}];
+    var e5_vpx_14 = [["glxgears", 110.0], ["glxspheres", 144.111111111], ["moebiusgears", 59.3333333333], ["polytopes", 276.888888889], ["xterm", 119.222222222], ];
+    var e5_vpx_15 = [["glxgears", 99.0], ["glxspheres", 128.555555556], ["moebiusgears", 64.2222222222], ["polytopes", 174.111111111], ["xterm", 143.666666667], ];
+    var d5_vpx = [{label: "v14", data: e5_vpx_14, bars:{order:0}}, {label: "v15", data: e5_vpx_15, bars:{order:1}}];
+    var e5_x264_14 = [["glxgears", 52.8888888889], ["glxspheres", 52.4444444444], ["moebiusgears", 41.5555555556], ["polytopes", 43.4444444444], ["xterm", 51.0], ];
+    var e5_x264_15 = [["glxgears", 28.4444444444], ["glxspheres", 34.4444444444], ["moebiusgears", 17.3333333333], ["polytopes", 18.0], ["xterm", 36.6666666667], ];
+    var d5_x264 = [{label: "v14", data: e5_x264_14, bars:{order:0}}, {label: "v15", data: e5_x264_15, bars:{order:1}}];
+    var e6_jpeg_14 = [["glxgears", 92.0], ["glxspheres", 92.8888888889], ["moebiusgears", 93.5555555556], ["polytopes", 93.6666666667], ["xterm", 87.0], ];
+    var e6_jpeg_15 = [["glxgears", 96.0], ["glxspheres", 96.3333333333], ["moebiusgears", 98.0], ["polytopes", 98.0], ["xterm", 78.7777777778], ];
+    var d6_jpeg = [{label: "v14", data: e6_jpeg_14, bars:{order:0}}, {label: "v15", data: e6_jpeg_15, bars:{order:1}}];
+    var e6_mmap_14 = [["glxgears", 90.6666666667], ["glxspheres", 91.0], ["moebiusgears", 90.6666666667], ["polytopes", 90.6666666667], ["xterm", 90.6666666667], ];
+    var e6_mmap_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d6_mmap = [{label: "v14", data: e6_mmap_14, bars:{order:0}}, {label: "v15", data: e6_mmap_15, bars:{order:1}}];
+    var e6_png_14 = [["glxgears", 91.0], ["glxspheres", 0.0], ["moebiusgears", 90.6666666667], ["polytopes", 90.6666666667], ["xterm", 90.6666666667], ];
+    var e6_png_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d6_png = [{label: "v14", data: e6_png_14, bars:{order:0}}, {label: "v15", data: e6_png_15, bars:{order:1}}];
+    var e6_rgb24_14 = [["glxgears", 91.0], ["glxspheres", 0.0], ["moebiusgears", 90.6666666667], ["polytopes", 90.6666666667], ["xterm", 90.6666666667], ];
+    var e6_rgb24_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d6_rgb24 = [{label: "v14", data: e6_rgb24_14, bars:{order:0}}, {label: "v15", data: e6_rgb24_15, bars:{order:1}}];
+    var e6_vpx_14 = [["glxgears", 69.0], ["glxspheres", 67.7777777778], ["moebiusgears", 82.8888888889], ["polytopes", 92.1111111111], ["xterm", 70.0], ];
+    var e6_vpx_15 = [["glxgears", 73.2222222222], ["glxspheres", 72.0], ["moebiusgears", 76.2222222222], ["polytopes", 96.1111111111], ["xterm", 74.2222222222], ];
+    var d6_vpx = [{label: "v14", data: e6_vpx_14, bars:{order:0}}, {label: "v15", data: e6_vpx_15, bars:{order:1}}];
+    var e6_x264_14 = [["glxgears", 79.3333333333], ["glxspheres", 79.8888888889], ["moebiusgears", 93.4444444444], ["polytopes", 93.6666666667], ["xterm", 82.6666666667], ];
+    var e6_x264_15 = [["glxgears", 85.1111111111], ["glxspheres", 82.0], ["moebiusgears", 98.0], ["polytopes", 98.0], ["xterm", 81.0], ];
+    var d6_x264 = [{label: "v14", data: e6_x264_14, bars:{order:0}}, {label: "v15", data: e6_x264_15, bars:{order:1}}];
+    var e7_jpeg_14 = [["glxgears", 57135498.3333], ["glxspheres", 53924242.6667], ["moebiusgears", 53661162.7778], ["polytopes", 54133941.0], ["xterm", 55931455.6667], ];
+    var e7_jpeg_15 = [["glxgears", 51053546.5556], ["glxspheres", 49714430.7778], ["moebiusgears", 47220537.5556], ["polytopes", 48393475.5556], ["xterm", 50444527.6667], ];
+    var d7_jpeg = [{label: "v14", data: e7_jpeg_14, bars:{order:0}}, {label: "v15", data: e7_jpeg_15, bars:{order:1}}];
+    var e7_mmap_14 = [["glxgears", 108243070.444], ["glxspheres", 114810574.889], ["moebiusgears", 120126835.0], ["polytopes", 120733904.778], ["xterm", 154689808.556], ];
+    var e7_mmap_15 = [["glxgears", 100754271.222], ["glxspheres", 106257714.778], ["moebiusgears", 112967727.111], ["polytopes", 113756289.0], ["xterm", 115861751.889], ];
+    var d7_mmap = [{label: "v14", data: e7_mmap_14, bars:{order:0}}, {label: "v15", data: e7_mmap_15, bars:{order:1}}];
+    var e7_png_14 = [["glxgears", 70548153.5556], ["glxspheres", 49347192.4444], ["moebiusgears", 47645549.0], ["polytopes", 51388732.8889], ["xterm", 58834745.3333], ];
+    var e7_png_15 = [["glxgears", 84855433.2222], ["glxspheres", 81821939.7778], ["moebiusgears", 41316851.1111], ["polytopes", 45926296.4444], ["xterm", 42186503.5556], ];
+    var d7_png = [{label: "v14", data: e7_png_14, bars:{order:0}}, {label: "v15", data: e7_png_15, bars:{order:1}}];
+    var e7_rgb24_14 = [["glxgears", 128134182.148], ["glxspheres", 118409308.0], ["moebiusgears", 119573154.074], ["polytopes", 119919546.074], ["xterm", 140328498.889], ];
+    var e7_rgb24_15 = [["glxgears", 118706358.63], ["glxspheres", 109439248.741], ["moebiusgears", 110528230.963], ["polytopes", 113823669.667], ["xterm", 136657633.296], ];
+    var d7_rgb24 = [{label: "v14", data: e7_rgb24_14, bars:{order:0}}, {label: "v15", data: e7_rgb24_15, bars:{order:1}}];
+    var e7_vpx_14 = [["glxgears", 97879732.6667], ["glxspheres", 81781174.8889], ["moebiusgears", 74978809.5556], ["polytopes", 93889469.3333], ["xterm", 92700466.1111], ];
+    var e7_vpx_15 = [["glxgears", 95181571.1111], ["glxspheres", 87371222.3333], ["moebiusgears", 70139986.8889], ["polytopes", 85170955.7778], ["xterm", 82804708.6667], ];
+    var d7_vpx = [{label: "v14", data: e7_vpx_14, bars:{order:0}}, {label: "v15", data: e7_vpx_15, bars:{order:1}}];
+    var e7_x264_14 = [["glxgears", 87302918.0], ["glxspheres", 83068960.4444], ["moebiusgears", 71244262.1111], ["polytopes", 70860633.7778], ["xterm", 71320222.1111], ];
+    var e7_x264_15 = [["glxgears", 75536175.1111], ["glxspheres", 63218780.3333], ["moebiusgears", 61109156.7778], ["polytopes", 62012293.2222], ["xterm", 57247862.3333], ];
+    var d7_x264 = [{label: "v14", data: e7_x264_14, bars:{order:0}}, {label: "v15", data: e7_x264_15, bars:{order:1}}];
+    var e8_jpeg_14 = [["glxgears", 54746023.0], ["glxspheres", 49755535.3333], ["moebiusgears", 49166014.3333], ["polytopes", 48577273.5556], ["xterm", 49070845.8889], ];
+    var e8_jpeg_15 = [["glxgears", 50319301.3333], ["glxspheres", 44290697.7778], ["moebiusgears", 45567143.4444], ["polytopes", 47263038.4444], ["xterm", 44855880.6667], ];
+    var d8_jpeg = [{label: "v14", data: e8_jpeg_14, bars:{order:0}}, {label: "v15", data: e8_jpeg_15, bars:{order:1}}];
+    var e8_mmap_14 = [["glxgears", 394013101.222], ["glxspheres", 393746670.333], ["moebiusgears", 505468234.556], ["polytopes", 491932227.222], ["xterm", 523550470.444], ];
+    var e8_mmap_15 = [["glxgears", 385955688.111], ["glxspheres", 386613331.111], ["moebiusgears", 487571095.222], ["polytopes", 505469671.556], ["xterm", 454204569.111], ];
+    var d8_mmap = [{label: "v14", data: e8_mmap_14, bars:{order:0}}, {label: "v15", data: e8_mmap_15, bars:{order:1}}];
+    var e8_png_14 = [["glxgears", 63649867.4444], ["glxspheres", 31776422.0], ["moebiusgears", 34838991.2222], ["polytopes", 40245776.8889], ["xterm", 41376975.4444], ];
+    var e8_png_15 = [["glxgears", 114783742.778], ["glxspheres", 38260313.2222], ["moebiusgears", 30523096.3333], ["polytopes", 36975650.3333], ["xterm", 33362901.4444], ];
+    var d8_png = [{label: "v14", data: e8_png_14, bars:{order:0}}, {label: "v15", data: e8_png_15, bars:{order:1}}];
+    var e8_rgb24_14 = [["glxgears", 214146194.741], ["glxspheres", 163988365.407], ["moebiusgears", 256158170.37], ["polytopes", 268102893.778], ["xterm", 202379588.852], ];
+    var e8_rgb24_15 = [["glxgears", 204143467.296], ["glxspheres", 152648779.741], ["moebiusgears", 220396464.778], ["polytopes", 265134095.852], ["xterm", 201707518.185], ];
+    var d8_rgb24 = [{label: "v14", data: e8_rgb24_14, bars:{order:0}}, {label: "v15", data: e8_rgb24_15, bars:{order:1}}];
+    var e8_vpx_14 = [["glxgears", 36037958.7778], ["glxspheres", 29927362.3333], ["moebiusgears", 36800182.3333], ["polytopes", 39600899.5556], ["xterm", 36849588.4444], ];
+    var e8_vpx_15 = [["glxgears", 32161457.3333], ["glxspheres", 28186010.8889], ["moebiusgears", 31600530.6667], ["polytopes", 35941366.2222], ["xterm", 32505883.0], ];
+    var d8_vpx = [{label: "v14", data: e8_vpx_14, bars:{order:0}}, {label: "v15", data: e8_vpx_15, bars:{order:1}}];
+    var e8_x264_14 = [["glxgears", 47352208.0], ["glxspheres", 43381170.6667], ["moebiusgears", 42667629.7778], ["polytopes", 42185960.4444], ["xterm", 44575800.1111], ];
+    var e8_x264_15 = [["glxgears", 45577821.6667], ["glxspheres", 38660645.4444], ["moebiusgears", 43055975.7778], ["polytopes", 42379121.0], ["xterm", 38088843.7778], ];
+    var d8_x264 = [{label: "v14", data: e8_x264_14, bars:{order:0}}, {label: "v15", data: e8_x264_15, bars:{order:1}}];
+    var e9_jpeg_14 = [["glxgears", 66.1111111111], ["glxspheres", 58.3333333333], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 304.111111111], ];
+    var e9_jpeg_15 = [["glxgears", 26.7777777778], ["glxspheres", 23.7777777778], ["moebiusgears", 56.3333333333], ["polytopes", 58.1111111111], ["xterm", 70.2222222222], ];
+    var d9_jpeg = [{label: "v14", data: e9_jpeg_14, bars:{order:0}}, {label: "v15", data: e9_jpeg_15, bars:{order:1}}];
+    var e9_mmap_14 = [["glxgears", 66.1111111111], ["glxspheres", 66.1111111111], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 304.111111111], ];
+    var e9_mmap_15 = [["glxgears", 25.7777777778], ["glxspheres", 25.7777777778], ["moebiusgears", 54.6666666667], ["polytopes", 57.7777777778], ["xterm", 66.4444444444], ];
+    var d9_mmap = [{label: "v14", data: e9_mmap_14, bars:{order:0}}, {label: "v15", data: e9_mmap_15, bars:{order:1}}];
+    var e9_png_14 = [["glxgears", 66.1111111111], ["glxspheres", 67.1111111111], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 304.111111111], ];
+    var e9_png_15 = [["glxgears", 46.2222222222], ["glxspheres", 69.1111111111], ["moebiusgears", 59.7777777778], ["polytopes", 58.3333333333], ["xterm", 87.2222222222], ];
+    var d9_png = [{label: "v14", data: e9_png_14, bars:{order:0}}, {label: "v15", data: e9_png_15, bars:{order:1}}];
+    var e9_rgb24_14 = [["glxgears", 66.1111111111], ["glxspheres", 58.3333333333], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 304.111111111], ];
+    var e9_rgb24_15 = [["glxgears", 26.1481481481], ["glxspheres", 26.4074074074], ["moebiusgears", 54.8518518519], ["polytopes", 58.0], ["xterm", 59.2592592593], ];
+    var d9_rgb24 = [{label: "v14", data: e9_rgb24_14, bars:{order:0}}, {label: "v15", data: e9_rgb24_15, bars:{order:1}}];
+    var e9_vpx_14 = [["glxgears", 108.333333333], ["glxspheres", 157.555555556], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 322.0], ];
+    var e9_vpx_15 = [["glxgears", 134.888888889], ["glxspheres", 174.888888889], ["moebiusgears", 288.777777778], ["polytopes", 83.5555555556], ["xterm", 157.333333333], ];
+    var d9_vpx = [{label: "v14", data: e9_vpx_14, bars:{order:0}}, {label: "v15", data: e9_vpx_15, bars:{order:1}}];
+    var e9_x264_14 = [["glxgears", 66.1111111111], ["glxspheres", 58.3333333333], ["moebiusgears", 304.111111111], ["polytopes", 304.111111111], ["xterm", 304.111111111], ];
+    var e9_x264_15 = [["glxgears", 25.8888888889], ["glxspheres", 26.6666666667], ["moebiusgears", 55.4444444444], ["polytopes", 57.3333333333], ["xterm", 64.8888888889], ];
+    var d9_x264 = [{label: "v14", data: e9_x264_14, bars:{order:0}}, {label: "v15", data: e9_x264_15, bars:{order:1}}];
+    var e10_jpeg_14 = [["glxgears", 363.555555556], ["glxspheres", 162.333333333], ["moebiusgears", 538.222222222], ["polytopes", 538.222222222], ["xterm", 400.0], ];
+    var e10_jpeg_15 = [["glxgears", 69.1111111111], ["glxspheres", 57.4444444444], ["moebiusgears", 109.333333333], ["polytopes", 110.777777778], ["xterm", 112.444444444], ];
+    var d10_jpeg = [{label: "v14", data: e10_jpeg_14, bars:{order:0}}, {label: "v15", data: e10_jpeg_15, bars:{order:1}}];
+    var e10_mmap_14 = [["glxgears", 363.555555556], ["glxspheres", 363.555555556], ["moebiusgears", 538.222222222], ["polytopes", 538.222222222], ["xterm", 538.222222222], ];
+    var e10_mmap_15 = [["glxgears", 63.7777777778], ["glxspheres", 47.8888888889], ["moebiusgears", 109.333333333], ["polytopes", 110.777777778], ["xterm", 102.222222222], ];
+    var d10_mmap = [{label: "v14", data: e10_mmap_14, bars:{order:0}}, {label: "v15", data: e10_mmap_15, bars:{order:1}}];
+    var e10_png_14 = [["glxgears", 608.0], ["glxspheres", 787.555555556], ["moebiusgears", 538.222222222], ["polytopes", 538.222222222], ["xterm", 425.555555556], ];
+    var e10_png_15 = [["glxgears", 181.777777778], ["glxspheres", 278.222222222], ["moebiusgears", 148.111111111], ["polytopes", 121.888888889], ["xterm", 149.333333333], ];
+    var d10_png = [{label: "v14", data: e10_png_14, bars:{order:0}}, {label: "v15", data: e10_png_15, bars:{order:1}}];
+    var e10_rgb24_14 = [["glxgears", 363.555555556], ["glxspheres", 162.333333333], ["moebiusgears", 538.222222222], ["polytopes", 538.222222222], ["xterm", 400.0], ];
+    var e10_rgb24_15 = [["glxgears", 63.5555555556], ["glxspheres", 43.2592592593], ["moebiusgears", 109.333333333], ["polytopes", 110.777777778], ["xterm", 99.3333333333], ];
+    var d10_rgb24 = [{label: "v14", data: e10_rgb24_14, bars:{order:0}}, {label: "v15", data: e10_rgb24_15, bars:{order:1}}];
+    var e10_vpx_14 = [["glxgears", 375.222222222], ["glxspheres", 482.333333333], ["moebiusgears", 538.222222222], ["polytopes", 1432.77777778], ["xterm", 753.333333333], ];
+    var e10_vpx_15 = [["glxgears", 622.0], ["glxspheres", 462.0], ["moebiusgears", 256.888888889], ["polytopes", 819.666666667], ["xterm", 932.555555556], ];
+    var d10_vpx = [{label: "v14", data: e10_vpx_14, bars:{order:0}}, {label: "v15", data: e10_vpx_15, bars:{order:1}}];
+    var e10_x264_14 = [["glxgears", 363.555555556], ["glxspheres", 162.333333333], ["moebiusgears", 538.222222222], ["polytopes", 538.222222222], ["xterm", 400.0], ];
+    var e10_x264_15 = [["glxgears", 74.4444444444], ["glxspheres", 77.2222222222], ["moebiusgears", 109.333333333], ["polytopes", 110.777777778], ["xterm", 169.444444444], ];
+    var d10_x264 = [{label: "v14", data: e10_x264_14, bars:{order:0}}, {label: "v15", data: e10_x264_15, bars:{order:1}}];
+    var e11_jpeg_14 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_jpeg_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_jpeg = [{label: "v14", data: e11_jpeg_14, bars:{order:0}}, {label: "v15", data: e11_jpeg_15, bars:{order:1}}];
+    var e11_mmap_14 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_mmap_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_mmap = [{label: "v14", data: e11_mmap_14, bars:{order:0}}, {label: "v15", data: e11_mmap_15, bars:{order:1}}];
+    var e11_png_14 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_png_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_png = [{label: "v14", data: e11_png_14, bars:{order:0}}, {label: "v15", data: e11_png_15, bars:{order:1}}];
+    var e11_rgb24_14 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_rgb24_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_rgb24 = [{label: "v14", data: e11_rgb24_14, bars:{order:0}}, {label: "v15", data: e11_rgb24_15, bars:{order:1}}];
+    var e11_vpx_14 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_vpx_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_vpx = [{label: "v14", data: e11_vpx_14, bars:{order:0}}, {label: "v15", data: e11_vpx_15, bars:{order:1}}];
+    var e11_x264_14 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var e11_x264_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d11_x264 = [{label: "v14", data: e11_x264_14, bars:{order:0}}, {label: "v15", data: e11_x264_15, bars:{order:1}}];
+    var e12_jpeg_14 = [["glxgears", 6.44444444444], ["glxspheres", 5.88888888889], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 9.11111111111], ];
+    var e12_jpeg_15 = [["glxgears", 7.33333333333], ["glxspheres", 5.77777777778], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 30.3333333333], ];
+    var d12_jpeg = [{label: "v14", data: e12_jpeg_14, bars:{order:0}}, {label: "v15", data: e12_jpeg_15, bars:{order:1}}];
+    var e12_mmap_14 = [["glxgears", 2.0], ["glxspheres", 2.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 6.0], ];
+    var e12_mmap_15 = [["glxgears", 2.0], ["glxspheres", 2.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 11.8888888889], ];
+    var d12_mmap = [{label: "v14", data: e12_mmap_14, bars:{order:0}}, {label: "v15", data: e12_mmap_15, bars:{order:1}}];
+    var e12_png_14 = [["glxgears", 3.11111111111], ["glxspheres", 1.55555555556], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 5.33333333333], ];
+    var e12_png_15 = [["glxgears", 4.0], ["glxspheres", 2.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 46.3333333333], ];
+    var d12_png = [{label: "v14", data: e12_png_14, bars:{order:0}}, {label: "v15", data: e12_png_15, bars:{order:1}}];
+    var e12_rgb24_14 = [["glxgears", 2.33333333333], ["glxspheres", 2.33333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 5.62962962963], ];
+    var e12_rgb24_15 = [["glxgears", 2.33333333333], ["glxspheres", 2.33333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 19.7777777778], ];
+    var d12_rgb24 = [{label: "v14", data: e12_rgb24_14, bars:{order:0}}, {label: "v15", data: e12_rgb24_15, bars:{order:1}}];
+    var e12_vpx_14 = [["glxgears", 17.1111111111], ["glxspheres", 19.6666666667], ["moebiusgears", 13.5555555556], ["polytopes", 0.555555555556], ["xterm", 14.2222222222], ];
+    var e12_vpx_15 = [["glxgears", 50.6666666667], ["glxspheres", 59.8888888889], ["moebiusgears", 85.5555555556], ["polytopes", 3.11111111111], ["xterm", 59.5555555556], ];
+    var d12_vpx = [{label: "v14", data: e12_vpx_14, bars:{order:0}}, {label: "v15", data: e12_vpx_15, bars:{order:1}}];
+    var e12_x264_14 = [["glxgears", 10.5555555556], ["glxspheres", 11.5555555556], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 9.88888888889], ];
+    var e12_x264_15 = [["glxgears", 13.3333333333], ["glxspheres", 17.3333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 23.1111111111], ];
+    var d12_x264 = [{label: "v14", data: e12_x264_14, bars:{order:0}}, {label: "v15", data: e12_x264_15, bars:{order:1}}];
+    var e13_jpeg_14 = [["glxgears", 1.0], ["glxspheres", 1.11111111111], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_jpeg_15 = [["glxgears", 2.22222222222], ["glxspheres", 3.33333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 1.22222222222], ];
+    var d13_jpeg = [{label: "v14", data: e13_jpeg_14, bars:{order:0}}, {label: "v15", data: e13_jpeg_15, bars:{order:1}}];
+    var e13_mmap_14 = [["glxgears", 1.0], ["glxspheres", 1.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_mmap_15 = [["glxgears", 1.0], ["glxspheres", 1.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var d13_mmap = [{label: "v14", data: e13_mmap_14, bars:{order:0}}, {label: "v15", data: e13_mmap_15, bars:{order:1}}];
+    var e13_png_14 = [["glxgears", 1.11111111111], ["glxspheres", 9.44444444444], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_png_15 = [["glxgears", 2.11111111111], ["glxspheres", 9.66666666667], ["moebiusgears", 1.22222222222], ["polytopes", 0.0], ["xterm", 2.22222222222], ];
+    var d13_png = [{label: "v14", data: e13_png_14, bars:{order:0}}, {label: "v15", data: e13_png_15, bars:{order:1}}];
+    var e13_rgb24_14 = [["glxgears", 1.07407407407], ["glxspheres", 7.0], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_rgb24_15 = [["glxgears", 1.92592592593], ["glxspheres", 7.0], ["moebiusgears", 0.666666666667], ["polytopes", 0.0], ["xterm", 0.148148148148], ];
+    var d13_rgb24 = [{label: "v14", data: e13_rgb24_14, bars:{order:0}}, {label: "v15", data: e13_rgb24_15, bars:{order:1}}];
+    var e13_vpx_14 = [["glxgears", 1.0], ["glxspheres", 1.11111111111], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_vpx_15 = [["glxgears", 2.22222222222], ["glxspheres", 3.33333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 1.0], ];
+    var d13_vpx = [{label: "v14", data: e13_vpx_14, bars:{order:0}}, {label: "v15", data: e13_vpx_15, bars:{order:1}}];
+    var e13_x264_14 = [["glxgears", 1.0], ["glxspheres", 1.11111111111], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var e13_x264_15 = [["glxgears", 2.22222222222], ["glxspheres", 3.33333333333], ["moebiusgears", 0.0], ["polytopes", 0.0], ["xterm", 0.0], ];
+    var d13_x264 = [{label: "v14", data: e13_x264_14, bars:{order:0}}, {label: "v15", data: e13_x264_15, bars:{order:1}}];
+    var e14_jpeg_14 = [["glxgears", 60.5555555556], ["glxspheres", 72.5555555556], ["moebiusgears", 59.0], ["polytopes", 59.0], ["xterm", 59.0], ];
+    var e14_jpeg_15 = [["glxgears", 69.1111111111], ["glxspheres", 73.1111111111], ["moebiusgears", 82.6666666667], ["polytopes", 85.0], ["xterm", 46.5555555556], ];
+    var d14_jpeg = [{label: "v14", data: e14_jpeg_14, bars:{order:0}}, {label: "v15", data: e14_jpeg_15, bars:{order:1}}];
+    var e14_mmap_14 = [["glxgears", 59.0], ["glxspheres", 60.6666666667], ["moebiusgears", 59.0], ["polytopes", 59.0], ["xterm", 59.0], ];
+    var e14_mmap_15 = [["glxgears", 99.0], ["glxspheres", 99.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d14_mmap = [{label: "v14", data: e14_mmap_14, bars:{order:0}}, {label: "v15", data: e14_mmap_15, bars:{order:1}}];
+    var e14_png_14 = [["glxgears", 60.6666666667], ["glxspheres", 0.0], ["moebiusgears", 59.0], ["polytopes", 59.0], ["xterm", 59.0], ];
+    var e14_png_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d14_png = [{label: "v14", data: e14_png_14, bars:{order:0}}, {label: "v15", data: e14_png_15, bars:{order:1}}];
+    var e14_rgb24_14 = [["glxgears", 60.6666666667], ["glxspheres", 0.0], ["moebiusgears", 59.0], ["polytopes", 59.0], ["xterm", 59.0], ];
+    var e14_rgb24_15 = [["glxgears", 99.0], ["glxspheres", 0.0], ["moebiusgears", 99.0], ["polytopes", 99.0], ["xterm", 99.0], ];
+    var d14_rgb24 = [{label: "v14", data: e14_rgb24_14, bars:{order:0}}, {label: "v15", data: e14_rgb24_15, bars:{order:1}}];
+    var e14_vpx_14 = [["glxgears", 36.4444444444], ["glxspheres", 34.7777777778], ["moebiusgears", 56.5555555556], ["polytopes", 59.0], ["xterm", 36.4444444444], ];
+    var e14_vpx_15 = [["glxgears", 35.5555555556], ["glxspheres", 34.1111111111], ["moebiusgears", 40.1111111111], ["polytopes", 77.6666666667], ["xterm", 37.3333333333], ];
+    var d14_vpx = [{label: "v14", data: e14_vpx_14, bars:{order:0}}, {label: "v15", data: e14_vpx_15, bars:{order:1}}];
+    var e14_x264_14 = [["glxgears", 57.3333333333], ["glxspheres", 55.6666666667], ["moebiusgears", 59.0], ["polytopes", 59.0], ["xterm", 58.3333333333], ];
+    var e14_x264_15 = [["glxgears", 61.8888888889], ["glxspheres", 55.0], ["moebiusgears", 83.2222222222], ["polytopes", 85.1111111111], ["xterm", 49.5555555556], ];
+    var d14_x264 = [{label: "v14", data: e14_x264_14, bars:{order:0}}, {label: "v15", data: e14_x264_15, bars:{order:1}}];
+    var e15_jpeg_14 = [["glxgears", 23146252.3333], ["glxspheres", 22087264.1111], ["moebiusgears", 11437817.0], ["polytopes", 12331524.5556], ["xterm", 13477541.1111], ];
+    var e15_jpeg_15 = [["glxgears", 29858356.7778], ["glxspheres", 27527589.0], ["moebiusgears", 17626446.1111], ["polytopes", 18485560.8889], ["xterm", 17541768.1111], ];
+    var d15_jpeg = [{label: "v14", data: e15_jpeg_14, bars:{order:0}}, {label: "v15", data: e15_jpeg_15, bars:{order:1}}];
+    var e15_mmap_14 = [["glxgears", 43233058.2222], ["glxspheres", 43049381.3333], ["moebiusgears", 11498141.6667], ["polytopes", 12365636.6667], ["xterm", 16319642.7778], ];
+    var e15_mmap_15 = [["glxgears", 49693361.6667], ["glxspheres", 55717988.8889], ["moebiusgears", 17679221.2222], ["polytopes", 18534206.3333], ["xterm", 19341709.5556], ];
+    var d15_mmap = [{label: "v14", data: e15_mmap_14, bars:{order:0}}, {label: "v15", data: e15_mmap_15, bars:{order:1}}];
+    var e15_png_14 = [["glxgears", 21189767.1111], ["glxspheres", 19945947.6667], ["moebiusgears", 8521536.33333], ["polytopes", 11232300.8889], ["xterm", 11800901.0], ];
+    var e15_png_15 = [["glxgears", 36957768.2222], ["glxspheres", 32492684.3333], ["moebiusgears", 14738166.4444], ["polytopes", 17566775.2222], ["xterm", 16944545.0], ];
+    var d15_png = [{label: "v14", data: e15_png_14, bars:{order:0}}, {label: "v15", data: e15_png_15, bars:{order:1}}];
+    var e15_rgb24_14 = [["glxgears", 42624444.4815], ["glxspheres", 37863092.3333], ["moebiusgears", 11500053.8148], ["polytopes", 12337414.6296], ["xterm", 15178183.2593], ];
+    var e15_rgb24_15 = [["glxgears", 47687887.0], ["glxspheres", 41593547.5926], ["moebiusgears", 17675885.9259], ["polytopes", 18532321.3333], ["xterm", 19295704.2963], ];
+    var d15_rgb24 = [{label: "v14", data: e15_rgb24_14, bars:{order:0}}, {label: "v15", data: e15_rgb24_15, bars:{order:1}}];
+    var e15_vpx_14 = [["glxgears", 11073527.8889], ["glxspheres", 9633846.11111], ["moebiusgears", 10023837.8889], ["polytopes", 11866893.2222], ["xterm", 10442475.4444], ];
+    var e15_vpx_15 = [["glxgears", 18414823.7778], ["glxspheres", 15365300.1111], ["moebiusgears", 14841437.7778], ["polytopes", 18038283.8889], ["xterm", 16397746.8889], ];
+    var d15_vpx = [{label: "v14", data: e15_vpx_14, bars:{order:0}}, {label: "v15", data: e15_vpx_15, bars:{order:1}}];
+    var e15_x264_14 = [["glxgears", 19424480.8889], ["glxspheres", 19651739.0], ["moebiusgears", 11465254.8889], ["polytopes", 12237832.0], ["xterm", 13495638.2222], ];
+    var e15_x264_15 = [["glxgears", 27371862.3333], ["glxspheres", 24040837.8889], ["moebiusgears", 17615708.2222], ["polytopes", 18444500.6667], ["xterm", 17861076.0], ];
+    var d15_x264 = [{label: "v14", data: e15_x264_14, bars:{order:0}}, {label: "v15", data: e15_x264_15, bars:{order:1}}];
+    var e16_jpeg_14 = [["glxgears", 19.3333333333], ["glxspheres", 18.5555555556], ["moebiusgears", 19.8888888889], ["polytopes", 22.6666666667], ["xterm", 13.2222222222], ];
+    var e16_jpeg_15 = [["glxgears", 25.2222222222], ["glxspheres", 23.5555555556], ["moebiusgears", 25.4444444444], ["polytopes", 28.1111111111], ["xterm", 15.8888888889], ];
+    var d16_jpeg = [{label: "v14", data: e16_jpeg_14, bars:{order:0}}, {label: "v15", data: e16_jpeg_15, bars:{order:1}}];
+    var e16_mmap_14 = [["glxgears", 37.1111111111], ["glxspheres", 37.2222222222], ["moebiusgears", 19.8888888889], ["polytopes", 22.7777777778], ["xterm", 17.6666666667], ];
+    var e16_mmap_15 = [["glxgears", 42.7777777778], ["glxspheres", 48.3333333333], ["moebiusgears", 25.4444444444], ["polytopes", 28.3333333333], ["xterm", 22.8888888889], ];
+    var d16_mmap = [{label: "v14", data: e16_mmap_14, bars:{order:0}}, {label: "v15", data: e16_mmap_15, bars:{order:1}}];
+    var e16_png_14 = [["glxgears", 17.4444444444], ["glxspheres", 16.6666666667], ["moebiusgears", 9.77777777778], ["polytopes", 19.0], ["xterm", 12.1111111111], ];
+    var e16_png_15 = [["glxgears", 31.4444444444], ["glxspheres", 28.2222222222], ["moebiusgears", 15.1111111111], ["polytopes", 24.7777777778], ["xterm", 15.4444444444], ];
+    var d16_png = [{label: "v14", data: e16_png_14, bars:{order:0}}, {label: "v15", data: e16_png_15, bars:{order:1}}];
+    var e16_rgb24_14 = [["glxgears", 36.5925925926], ["glxspheres", 32.6296296296], ["moebiusgears", 19.9259259259], ["polytopes", 22.7037037037], ["xterm", 16.5555555556], ];
+    var e16_rgb24_15 = [["glxgears", 41.2222222222], ["glxspheres", 36.0], ["moebiusgears", 25.4444444444], ["polytopes", 28.2592592593], ["xterm", 18.4814814815], ];
+    var d16_rgb24 = [{label: "v14", data: e16_rgb24_14, bars:{order:0}}, {label: "v15", data: e16_rgb24_15, bars:{order:1}}];
+    var e16_vpx_14 = [["glxgears", 8.44444444444], ["glxspheres", 7.33333333333], ["moebiusgears", 14.6666666667], ["polytopes", 21.2222222222], ["xterm", 9.22222222222], ];
+    var e16_vpx_15 = [["glxgears", 15.0], ["glxspheres", 12.4444444444], ["moebiusgears", 15.4444444444], ["polytopes", 26.6666666667], ["xterm", 15.5555555556], ];
+    var d16_vpx = [{label: "v14", data: e16_vpx_14, bars:{order:0}}, {label: "v15", data: e16_vpx_15, bars:{order:1}}];
+    var e16_x264_14 = [["glxgears", 16.0], ["glxspheres", 16.2222222222], ["moebiusgears", 19.8888888889], ["polytopes", 22.2222222222], ["xterm", 21.5555555556], ];
+    var e16_x264_15 = [["glxgears", 23.1111111111], ["glxspheres", 20.2222222222], ["moebiusgears", 25.4444444444], ["polytopes", 28.0], ["xterm", 25.1111111111], ];
+    var d16_x264 = [{label: "v14", data: e16_x264_14, bars:{order:0}}, {label: "v15", data: e16_x264_15, bars:{order:1}}];
+    var e17_jpeg_14 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var e17_jpeg_15 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var d17_jpeg = [{label: "v14", data: e17_jpeg_14, bars:{order:0}}, {label: "v15", data: e17_jpeg_15, bars:{order:1}}];
+    var e17_mmap_14 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var e17_mmap_15 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var d17_mmap = [{label: "v14", data: e17_mmap_14, bars:{order:0}}, {label: "v15", data: e17_mmap_15, bars:{order:1}}];
+    var e17_png_14 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var e17_png_15 = [["glxgears", 8.0], ["glxspheres", 7.77777777778], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var d17_png = [{label: "v14", data: e17_png_14, bars:{order:0}}, {label: "v15", data: e17_png_15, bars:{order:1}}];
+    var e17_rgb24_14 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var e17_rgb24_15 = [["glxgears", 8.0], ["glxspheres", 8.0], ["moebiusgears", 8.0], ["polytopes", 8.0], ["xterm", 8.0], ];
+    var d17_rgb24 = [{label: "v14", data: e17_rgb24_14, bars:{order:0}}, {label: "v15", data: e17_rgb24_15, bars:{order:1}}];
+    var e17_vpx_14 = [["glxgears", 17.0], ["glxspheres", 17.0], ["moebiusgears", 17.0], ["polytopes", 17.0], ["xterm", 17.0], ];
+    var e17_vpx_15 = [["glxgears", 12.5555555556], ["glxspheres", 12.5555555556], ["moebiusgears", 17.0], ["polytopes", 17.0], ["xterm", 16.4444444444], ];
+    var d17_vpx = [{label: "v14", data: e17_vpx_14, bars:{order:0}}, {label: "v15", data: e17_vpx_15, bars:{order:1}}];
+    var e17_x264_14 = [["glxgears", 17.0], ["glxspheres", 17.0], ["moebiusgears", 17.0], ["polytopes", 17.0], ["xterm", 17.0], ];
+    var e17_x264_15 = [["glxgears", 14.7777777778], ["glxspheres", 15.3333333333], ["moebiusgears", 17.0], ["polytopes", 17.0], ["xterm", 15.3333333333], ];
+    var d17_x264 = [{label: "v14", data: e17_x264_14, bars:{order:0}}, {label: "v15", data: e17_x264_15, bars:{order:1}}];
+    var e18_jpeg_14 = [["glxgears", 151.111111111], ["glxspheres", 152.333333333], ["moebiusgears", 145.444444444], ["polytopes", 145.444444444], ["xterm", 151.666666667], ];
+    var e18_jpeg_15 = [["glxgears", 222.444444444], ["glxspheres", 221.333333333], ["moebiusgears", 215.222222222], ["polytopes", 215.777777778], ["xterm", 220.555555556], ];
+    var d18_jpeg = [{label: "v14", data: e18_jpeg_14, bars:{order:0}}, {label: "v15", data: e18_jpeg_15, bars:{order:1}}];
+    var e18_mmap_14 = [["glxgears", 279.222222222], ["glxspheres", 279.444444444], ["moebiusgears", 269.888888889], ["polytopes", 270.111111111], ["xterm", 276.0], ];
+    var e18_mmap_15 = [["glxgears", 351.555555556], ["glxspheres", 351.222222222], ["moebiusgears", 341.333333333], ["polytopes", 341.777777778], ["xterm", 347.333333333], ];
+    var d18_mmap = [{label: "v14", data: e18_mmap_14, bars:{order:0}}, {label: "v15", data: e18_mmap_15, bars:{order:1}}];
+    var e18_png_14 = [["glxgears", 150.222222222], ["glxspheres", 152.777777778], ["moebiusgears", 147.111111111], ["polytopes", 147.444444444], ["xterm", 154.666666667], ];
+    var e18_png_15 = [["glxgears", 217.111111111], ["glxspheres", 220.333333333], ["moebiusgears", 217.222222222], ["polytopes", 215.777777778], ["xterm", 218.333333333], ];
+    var d18_png = [{label: "v14", data: e18_png_14, bars:{order:0}}, {label: "v15", data: e18_png_15, bars:{order:1}}];
+    var e18_rgb24_14 = [["glxgears", 152.851851852], ["glxspheres", 154.037037037], ["moebiusgears", 145.074074074], ["polytopes", 145.148148148], ["xterm", 152.185185185], ];
+    var e18_rgb24_15 = [["glxgears", 223.444444444], ["glxspheres", 224.185185185], ["moebiusgears", 213.185185185], ["polytopes", 212.925925926], ["xterm", 220.333333333], ];
+    var d18_rgb24 = [{label: "v14", data: e18_rgb24_14, bars:{order:0}}, {label: "v15", data: e18_rgb24_15, bars:{order:1}}];
+    var e18_vpx_14 = [["glxgears", 156.111111111], ["glxspheres", 156.0], ["moebiusgears", 147.333333333], ["polytopes", 147.444444444], ["xterm", 153.333333333], ];
+    var e18_vpx_15 = [["glxgears", 226.0], ["glxspheres", 225.888888889], ["moebiusgears", 217.111111111], ["polytopes", 217.333333333], ["xterm", 223.666666667], ];
+    var d18_vpx = [{label: "v14", data: e18_vpx_14, bars:{order:0}}, {label: "v15", data: e18_vpx_15, bars:{order:1}}];
+    var e18_x264_14 = [["glxgears", 175.0], ["glxspheres", 175.777777778], ["moebiusgears", 158.777777778], ["polytopes", 159.111111111], ["xterm", 173.111111111], ];
+    var e18_x264_15 = [["glxgears", 244.111111111], ["glxspheres", 245.888888889], ["moebiusgears", 228.555555556], ["polytopes", 229.0], ["xterm", 240.666666667], ];
+    var d18_x264 = [{label: "v14", data: e18_x264_14, bars:{order:0}}, {label: "v15", data: e18_x264_15, bars:{order:1}}];
+    var e19_jpeg_14 = [["glxgears", 16.2], ["glxspheres", 14.8555555556], ["moebiusgears", 2.98888888889], ["polytopes", 3.57777777778], ["xterm", 4.03333333333], ];
+    var e19_jpeg_15 = [["glxgears", 16.3111111111], ["glxspheres", 15.1555555556], ["moebiusgears", 3.07777777778], ["polytopes", 3.6], ["xterm", 2.42222222222], ];
+    var d19_jpeg = [{label: "v14", data: e19_jpeg_14, bars:{order:0}}, {label: "v15", data: e19_jpeg_15, bars:{order:1}}];
+    var e19_mmap_14 = [["glxgears", 1.26666666667], ["glxspheres", 1.25555555556], ["moebiusgears", 0.633333333333], ["polytopes", 0.722222222222], ["xterm", 0.488888888889], ];
+    var e19_mmap_15 = [["glxgears", 1.34444444444], ["glxspheres", 1.25555555556], ["moebiusgears", 0.611111111111], ["polytopes", 0.766666666667], ["xterm", 0.933333333333], ];
+    var d19_mmap = [{label: "v14", data: e19_mmap_14, bars:{order:0}}, {label: "v15", data: e19_mmap_15, bars:{order:1}}];
+    var e19_png_14 = [["glxgears", 8.65555555556], ["glxspheres", 11.0777777778], ["moebiusgears", 1.11111111111], ["polytopes", 3.0], ["xterm", 2.44444444444], ];
+    var e19_png_15 = [["glxgears", 11.9222222222], ["glxspheres", 13.7777777778], ["moebiusgears", 1.2], ["polytopes", 3.22222222222], ["xterm", 2.27777777778], ];
+    var d19_png = [{label: "v14", data: e19_png_14, bars:{order:0}}, {label: "v15", data: e19_png_15, bars:{order:1}}];
+    var e19_rgb24_14 = [["glxgears", 21.2703703704], ["glxspheres", 23.2333333333], ["moebiusgears", 2.69259259259], ["polytopes", 3.41481481481], ["xterm", 4.94444444444], ];
+    var e19_rgb24_15 = [["glxgears", 21.1481481481], ["glxspheres", 23.0814814815], ["moebiusgears", 2.85925925926], ["polytopes", 3.35185185185], ["xterm", 3.70740740741], ];
+    var d19_rgb24 = [{label: "v14", data: e19_rgb24_14, bars:{order:0}}, {label: "v15", data: e19_rgb24_15, bars:{order:1}}];
+    var e19_vpx_14 = [["glxgears", 0.8], ["glxspheres", 0.611111111111], ["moebiusgears", 0.977777777778], ["polytopes", 1.55555555556], ["xterm", 0.777777777778], ];
+    var e19_vpx_15 = [["glxgears", 0.788888888889], ["glxspheres", 0.488888888889], ["moebiusgears", 0.555555555556], ["polytopes", 1.6], ["xterm", 0.644444444444], ];
+    var d19_vpx = [{label: "v14", data: e19_vpx_14, bars:{order:0}}, {label: "v15", data: e19_vpx_15, bars:{order:1}}];
+    var e19_x264_14 = [["glxgears", 4.7], ["glxspheres", 4.73333333333], ["moebiusgears", 2.01111111111], ["polytopes", 2.35555555556], ["xterm", 2.47777777778], ];
+    var e19_x264_15 = [["glxgears", 5.24444444444], ["glxspheres", 4.34444444444], ["moebiusgears", 2.16666666667], ["polytopes", 2.51111111111], ["xterm", 1.95555555556], ];
+    var d19_x264 = [{label: "v14", data: e19_x264_14, bars:{order:0}}, {label: "v15", data: e19_x264_15, bars:{order:1}}];
+    var e20_jpeg_14 = [["glxgears", 56.5777777778], ["glxspheres", 56.1], ["moebiusgears", 22.4333333333], ["polytopes", 26.9666666667], ["xterm", 27.1], ];
+    var e20_jpeg_15 = [["glxgears", 56.2], ["glxspheres", 57.0444444444], ["moebiusgears", 22.7111111111], ["polytopes", 26.1444444444], ["xterm", 17.3888888889], ];
+    var d20_jpeg = [{label: "v14", data: e20_jpeg_14, bars:{order:0}}, {label: "v15", data: e20_jpeg_15, bars:{order:1}}];
+    var e20_mmap_14 = [["glxgears", 52.2333333333], ["glxspheres", 48.2555555556], ["moebiusgears", 7.22222222222], ["polytopes", 8.74444444444], ["xterm", 8.85555555556], ];
+    var e20_mmap_15 = [["glxgears", 51.7777777778], ["glxspheres", 47.7333333333], ["moebiusgears", 7.43333333333], ["polytopes", 8.8], ["xterm", 7.88888888889], ];
+    var d20_mmap = [{label: "v14", data: e20_mmap_14, bars:{order:0}}, {label: "v15", data: e20_mmap_15, bars:{order:1}}];
+    var e20_png_14 = [["glxgears", 30.2777777778], ["glxspheres", 39.4222222222], ["moebiusgears", 9.95555555556], ["polytopes", 23.8], ["xterm", 16.4111111111], ];
+    var e20_png_15 = [["glxgears", 33.6444444444], ["glxspheres", 39.3555555556], ["moebiusgears", 10.0333333333], ["polytopes", 23.9111111111], ["xterm", 22.4333333333], ];
+    var d20_png = [{label: "v14", data: e20_png_14, bars:{order:0}}, {label: "v15", data: e20_png_15, bars:{order:1}}];
+    var e20_rgb24_14 = [["glxgears", 51.7296296296], ["glxspheres", 56.9185185185], ["moebiusgears", 9.47037037037], ["polytopes", 11.1962962963], ["xterm", 11.9481481481], ];
+    var e20_rgb24_15 = [["glxgears", 50.4592592593], ["glxspheres", 55.4037037037], ["moebiusgears", 9.7962962963], ["polytopes", 11.2185185185], ["xterm", 9.00740740741], ];
+    var d20_rgb24 = [{label: "v14", data: e20_rgb24_14, bars:{order:0}}, {label: "v15", data: e20_rgb24_15, bars:{order:1}}];
+    var e20_vpx_14 = [["glxgears", 5.43333333333], ["glxspheres", 5.18888888889], ["moebiusgears", 7.97777777778], ["polytopes", 9.4], ["xterm", 5.38888888889], ];
+    var e20_vpx_15 = [["glxgears", 4.8], ["glxspheres", 3.48888888889], ["moebiusgears", 3.77777777778], ["polytopes", 9.7], ["xterm", 4.96666666667], ];
+    var d20_vpx = [{label: "v14", data: e20_vpx_14, bars:{order:0}}, {label: "v15", data: e20_vpx_15, bars:{order:1}}];
+    var e20_x264_14 = [["glxgears", 38.6777777778], ["glxspheres", 44.1222222222], ["moebiusgears", 24.7333333333], ["polytopes", 31.8555555556], ["xterm", 20.7666666667], ];
+    var e20_x264_15 = [["glxgears", 51.5666666667], ["glxspheres", 66.1555555556], ["moebiusgears", 28.3], ["polytopes", 34.4222222222], ["xterm", 15.9444444444], ];
+    var d20_x264 = [{label: "v14", data: e20_x264_14, bars:{order:0}}, {label: "v15", data: e20_x264_15, bars:{order:1}}];
+    var e21_jpeg_14 = [["glxgears", 1574.0], ["glxspheres", 1574.0], ["moebiusgears", 1567.0], ["polytopes", 1567.11111111], ["xterm", 1571.0], ];
+    var e21_jpeg_15 = [["glxgears", 1535.0], ["glxspheres", 1535.0], ["moebiusgears", 1529.0], ["polytopes", 1529.0], ["xterm", 1533.0], ];
+    var d21_jpeg = [{label: "v14", data: e21_jpeg_14, bars:{order:0}}, {label: "v15", data: e21_jpeg_15, bars:{order:1}}];
+    var e21_mmap_14 = [["glxgears", 1712.0], ["glxspheres", 1712.0], ["moebiusgears", 1700.0], ["polytopes", 1700.0], ["xterm", 1707.0], ];
+    var e21_mmap_15 = [["glxgears", 1674.0], ["glxspheres", 1674.0], ["moebiusgears", 1661.0], ["polytopes", 1661.0], ["xterm", 1668.0], ];
+    var d21_mmap = [{label: "v14", data: e21_mmap_14, bars:{order:0}}, {label: "v15", data: e21_mmap_15, bars:{order:1}}];
+    var e21_png_14 = [["glxgears", 1574.88888889], ["glxspheres", 1574.0], ["moebiusgears", 1569.88888889], ["polytopes", 1570.0], ["xterm", 1577.0], ];
+    var e21_png_15 = [["glxgears", 1535.0], ["glxspheres", 1535.0], ["moebiusgears", 1530.66666667], ["polytopes", 1530.33333333], ["xterm", 1533.0], ];
+    var d21_png = [{label: "v14", data: e21_png_14, bars:{order:0}}, {label: "v15", data: e21_png_15, bars:{order:1}}];
+    var e21_rgb24_14 = [["glxgears", 1574.66666667], ["glxspheres", 1574.74074074], ["moebiusgears", 1567.0], ["polytopes", 1567.0], ["xterm", 1573.22222222], ];
+    var e21_rgb24_15 = [["glxgears", 1535.66666667], ["glxspheres", 1535.85185185], ["moebiusgears", 1529.0], ["polytopes", 1529.0], ["xterm", 1533.44444444], ];
+    var d21_rgb24 = [{label: "v14", data: e21_rgb24_14, bars:{order:0}}, {label: "v15", data: e21_rgb24_15, bars:{order:1}}];
+    var e21_vpx_14 = [["glxgears", 1648.0], ["glxspheres", 1648.0], ["moebiusgears", 1640.0], ["polytopes", 1640.0], ["xterm", 1644.0], ];
+    var e21_vpx_15 = [["glxgears", 1609.0], ["glxspheres", 1609.0], ["moebiusgears", 1601.0], ["polytopes", 1601.0], ["xterm", 1606.66666667], ];
+    var d21_vpx = [{label: "v14", data: e21_vpx_14, bars:{order:0}}, {label: "v15", data: e21_vpx_15, bars:{order:1}}];
+    var e21_x264_14 = [["glxgears", 1649.0], ["glxspheres", 1649.0], ["moebiusgears", 1640.0], ["polytopes", 1640.0], ["xterm", 1647.66666667], ];
+    var e21_x264_15 = [["glxgears", 1610.33333333], ["glxspheres", 1610.0], ["moebiusgears", 1602.0], ["polytopes", 1602.0], ["xterm", 1607.33333333], ];
+    var d21_x264 = [{label: "v14", data: e21_x264_14, bars:{order:0}}, {label: "v15", data: e21_x264_15, bars:{order:1}}];
+    var e22_jpeg_14 = [["glxgears", 10.0], ["glxspheres", 10.8888888889], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 11.2222222222], ];
+    var e22_jpeg_15 = [["glxgears", 9.66666666667], ["glxspheres", 9.44444444444], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 9.88888888889], ];
+    var d22_jpeg = [{label: "v14", data: e22_jpeg_14, bars:{order:0}}, {label: "v15", data: e22_jpeg_15, bars:{order:1}}];
+    var e22_mmap_14 = [["glxgears", 9.0], ["glxspheres", 9.0], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 11.4444444444], ];
+    var e22_mmap_15 = [["glxgears", 9.0], ["glxspheres", 9.0], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 10.2222222222], ];
+    var d22_mmap = [{label: "v14", data: e22_mmap_14, bars:{order:0}}, {label: "v15", data: e22_mmap_15, bars:{order:1}}];
+    var e22_png_14 = [["glxgears", 9.0], ["glxspheres", 10.0], ["moebiusgears", 11.0], ["polytopes", 9.44444444444], ["xterm", 11.2222222222], ];
+    var e22_png_15 = [["glxgears", 9.0], ["glxspheres", 8.88888888889], ["moebiusgears", 11.2222222222], ["polytopes", 9.66666666667], ["xterm", 9.77777777778], ];
+    var d22_png = [{label: "v14", data: e22_png_14, bars:{order:0}}, {label: "v15", data: e22_png_15, bars:{order:1}}];
+    var e22_rgb24_14 = [["glxgears", 9.11111111111], ["glxspheres", 10.1481481481], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 10.2962962963], ];
+    var e22_rgb24_15 = [["glxgears", 8.96296296296], ["glxspheres", 9.03703703704], ["moebiusgears", 9.0], ["polytopes", 9.0], ["xterm", 10.037037037], ];
+    var d22_rgb24 = [{label: "v14", data: e22_rgb24_14, bars:{order:0}}, {label: "v15", data: e22_rgb24_15, bars:{order:1}}];
+    var e22_vpx_14 = [["glxgears", 11.0], ["glxspheres", 11.0], ["moebiusgears", 11.0], ["polytopes", 11.0], ["xterm", 11.4444444444], ];
+    var e22_vpx_15 = [["glxgears", 10.5555555556], ["glxspheres", 10.7777777778], ["moebiusgears", 11.0], ["polytopes", 11.0], ["xterm", 11.6666666667], ];
+    var d22_vpx = [{label: "v14", data: e22_vpx_14, bars:{order:0}}, {label: "v15", data: e22_vpx_15, bars:{order:1}}];
+    var e22_x264_14 = [["glxgears", 25.0], ["glxspheres", 25.0], ["moebiusgears", 23.0], ["polytopes", 23.0], ["xterm", 26.7777777778], ];
+    var e22_x264_15 = [["glxgears", 22.3333333333], ["glxspheres", 25.0], ["moebiusgears", 23.0], ["polytopes", 23.0], ["xterm", 24.0], ];
+    var d22_x264 = [{label: "v14", data: e22_x264_14, bars:{order:0}}, {label: "v15", data: e22_x264_15, bars:{order:1}}];
+    var e23_jpeg_14 = [["glxgears", 101.777777778], ["glxspheres", 103.777777778], ["moebiusgears", 96.2222222222], ["polytopes", 95.8888888889], ["xterm", 99.1111111111], ];
+    var e23_jpeg_15 = [["glxgears", 107.777777778], ["glxspheres", 108.0], ["moebiusgears", 101.444444444], ["polytopes", 101.0], ["xterm", 103.222222222], ];
+    var d23_jpeg = [{label: "v14", data: e23_jpeg_14, bars:{order:0}}, {label: "v15", data: e23_jpeg_15, bars:{order:1}}];
+    var e23_mmap_14 = [["glxgears", 225.0], ["glxspheres", 225.0], ["moebiusgears", 221.555555556], ["polytopes", 221.666666667], ["xterm", 222.888888889], ];
+    var e23_mmap_15 = [["glxgears", 229.666666667], ["glxspheres", 229.444444444], ["moebiusgears", 226.333333333], ["polytopes", 226.444444444], ["xterm", 228.222222222], ];
+    var d23_mmap = [{label: "v14", data: e23_mmap_14, bars:{order:0}}, {label: "v15", data: e23_mmap_15, bars:{order:1}}];
+    var e23_png_14 = [["glxgears", 103.555555556], ["glxspheres", 103.444444444], ["moebiusgears", 95.7777777778], ["polytopes", 95.6666666667], ["xterm", 102.333333333], ];
+    var e23_png_15 = [["glxgears", 106.888888889], ["glxspheres", 107.888888889], ["moebiusgears", 100.222222222], ["polytopes", 100.888888889], ["xterm", 103.222222222], ];
+    var d23_png = [{label: "v14", data: e23_png_14, bars:{order:0}}, {label: "v15", data: e23_png_15, bars:{order:1}}];
+    var e23_rgb24_14 = [["glxgears", 99.1111111111], ["glxspheres", 103.444444444], ["moebiusgears", 95.3333333333], ["polytopes", 95.4444444444], ["xterm", 97.4444444444], ];
+    var e23_rgb24_15 = [["glxgears", 104.925925926], ["glxspheres", 109.925925926], ["moebiusgears", 100.074074074], ["polytopes", 99.7037037037], ["xterm", 102.925925926], ];
+    var d23_rgb24 = [{label: "v14", data: e23_rgb24_14, bars:{order:0}}, {label: "v15", data: e23_rgb24_15, bars:{order:1}}];
+    var e23_vpx_14 = [["glxgears", 142.777777778], ["glxspheres", 142.777777778], ["moebiusgears", 107.666666667], ["polytopes", 108.0], ["xterm", 128.0], ];
+    var e23_vpx_15 = [["glxgears", 146.444444444], ["glxspheres", 146.444444444], ["moebiusgears", 112.111111111], ["polytopes", 113.0], ["xterm", 132.888888889], ];
+    var d23_vpx = [{label: "v14", data: e23_vpx_14, bars:{order:0}}, {label: "v15", data: e23_vpx_15, bars:{order:1}}];
+    var e23_x264_14 = [["glxgears", 184.111111111], ["glxspheres", 184.0], ["moebiusgears", 120.555555556], ["polytopes", 121.0], ["xterm", 166.777777778], ];
+    var e23_x264_15 = [["glxgears", 187.0], ["glxspheres", 186.888888889], ["moebiusgears", 124.888888889], ["polytopes", 125.111111111], ["xterm", 161.222222222], ];
+    var d23_x264 = [{label: "v14", data: e23_x264_14, bars:{order:0}}, {label: "v15", data: e23_x264_15, bars:{order:1}}];
+    var e24_jpeg_14 = [["glxgears", 12.0222222222], ["glxspheres", 10.4555555556], ["moebiusgears", 3.12222222222], ["polytopes", 3.95555555556], ["xterm", 4.98888888889], ];
+    var e24_jpeg_15 = [["glxgears", 11.6], ["glxspheres", 10.0222222222], ["moebiusgears", 2.98888888889], ["polytopes", 3.78888888889], ["xterm", 3.68888888889], ];
+    var d24_jpeg = [{label: "v14", data: e24_jpeg_14, bars:{order:0}}, {label: "v15", data: e24_jpeg_15, bars:{order:1}}];
+    var e24_mmap_14 = [["glxgears", 3.05555555556], ["glxspheres", 2.83333333333], ["moebiusgears", 2.05555555556], ["polytopes", 2.55555555556], ["xterm", 1.66666666667], ];
+    var e24_mmap_15 = [["glxgears", 2.93333333333], ["glxspheres", 2.76666666667], ["moebiusgears", 1.93333333333], ["polytopes", 2.17777777778], ["xterm", 2.25555555556], ];
+    var d24_mmap = [{label: "v14", data: e24_mmap_14, bars:{order:0}}, {label: "v15", data: e24_mmap_15, bars:{order:1}}];
+    var e24_png_14 = [["glxgears", 6.63333333333], ["glxspheres", 9.32222222222], ["moebiusgears", 2.68888888889], ["polytopes", 3.32222222222], ["xterm", 5.16666666667], ];
+    var e24_png_15 = [["glxgears", 10.3], ["glxspheres", 12.4888888889], ["moebiusgears", 2.61111111111], ["polytopes", 3.2], ["xterm", 2.4], ];
+    var d24_png = [{label: "v14", data: e24_png_14, bars:{order:0}}, {label: "v15", data: e24_png_15, bars:{order:1}}];
+    var e24_rgb24_14 = [["glxgears", 16.5592592593], ["glxspheres", 18.1074074074], ["moebiusgears", 3.54444444444], ["polytopes", 4.33703703704], ["xterm", 4.91111111111], ];
+    var e24_rgb24_15 = [["glxgears", 16.6037037037], ["glxspheres", 18.3407407407], ["moebiusgears", 3.37407407407], ["polytopes", 4.04814814815], ["xterm", 4.02592592593], ];
+    var d24_rgb24 = [{label: "v14", data: e24_rgb24_14, bars:{order:0}}, {label: "v15", data: e24_rgb24_15, bars:{order:1}}];
+    var e24_vpx_14 = [["glxgears", 12.8777777778], ["glxspheres", 8.64444444444], ["moebiusgears", 3.92222222222], ["polytopes", 6.14444444444], ["xterm", 10.3111111111], ];
+    var e24_vpx_15 = [["glxgears", 14.2666666667], ["glxspheres", 10.6], ["moebiusgears", 4.81111111111], ["polytopes", 6.35555555556], ["xterm", 10.6], ];
+    var d24_vpx = [{label: "v14", data: e24_vpx_14, bars:{order:0}}, {label: "v15", data: e24_vpx_15, bars:{order:1}}];
+    var e24_x264_14 = [["glxgears", 5.96666666667], ["glxspheres", 6.05555555556], ["moebiusgears", 3.41111111111], ["polytopes", 3.71111111111], ["xterm", 3.92222222222], ];
+    var e24_x264_15 = [["glxgears", 6.48888888889], ["glxspheres", 5.3], ["moebiusgears", 3.36666666667], ["polytopes", 4.27777777778], ["xterm", 2.52222222222], ];
+    var d24_x264 = [{label: "v14", data: e24_x264_14, bars:{order:0}}, {label: "v15", data: e24_x264_15, bars:{order:1}}];
+    var e25_jpeg_14 = [["glxgears", 70.1888888889], ["glxspheres", 71.8888888889], ["moebiusgears", 34.9333333333], ["polytopes", 44.1888888889], ["xterm", 35.9888888889], ];
+    var e25_jpeg_15 = [["glxgears", 70.0], ["glxspheres", 72.7666666667], ["moebiusgears", 32.7333333333], ["polytopes", 37.4], ["xterm", 29.7555555556], ];
+    var d25_jpeg = [{label: "v14", data: e25_jpeg_14, bars:{order:0}}, {label: "v15", data: e25_jpeg_15, bars:{order:1}}];
+    var e25_mmap_14 = [["glxgears", 22.9333333333], ["glxspheres", 22.2555555556], ["moebiusgears", 8.51111111111], ["polytopes", 10.0333333333], ["xterm", 9.15555555556], ];
+    var e25_mmap_15 = [["glxgears", 22.8111111111], ["glxspheres", 21.9777777778], ["moebiusgears", 8.57777777778], ["polytopes", 10.0888888889], ["xterm", 14.1555555556], ];
+    var d25_mmap = [{label: "v14", data: e25_mmap_14, bars:{order:0}}, {label: "v15", data: e25_mmap_15, bars:{order:1}}];
+    var e25_png_14 = [["glxgears", 64.4666666667], ["glxspheres", 72.8222222222], ["moebiusgears", 96.5111111111], ["polytopes", 78.3333333333], ["xterm", 50.7777777778], ];
+    var e25_png_15 = [["glxgears", 46.3888888889], ["glxspheres", 61.6888888889], ["moebiusgears", 96.3], ["polytopes", 72.6888888889], ["xterm", 63.3222222222], ];
+    var d25_png = [{label: "v14", data: e25_png_14, bars:{order:0}}, {label: "v15", data: e25_png_15, bars:{order:1}}];
+    var e25_rgb24_14 = [["glxgears", 26.1185185185], ["glxspheres", 49.2814814815], ["moebiusgears", 10.3296296296], ["polytopes", 11.3185185185], ["xterm", 9.85185185185], ];
+    var e25_rgb24_15 = [["glxgears", 25.6185185185], ["glxspheres", 47.8074074074], ["moebiusgears", 10.4222222222], ["polytopes", 11.0962962963], ["xterm", 13.1666666667], ];
+    var d25_rgb24 = [{label: "v14", data: e25_rgb24_14, bars:{order:0}}, {label: "v15", data: e25_rgb24_15, bars:{order:1}}];
+    var e25_vpx_14 = [["glxgears", 162.788888889], ["glxspheres", 171.511111111], ["moebiusgears", 171.511111111], ["polytopes", 154.633333333], ["xterm", 147.644444444], ];
+    var e25_vpx_15 = [["glxgears", 159.133333333], ["glxspheres", 172.266666667], ["moebiusgears", 183.966666667], ["polytopes", 154.077777778], ["xterm", 159.544444444], ];
+    var d25_vpx = [{label: "v14", data: e25_vpx_14, bars:{order:0}}, {label: "v15", data: e25_vpx_15, bars:{order:1}}];
+    var e25_x264_14 = [["glxgears", 272.088888889], ["glxspheres", 278.133333333], ["moebiusgears", 173.444444444], ["polytopes", 241.288888889], ["xterm", 106.533333333], ];
+    var e25_x264_15 = [["glxgears", 224.122222222], ["glxspheres", 296.666666667], ["moebiusgears", 106.644444444], ["polytopes", 147.422222222], ["xterm", 90.2444444444], ];
+    var d25_x264 = [{label: "v14", data: e25_x264_14, bars:{order:0}}, {label: "v15", data: e25_x264_15, bars:{order:1}}];
+    var e26_jpeg_14 = [["glxgears", 1606.44444444], ["glxspheres", 1609.11111111], ["moebiusgears", 1598.0], ["polytopes", 1598.0], ["xterm", 1607.11111111], ];
+    var e26_jpeg_15 = [["glxgears", 1603.55555556], ["glxspheres", 1601.77777778], ["moebiusgears", 1703.0], ["polytopes", 1703.0], ["xterm", 1709.44444444], ];
+    var d26_jpeg = [{label: "v14", data: e26_jpeg_14, bars:{order:0}}, {label: "v15", data: e26_jpeg_15, bars:{order:1}}];
+    var e26_mmap_14 = [["glxgears", 1732.0], ["glxspheres", 1732.0], ["moebiusgears", 1728.0], ["polytopes", 1728.0], ["xterm", 1737.22222222], ];
+    var e26_mmap_15 = [["glxgears", 1730.0], ["glxspheres", 1730.0], ["moebiusgears", 1833.0], ["polytopes", 1833.0], ["xterm", 1839.44444444], ];
+    var d26_mmap = [{label: "v14", data: e26_mmap_14, bars:{order:0}}, {label: "v15", data: e26_mmap_15, bars:{order:1}}];
+    var e26_png_14 = [["glxgears", 1602.0], ["glxspheres", 1608.0], ["moebiusgears", 1606.0], ["polytopes", 1599.77777778], ["xterm", 1606.22222222], ];
+    var e26_png_15 = [["glxgears", 1600.55555556], ["glxspheres", 1603.33333333], ["moebiusgears", 1710.11111111], ["polytopes", 1704.77777778], ["xterm", 1708.55555556], ];
+    var d26_png = [{label: "v14", data: e26_png_14, bars:{order:0}}, {label: "v15", data: e26_png_15, bars:{order:1}}];
+    var e26_rgb24_14 = [["glxgears", 1602.88888889], ["glxspheres", 1608.92592593], ["moebiusgears", 1598.0], ["polytopes", 1598.03703704], ["xterm", 1605.03703704], ];
+    var e26_rgb24_15 = [["glxgears", 1600.18518519], ["glxspheres", 1603.22222222], ["moebiusgears", 1703.0], ["polytopes", 1703.0], ["xterm", 1709.48148148], ];
+    var d26_rgb24 = [{label: "v14", data: e26_rgb24_14, bars:{order:0}}, {label: "v15", data: e26_rgb24_15, bars:{order:1}}];
+    var e26_vpx_14 = [["glxgears", 1644.0], ["glxspheres", 1644.0], ["moebiusgears", 1621.0], ["polytopes", 1621.0], ["xterm", 1635.77777778], ];
+    var e26_vpx_15 = [["glxgears", 1642.0], ["glxspheres", 1642.0], ["moebiusgears", 1726.0], ["polytopes", 1726.0], ["xterm", 1739.0], ];
+    var d26_vpx = [{label: "v14", data: e26_vpx_14, bars:{order:0}}, {label: "v15", data: e26_vpx_15, bars:{order:1}}];
+    var e26_x264_14 = [["glxgears", 1867.0], ["glxspheres", 1867.0], ["moebiusgears", 1733.0], ["polytopes", 1733.0], ["xterm", 1836.44444444], ];
+    var e26_x264_15 = [["glxgears", 1865.0], ["glxspheres", 1865.0], ["moebiusgears", 1838.0], ["polytopes", 1838.0], ["xterm", 1911.77777778], ];
+    var d26_x264 = [{label: "v14", data: e26_x264_14, bars:{order:0}}, {label: "v15", data: e26_x264_15, bars:{order:1}}];
+    $(function() {
+        var plot0 = $.plot($("#placeholder_0_0"), d0_jpeg, options);
+        var plot1 = $.plot($("#placeholder_0_1"), d0_mmap, options);
+        var plot2 = $.plot($("#placeholder_0_2"), d0_png, options);
+        var plot3 = $.plot($("#placeholder_0_3"), d0_rgb24, options);
+        var plot4 = $.plot($("#placeholder_0_4"), d0_vpx, options);
+        var plot5 = $.plot($("#placeholder_0_5"), d0_x264, options);
+        var plot6 = $.plot($("#placeholder_1_0"), d1_jpeg, options);
+        var plot7 = $.plot($("#placeholder_1_1"), d1_mmap, options);
+        var plot8 = $.plot($("#placeholder_1_2"), d1_png, options);
+        var plot9 = $.plot($("#placeholder_1_3"), d1_rgb24, options);
+        var plot10 = $.plot($("#placeholder_1_4"), d1_vpx, options);
+        var plot11 = $.plot($("#placeholder_1_5"), d1_x264, options);
+        var plot12 = $.plot($("#placeholder_2_0"), d2_jpeg, options);
+        var plot13 = $.plot($("#placeholder_2_1"), d2_mmap, options);
+        var plot14 = $.plot($("#placeholder_2_2"), d2_png, options);
+        var plot15 = $.plot($("#placeholder_2_3"), d2_rgb24, options);
+        var plot16 = $.plot($("#placeholder_2_4"), d2_vpx, options);
+        var plot17 = $.plot($("#placeholder_2_5"), d2_x264, options);
+        var plot18 = $.plot($("#placeholder_3_0"), d3_jpeg, options);
+        var plot19 = $.plot($("#placeholder_3_1"), d3_mmap, options);
+        var plot20 = $.plot($("#placeholder_3_2"), d3_png, options);
+        var plot21 = $.plot($("#placeholder_3_3"), d3_rgb24, options);
+        var plot22 = $.plot($("#placeholder_3_4"), d3_vpx, options);
+        var plot23 = $.plot($("#placeholder_3_5"), d3_x264, options);
+        var plot24 = $.plot($("#placeholder_4_0"), d4_jpeg, options);
+        var plot25 = $.plot($("#placeholder_4_1"), d4_mmap, options);
+        var plot26 = $.plot($("#placeholder_4_2"), d4_png, options);
+        var plot27 = $.plot($("#placeholder_4_3"), d4_rgb24, options);
+        var plot28 = $.plot($("#placeholder_4_4"), d4_vpx, options);
+        var plot29 = $.plot($("#placeholder_4_5"), d4_x264, options);
+        var plot30 = $.plot($("#placeholder_5_0"), d5_jpeg, options);
+        var plot31 = $.plot($("#placeholder_5_1"), d5_mmap, options);
+        var plot32 = $.plot($("#placeholder_5_2"), d5_png, options);
+        var plot33 = $.plot($("#placeholder_5_3"), d5_rgb24, options);
+        var plot34 = $.plot($("#placeholder_5_4"), d5_vpx, options);
+        var plot35 = $.plot($("#placeholder_5_5"), d5_x264, options);
+        var plot36 = $.plot($("#placeholder_6_0"), d6_jpeg, options);
+        var plot37 = $.plot($("#placeholder_6_1"), d6_mmap, options);
+        var plot38 = $.plot($("#placeholder_6_2"), d6_png, options);
+        var plot39 = $.plot($("#placeholder_6_3"), d6_rgb24, options);
+        var plot40 = $.plot($("#placeholder_6_4"), d6_vpx, options);
+        var plot41 = $.plot($("#placeholder_6_5"), d6_x264, options);
+        var plot42 = $.plot($("#placeholder_7_0"), d7_jpeg, options);
+        var plot43 = $.plot($("#placeholder_7_1"), d7_mmap, options);
+        var plot44 = $.plot($("#placeholder_7_2"), d7_png, options);
+        var plot45 = $.plot($("#placeholder_7_3"), d7_rgb24, options);
+        var plot46 = $.plot($("#placeholder_7_4"), d7_vpx, options);
+        var plot47 = $.plot($("#placeholder_7_5"), d7_x264, options);
+        var plot48 = $.plot($("#placeholder_8_0"), d8_jpeg, options);
+        var plot49 = $.plot($("#placeholder_8_1"), d8_mmap, options);
+        var plot50 = $.plot($("#placeholder_8_2"), d8_png, options);
+        var plot51 = $.plot($("#placeholder_8_3"), d8_rgb24, options);
+        var plot52 = $.plot($("#placeholder_8_4"), d8_vpx, options);
+        var plot53 = $.plot($("#placeholder_8_5"), d8_x264, options);
+        var plot54 = $.plot($("#placeholder_9_0"), d9_jpeg, options);
+        var plot55 = $.plot($("#placeholder_9_1"), d9_mmap, options);
+        var plot56 = $.plot($("#placeholder_9_2"), d9_png, options);
+        var plot57 = $.plot($("#placeholder_9_3"), d9_rgb24, options);
+        var plot58 = $.plot($("#placeholder_9_4"), d9_vpx, options);
+        var plot59 = $.plot($("#placeholder_9_5"), d9_x264, options);
+        var plot60 = $.plot($("#placeholder_10_0"), d10_jpeg, options);
+        var plot61 = $.plot($("#placeholder_10_1"), d10_mmap, options);
+        var plot62 = $.plot($("#placeholder_10_2"), d10_png, options);
+        var plot63 = $.plot($("#placeholder_10_3"), d10_rgb24, options);
+        var plot64 = $.plot($("#placeholder_10_4"), d10_vpx, options);
+        var plot65 = $.plot($("#placeholder_10_5"), d10_x264, options);
+        var plot66 = $.plot($("#placeholder_11_0"), d11_jpeg, options);
+        var plot67 = $.plot($("#placeholder_11_1"), d11_mmap, options);
+        var plot68 = $.plot($("#placeholder_11_2"), d11_png, options);
+        var plot69 = $.plot($("#placeholder_11_3"), d11_rgb24, options);
+        var plot70 = $.plot($("#placeholder_11_4"), d11_vpx, options);
+        var plot71 = $.plot($("#placeholder_11_5"), d11_x264, options);
+        var plot72 = $.plot($("#placeholder_12_0"), d12_jpeg, options);
+        var plot73 = $.plot($("#placeholder_12_1"), d12_mmap, options);
+        var plot74 = $.plot($("#placeholder_12_2"), d12_png, options);
+        var plot75 = $.plot($("#placeholder_12_3"), d12_rgb24, options);
+        var plot76 = $.plot($("#placeholder_12_4"), d12_vpx, options);
+        var plot77 = $.plot($("#placeholder_12_5"), d12_x264, options);
+        var plot78 = $.plot($("#placeholder_13_0"), d13_jpeg, options);
+        var plot79 = $.plot($("#placeholder_13_1"), d13_mmap, options);
+        var plot80 = $.plot($("#placeholder_13_2"), d13_png, options);
+        var plot81 = $.plot($("#placeholder_13_3"), d13_rgb24, options);
+        var plot82 = $.plot($("#placeholder_13_4"), d13_vpx, options);
+        var plot83 = $.plot($("#placeholder_13_5"), d13_x264, options);
+        var plot84 = $.plot($("#placeholder_14_0"), d14_jpeg, options);
+        var plot85 = $.plot($("#placeholder_14_1"), d14_mmap, options);
+        var plot86 = $.plot($("#placeholder_14_2"), d14_png, options);
+        var plot87 = $.plot($("#placeholder_14_3"), d14_rgb24, options);
+        var plot88 = $.plot($("#placeholder_14_4"), d14_vpx, options);
+        var plot89 = $.plot($("#placeholder_14_5"), d14_x264, options);
+        var plot90 = $.plot($("#placeholder_15_0"), d15_jpeg, options);
+        var plot91 = $.plot($("#placeholder_15_1"), d15_mmap, options);
+        var plot92 = $.plot($("#placeholder_15_2"), d15_png, options);
+        var plot93 = $.plot($("#placeholder_15_3"), d15_rgb24, options);
+        var plot94 = $.plot($("#placeholder_15_4"), d15_vpx, options);
+        var plot95 = $.plot($("#placeholder_15_5"), d15_x264, options);
+        var plot96 = $.plot($("#placeholder_16_0"), d16_jpeg, options);
+        var plot97 = $.plot($("#placeholder_16_1"), d16_mmap, options);
+        var plot98 = $.plot($("#placeholder_16_2"), d16_png, options);
+        var plot99 = $.plot($("#placeholder_16_3"), d16_rgb24, options);
+        var plot100 = $.plot($("#placeholder_16_4"), d16_vpx, options);
+        var plot101 = $.plot($("#placeholder_16_5"), d16_x264, options);
+        var plot102 = $.plot($("#placeholder_17_0"), d17_jpeg, options);
+        var plot103 = $.plot($("#placeholder_17_1"), d17_mmap, options);
+        var plot104 = $.plot($("#placeholder_17_2"), d17_png, options);
+        var plot105 = $.plot($("#placeholder_17_3"), d17_rgb24, options);
+        var plot106 = $.plot($("#placeholder_17_4"), d17_vpx, options);
+        var plot107 = $.plot($("#placeholder_17_5"), d17_x264, options);
+        var plot108 = $.plot($("#placeholder_18_0"), d18_jpeg, options);
+        var plot109 = $.plot($("#placeholder_18_1"), d18_mmap, options);
+        var plot110 = $.plot($("#placeholder_18_2"), d18_png, options);
+        var plot111 = $.plot($("#placeholder_18_3"), d18_rgb24, options);
+        var plot112 = $.plot($("#placeholder_18_4"), d18_vpx, options);
+        var plot113 = $.plot($("#placeholder_18_5"), d18_x264, options);
+        var plot114 = $.plot($("#placeholder_19_0"), d19_jpeg, options);
+        var plot115 = $.plot($("#placeholder_19_1"), d19_mmap, options);
+        var plot116 = $.plot($("#placeholder_19_2"), d19_png, options);
+        var plot117 = $.plot($("#placeholder_19_3"), d19_rgb24, options);
+        var plot118 = $.plot($("#placeholder_19_4"), d19_vpx, options);
+        var plot119 = $.plot($("#placeholder_19_5"), d19_x264, options);
+        var plot120 = $.plot($("#placeholder_20_0"), d20_jpeg, options);
+        var plot121 = $.plot($("#placeholder_20_1"), d20_mmap, options);
+        var plot122 = $.plot($("#placeholder_20_2"), d20_png, options);
+        var plot123 = $.plot($("#placeholder_20_3"), d20_rgb24, options);
+        var plot124 = $.plot($("#placeholder_20_4"), d20_vpx, options);
+        var plot125 = $.plot($("#placeholder_20_5"), d20_x264, options);
+        var plot126 = $.plot($("#placeholder_21_0"), d21_jpeg, options);
+        var plot127 = $.plot($("#placeholder_21_1"), d21_mmap, options);
+        var plot128 = $.plot($("#placeholder_21_2"), d21_png, options);
+        var plot129 = $.plot($("#placeholder_21_3"), d21_rgb24, options);
+        var plot130 = $.plot($("#placeholder_21_4"), d21_vpx, options);
+        var plot131 = $.plot($("#placeholder_21_5"), d21_x264, options);
+        var plot132 = $.plot($("#placeholder_22_0"), d22_jpeg, options);
+        var plot133 = $.plot($("#placeholder_22_1"), d22_mmap, options);
+        var plot134 = $.plot($("#placeholder_22_2"), d22_png, options);
+        var plot135 = $.plot($("#placeholder_22_3"), d22_rgb24, options);
+        var plot136 = $.plot($("#placeholder_22_4"), d22_vpx, options);
+        var plot137 = $.plot($("#placeholder_22_5"), d22_x264, options);
+        var plot138 = $.plot($("#placeholder_23_0"), d23_jpeg, options);
+        var plot139 = $.plot($("#placeholder_23_1"), d23_mmap, options);
+        var plot140 = $.plot($("#placeholder_23_2"), d23_png, options);
+        var plot141 = $.plot($("#placeholder_23_3"), d23_rgb24, options);
+        var plot142 = $.plot($("#placeholder_23_4"), d23_vpx, options);
+        var plot143 = $.plot($("#placeholder_23_5"), d23_x264, options);
+        var plot144 = $.plot($("#placeholder_24_0"), d24_jpeg, options);
+        var plot145 = $.plot($("#placeholder_24_1"), d24_mmap, options);
+        var plot146 = $.plot($("#placeholder_24_2"), d24_png, options);
+        var plot147 = $.plot($("#placeholder_24_3"), d24_rgb24, options);
+        var plot148 = $.plot($("#placeholder_24_4"), d24_vpx, options);
+        var plot149 = $.plot($("#placeholder_24_5"), d24_x264, options);
+        var plot150 = $.plot($("#placeholder_25_0"), d25_jpeg, options);
+        var plot151 = $.plot($("#placeholder_25_1"), d25_mmap, options);
+        var plot152 = $.plot($("#placeholder_25_2"), d25_png, options);
+        var plot153 = $.plot($("#placeholder_25_3"), d25_rgb24, options);
+        var plot154 = $.plot($("#placeholder_25_4"), d25_vpx, options);
+        var plot155 = $.plot($("#placeholder_25_5"), d25_x264, options);
+        var plot156 = $.plot($("#placeholder_26_0"), d26_jpeg, options);
+        var plot157 = $.plot($("#placeholder_26_1"), d26_mmap, options);
+        var plot158 = $.plot($("#placeholder_26_2"), d26_png, options);
+        var plot159 = $.plot($("#placeholder_26_3"), d26_rgb24, options);
+        var plot160 = $.plot($("#placeholder_26_4"), d26_vpx, options);
+        var plot161 = $.plot($("#placeholder_26_5"), d26_x264, options);
+        set_title(0, "Application bytes in/s ( jpeg )");
+        set_title(1, "Application bytes in/s ( mmap )");
+        set_title(2, "Application bytes in/s ( png )");
+        set_title(3, "Application bytes in/s ( rgb24 )");
+        set_title(4, "Application bytes in/s ( vpx )");
+        set_title(5, "Application bytes in/s ( x264 )");
+        set_title(6, "Application bytes out/s ( jpeg )");
+        set_title(7, "Application bytes out/s ( mmap )");
+        set_title(8, "Application bytes out/s ( png )");
+        set_title(9, "Application bytes out/s ( rgb24 )");
+        set_title(10, "Application bytes out/s ( vpx )");
+        set_title(11, "Application bytes out/s ( x264 )");
+        set_title(12, "Application packets in/s ( jpeg )");
+        set_title(13, "Application packets in/s ( mmap )");
+        set_title(14, "Application packets in/s ( png )");
+        set_title(15, "Application packets in/s ( rgb24 )");
+        set_title(16, "Application packets in/s ( vpx )");
+        set_title(17, "Application packets in/s ( x264 )");
+        set_title(18, "Application packets out/s ( jpeg )");
+        set_title(19, "Application packets out/s ( mmap )");
+        set_title(20, "Application packets out/s ( png )");
+        set_title(21, "Application packets out/s ( rgb24 )");
+        set_title(22, "Application packets out/s ( vpx )");
+        set_title(23, "Application packets out/s ( x264 )");
+        set_title(24, "Avg Batch Delay (ms) ( jpeg )");
+        set_title(25, "Avg Batch Delay (ms) ( mmap )");
+        set_title(26, "Avg Batch Delay (ms) ( png )");
+        set_title(27, "Avg Batch Delay (ms) ( rgb24 )");
+        set_title(28, "Avg Batch Delay (ms) ( vpx )");
+        set_title(29, "Avg Batch Delay (ms) ( x264 )");
+        set_title(30, "Avg Damage Latency (ms) ( jpeg )");
+        set_title(31, "Avg Damage Latency (ms) ( mmap )");
+        set_title(32, "Avg Damage Latency (ms) ( png )");
+        set_title(33, "Avg Damage Latency (ms) ( rgb24 )");
+        set_title(34, "Avg Damage Latency (ms) ( vpx )");
+        set_title(35, "Avg Damage Latency (ms) ( x264 )");
+        set_title(36, "Avg Quality ( jpeg )");
+        set_title(37, "Avg Quality ( mmap )");
+        set_title(38, "Avg Quality ( png )");
+        set_title(39, "Avg Quality ( rgb24 )");
+        set_title(40, "Avg Quality ( vpx )");
+        set_title(41, "Avg Quality ( x264 )");
+        set_title(42, "Decoding Pixels/s ( jpeg )");
+        set_title(43, "Decoding Pixels/s ( mmap )");
+        set_title(44, "Decoding Pixels/s ( png )");
+        set_title(45, "Decoding Pixels/s ( rgb24 )");
+        set_title(46, "Decoding Pixels/s ( vpx )");
+        set_title(47, "Decoding Pixels/s ( x264 )");
+        set_title(48, "Encoding Pixels/s ( jpeg )");
+        set_title(49, "Encoding Pixels/s ( mmap )");
+        set_title(50, "Encoding Pixels/s ( png )");
+        set_title(51, "Encoding Pixels/s ( rgb24 )");
+        set_title(52, "Encoding Pixels/s ( vpx )");
+        set_title(53, "Encoding Pixels/s ( x264 )");
+        set_title(54, "Max Batch Delay (ms) ( jpeg )");
+        set_title(55, "Max Batch Delay (ms) ( mmap )");
+        set_title(56, "Max Batch Delay (ms) ( png )");
+        set_title(57, "Max Batch Delay (ms) ( rgb24 )");
+        set_title(58, "Max Batch Delay (ms) ( vpx )");
+        set_title(59, "Max Batch Delay (ms) ( x264 )");
+        set_title(60, "Max Damage Latency (ms) ( jpeg )");
+        set_title(61, "Max Damage Latency (ms) ( mmap )");
+        set_title(62, "Max Damage Latency (ms) ( png )");
+        set_title(63, "Max Damage Latency (ms) ( rgb24 )");
+        set_title(64, "Max Damage Latency (ms) ( vpx )");
+        set_title(65, "Max Damage Latency (ms) ( x264 )");
+        set_title(66, "Max Quality ( jpeg )");
+        set_title(67, "Max Quality ( mmap )");
+        set_title(68, "Max Quality ( png )");
+        set_title(69, "Max Quality ( rgb24 )");
+        set_title(70, "Max Quality ( vpx )");
+        set_title(71, "Max Quality ( x264 )");
+        set_title(72, "Min Batch Delay (ms) ( jpeg )");
+        set_title(73, "Min Batch Delay (ms) ( mmap )");
+        set_title(74, "Min Batch Delay (ms) ( png )");
+        set_title(75, "Min Batch Delay (ms) ( rgb24 )");
+        set_title(76, "Min Batch Delay (ms) ( vpx )");
+        set_title(77, "Min Batch Delay (ms) ( x264 )");
+        set_title(78, "Min Damage Latency (ms) ( jpeg )");
+        set_title(79, "Min Damage Latency (ms) ( mmap )");
+        set_title(80, "Min Damage Latency (ms) ( png )");
+        set_title(81, "Min Damage Latency (ms) ( rgb24 )");
+        set_title(82, "Min Damage Latency (ms) ( vpx )");
+        set_title(83, "Min Damage Latency (ms) ( x264 )");
+        set_title(84, "Min Quality ( jpeg )");
+        set_title(85, "Min Quality ( mmap )");
+        set_title(86, "Min Quality ( png )");
+        set_title(87, "Min Quality ( rgb24 )");
+        set_title(88, "Min Quality ( vpx )");
+        set_title(89, "Min Quality ( x264 )");
+        set_title(90, "Pixels/s Sent ( jpeg )");
+        set_title(91, "Pixels/s Sent ( mmap )");
+        set_title(92, "Pixels/s Sent ( png )");
+        set_title(93, "Pixels/s Sent ( rgb24 )");
+        set_title(94, "Pixels/s Sent ( vpx )");
+        set_title(95, "Pixels/s Sent ( x264 )");
+        set_title(96, "Regions/s ( jpeg )");
+        set_title(97, "Regions/s ( mmap )");
+        set_title(98, "Regions/s ( png )");
+        set_title(99, "Regions/s ( rgb24 )");
+        set_title(100, "Regions/s ( vpx )");
+        set_title(101, "Regions/s ( x264 )");
+        set_title(102, "client number of threads ( jpeg )");
+        set_title(103, "client number of threads ( mmap )");
+        set_title(104, "client number of threads ( png )");
+        set_title(105, "client number of threads ( rgb24 )");
+        set_title(106, "client number of threads ( vpx )");
+        set_title(107, "client number of threads ( x264 )");
+        set_title(108, "client rss (MB) ( jpeg )");
+        set_title(109, "client rss (MB) ( mmap )");
+        set_title(110, "client rss (MB) ( png )");
+        set_title(111, "client rss (MB) ( rgb24 )");
+        set_title(112, "client rss (MB) ( vpx )");
+        set_title(113, "client rss (MB) ( x264 )");
+        set_title(114, "client system cpu pct ( jpeg )");
+        set_title(115, "client system cpu pct ( mmap )");
+        set_title(116, "client system cpu pct ( png )");
+        set_title(117, "client system cpu pct ( rgb24 )");
+        set_title(118, "client system cpu pct ( vpx )");
+        set_title(119, "client system cpu pct ( x264 )");
+        set_title(120, "client user cpu_pct ( jpeg )");
+        set_title(121, "client user cpu_pct ( mmap )");
+        set_title(122, "client user cpu_pct ( png )");
+        set_title(123, "client user cpu_pct ( rgb24 )");
+        set_title(124, "client user cpu_pct ( vpx )");
+        set_title(125, "client user cpu_pct ( x264 )");
+        set_title(126, "client vsize (MB) ( jpeg )");
+        set_title(127, "client vsize (MB) ( mmap )");
+        set_title(128, "client vsize (MB) ( png )");
+        set_title(129, "client vsize (MB) ( rgb24 )");
+        set_title(130, "client vsize (MB) ( vpx )");
+        set_title(131, "client vsize (MB) ( x264 )");
+        set_title(132, "server number of threads ( jpeg )");
+        set_title(133, "server number of threads ( mmap )");
+        set_title(134, "server number of threads ( png )");
+        set_title(135, "server number of threads ( rgb24 )");
+        set_title(136, "server number of threads ( vpx )");
+        set_title(137, "server number of threads ( x264 )");
+        set_title(138, "server rss (MB) ( jpeg )");
+        set_title(139, "server rss (MB) ( mmap )");
+        set_title(140, "server rss (MB) ( png )");
+        set_title(141, "server rss (MB) ( rgb24 )");
+        set_title(142, "server rss (MB) ( vpx )");
+        set_title(143, "server rss (MB) ( x264 )");
+        set_title(144, "server system cpu pct ( jpeg )");
+        set_title(145, "server system cpu pct ( mmap )");
+        set_title(146, "server system cpu pct ( png )");
+        set_title(147, "server system cpu pct ( rgb24 )");
+        set_title(148, "server system cpu pct ( vpx )");
+        set_title(149, "server system cpu pct ( x264 )");
+        set_title(150, "server user cpu_pct ( jpeg )");
+        set_title(151, "server user cpu_pct ( mmap )");
+        set_title(152, "server user cpu_pct ( png )");
+        set_title(153, "server user cpu_pct ( rgb24 )");
+        set_title(154, "server user cpu_pct ( vpx )");
+        set_title(155, "server user cpu_pct ( x264 )");
+        set_title(156, "server vsize (MB) ( jpeg )");
+        set_title(157, "server vsize (MB) ( mmap )");
+        set_title(158, "server vsize (MB) ( png )");
+        set_title(159, "server vsize (MB) ( rgb24 )");
+        set_title(160, "server vsize (MB) ( vpx )");
+        set_title(161, "server vsize (MB) ( x264 )");
+$("#metric_link_0").click(function() {$("#metric_list").scrollTop(800*0);});$("#metric_link_1").click(function() {$("#metric_list").scrollTop(800*1);});$("#metric_link_2").click(function() {$("#metric_list").scrollTop(800*2);});$("#metric_link_3").click(function() {$("#metric_list").scrollTop(800*3);});$("#metric_link_4").click(function() {$("#metric_list").scrollTop(800*4);});$("#metric_link_5").click(function() {$("#metric_list").scrollTop(800*5);});$("#metric_link_6").click(function() {$("#metric_list").scrollTop(800*6);});$("#metric_link_7").click(function() {$("#metric_list").scrollTop(800*7);});$("#metric_link_8").click(function() {$("#metric_list").scrollTop(800*8);});$("#metric_link_9").click(function() {$("#metric_list").scrollTop(800*9);});$("#metric_link_10").click(function() {$("#metric_list").scrollTop(800*10);});$("#metric_link_11").click(function() {$("#metric_list").scrollTop(800*11);});$("#metric_link_12").click(function() {$("#metric_list").scrollTop(800*12);});$("#metric_link_13").click(function() {$("#metric_list").scrollTop(800*13);});$("#metric_link_14").click(function() {$("#metric_list").scrollTop(800*14);});$("#metric_link_15").click(function() {$("#metric_list").scrollTop(800*15);});$("#metric_link_16").click(function() {$("#metric_list").scrollTop(800*16);});$("#metric_link_17").click(function() {$("#metric_list").scrollTop(800*17);});$("#metric_link_18").click(function() {$("#metric_list").scrollTop(800*18);});$("#metric_link_19").click(function() {$("#metric_list").scrollTop(800*19);});$("#metric_link_20").click(function() {$("#metric_list").scrollTop(800*20);});$("#metric_link_21").click(function() {$("#metric_list").scrollTop(800*21);});$("#metric_link_22").click(function() {$("#metric_list").scrollTop(800*22);});$("#metric_link_23").click(function() {$("#metric_list").scrollTop(800*23);});$("#metric_link_24").click(function() {$("#metric_list").scrollTop(800*24);});$("#metric_link_25").click(function() {$("#metric_list").scrollTop(800*25);});$("#metric_link_26").click(function() {$("#metric_list").scrollTop(800*26);});    });
+  </script>
+</head>
+<body>
+  <div id="page">
+    <div id="header_box">
+      <div id="header">
+        <h2>Xpra Performance Results</h2>
+        <h3>Comparison of v14 and v15</h3>
+        <div id="help_text">Click a metric on the right to locate it in the results.</div>
+      </div>
+      <div id="select_box">
+        <div id="metric_link_0" style="float:left;height:20px;width:200px"><a href="#">Application bytes in/s</a></div>
+        <div id="metric_link_1" style="float:left;height:20px;width:200px"><a href="#">Application bytes out/s</a></div>
+        <div id="metric_link_2" style="float:left;height:20px;width:200px"><a href="#">Application packets in/s</a></div>
+        <div id="metric_link_3" style="float:left;height:20px;width:200px"><a href="#">Application packets out/s</a></div>
+        <div id="metric_link_4" style="float:left;height:20px;width:200px"><a href="#">Avg Batch Delay (ms)</a></div>
+        <div id="metric_link_5" style="float:left;height:20px;width:200px"><a href="#">Avg Damage Latency (ms)</a></div>
+        <div id="metric_link_6" style="float:left;height:20px;width:200px"><a href="#">Avg Quality</a></div>
+        <div id="metric_link_7" style="float:left;height:20px;width:200px"><a href="#">Decoding Pixels/s</a></div>
+        <div id="metric_link_8" style="float:left;height:20px;width:200px"><a href="#">Encoding Pixels/s</a></div>
+        <div id="metric_link_9" style="float:left;height:20px;width:200px"><a href="#">Max Batch Delay (ms)</a></div>
+        <div id="metric_link_10" style="float:left;height:20px;width:200px"><a href="#">Max Damage Latency (ms)</a></div>
+        <div id="metric_link_11" style="float:left;height:20px;width:200px"><a href="#">Max Quality</a></div>
+        <div id="metric_link_12" style="float:left;height:20px;width:200px"><a href="#">Min Batch Delay (ms)</a></div>
+        <div id="metric_link_13" style="float:left;height:20px;width:200px"><a href="#">Min Damage Latency (ms)</a></div>
+        <div id="metric_link_14" style="float:left;height:20px;width:200px"><a href="#">Min Quality</a></div>
+        <div id="metric_link_15" style="float:left;height:20px;width:200px"><a href="#">Pixels/s Sent</a></div>
+        <div id="metric_link_16" style="float:left;height:20px;width:200px"><a href="#">Regions/s</a></div>
+        <div id="metric_link_17" style="float:left;height:20px;width:200px"><a href="#">client number of threads</a></div>
+        <div id="metric_link_18" style="float:left;height:20px;width:200px"><a href="#">client rss (MB)</a></div>
+        <div id="metric_link_19" style="float:left;height:20px;width:200px"><a href="#">client system cpu pct</a></div>
+        <div id="metric_link_20" style="float:left;height:20px;width:200px"><a href="#">client user cpu_pct</a></div>
+        <div id="metric_link_21" style="float:left;height:20px;width:200px"><a href="#">client vsize (MB)</a></div>
+        <div id="metric_link_22" style="float:left;height:20px;width:200px"><a href="#">server number of threads</a></div>
+        <div id="metric_link_23" style="float:left;height:20px;width:200px"><a href="#">server rss (MB)</a></div>
+        <div id="metric_link_24" style="float:left;height:20px;width:200px"><a href="#">server system cpu pct</a></div>
+        <div id="metric_link_25" style="float:left;height:20px;width:200px"><a href="#">server user cpu_pct</a></div>
+        <div id="metric_link_26" style="float:left;height:20px;width:200px"><a href="#">server vsize (MB)</a></div>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <div id="metric_list">
+      <div class="metric_box" id="metric_box_0">
+        <div class="metric_label">Application bytes in/s</div>
+        <div class="container">
+          <div id="placeholder_0_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_0_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_0_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_0_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_0_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_0_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_1">
+        <div class="metric_label">Application bytes out/s</div>
+        <div class="container">
+          <div id="placeholder_1_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_1_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_1_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_1_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_1_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_1_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_2">
+        <div class="metric_label">Application packets in/s</div>
+        <div class="container">
+          <div id="placeholder_2_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_2_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_2_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_2_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_2_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_2_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_3">
+        <div class="metric_label">Application packets out/s</div>
+        <div class="container">
+          <div id="placeholder_3_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_3_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_3_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_3_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_3_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_3_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_4">
+        <div class="metric_label">Avg Batch Delay (ms)</div>
+        <div class="container">
+          <div id="placeholder_4_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_4_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_4_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_4_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_4_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_4_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_5">
+        <div class="metric_label">Avg Damage Latency (ms)</div>
+        <div class="container">
+          <div id="placeholder_5_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_5_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_5_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_5_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_5_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_5_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_6">
+        <div class="metric_label">Avg Quality</div>
+        <div class="container">
+          <div id="placeholder_6_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_6_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_6_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_6_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_6_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_6_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_7">
+        <div class="metric_label">Decoding Pixels/s</div>
+        <div class="container">
+          <div id="placeholder_7_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_7_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_7_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_7_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_7_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_7_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_8">
+        <div class="metric_label">Encoding Pixels/s</div>
+        <div class="container">
+          <div id="placeholder_8_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_8_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_8_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_8_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_8_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_8_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_9">
+        <div class="metric_label">Max Batch Delay (ms)</div>
+        <div class="container">
+          <div id="placeholder_9_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_9_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_9_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_9_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_9_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_9_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_10">
+        <div class="metric_label">Max Damage Latency (ms)</div>
+        <div class="container">
+          <div id="placeholder_10_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_10_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_10_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_10_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_10_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_10_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_11">
+        <div class="metric_label">Max Quality</div>
+        <div class="container">
+          <div id="placeholder_11_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_11_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_11_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_11_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_11_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_11_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_12">
+        <div class="metric_label">Min Batch Delay (ms)</div>
+        <div class="container">
+          <div id="placeholder_12_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_12_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_12_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_12_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_12_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_12_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_13">
+        <div class="metric_label">Min Damage Latency (ms)</div>
+        <div class="container">
+          <div id="placeholder_13_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_13_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_13_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_13_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_13_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_13_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_14">
+        <div class="metric_label">Min Quality</div>
+        <div class="container">
+          <div id="placeholder_14_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_14_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_14_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_14_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_14_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_14_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_15">
+        <div class="metric_label">Pixels/s Sent</div>
+        <div class="container">
+          <div id="placeholder_15_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_15_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_15_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_15_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_15_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_15_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_16">
+        <div class="metric_label">Regions/s</div>
+        <div class="container">
+          <div id="placeholder_16_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_16_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_16_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_16_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_16_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_16_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_17">
+        <div class="metric_label">client number of threads</div>
+        <div class="container">
+          <div id="placeholder_17_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_17_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_17_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_17_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_17_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_17_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_18">
+        <div class="metric_label">client rss (MB)</div>
+        <div class="container">
+          <div id="placeholder_18_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_18_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_18_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_18_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_18_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_18_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_19">
+        <div class="metric_label">client system cpu pct</div>
+        <div class="container">
+          <div id="placeholder_19_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_19_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_19_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_19_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_19_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_19_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_20">
+        <div class="metric_label">client user cpu_pct</div>
+        <div class="container">
+          <div id="placeholder_20_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_20_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_20_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_20_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_20_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_20_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_21">
+        <div class="metric_label">client vsize (MB)</div>
+        <div class="container">
+          <div id="placeholder_21_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_21_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_21_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_21_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_21_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_21_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_22">
+        <div class="metric_label">server number of threads</div>
+        <div class="container">
+          <div id="placeholder_22_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_22_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_22_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_22_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_22_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_22_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_23">
+        <div class="metric_label">server rss (MB)</div>
+        <div class="container">
+          <div id="placeholder_23_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_23_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_23_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_23_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_23_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_23_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_24">
+        <div class="metric_label">server system cpu pct</div>
+        <div class="container">
+          <div id="placeholder_24_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_24_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_24_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_24_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_24_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_24_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_25">
+        <div class="metric_label">server user cpu_pct</div>
+        <div class="container">
+          <div id="placeholder_25_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_25_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_25_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_25_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_25_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_25_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box" id="metric_box_26">
+        <div class="metric_label">server vsize (MB)</div>
+        <div class="container">
+          <div id="placeholder_26_0" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_26_1" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_26_2" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_26_3" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_26_4" class="placeholder"></div>
+        </div>
+        <div class="container">
+          <div id="placeholder_26_5" class="placeholder"></div>
+        </div>
+      </div>
+      <div class="metric_box"></div>
+    </div>
+  </div>
+</body>
+</html>
