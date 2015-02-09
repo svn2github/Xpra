@@ -234,9 +234,10 @@ fi
 
 
 %changelog
-* Thu Feb 05 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.20-1
+* Mon Feb 09 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.20-1
 - fix window iconification / maximization loops on win32
 - fix group leader code (window and memory leak)
+- fix drag and drop with Java applications (reparent to root)
 
 * Fri Jan 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title
