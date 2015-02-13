@@ -1,6 +1,7 @@
-v0.14.20 (2015-02-09)
+v0.14.20 (2015-02-13)
 ======================
 	-- fix window iconification / maximization loops on win32
+	-- fix handling of fullscreen requests
 	-- fix group leader code (window and memory leak)
 	-- fix drag and drop with Java applications (reparent to root)
 
