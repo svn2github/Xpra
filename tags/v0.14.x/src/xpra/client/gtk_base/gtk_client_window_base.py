@@ -234,13 +234,11 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                     self.process_map_event()
 
     def set_fullscreen(self, fullscreen):
-        if self._fullscreen is None or self._fullscreen!=fullscreen:
-            #note: the "_fullscreen" flag is updated by the window-state-event, not here
-            log("%s.set_fullscreen(%s)", self, fullscreen)
-            if fullscreen:
-                self.fullscreen()
-            else:
-                self.unfullscreen()
+        log("%s.set_fullscreen(%s)", self, fullscreen)
+        if fullscreen:
+            self.fullscreen()
+        else:
+            self.unfullscreen()
 
     def set_xid(self, xid):
         if HAS_X11_BINDINGS and self.is_realized():
