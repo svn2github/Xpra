@@ -1736,7 +1736,7 @@ class UIXpraClient(XpraClientBase):
         window.show()
         return window
 
-    def get_group_leader(self, metadata, override_redirect):
+    def get_group_leader(self, wid, metadata, override_redirect):
         #subclasses that wish to implement the feature may override this method
         return None
 
