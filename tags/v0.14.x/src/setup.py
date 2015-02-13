@@ -1068,7 +1068,8 @@ if WIN32:
                      'pango', 'pangocairo', 'pangoft2', 'pangowin32',
                      'png16',
                      #ie: libpyglib-gi-2.0-python33
-                     'pyglib-gi-2.0-python%s%s' % (sys.version_info[0], sys.version_info[1]),
+                     #not available with python34, which is now the default
+                     #'pyglib-gi-2.0-python%s%s' % (sys.version_info[0], sys.version_info[1]),
                      'rsvg', 'webp',
                      'winpthread',
                      'zzz')
