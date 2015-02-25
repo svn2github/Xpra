@@ -115,6 +115,9 @@ Requires: %{libwebp}
 Requires: x264-xpra
 Requires: ffmpeg-xpra
 
+#v0.15.x onwards splits into two packages:
+Conflicts: xpra-common
+
 BuildRequires: pkgconfig
 BuildRequires: Cython
 BuildRequires: pygtk2-devel
