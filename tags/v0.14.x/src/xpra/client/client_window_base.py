@@ -108,8 +108,8 @@ class ClientWindowBase(ClientWidgetBase):
 
     def update_metadata(self, metadata):
         #normalize window-type:
-        window_type = metadata.strlistget("window-type")
-        if window_type is not None:
+        if "window-type" in metadata:
+            window_type = metadata.strlistget("window-type")
             #normalize the window type for servers that don't do "generic_window_types"
             window_type = [x.replace("_NET_WM_WINDOW_TYPE_", "").replace("_NET_WM_TYPE_", "") for x in window_type]
             metadata["window-type"] = window_type
@@ -308,7 +308,7 @@ class ClientWindowBase(ClientWidgetBase):
     def can_have_spinner(self):
         if self._backing is None:
             return False
-        window_types = self._metadata.get("window-type")
+        window_types = self._metadata.strlistget("window-type")
         if not window_types:
             return False
         return ("NORMAL" in window_types) or \
