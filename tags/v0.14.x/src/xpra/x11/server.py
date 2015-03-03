@@ -11,6 +11,7 @@
 #   shape?
 #   any other interesting metadata? _NET_WM_TYPE, WM_TRANSIENT_FOR, etc.?
 
+import os
 import gtk.gdk
 import gobject
 
@@ -48,6 +49,8 @@ from xpra.util import nonl
 from xpra.os_util import StringIOClass
 from xpra.x11.x11_server_base import X11ServerBase, mouselog
 from xpra.net.compression import Compressed
+
+REPARENT_ROOT = os.environ.get("XPRA_REPARENT_ROOT", "1")=="1"
 
 
 class DesktopManager(gtk.Widget):
@@ -128,8 +131,11 @@ class DesktopManager(gtk.Widget):
             return (-1, self)
 
     def take_window(self, model, window):
-        root = self.window.get_screen().get_root_window()
-        window.reparent(root, 0, 0)
+        if REPARENT_ROOT:
+            parent = self.window.get_screen().get_root_window()
+        else:
+            parent = self.window
+        window.reparent(parent, 0, 0)
 
     def window_size(self, model):
         w, h = self._models[model].geom[2:4]
