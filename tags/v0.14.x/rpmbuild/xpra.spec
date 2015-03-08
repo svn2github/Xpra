@@ -243,6 +243,7 @@ fi
 - fix group leader code (window and memory leak)
 - fix drag and drop with Java applications with XPRA_REPARENT_ROOT=1
 - fix window spinners
+- fix xpra control sound-output subcommand
 
 * Fri Jan 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
 - fix windows not showing when we fail to set their title

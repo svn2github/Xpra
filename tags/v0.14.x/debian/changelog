@@ -4,6 +4,7 @@ xpra (0.14.20-1) UNRELEASED; urgency=low
   * fix group leader code (window and memory leak)
   * fix drag and drop with Java applications with XPRA_REPARENT_ROOT=1
   * fix window spinners
+  * fix xpra control sound-output subcommand
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 09 Mar 2015 00:07:46 +0700
 
