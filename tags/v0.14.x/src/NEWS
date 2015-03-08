@@ -1,9 +1,9 @@
-v0.14.20 (2015-02-27)
+v0.14.20 (2015-03-09)
 ======================
 	-- fix window iconification / maximization loops on win32
 	-- fix handling of fullscreen requests
 	-- fix group leader code (window and memory leak)
-	-- fix drag and drop with Java applications (reparent to root)
+	-- fix drag and drop with Java applications with XPRA_REPARENT_ROOT=1
 	-- fix window spinners
 
 

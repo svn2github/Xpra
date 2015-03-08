@@ -237,11 +237,11 @@ fi
 
 
 %changelog
-* Fri Feb 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.20-1
+* Mon Mar 09 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.20-1
 - fix window iconification / maximization loops on win32
 - fix handling of fullscreen requests
 - fix group leader code (window and memory leak)
-- fix drag and drop with Java applications (reparent to root)
+- fix drag and drop with Java applications with XPRA_REPARENT_ROOT=1
 - fix window spinners
 
 * Fri Jan 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.19-1
