@@ -114,7 +114,7 @@ class ShadowServerBase(object):
     def watch_keymap_changes(self):
         pass
 
-    def calculate_workarea(self):
+    def calculate_workarea(self, w, h):
         pass
 
     def start_refresh(self, delay=DEFAULT_DELAY):
