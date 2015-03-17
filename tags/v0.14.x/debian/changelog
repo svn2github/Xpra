@@ -1,3 +1,10 @@
+xpra (0.14.21-1) UNRELEASED; urgency=low
+  * fix shadow mode
+  * fix bencoder problems with "xpra info" and video subregions
+  * fix win32 gradual busy wait delay
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 17 Mar 2015 21:25:49 +0700
+
 xpra (0.14.20-1) UNRELEASED; urgency=low
   * fix window iconification / maximization loops on win32
   * fix handling of fullscreen requests

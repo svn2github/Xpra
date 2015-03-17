@@ -1,3 +1,10 @@
+v0.14.21 (2015-03-17)
+======================
+	-- fix shadow mode
+	-- fix bencoder problems with "xpra info" and video subregions
+	-- fix win32 gradual busy wait delay
+
+
 v0.14.20 (2015-03-09)
 ======================
 	-- fix window iconification / maximization loops on win32
