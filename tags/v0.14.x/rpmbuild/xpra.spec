@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.21
+%define version 0.14.22
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -237,6 +237,9 @@ fi
 
 
 %changelog
+* Thu Mar 26 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
+- fix window state synchronization bugs
+
 * Tue Mar 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.21-1
 - fix shadow mode
 - fix bencoder problems with "xpra info" and video subregions
