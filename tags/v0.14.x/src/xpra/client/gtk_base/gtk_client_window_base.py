@@ -233,6 +233,11 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                         self.timeout_add(150, tell_server)
                 else:
                     self.process_map_event()
+        if self._window_state:
+            def send_updated_window_state():
+                if self._window_state:
+                    self.process_configure_event()
+            self.timeout_add(25, send_updated_window_state)
 
     def set_fullscreen(self, fullscreen):
         log("%s.set_fullscreen(%s)", self, fullscreen)
