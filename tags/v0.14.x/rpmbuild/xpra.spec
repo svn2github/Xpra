@@ -238,8 +238,11 @@ fi
 
 
 %changelog
-* Thu Mar 26 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
+* Tue Apr 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
 - fix window state synchronization bugs
+- fix format of modifiers list we send to the server
+- make parsing of client supplied data more error resilient
+- include appdata XML file
 
 * Tue Mar 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.21-1
 - fix shadow mode

@@ -1,6 +1,9 @@
-v0.14.22 (2015-03-26)
+v0.14.22 (2015-04-02)
 ======================
 	-- fix window state synchronization bugs
+	-- fix format of modifiers list we send to the server
+	-- make parsing of client supplied data more error resilient
+	-- include appdata XML file
 
 
 v0.14.21 (2015-03-17)
