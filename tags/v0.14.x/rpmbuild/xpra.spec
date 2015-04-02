@@ -208,6 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/man/man1/xpra*
 %{_datadir}/applications/xpra_launcher.desktop
 %{_datadir}/applications/xpra.desktop
+%{_datadir}/appdata/xpra.appdata.xml
 %{_datadir}/icons/xpra.png
 %dir %{_sysconfdir}/xpra
 %config(noreplace) %{_sysconfdir}/xpra/xorg.conf
