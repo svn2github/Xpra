@@ -279,6 +279,7 @@ cdef class Encoder:
             raise Exception("failed to allocate memory for vpx encoder config")
         if vpx_codec_enc_config_default(codec_iface, self.cfg, 0)!=0:
             free(self.cfg)
+            self.cfg = NULL
             raise Exception("failed to create vpx encoder config")
         log("%s codec defaults:", self.encoding)
         self.log_cfg()
