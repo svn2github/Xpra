@@ -238,9 +238,10 @@ fi
 
 
 %changelog
-* Tue Apr 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
+* Sun Apr 05 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
+- fix double free on vpx encoder initialization failures
 - make parsing of client supplied data more error resilient
 - include appdata XML file
 
