@@ -47,6 +47,7 @@ cdef extern from "vpx/vpx_codec.h":
     ctypedef int vpx_codec_err_t
     ctypedef struct vpx_codec_ctx_t:
         pass
+    const char *vpx_codec_err_to_string(vpx_codec_err_t err)
     const char *vpx_codec_error(vpx_codec_ctx_t  *ctx)
     vpx_codec_err_t vpx_codec_destroy(vpx_codec_ctx_t *ctx)
     const char *vpx_codec_version_str()
@@ -237,6 +238,12 @@ def get_spec(encoding, colorspace):
 cdef vpx_img_fmt_t get_vpx_colorspace(colorspace):
     assert colorspace in COLORSPACES
     return VPX_IMG_FMT_I420
+
+def get_error_string(int err):
+    estr = vpx_codec_err_to_string(<vpx_codec_err_t> err)[:]
+    if not estr:
+        return err
+    return estr
 
 
 cdef class Encoder:
@@ -446,7 +453,7 @@ cdef class Encoder:
             ret = vpx_codec_encode(self.context, image, self.frames, 1, flags, deadline)
         if ret!=0:
             free(image)
-            log.error("%s codec encoding error: %s", self.encoding, vpx_codec_destroy(self.context))
+            log.error("%s codec encoding error: %s", self.encoding, get_error_string(ret))
             return None
         end = time.time()
         log("vpx_codec_encode for %s took %.1fms (deadline=%sms for speed=%s, quality=%s)", self.encoding, 1000.0*(end-start), deadline/1000, self.speed, self.quality)
