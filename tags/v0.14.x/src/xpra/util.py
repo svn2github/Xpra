@@ -179,7 +179,7 @@ class typedict(dict):
     def intget(self, k, d=0):
         try:
             return int(self.capsget(k, d))
-        except Exception as e:
+        except Exception, e:
             typedict.log.warn("error on %s: %s", k, e)
             return d
 
