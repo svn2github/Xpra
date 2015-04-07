@@ -2,10 +2,11 @@ xpra (0.14.22-1) UNRELEASED; urgency=low
   * fix window state synchronization bugs
   * fix format of modifiers list we send to the server
   * fix double free on vpx encoder initialization failures
+  * disable vp9 YUV444 decoding via avcodec (fails with errors)
   * make parsing of client supplied data more error resilient
   * include appdata XML file
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 05 Apr 2015 16:04:48 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 07 Apr 2015 18:38:12 +0700
 
 xpra (0.14.21-1) UNRELEASED; urgency=low
   * fix shadow mode

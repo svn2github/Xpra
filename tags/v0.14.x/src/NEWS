@@ -1,8 +1,9 @@
-v0.14.22 (2015-04-05)
+v0.14.22 (2015-04-07)
 ======================
 	-- fix window state synchronization bugs
 	-- fix format of modifiers list we send to the server
 	-- fix double free on vpx encoder initialization failures
+	-- disable vp9 YUV444 decoding via avcodec (fails with errors)
 	-- make parsing of client supplied data more error resilient
 	-- include appdata XML file
 
