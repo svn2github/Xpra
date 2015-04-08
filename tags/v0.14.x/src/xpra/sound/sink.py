@@ -45,6 +45,8 @@ if DEFAULT_SINK not in SINKS:
     DEFAULT_SINK = SINKS[0]
 QUEUE_SILENT = 0
 
+FAKE_OVERRUN = int(os.environ.get("XPRA_FAKE_OVERRUN", "0"))
+
 
 def sink_has_device_attribute(sink):
     return sink not in ("autoaudiosink", "jackaudiosink", "directsoundsink")
@@ -98,6 +100,11 @@ class SoundSink(SoundPipeline):
             self.queue.connect("underrun", self.queue_underrun)
             self.queue.connect("running", self.queue_running)
             self.queue.connect("pushing", self.queue_pushing)
+        if FAKE_OVERRUN>0:
+ 	    def fake_overrun(*args):
+ 	        self.emit("overrun", 500)
+ 	    gobject.timeout_add(FAKE_OVERRUN*1000, fake_overrun)
+
 
     def queue_pushing(self, *args):
         ltime = int(self.queue.get_property("current-level-time")/MS_TO_NS)
