@@ -4,6 +4,7 @@ v0.14.22 (2015-04-08)
 	-- fix format of modifiers list we send to the server
 	-- fix double free on vpx encoder initialization failures
 	-- fix sound overrun restarts
+	-- fix OSX UI thread lockups detection
 	-- disable vp9 YUV444 decoding via avcodec (fails with errors)
 	-- make parsing of client supplied data more error resilient
 	-- include appdata XML file

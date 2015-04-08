@@ -3,11 +3,12 @@ xpra (0.14.22-1) UNRELEASED; urgency=low
   * fix format of modifiers list we send to the server
   * fix double free on vpx encoder initialization failures
   * fix sound overrun restarts
+  * fix OSX UI thread lockups detection
   * disable vp9 YUV444 decoding via avcodec (fails with errors)
   * make parsing of client supplied data more error resilient
   * include appdata XML file
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 08 Apr 2015 15:50:22 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 08 Apr 2015 21:52:07 +0700
 
 xpra (0.14.21-1) UNRELEASED; urgency=low
   * fix shadow mode
