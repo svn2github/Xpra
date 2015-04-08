@@ -224,7 +224,7 @@ class ServerSource(object):
         self.speaker_codecs = speaker_codecs
         self.supports_microphone = supports_microphone
         self.microphone_codecs = microphone_codecs
-        self.sound_source_sequence = -1
+        self.sound_source_sequence = 0
         self.sound_source = None
         self.sound_sink = None
 
@@ -715,17 +715,19 @@ class ServerSource(object):
             assert self.supports_speaker, "cannot send sound: support not enabled on the server"
             assert self.sound_source is None, "a sound source already exists"
             assert self.sound_receive, "cannot send sound: support is not enabled on the client"
-            self.sound_source = start_sending_sound(codec, volume, self.sound_decoders, self.microphone_codecs, self.pulseaudio_server, self.pulseaudio_id)
-            soundlog("start_sending_sound() sound source=%s", self.sound_source)
-            if self.sound_source:
+            ss = start_sending_sound(codec, volume, self.sound_decoders, self.microphone_codecs, self.pulseaudio_server, self.pulseaudio_id)
+            self.sound_source = ss
+            soundlog("start_sending_sound() sound source=%s", ss)
+            if ss:
+                ss.sequence = self.sound_source_sequence
                 if self.server_driven:
                     #tell the client this is the start:
-                    self.send("sound-data", self.sound_source.codec, "",
+                    self.send("sound-data", ss.codec, "",
                               {"start-of-stream"    : True,
-                               "codec"              : self.sound_source.codec,
-                               "sequence"           : self.sound_source_sequence})
-                self.sound_source.connect("new-buffer", self.new_sound_buffer)
-                self.sound_source.start()
+                               "codec"              : ss.codec,
+                               "sequence"           : ss.sequence})
+                ss.connect("new-buffer", self.new_sound_buffer)
+                ss.start()
         except Exception, e:
             log.error("error setting up sound: %s", e)
 
@@ -737,7 +739,7 @@ class ServerSource(object):
             if self.server_driven:
                 #tell the client this is the end:
                 self.send("sound-data", ss.codec, "", {"end-of-stream" : True,
-                                                       "sequence"      : self.sound_source_sequence})
+                                                       "sequence"      : ss.sequence})
             def stop_sending_sound_thread(*args):
                 soundlog("stop_sending_sound_thread(%s)", args)
                 ss.cleanup()
@@ -747,11 +749,13 @@ class ServerSource(object):
     def new_sound_buffer(self, sound_source, data, metadata):
         soundlog("new_sound_buffer(%s, %s, %s) source=%s, suspended=%s, sequence=%s",
                  sound_source, len(data or []), metadata, self.sound_source, self.suspended, self.sound_source_sequence)
-        if self.sound_source is None or self.is_closed():
+        if self.sound_source!=sound_source or self.is_closed():
             return
-        if self.sound_source_sequence>0:
-            metadata["sequence"] = self.sound_source_sequence
-        self.send("sound-data", self.sound_source.codec, Compressed(self.sound_source.codec, data), metadata)
+        if sound_source.sequence<self.sound_source_sequence:
+            return
+        if sound_source.sequence>=0:
+            metadata["sequence"] = sound_source.sequence
+        self.send("sound-data", sound_source.codec, Compressed(sound_source.codec, data), metadata)
 
     def stop_receiving_sound(self):
         ss = self.sound_sink
@@ -817,7 +821,7 @@ class ServerSource(object):
                 return False
             self.timeout_add(100, fadeout)
         elif action=="new-sequence":
-            self.sound_source_sequence = args[0]
+            self.sound_source_sequence = int(args[0])
             return "new sequence is %s" % self.sound_source_sequence
         #elif action=="quality":
         #    assert self.sound_source

@@ -1583,6 +1583,11 @@ class UIXpraClient(XpraClientBase):
         codec, data, metadata = packet[1:4]
         codec = bytestostr(codec)
         metadata = typedict(metadata)
+        seq = metadata.intget("sequence", -1)
+        if self.min_sound_sequence>0 and seq>=0 and seq<self.min_sound_sequence:
+            soundlog("ignoring sound data with old sequence number %s", seq)
+            return
+        ss = self.sound_sink
         if not self.speaker_enabled:
             if metadata.boolget("start-of-stream"):
                 #server is asking us to start playing sound
@@ -1599,22 +1604,16 @@ class UIXpraClient(XpraClientBase):
             else:
                 soundlog("speaker is now disabled - dropping packet")
                 return
-        seq = metadata.intget("sequence", -1)
-        if self.min_sound_sequence>0 and seq>=0 and seq<self.min_sound_sequence:
-            soundlog("ignoring sound data with old sequence number %s", seq)
-            return
-        if metadata.boolget("end-of-stream"):
-            if self.sound_sink:
-                soundlog("server sent end-of-stream, closing sound pipeline")
-                self.stop_receiving_sound(False)
-            return
-        ss = self.sound_sink
-        if ss is not None and codec!=self.sound_sink.codec:
-            log.error("sound codec change not supported! (from %s to %s)", ss.codec, codec)
-            ss.stop()
-            return
         if ss is None:
             soundlog("no sound sink to process sound data, dropping it")
+            return
+        if metadata.boolget("end-of-stream"):
+            soundlog("server sent end-of-stream, closing sound pipeline")
+            self.stop_receiving_sound(False)
+            return
+        if codec!=ss.codec:
+            log.error("sound codec change not supported! (from %s to %s)", ss.codec, codec)
+            ss.stop()
             return
         elif ss.get_state()=="stopped":
             soundlog("sound data received, sound sink is stopped - starting it")
