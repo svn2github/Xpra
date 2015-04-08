@@ -238,10 +238,11 @@ fi
 
 
 %changelog
-* Tue Apr 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures
+- fix sound overrun restarts
 - disable vp9 YUV444 decoding via avcodec (fails with errors)
 - make parsing of client supplied data more error resilient
 - include appdata XML file
