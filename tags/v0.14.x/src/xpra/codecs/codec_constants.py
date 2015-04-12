@@ -21,7 +21,7 @@ def do_get_PIL_codings(PIL, attr="SAVE"):
     if attr=="OPEN":
         try:
             assert pi.PILLOW_VERSION>='2.8', "version %s leaks memory with webp" % pi.PILLOW_VERSION
-        except Exception as e:
+        except Exception, e:
             log("Pillow support for opening webp images has been disabled: %s", e)
             test_options.remove("webp")
     for encoding in test_options:
