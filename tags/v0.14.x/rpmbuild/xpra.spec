@@ -238,6 +238,9 @@ fi
 
 
 %changelog
+* Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
+- rebuild with python2.4 syntax fix
+
 * Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
