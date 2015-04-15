@@ -243,6 +243,7 @@ fi
 - fix GdkAtom native structure size error on 32-bit systems
 - fix clipboard targets mistakenly honoured when meant to be filtered
 - fix tray menu mixed click workaround (prevent firing multiple events)
+- fix window group leader reference leak
 
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix

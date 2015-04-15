@@ -4,6 +4,7 @@ v0.14.23 (2015-04-15)
 	-- fix GdkAtom native structure size error on 32-bit systems
 	-- fix clipboard targets mistakenly honoured when meant to be filtered
 	-- fix tray menu mixed click workaround (prevent firing multiple events)
+	-- fix window group leader reference leak
 
 
 v0.14.22 (2015-04-08)

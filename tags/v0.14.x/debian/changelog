@@ -3,6 +3,7 @@ xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix GdkAtom native structure size error on 32-bit systems
   * fix clipboard targets mistakenly honoured when meant to be filtered
   * fix tray menu mixed click workaround (prevent firing multiple events)
+  * fix window group leader reference leak
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 15 Apr 2015 13:39:17 +0700
 
