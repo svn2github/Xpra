@@ -67,8 +67,14 @@ class TrayCheckMenuItem(gtk.CheckMenuItem):
 
     def on_button_release_event(self, *args):
         log("TrayCheckMenuItem.on_button_release_event(%s) label=%s", args, self.label)
-        self.set_active(True)
-        self.toggled()
+        self.active_state = self.get_active()
+        def recheck():
+            state = self.active_state
+            self.active_state = None
+            if state is not None and state==self.get_active():
+                #toggle did not fire after the button release, so force it:
+                self.set_active(not state)
+        gobject.idle_add(recheck)
 
 
 def make_min_auto_menu(title, min_options, options, get_current_min_value, get_current_value, set_min_value_cb, set_value_cb):
