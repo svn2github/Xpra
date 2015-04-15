@@ -235,7 +235,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                     self.process_map_event()
         if self._window_state:
             def send_updated_window_state():
-                if self._window_state:
+                if self._window_state and self.get_window():
                     self.process_configure_event()
             self.timeout_add(25, send_updated_window_state)
 
