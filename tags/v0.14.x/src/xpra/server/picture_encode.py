@@ -17,7 +17,7 @@ except Exception, e:
     log("cannot load argb module: %s", e)
     bgra_to_rgb, bgra_to_rgba, argb_to_rgb, argb_to_rgba = (None,)*4
 from xpra.codecs.codec_constants import get_PIL_encodings
-from xpra.os_util import StringIOClass
+from xpra.os_util import StringIOClass, memoryview_to_bytes
 from xpra.codecs.loader import get_codec, get_codec_version
 from xpra.os_util import builtins
 _memoryview = builtins.__dict__.get("memoryview")
@@ -118,7 +118,7 @@ def rgb_encode(coding, image, rgb_formats, supports_transparency, speed, rgb_zli
             # and convert BGRX to RGB for example (assuming RGB is also supported by the client)
             rows = []
             for y in range(height):
-                rows.append(pixels[stride*y:stride*y+rstride])
+                rows.append(memoryview_to_bytes(pixels[stride*y:stride*y+rstride]))
             pixels = "".join(rows)
             log("rgb_encode: %s pixels re-stride saving %i%% from %s (%s bytes) to %s (%s bytes)", pixel_format, 100-100*el/al, stride, al, rstride, el)
             stride = rstride
