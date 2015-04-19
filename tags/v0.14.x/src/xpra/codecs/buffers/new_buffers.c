@@ -33,6 +33,7 @@ int object_as_buffer(PyObject *obj, const void ** buffer, Py_ssize_t * buffer_le
         if (rpybuf->buf==NULL)
         	return 1;
         buffer[0] = rpybuf->buf;
+        *buffer_len = rpybuf->len;
         return 0;
     }
     return PyObject_AsReadBuffer(obj, buffer, buffer_len);
@@ -45,6 +46,7 @@ int object_as_write_buffer(PyObject *obj, void ** buffer, Py_ssize_t * buffer_le
 		if (wpybuf->buf==NULL)
 			return 1;
         buffer[0] = wpybuf->buf;
+        *buffer_len = wpybuf->len;
         return 0;
     }
     return PyObject_AsWriteBuffer(obj, buffer, buffer_len);
