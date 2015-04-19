@@ -33,6 +33,7 @@ MERGE_REGIONS = os.environ.get("XPRA_MERGE_REGIONS", "1")=="1"
 
 from xpra.deque import maxdeque
 from xpra.util import updict
+from xpra.os_util import memoryview_to_bytes
 from xpra.server.window_stats import WindowPerformanceStatistics
 from xpra.simple_stats import add_list_stats
 from xpra.server.batch_delay_calculator import calculate_batch_delay, get_target_speed, get_target_quality
@@ -1319,9 +1320,10 @@ class WindowSource(object):
         store = -1
         isize = image.get_width() * image.get_height()
         if DELTA and w>2 and h>2 and not (self._mmap and self._mmap_size>0) and (coding in self.supports_delta) and self.min_delta_size<isize<self.max_delta_size:
-            #we need to copy the pixels because some delta encodings
-            #will modify the pixel array in-place!
-            dpixels = image.get_pixels()[:]
+            dpixels = image.get_pixels()
+            #hack note: the '[:]' slicing does not make a copy when dealing with a memoryview
+            #but it does when dealing with strings! (and so we only make one copy no matter what here)
+            dpixels = memoryview_to_bytes(dpixels[:])
             store = sequence
             lpd = self.last_pixmap_data
             if lpd is not None:
