@@ -164,7 +164,7 @@ avcodec2_static_ENABLED = False
 csc_swscale_ENABLED     = pkg_config_ok("--exists", "libswscale", fallback=WIN32)
 swscale_static_ENABLED  = False
 csc_cython_ENABLED      = True
-nvenc_ENABLED           = pkg_config_ok("--exists", "nvenc3")       #or os.path.exists("C:\\nvenc_3.0_windows_sdk")
+nvenc_ENABLED           = False
 csc_opencl_ENABLED      = pkg_config_ok("--exists", "OpenCL") and check_pyopencl_AMD()
 memoryview_ENABLED      = PYTHON3
 
