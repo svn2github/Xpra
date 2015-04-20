@@ -238,12 +238,14 @@ fi
 
 
 %changelog
-* Wed Apr 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.23-1
+* Mon Apr 20 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.23-1
 - fix errors when windows are closed (a timer was still accessing them)
 - fix GdkAtom native structure size error on 32-bit systems
 - fix clipboard targets mistakenly honoured when meant to be filtered
 - fix tray menu mixed click workaround (prevent firing multiple events)
 - fix window group leader reference leak
+- fix lack of space in keycode table
+- fix icon error on suspend + resume
 
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix

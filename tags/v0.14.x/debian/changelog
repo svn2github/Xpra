@@ -4,8 +4,10 @@ xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix clipboard targets mistakenly honoured when meant to be filtered
   * fix tray menu mixed click workaround (prevent firing multiple events)
   * fix window group leader reference leak
+  * fix lack of space in keycode table
+  * fix icon error on suspend + resume
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 15 Apr 2015 13:39:17 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 20 Apr 2015 23:44:49 +0700
 
 xpra (0.14.22-1) UNRELEASED; urgency=low
   * fix window state synchronization bugs
