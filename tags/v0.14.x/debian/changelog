@@ -1,4 +1,6 @@
 xpra (0.14.23-1) UNRELEASED; urgency=low
+  * fix tcp proxy network connection failures, protocol info bug
+  * fix OpenGL painting of dead connection spinners
   * fix errors when windows are closed (a timer was still accessing them)
   * fix GdkAtom native structure size error on 32-bit systems
   * fix clipboard targets mistakenly honoured when meant to be filtered
@@ -7,7 +9,7 @@ xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix lack of space in keycode table
   * fix icon error on suspend + resume
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 20 Apr 2015 23:44:49 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 28 Apr 2015 11:07:40 +0700
 
 xpra (0.14.22-1) UNRELEASED; urgency=low
   * fix window state synchronization bugs

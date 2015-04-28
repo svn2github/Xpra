@@ -238,7 +238,9 @@ fi
 
 
 %changelog
-* Mon Apr 20 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.23-1
+* Tue Apr 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.23-1
+- fix tcp proxy network connection failures, protocol info bug
+- fix OpenGL painting of dead connection spinners
 - fix errors when windows are closed (a timer was still accessing them)
 - fix GdkAtom native structure size error on 32-bit systems
 - fix clipboard targets mistakenly honoured when meant to be filtered
