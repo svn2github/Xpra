@@ -27,7 +27,7 @@ from xpra.scripts.config import ENCRYPTION_CIPHERS
 from xpra.scripts.server import deadly_signal
 from xpra.net.bytestreams import SocketConnection
 from xpra.platform import set_application_name
-from xpra.os_util import load_binary_file, get_machine_id, get_user_uuid, SIGNAMES
+from xpra.os_util import load_binary_file, get_machine_id, get_user_uuid, SIGNAMES, Queue
 from xpra.version_util import version_compat_check, get_version_info, get_platform_info, get_host_info, local_version
 from xpra.net.protocol import Protocol, get_network_caps
 from xpra.net.crypto import new_cipher_caps
@@ -346,7 +346,9 @@ class ServerCore(object):
 
     def start_tcp_proxy(self, proto, data):
         log("start_tcp_proxy(%s, %s)", proto, data[:10])
-        client_connection = proto.steal_connection()
+        #any buffers read after we steal the connection will be placed in this temporary queue:
+        temp_read_buffer = Queue()
+        client_connection = proto.steal_connection(temp_read_buffer.put)
         self._potential_protocols.remove(proto)
         #connect to web server:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -359,7 +361,26 @@ class ServerCore(object):
             proto.gibberish("invalid packet header", data)
             return
         log("proxy connected to tcp server at %s:%s : %s", host, port, web_server_connection)
+        sock.settimeout(self._socket_timeout)
+
+        ioe = proto.wait_for_io_threads_exit(0.5+self._socket_timeout)
+        if not ioe:
+            log.warn("proxy failed to stop all existing network threads!")
+            self.disconnect_protocol(proto, "internal threading error")
+            return
+        #now that we own it, we can start it again:
+        client_connection.set_active(True)
+        #and we can use blocking sockets:
+        self.set_socket_timeout(client_connection, None)
+        sock.settimeout(None)
+ 
+        log("pushing initial buffer to its new destination: %s", repr_ellipsized(data))
         web_server_connection.write(data)
+        while not temp_read_buffer.empty():
+            buf = temp_read_buffer.get()
+            if buf:
+                log("pushing read buffer to its new destination: %s", repr_ellipsized(buf))
+                web_server_connection.write(buf)
         p = XpraProxy(client_connection, web_server_connection)
         self._tcp_proxy_clients.append(p)
         def run_proxy():
