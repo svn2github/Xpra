@@ -122,8 +122,8 @@ class ChildReaper(object):
         return True
 
     def sigchld(self, signum, frame):
-        self._logger("sigchld(%s, %s)", signum, frame)
-        self.reap()
+        gobject.idle_add(self._logger, "sigchld(%s, %s)", signum, frame)
+        gobject.idle_add(self.reap)
 
     def add_dead_pid(self, pid):
         self._logger("add_dead_pid(%s)", pid)
