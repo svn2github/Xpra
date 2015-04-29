@@ -1,3 +1,9 @@
+xpra (0.14.24-1) UNRELEASED; urgency=low
+  * fix reentrant errors in signal handler
+  * improved appdata information
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 29 Apr 2015 15:36:34 +0700
+
 xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix tcp proxy network connection failures, protocol info bug
   * fix OpenGL painting of dead connection spinners

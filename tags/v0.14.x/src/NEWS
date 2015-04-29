@@ -1,3 +1,9 @@
+v0.14.24 (2015-04-29)
+======================
+	-- fix reentrant errors in signal handler
+	-- improved appdata information
+
+
 v0.14.23 (2015-04-28)
 ======================
 	-- fix tcp proxy network connection failures, protocol info bug
