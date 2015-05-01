@@ -238,8 +238,11 @@ fi
 
 
 %changelog
-* Wed Apr 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+* Fri May 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
 - fix reentrant errors in signal handler
+- fix exit on signal from console
+- avoid warnings with some Java applications
+- handle end-of-stream sound messages
 - improved appdata information
 
 * Tue Apr 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.23-1

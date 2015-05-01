@@ -1,8 +1,11 @@
 xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix reentrant errors in signal handler
+  * fix exit on signal from console
+  * avoid warnings with some Java applications
+  * handle end-of-stream sound messages
   * improved appdata information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 29 Apr 2015 15:36:34 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 01 May 2015 10:35:04 +0700
 
 xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix tcp proxy network connection failures, protocol info bug

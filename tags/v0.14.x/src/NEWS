@@ -1,6 +1,9 @@
-v0.14.24 (2015-04-29)
+v0.14.24 (2015-05-01)
 ======================
 	-- fix reentrant errors in signal handler
+	-- fix exit on signal from console
+	-- avoid warnings with some Java applications
+	-- handle end-of-stream sound messages
 	-- improved appdata information
 
 
