@@ -272,13 +272,14 @@ def restride_image(image):
         return False
     cdef unsigned char *out = <unsigned char*> ptr
 
-    cdef int ry = height
+    cdef int ry
     for 0 <= ry < height:
         memcpy(out, img_buf, rstride)
         out += rstride
         img_buf += stride
     if pixptr:
         free(<void *> pixptr)
-    log("restride_image: %s pixels re-stride saving %i%% from %s (%s bytes) to %s (%s bytes)" % (pixel_format, 100-100*out_size/img_buf_len, stride, img_buf_len, rstride, out_size))
+    log("restride_image: %s pixels re-stride saving %i%% from %s (%s bytes) to %s (%s bytes)",
+        pixel_format, 100-100*out_size/img_buf_len, stride, img_buf_len, rstride, out_size)
     image.set_rowstride(rstride)
     return True
