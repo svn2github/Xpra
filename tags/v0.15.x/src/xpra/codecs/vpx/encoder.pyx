@@ -246,7 +246,7 @@ def get_input_colorspaces(encoding):
 
 def get_output_colorspaces(encoding, input_colorspace):
     assert encoding in get_encodings(), "invalid encoding: %s" % encoding
-    csdict = COLORSPACES[input_colorspace]
+    csdict = COLORSPACES[encoding]
     assert input_colorspace in csdict, "invalid input colorspace: %s" % input_colorspace
     #always unchanged in output:
     return [input_colorspace]
