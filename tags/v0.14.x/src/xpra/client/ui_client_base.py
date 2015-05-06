@@ -1061,7 +1061,7 @@ class UIXpraClient(XpraClientBase):
                     log.info("server is OK again")
                     return False
                 return True
-            self.redraw_spinners()
+            self.idle_add(self.redraw_spinners)
             self.timeout_add(100, timer_redraw)
         return False
 
