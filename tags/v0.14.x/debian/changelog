@@ -1,11 +1,15 @@
 xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix reentrant errors in signal handler
   * fix exit on signal from console
+  * fix crash when window spinners are shown
+  * fix invalid lz4 availability check
+  * fix protocol garbage collection (for consistency)
+  * add sanity checks to swscale module
   * avoid warnings with some Java applications
   * handle end-of-stream sound messages
   * improved appdata information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 01 May 2015 10:35:04 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 06 May 2015 16:23:13 +0700
 
 xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix tcp proxy network connection failures, protocol info bug

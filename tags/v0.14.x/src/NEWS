@@ -1,7 +1,11 @@
-v0.14.24 (2015-05-01)
+v0.14.24 (2015-05-06)
 ======================
 	-- fix reentrant errors in signal handler
 	-- fix exit on signal from console
+	-- fix crash when window spinners are shown
+	-- fix invalid lz4 availability check
+	-- fix protocol garbage collection (for consistency)
+	-- add sanity checks to swscale module
 	-- avoid warnings with some Java applications
 	-- handle end-of-stream sound messages
 	-- improved appdata information

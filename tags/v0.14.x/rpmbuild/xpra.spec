@@ -238,9 +238,13 @@ fi
 
 
 %changelog
-* Fri May 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+* Wed May 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
 - fix reentrant errors in signal handler
 - fix exit on signal from console
+- fix crash when window spinners are shown
+- fix invalid lz4 availability check
+- fix protocol garbage collection (for consistency)
+- add sanity checks to swscale module
 - avoid warnings with some Java applications
 - handle end-of-stream sound messages
 - improved appdata information
