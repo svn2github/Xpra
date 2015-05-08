@@ -80,6 +80,9 @@ Suggests: openssh-server
         ,python-pyopencl
         ,pulseaudio
         ,pulseaudio-utils
+# for printer forwarding:
+        ,cups-pdf
+        ,python-cups
 #vivid:		,websockify
         ,python-dbus
 # only useful when connecting using a JSON / YAML only client:
