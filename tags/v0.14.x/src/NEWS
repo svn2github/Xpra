@@ -1,5 +1,6 @@
-v0.14.24 (2015-05-06)
+v0.14.24 (2015-05-11)
 ======================
+	-- fix server and client process exit reliability
 	-- fix reentrant errors in signal handler
 	-- fix exit on signal from console
 	-- fix crash when window spinners are shown

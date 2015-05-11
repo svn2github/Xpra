@@ -238,7 +238,8 @@ fi
 
 
 %changelog
-* Wed May 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+* Mon May 11 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+- fix server and client process exit reliability
 - fix reentrant errors in signal handler
 - fix exit on signal from console
 - fix crash when window spinners are shown
