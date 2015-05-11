@@ -550,12 +550,12 @@ class WindowVideoSource(WindowSource):
             if len(inter)>0:
                 #merge all regions into one:
                 in_region = merge_all(inter)
-                    pixels_in_region = vr.width*vr.height
-                    pixels_intersect = in_region.width*in_region.height
-                    if pixels_intersect>=pixels_in_region*40/100:
-                        #we have at least 40% of the video region
-                        #that needs refreshing, do it:
-                        actual_vr = vr
+                pixels_in_region = vr.width*vr.height
+                pixels_intersect = in_region.width*in_region.height
+                if pixels_intersect>=pixels_in_region*40/100:
+                    #we have at least 40% of the video region
+                    #that needs refreshing, do it:
+                    actual_vr = vr
 
             #still no luck?
             if actual_vr is None:
