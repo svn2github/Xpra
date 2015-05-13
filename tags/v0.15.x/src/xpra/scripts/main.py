@@ -329,6 +329,7 @@ def do_parse_cmdline(cmdline, defaults):
                           dest="tcp_proxy", default=defaults.tcp_proxy,
                           metavar="HOST:PORT",
                           help="The address to which non-xpra packets will be forwarded. Default: '%default'.")
+        legacy_bool_parse("html")
         group.add_option("--html", action="store",
                           dest="html", default=defaults.html,
                           metavar="on|off|[HOST:]PORT",
