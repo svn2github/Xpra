@@ -402,7 +402,7 @@ class ServerCore(object):
     def start_tcp_proxy(self, proto, data):
         proxylog("start_tcp_proxy(%s, '%s')", proto, repr_ellipsized(data))
         try:
-        self._potential_protocols.remove(proto)
+            self._potential_protocols.remove(proto)
         except:
             pass        #might already have been removed by now
         proxylog("start_tcp_proxy: protocol state before stealing: %s", proto.get_info(alias_info=False))
