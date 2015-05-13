@@ -314,7 +314,8 @@ class subprocess_caller(object):
 
     def stop(self):
         self.stop_process()
-        self.stop_protocol()
+        #call via idle_add to prevent deadlocks on win32!
+        glib.idle_add(self.stop_protocol)
 
     def stop_process(self):
         log("stop() sending stop request to %s", self.description)
