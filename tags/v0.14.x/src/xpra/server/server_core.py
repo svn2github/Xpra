@@ -328,11 +328,11 @@ class ServerCore(object):
         sc = SocketConnection(sock, sockname, address, target, socktype)
         log.info("New connection received: %s", sc)
         protocol = Protocol(self, sc, self.process_packet)
+        self._potential_protocols.append(protocol)
         protocol.large_packets.append("info-response")
         protocol.authenticator = None
         protocol.invalid_header = self.invalid_header
         protocol.receive_aliases.update(self._aliases)
-        self._potential_protocols.append(protocol)
         protocol.start()
         self.timeout_add(SOCKET_TIMEOUT*1000, self.verify_connection_accepted, protocol)
         return True
@@ -350,7 +350,10 @@ class ServerCore(object):
         #any buffers read after we steal the connection will be placed in this temporary queue:
         temp_read_buffer = Queue()
         client_connection = proto.steal_connection(temp_read_buffer.put)
-        self._potential_protocols.remove(proto)
+        try:
+            self._potential_protocols.remove(proto)
+        except:
+            pass        #might already have been removed by now
         #connect to web server:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(10)
