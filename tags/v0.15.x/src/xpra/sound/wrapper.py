@@ -190,7 +190,7 @@ class sound_subprocess_wrapper(subprocess_caller):
     def subprocess_signal(self, wrapper, proc):
         log("subprocess_signal: %s", proc)
         #call via idle_add to prevent deadlocks on win32!
-        glib.idle_add(self.stop_protocol)
+        gobject.idle_add(self.stop_protocol)
 
 
     def state_changed(self, wrapper, new_state):
