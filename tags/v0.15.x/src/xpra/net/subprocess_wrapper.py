@@ -268,7 +268,7 @@ class subprocess_caller(object):
         #we assume the other end has the same encoders (which is reasonable):
         #TODO: fallback to bencoder
         try:
-        protocol.enable_encoder("rencode")
+            protocol.enable_encoder("rencode")
         except Exception as e:
             log.warn("failed to enable rencode: %s", e)
             protocol.enable_encoder("bencode")
