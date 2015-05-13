@@ -168,6 +168,8 @@ class XpraClientBase(object):
 
     def signal_disconnect_and_quit(self, exit_code, reason):
         self.idle_add(self.disconnect_and_quit, exit_code, reason)
+        self.idle_add(self.quit, exit_code)
+        self.idle_add(self.exit)
 
     def disconnect_and_quit(self, exit_code, reason):
         #try to tell the server we're going, then quit
@@ -176,12 +178,15 @@ class XpraClientBase(object):
         if p is None or p._closed:
             self.quit(exit_code)
             return
-        def do_quit():
-            log("disconnect_and_quit: do_quit()")
+        def protocol_closed():
+            log("disconnect_and_quit: protocol_closed()")
             self.quit(exit_code)
         if p:
-            p.flush_then_close(["disconnect", reason], done_callback=do_quit)
-        self.timeout_add(1000, do_quit)
+            p.flush_then_close(["disconnect", reason], done_callback=protocol_closed)
+        self.timeout_add(1000, self.quit, exit_code)
+
+    def exit(self):
+        sys.exit()
 
 
     def client_type(self):
