@@ -238,7 +238,10 @@ fi
 
 
 %changelog
-* Mon May 11 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+* Wed May 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+- fix transient-for detection for override-redirect windows
+- fix wait for connection exit when already closed
+- fix proxy server protocol errors
 - fix server and client process exit reliability
 - fix reentrant errors in signal handler
 - fix exit on signal from console

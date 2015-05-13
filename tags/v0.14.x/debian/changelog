@@ -1,4 +1,7 @@
 xpra (0.14.24-1) UNRELEASED; urgency=low
+  * fix transient-for detection for override-redirect windows
+  * fix wait for connection exit when already closed
+  * fix proxy server protocol errors
   * fix server and client process exit reliability
   * fix reentrant errors in signal handler
   * fix exit on signal from console
@@ -10,7 +13,7 @@ xpra (0.14.24-1) UNRELEASED; urgency=low
   * handle end-of-stream sound messages
   * improved appdata information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 11 May 2015 17:42:46 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 13 May 2015 17:07:14 +0700
 
 xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix tcp proxy network connection failures, protocol info bug

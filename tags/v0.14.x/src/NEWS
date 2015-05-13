@@ -1,5 +1,8 @@
-v0.14.24 (2015-05-11)
+v0.14.24 (2015-05-13)
 ======================
+	-- fix transient-for detection for override-redirect windows
+	-- fix wait for connection exit when already closed
+	-- fix proxy server protocol errors
 	-- fix server and client process exit reliability
 	-- fix reentrant errors in signal handler
 	-- fix exit on signal from console
