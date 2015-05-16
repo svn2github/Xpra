@@ -238,7 +238,7 @@ fi
 
 
 %changelog
-* Wed May 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+* Sat May 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
 - fix transient-for detection for override-redirect windows
 - fix wait for connection exit when already closed
 - fix proxy server protocol errors
@@ -248,6 +248,7 @@ fi
 - fix crash when window spinners are shown
 - fix invalid lz4 availability check
 - fix protocol garbage collection (for consistency)
+- allow rgb32 for non-video (html5 client)
 - add sanity checks to swscale module
 - avoid warnings with some Java applications
 - handle end-of-stream sound messages

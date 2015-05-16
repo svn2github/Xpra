@@ -8,12 +8,13 @@ xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix crash when window spinners are shown
   * fix invalid lz4 availability check
   * fix protocol garbage collection (for consistency)
+  * allow rgb32 for non-video (html5 client)
   * add sanity checks to swscale module
   * avoid warnings with some Java applications
   * handle end-of-stream sound messages
   * improved appdata information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 13 May 2015 17:07:14 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 16 May 2015 14:38:12 +0700
 
 xpra (0.14.23-1) UNRELEASED; urgency=low
   * fix tcp proxy network connection failures, protocol info bug
