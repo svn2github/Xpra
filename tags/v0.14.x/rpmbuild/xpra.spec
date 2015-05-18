@@ -239,6 +239,7 @@ fi
 
 %changelog
 * Mon May 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
+- fix launcher crash on encoding menu changes
 - fix transient-for detection for override-redirect windows
 - fix wait for connection exit when already closed
 - fix proxy server protocol errors

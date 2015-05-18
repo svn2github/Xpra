@@ -1,5 +1,6 @@
 v0.14.24 (2015-05-18)
 ======================
+	-- fix launcher crash on encoding menu changes
 	-- fix transient-for detection for override-redirect windows
 	-- fix wait for connection exit when already closed
 	-- fix proxy server protocol errors
