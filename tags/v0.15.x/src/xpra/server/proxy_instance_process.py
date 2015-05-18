@@ -182,8 +182,6 @@ class ProxyInstanceProcess(Process):
             log("ProxyProcess.run() ending %s", os.getpid())
 
     def video_init(self):
-        log("video_init() loading codecs")
-        load_codecs(decoders=False)
         log("video_init() will try video encoders: %s", self.video_encoder_modules)
         self.video_helper = getVideoHelper()
         #only use video encoders (no CSC supported in proxy)
