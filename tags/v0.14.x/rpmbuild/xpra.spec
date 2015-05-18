@@ -249,6 +249,7 @@ fi
 - fix invalid lz4 availability check
 - fix protocol garbage collection (for consistency)
 - fix error when only video encodings are available
+- fix compatibility with newer PAM modules
 - allow rgb32 for non-video (html5 client)
 - add sanity checks to swscale module
 - avoid warnings with some Java applications
