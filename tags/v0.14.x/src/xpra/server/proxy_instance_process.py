@@ -212,7 +212,7 @@ class ProxyInstanceProcess(Process):
                     self.video_encoding_defs.setdefault(encoding, {}).setdefault(colorspace, []).append(spec_props)
                     encoder_types.add(spec.codec_type)
 
-        log("encoder types found: %s", encoder_types)
+        log("encoder types found: %s", tuple(encoder_types))
         #remove duplicates and use preferred order:
         order = PREFERRED_ENCODER_ORDER[:]
         for x in list(encoder_types):
@@ -452,6 +452,12 @@ class ProxyInstanceProcess(Process):
         if packet_type==Protocol.CONNECTION_LOST:
             self.stop("client connection lost", proto)
             return
+        elif packet_type=="disconnect":
+            log("got disconnect from client: %s", packet[1])
+            if self.exit:
+                self.client_protocol.close()
+            else:
+                self.stop("disconnect from client: %s" % packet[1])
         elif packet_type=="set_deflate":
             #echo it back to the client:
             self.client_packets.put(packet)
@@ -480,6 +486,12 @@ class ProxyInstanceProcess(Process):
         if packet_type==Protocol.CONNECTION_LOST:
             self.stop("server connection lost", proto)
             return
+        elif packet_type=="disconnect":
+            log("got disconnect from server: %s", packet[1])
+            if self.exit:
+                self.server_protocol.close()
+            else:
+                self.stop("disconnect from server: %s" % packet[1])
         elif packet_type=="hello":
             c = typedict(packet[1])
             maxw, maxh = c.intpair("max_desktop_size", (4096, 4096))
@@ -606,8 +618,7 @@ class ProxyInstanceProcess(Process):
             return send_updated("rgb32", str(newdata), {"rgb_format" : rgb_format})
 
         if PASSTHROUGH:
-            passthrough()
-            return
+            return passthrough()
 
         #video encoding: find existing encoder
         ve = self.video_encoders.get(wid)
@@ -648,8 +659,7 @@ class ProxyInstanceProcess(Process):
                 from xpra.server.picture_encode import PIL_encode, PIL, warn_encoding_once
                 if PIL is None:
                     warn_encoding_once("no-video-no-PIL", "no video encoder found for rgb format %s, sending as plain RGB!" % rgb_format)
-                    passthrough()
-                    return
+                    return passthrough()
                 log("no video encoder available: sending as jpeg")
                 coding, compressed_data, client_options, _, _, _, _ = PIL_encode("jpeg", image, quality, speed, False)
                 return send_updated(coding, compressed_data, client_options)
