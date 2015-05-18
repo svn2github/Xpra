@@ -590,12 +590,6 @@ class ProxyInstanceProcess(Process):
         if encoding=="mmap":
             return True
 
-        if not self.video_encoder_types or not client_options or not client_options.get("proxy", False):
-            #ensure we don't try to re-compress the pixel data in the network layer:
-            #(re-add the "compressed" marker that gets lost when we re-assemble packets)
-            packet[7] = Compressed("%s pixels" % encoding, packet[7])
-            return True
-
         #we have a proxy video packet:
         rgb_format = client_options.get("rgb_format", "")
         log("proxy draw: client_options=%s", client_options)
@@ -608,17 +602,39 @@ class ProxyInstanceProcess(Process):
             log("returning %s bytes from %s", len(compressed_data), len(pixels))
             return (wid not in self.lost_windows)
 
-        def passthrough():
-            #passthrough as plain RGB:
-            newdata = bytearray(pixels)
-            #force alpha (and assume BGRX..) for now:
-            for i in range(len(pixels)/4):
-                newdata[i*4+3] = chr(255)
-            packet[9] = client_options.get("rowstride", 0)
-            return send_updated("rgb32", str(newdata), {"rgb_format" : rgb_format})
+        def passthrough(strip_alpha=True):
+            log("proxy draw: %s passthrough (rowstride: %s vs %s, strip alpha=%s)", rgb_format, rowstride, client_options.get("rowstride", 0), strip_alpha)
+            if strip_alpha:
+                #passthrough as plain RGB:
+                Xindex = rgb_format.upper().find("X")
+                if Xindex>=0 and len(rgb_format)==4:
+                    #force clear alpha (which may be garbage):
+                    newdata = bytearray(pixels)
+                    for i in range(len(pixels)/4):
+                        newdata[i*4+Xindex] = chr(255)
+                    packet[9] = client_options.get("rowstride", 0)
+                    cdata = bytes(newdata)
+                else:
+                    cdata = pixels
+                new_client_options = {"rgb_format" : rgb_format}
+            else:
+                #preserve
+                cdata = pixels
+                new_client_options = client_options
+            wrapped = Compressed("%s pixels" % encoding, cdata)
+            #FIXME: we should not assume that rgb32 is supported here...
+            #(we may have to convert to rgb24..)
+            return send_updated("rgb32", wrapped, new_client_options)
 
-        if PASSTHROUGH:
-            return passthrough()
+        proxy_video = client_options.get("proxy", False)
+        if PASSTHROUGH and (encoding in ("rgb32", "rgb24") or proxy_video):
+            #we are dealing with rgb data, so we can pass it through:
+            return passthrough(proxy_video)
+        elif not self.video_encoder_types or not client_options or not proxy_video:
+            #ensure we don't try to re-compress the pixel data in the network layer:
+            #(re-add the "compressed" marker that gets lost when we re-assemble packets)
+            packet[7] = Compressed("%s pixels" % encoding, packet[7])
+            return True
 
         #video encoding: find existing encoder
         ve = self.video_encoders.get(wid)
