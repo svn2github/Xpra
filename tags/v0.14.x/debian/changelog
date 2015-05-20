@@ -1,3 +1,8 @@
+xpra (0.14.25-1) UNRELEASED; urgency=low
+  * fix microphone forwarding packet handling errors
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 20 May 2015 09:45:27 +0700
+
 xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix launcher crash on encoding menu changes
   * fix transient-for detection for override-redirect windows

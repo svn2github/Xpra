@@ -1,3 +1,8 @@
+v0.14.25 (2015-05-20)
+======================
+	-- fix microphone forwarding packet handling errors
+
+
 v0.14.24 (2015-05-18)
 ======================
 	-- fix launcher crash on encoding menu changes
