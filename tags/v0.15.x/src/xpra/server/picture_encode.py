@@ -15,7 +15,7 @@ from xpra.codecs.argb.argb import bgra_to_rgb, bgra_to_rgba, argb_to_rgb, argb_t
 from xpra.os_util import StringIOClass
 from xpra.codecs.loader import get_codec, get_codec_version
 from xpra.codecs.codec_constants import get_PIL_encodings
-from xpra.os_util import memoryview_to_bytes, buffer_to_bytes
+from xpra.os_util import memoryview_to_bytes
 try:
     from xpra.net.mmap_pipe import mmap_write
 except:
@@ -106,7 +106,7 @@ def rgb_encode(coding, image, rgb_formats, supports_transparency, speed, rgb_zli
 
     #compression stage:
     #by default, wire=raw:
-    raw_data = memoryview_to_bytes(pixels)
+    raw_data = pixels
     level = 0
     algo = "not"
     if len(pixels)>=256 and (rgb_zlib and compression.use_zlib) or (rgb_lz4 and compression.use_lz4) or (rgb_lzo and compression.use_lzo):
@@ -116,36 +116,38 @@ def rgb_encode(coding, image, rgb_formats, supports_transparency, speed, rgb_zli
             level = level // 2
     if level>0:
         if rgb_lz4 and compression.use_lz4:
-            cwrapper = compression.compressed_wrapper(coding, pixels, lz4=True)
+            cwrapper = compression.compressed_wrapper(coding, raw_data, lz4=True)
             algo = "lz4"
             level = 1
         elif rgb_lzo and compression.use_lzo:
-            cwrapper = compression.compressed_wrapper(coding, pixels, lzo=True)
+            cwrapper = compression.compressed_wrapper(coding, raw_data, lzo=True)
             algo = "lzo"
             level = 1
         elif rgb_zlib and compression.use_zlib:
-            cwrapper = compression.compressed_wrapper(coding, pixels, zlib=True, level=level)
+            cwrapper = compression.compressed_wrapper(coding, raw_data, zlib=True, level=level)
             algo = "zlib"
         else:
             cwrapper = None
-        if cwrapper is None or len(cwrapper.data)>=(len(raw_data)-32):
-            #compressed is actually bigger! (use uncompressed)
+        if cwrapper is None or len(cwrapper)>=(len(raw_data)-32):
+            #compressed is actually bigger! (fall through to uncompressed)
             level = 0
         else:
             #add compressed marker:
-            wire_data = cwrapper.data
             options[algo] = level
+            #remove network layer compression marker
+            #so that this data will be decompressed by the decode thread client side:
+            cwrapper.level = 0
     if level==0:
         #can't pass a raw buffer to bencode / rencode:
-        wire_data = buffer_to_bytes(raw_data)
+        cwrapper = compression.Compressed(coding, memoryview_to_bytes(raw_data), True)
     if pixel_format.upper().find("A")>=0 or pixel_format.upper().find("X")>=0:
         bpp = 32
     else:
         bpp = 24
-    log("rgb_encode using level=%s, %s compressed %sx%s in %s/%s: %s bytes down to %s", level, algo, image.get_width(), image.get_height(), coding, pixel_format, len(pixels), len(wire_data))
+    log("rgb_encode using level=%s, %s compressed %sx%s in %s/%s: %s bytes down to %s", level, algo, image.get_width(), image.get_height(), coding, pixel_format, len(pixels), len(cwrapper.data))
     #wrap it using "Compressed" so the network layer receiving it
     #won't decompress it (leave it to the client's draw thread)
-    return coding, compression.Compressed(coding, wire_data, True), options, width, height, stride, bpp
+    return coding, cwrapper, options, width, height, stride, bpp
 
 
 def PIL_encode(coding, image, quality, speed, supports_transparency):
