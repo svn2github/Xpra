@@ -95,14 +95,6 @@ else:
         return v
 
 
-if sys.version>='3':
-    def data_to_buffer(in_data):
-        return BytesIOClass(bytearray(in_data.encode("latin1")))
-else:
-    def data_to_buffer(in_data):
-        return BytesIOClass(bytearray(in_data))
-
-
 def platform_name(sys_platform, release):
     if not sys_platform:
         return "unknown"
