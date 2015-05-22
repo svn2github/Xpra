@@ -53,7 +53,7 @@ class SoundPipeline(gobject.GObject):
         gobject.timeout_add(50, do_emit_info)
 
     def get_info(self):
-        info = {"codec"             : self.codec,
+        info = {"codec"             : self.codec or "",
                 "codec_description" : self.codec_description,
                 "state"             : self.get_state(),
                 "buffers"           : self.buffer_count,
