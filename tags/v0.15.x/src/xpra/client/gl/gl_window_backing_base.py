@@ -648,7 +648,7 @@ class GLWindowBackingBase(GTKWindowBacking):
             glEnd()
 
             # Present update to screen
-            self.present_fbo(options.get("encoding"), options.get("delta", 0), x, y, width, height)
+            self.present_fbo(options.get("encoding"), options.get("delta", -1)>=0, x, y, width, height)
             # present_fbo has reset state already
         return True
 
