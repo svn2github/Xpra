@@ -238,10 +238,12 @@ fi
 
 
 %changelog
-* Wed May 20 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+* Tue May 26 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
 - fix microphone forwarding packet handling errors
+- fix remote ssh start with OSX clients
+- fix spinners race
 
-* Mon May 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-
+* Mon May 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
 - fix launcher crash on encoding menu changes
 - fix transient-for detection for override-redirect windows
 - fix wait for connection exit when already closed
