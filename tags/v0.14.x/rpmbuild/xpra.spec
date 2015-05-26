@@ -242,6 +242,7 @@ fi
 - fix microphone forwarding packet handling errors
 - fix remote ssh start with OSX clients
 - fix spinners race
+- fix Fedora 22 Xorg binary location detection
 
 * Mon May 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.24-1
 - fix launcher crash on encoding menu changes

@@ -2,8 +2,9 @@ xpra (0.14.25-1) UNRELEASED; urgency=low
   * fix microphone forwarding packet handling errors
   * fix remote ssh start with OSX clients
   * fix spinners race
+  * fix Fedora 22 Xorg binary location detection
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 26 May 2015 11:40:54 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 26 May 2015 21:43:36 +0700
 
 xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix launcher crash on encoding menu changes
