@@ -1056,11 +1056,11 @@ class UIXpraClient(XpraClientBase):
                 if self._protocol is None:
                     #no longer connected!
                     return False
+                ok = self.server_ok()
                 self.redraw_spinners()
-                if self.server_ok():
+                if ok:
                     log.info("server is OK again")
-                    return False
-                return True
+                return not ok
             self.idle_add(self.redraw_spinners)
             self.timeout_add(100, timer_redraw)
         return False
