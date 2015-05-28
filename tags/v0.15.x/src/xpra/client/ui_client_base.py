@@ -1720,7 +1720,7 @@ class UIXpraClient(XpraClientBase):
         log("sound_sink_exit(%s, %s) sound_sink=%s", sound_sink, args, self.sound_sink)
         ss = self.sound_sink
         if sound_sink!=ss:
-            soundlog("sound_sink_overrun() not the current sink, ignoring it")
+            soundlog("sound_sink_exit() not the current sink, ignoring it")
             return
         if ss and ss.codec:
             #the mandatory "I've been naughty warning":
