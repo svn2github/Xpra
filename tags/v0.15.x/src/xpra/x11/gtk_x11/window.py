@@ -774,7 +774,7 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
                 log.info("do_xpra_client_message_event(%s) unhandled atom=%s", event, atom1)
         elif event.message_type=="WM_CHANGE_STATE":
             log("WM_CHANGE_STATE: %s", event.data[0])
-            if event.data[0]==IconicState and event.serial>self.last_unmap_serial:
+            if event.data[0]==IconicState and event.serial>self.last_unmap_serial and not self.is_OR():
                 self._internal_set_property("iconic", True)
         elif event.message_type=="_NET_WM_MOVERESIZE":
             log("_NET_WM_MOVERESIZE: %s", event)
