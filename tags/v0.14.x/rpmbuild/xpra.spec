@@ -82,6 +82,10 @@
 %define include_egg 0
 %endif
 
+%if 0%{?fedora} >= 22
+#fedora 22 removed the void driver
+%define xorg_deps xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-xauth
+%endif
 
 %if 0%{?no_sound}
 %define requires_sound %{nil}
