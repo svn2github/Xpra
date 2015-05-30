@@ -303,7 +303,7 @@ fi
 
 
 %changelog
-* Tue Apr 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.0-1
+* Sun May 31 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.0-1
 -printer forwarding
 -functional HTML5 client
 -add session idle timeout switch
