@@ -242,7 +242,8 @@ fi
 
 
 %changelog
-* Tue May 26 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+* Sat May 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+- fix Fedora 22 missing void driver
 - fix microphone forwarding packet handling errors
 - fix remote ssh start with OSX clients
 - fix spinners race

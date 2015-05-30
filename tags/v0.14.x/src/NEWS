@@ -1,9 +1,10 @@
-v0.14.25 (2015-05-26)
+v0.14.25 (2015-05-30)
 ======================
 	-- fix microphone forwarding packet handling errors
 	-- fix remote ssh start with OSX clients
 	-- fix spinners race
 	-- fix Fedora 22 Xorg binary location detection
+	-- fix Fedora 22 missing void driver
 
 
 v0.14.24 (2015-05-18)
