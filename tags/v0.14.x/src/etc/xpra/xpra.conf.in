@@ -60,7 +60,7 @@ encodings = all
 #encoding = webp
 
 # Used by the server to encode video:
-# video-encoders = x264, vpx, nvenc
+# video-encoders = x264, vpx
 # video-encoders = none
 # video-encoders = all
 video-encoders = all
@@ -204,7 +204,7 @@ wm-name = Xpra
 # Video encoders loaded by the server
 # (all of them unless specified)
 # examples:
-#video-encoders=x264,vpx,nvenc
+#video-encoders=x264,vpx
 #video-encoders=x264
 
 # Colourspace conversion modules loaded by the server

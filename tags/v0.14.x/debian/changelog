@@ -4,8 +4,9 @@ xpra (0.14.25-1) UNRELEASED; urgency=low
   * fix spinners race
   * fix Fedora 22 Xorg binary location detection
   * fix Fedora 22 missing void driver
+  * remove nvenc
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 20 May 2015 21:49:11 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 01 Jun 2015 13:55:12+0700
 
 xpra (0.14.24-1) UNRELEASED; urgency=low
   * fix launcher crash on encoding menu changes

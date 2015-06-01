@@ -164,7 +164,6 @@ avcodec2_static_ENABLED = False
 csc_swscale_ENABLED     = pkg_config_ok("--exists", "libswscale", fallback=WIN32)
 swscale_static_ENABLED  = False
 csc_cython_ENABLED      = True
-nvenc_ENABLED           = False
 csc_opencl_ENABLED      = pkg_config_ok("--exists", "OpenCL") and check_pyopencl_AMD()
 memoryview_ENABLED      = PYTHON3
 
@@ -178,7 +177,6 @@ bundle_tests_ENABLED    = False
 #allow some of these flags to be modified on the command line:
 SWITCHES = ("enc_x264", "x264_static",
             "enc_x265", "x265_static",
-            "nvenc",
             "dec_avcodec", "avcodec_static",
             "dec_avcodec2", "avcodec2_static",
             "csc_swscale", "swscale_static",
@@ -807,8 +805,6 @@ if 'clean' in sys.argv or 'sdist' in sys.argv:
                    "xpra/net/bencode/cython_bencode.c",
                    "xpra/codecs/vpx/encoder.c",
                    "xpra/codecs/vpx/decoder.c",
-                   "xpra/codecs/nvenc/encoder.c",
-                   "xpra/codecs/nvenc/constants.pxi",
                    "xpra/codecs/enc_x264/encoder.c",
                    "xpra/codecs/enc_x265/encoder.c",
                    "xpra/codecs/webp/encode.c",
@@ -942,13 +938,6 @@ if WIN32:
     cuda_include_dir    = os.path.join(cuda_path, "include")
     cuda_lib_dir        = os.path.join(cuda_path, "lib", "Win32")
     cuda_bin_dir        = os.path.join(cuda_path, "bin")
-    #nvenc:
-    nvenc_path = "C:\\nvenc_3.0_windows_sdk"
-    nvenc_include_dir       = nvenc_path + "\\Samples\\nvEncodeApp\\inc"
-    nvenc_core_include_dir  = nvenc_path + "\\Samples\\core\\include"
-    #let's not use crazy paths, just copy the dll somewhere that makes sense:
-    nvenc_bin_dir           = nvenc_path + "\\bin\\win32\\release"
-    nvenc_lib_names         = []    #not linked against it, we use dlopen!
 
     # Same for PyGTK:
     # http://www.pygtk.org/downloads.html
@@ -1328,14 +1317,6 @@ if WIN32:
             add_keywords([webp_bin_dir], [webp_include_dir],
                          [webp_lib_dir],
                          webp_lib_names, nocmt=True)
-        elif "nvenc3" in pkgs_options[0]:
-            add_keywords([nvenc_bin_dir, cuda_bin_dir], [nvenc_include_dir, nvenc_core_include_dir, cuda_include_dir],
-                         [cuda_lib_dir],
-                         nvenc_lib_names)
-            add_data_files('', ["%s/nvcc.exe" % cuda_bin_dir, "%s/nvlink.exe" % cuda_bin_dir])
-            #prevent py2exe "seems not to be an exe file" error on this DLL and include it ourselves instead:
-            add_data_files('', ["%s/nvcuda.dll" % cuda_bin_dir])
-            add_data_files('', ["%s/nvencodeapi.dll" % nvenc_bin_dir])
         elif "pygobject-2.0" in pkgs_options[0]:
             dirs = (python_include_path,
                     pygtk_include_dir, atk_include_dir, gtk2_include_dir,
@@ -1667,17 +1648,6 @@ if cymaths_ENABLED:
 toggle_packages(csc_opencl_ENABLED, "xpra.codecs.csc_opencl")
 toggle_packages(enc_proxy_ENABLED, "xpra.codecs.enc_proxy")
 
-toggle_packages(nvenc_ENABLED, "xpra.codecs.nvenc", "xpra.codecs.cuda_common")
-if nvenc_ENABLED:
-    make_constants("xpra", "codecs", "nvenc", "constants", NV_WINDOWS=int(sys.platform.startswith("win")))
-    nvenc_pkgconfig = pkgconfig("nvenc3", "cuda", ignored_flags=["-l", "-L"])
-    #don't link against libnvidia-encode, we load it dynamically:
-    libraries = nvenc_pkgconfig.get("libraries", [])
-    if "nvidia-encode" in libraries:
-        libraries.remove("nvidia-encode")
-    cython_add(Extension("xpra.codecs.nvenc.encoder",
-                         ["xpra/codecs/nvenc/encoder.pyx", buffers_c],
-                         **nvenc_pkgconfig))
 
 toggle_packages(enc_x264_ENABLED, "xpra.codecs.enc_x264")
 if enc_x264_ENABLED:

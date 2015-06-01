@@ -204,7 +204,7 @@ class WindowVideoSource(WindowSource):
         self.cleanup_codecs()
 
     def cleanup_codecs(self):
-        """ Video encoders (x264, nvenc and vpx) and their csc helpers
+        """ Video encoders (ie: x264, vpx) and their csc helpers
             require us to run cleanup code to free the memory they use.
             But some cleanups may be slow, so run them in a worker thread.
         """
