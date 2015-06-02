@@ -1,6 +1,7 @@
 v0.14.26 (2015-06-02)
 ======================
 	-- fix executable-not-elf-or-script warning in html5 client tree
+	-- fix displayfd Xorg version check: require version 1.13
 
 
 v0.14.25 (2015-06-02)

@@ -1,5 +1,6 @@
 xpra (0.14.26-1) UNRELEASED; urgency=low
   * fix executable-not-elf-or-script warning in html5 client tree
+  * fix displayfd Xorg version check: require version 1.13
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Jun 2015 18:00:35 +0700
 

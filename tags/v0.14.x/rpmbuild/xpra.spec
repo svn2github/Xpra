@@ -244,6 +244,7 @@ fi
 %changelog
 * Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
 - fix executable-not-elf-or-script warning in html5 client tree
+- fix displayfd Xorg version check: require version 1.13
 
 * Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
 - fix exit path error causing failure to run cleanups
