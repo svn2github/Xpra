@@ -682,7 +682,7 @@ def detect_xorg_setup(install_dir=None):
     # then the X server is new enough to support displayfd:
     if Xdummy_ENABLED is True:
         has_displayfd = True
-    elif get_xorg_version(xorg_bin) >= [1, 12]:
+    elif get_xorg_version(xorg_bin) >= [1, 13]:
         has_displayfd = True
     else:
         has_displayfd = False
@@ -760,8 +760,8 @@ def detect_xorg_setup(install_dir=None):
     if not xorg_version:
         print("Xorg version could not be detected, Xdummy support disabled (using Xvfb as safe default)")
         return Xvfb()
-    if xorg_version<[1, 13]:
-        print("Xorg version %s is too old (1.13 or later required), Xdummy support not available" % str(xorg_version))
+    if xorg_version<[1, 12]:
+        print("Xorg version %s is too old (1.12 or later required), Xdummy support not available" % str(xorg_version))
         return Xvfb()
     print("found valid recent version of Xorg server: %s" % ".".join([str(x) for x in xorg_version]))
     return Xorg_suid_check()
