@@ -242,7 +242,8 @@ fi
 
 
 %changelog
-* Mon Jun 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+* Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+- fix exit path error causing failure to run cleanups
 - fix Fedora 22 missing void driver
 - fix microphone forwarding packet handling errors
 - fix remote ssh start with OSX clients

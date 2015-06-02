@@ -1,5 +1,6 @@
-v0.14.25 (2015-06-01)
+v0.14.25 (2015-06-02)
 ======================
+	-- fix exit path error causing failure to run cleanups
 	-- fix microphone forwarding packet handling errors
 	-- fix remote ssh start with OSX clients
 	-- fix spinners race
