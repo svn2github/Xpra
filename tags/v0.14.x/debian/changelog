@@ -1,3 +1,8 @@
+xpra (0.14.26-1) UNRELEASED; urgency=low
+  * fix executable-not-elf-or-script warning in html5 client tree
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Jun 2015 18:00:35 +0700
+
 xpra (0.14.25-1) UNRELEASED; urgency=low
   * fix exit path error causing failure to run cleanups
   * fix microphone forwarding packet handling errors

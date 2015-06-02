@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.25
+%define version 0.14.26
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -242,6 +242,9 @@ fi
 
 
 %changelog
+* Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
+- fix executable-not-elf-or-script warning in html5 client tree
+
 * Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
 - fix exit path error causing failure to run cleanups
 - fix Fedora 22 missing void driver
@@ -284,7 +287,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures

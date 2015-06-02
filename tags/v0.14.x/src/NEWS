@@ -1,3 +1,8 @@
+v0.14.26 (2015-06-02)
+======================
+	-- fix executable-not-elf-or-script warning in html5 client tree
+
+
 v0.14.25 (2015-06-02)
 ======================
 	-- fix exit path error causing failure to run cleanups
