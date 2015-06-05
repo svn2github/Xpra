@@ -448,7 +448,7 @@ class ServerBase(ServerCore):
             self.server_event("connection-lost", source.uuid)
             source.close()
             del self._server_sources[protocol]
-            if self.exit_with_client:
+            if self.exit_with_client and len(self._server_sources)==0:
                 log.info("Last client has disconnected, terminating")
                 self.quit(0)
             else:
