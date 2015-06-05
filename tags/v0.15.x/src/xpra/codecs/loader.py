@@ -170,7 +170,7 @@ ALL_CODECS = "PIL", "enc_vpx", "dec_vpx", "enc_x264", "enc_x265", "nvenc3", "nve
 
 #note: this is just for defining the order of encodings,
 #so we have both core encodings (rgb24/rgb32) and regular encodings (rgb) in here:
-PREFERED_ENCODING_ORDER = ["h264", "vp8", "png", "png/P", "png/L", "webp", "rgb", "rgb24", "rgb32", "jpeg", "h265", "vp9"]
+PREFERED_ENCODING_ORDER = ["h264", "vp9", "vp8", "png", "png/P", "png/L", "webp", "rgb", "rgb24", "rgb32", "jpeg", "h265"]
 #encoding order for edges (usually one pixel high or wide):
 EDGE_ENCODING_ORDER = ["rgb24", "rgb32", "jpeg", "png", "webp", "png/P", "png/L", "rgb"]
 
@@ -196,7 +196,7 @@ ENCODINGS_HELP = {
       "h264"    : "H.264 video codec",
       "h265"    : "H.265 (HEVC) video codec (slow and buggy - do not use!)",
       "vp8"     : "VP8 video codec",
-      "vp9"     : "VP9 video codec (very slow - do not use!)",
+      "vp9"     : "VP9 video codec",
       "png"     : "Portable Network Graphics (lossless, 24bpp or 32bpp for transparency)",
       "png/P"   : "Portable Network Graphics (lossy, 8bpp colour)",
       "png/L"   : "Portable Network Graphics (lossy, 8bpp grayscale)",
@@ -208,7 +208,7 @@ ENCODINGS_HELP = {
 HELP_ORDER = ("h264", "h265", "vp8", "vp9", "png", "png/P", "png/L", "webp", "rgb", "jpeg")
 
 #those are currently so useless that we don't want the user to select them by mistake
-PROBLEMATIC_ENCODINGS = ("h265", "vp9")
+PROBLEMATIC_ENCODINGS = ("h265", )
 
 
 def encodings_help(encodings):
