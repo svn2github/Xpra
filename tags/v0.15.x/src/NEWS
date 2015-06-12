@@ -1,3 +1,16 @@
+v0.15.1 (2015-06-12)
+======================
+	-- fix displayfd Xorg version check: require version 1.13
+	-- fix GUI debug script on OSX
+	-- fix typo in list of supported X11 atoms
+	-- fix exit-with-children: support sharing mode
+	-- fix html option for client only builds
+	-- fix pulseaudio not killed on exit on Ubuntu
+	-- blacklist Ubuntu Vivid, which broke Xdummy, again
+	-- raise maximum clipboard requests per second to 20
+	-- remove old VP9 performance warnings
+
+
 v0.15.0 (2015-05-31)
 ======================
 	-- printer forwarding

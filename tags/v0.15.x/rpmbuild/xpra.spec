@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.0
+%define version 0.15.1
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -303,6 +303,17 @@ fi
 
 
 %changelog
+* Fri Jun 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
+- fix displayfd Xorg version check: require version 1.13
+- fix GUI debug script on OSX
+- fix typo in list of supported X11 atoms
+- fix exit-with-children: support sharing mode
+- fix html option for client only builds
+- fix pulseaudio not killed on exit on Ubuntu
+- blacklist Ubuntu Vivid, which broke Xdummy, again
+- raise maximum clipboard requests per second to 20
+- remove old VP9 performance warnings
+
 * Sun May 31 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.0-1
 -printer forwarding
 -functional HTML5 client
