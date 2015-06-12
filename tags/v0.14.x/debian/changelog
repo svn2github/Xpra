@@ -4,6 +4,7 @@ xpra (0.14.26-1) UNRELEASED; urgency=low
   * fix GUI debug script on OSX
   * fix typo in list of supported X11 atoms
   * fix exit-with-children: support sharing mode
+  * fix pulseaudio not killed on exit on Ubuntu
   * blacklist Ubuntu Vivid, which broke Xdummy, again
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 12 Jun 2015 16:10:49 +0700

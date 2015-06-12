@@ -248,6 +248,7 @@ fi
 - fix GUI debug script on OSX
 - fix typo in list of supported X11 atoms
 - fix exit-with-children: support sharing mode
+- fix pulseaudio not killed on exit on Ubuntu
 - blacklist Ubuntu Vivid, which broke Xdummy, again
 
 * Tue Jun 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.25-1

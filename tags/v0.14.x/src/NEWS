@@ -5,6 +5,7 @@ v0.14.26 (2015-06-12)
 	-- fix GUI debug script on OSX
 	-- fix typo in list of supported X11 atoms
 	-- fix exit-with-children: support sharing mode
+	-- fix pulseaudio not killed on exit on Ubuntu
 	-- blacklist Ubuntu Vivid, which broke Xdummy, again
 
 
