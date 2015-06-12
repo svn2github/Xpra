@@ -537,7 +537,14 @@ def start_pulseaudio(child_reaper, pulseaudio_command):
         if pa_proc.poll() is None and pa_proc.pid not in child_reaper._dead_pids:
             log.info("stopping pulseaudio with pid %s", pa_proc.pid)
             try:
-                pa_proc.terminate()
+                #first we try pactl (required on Ubuntu):
+                from xpra.scripts.exec_util import safe_exec
+                r, _, _ = safe_exec(["pactl", "exit"])
+                #warning: pactl will return 0 whether it succeeds or not...
+                #but we can't kill the process because Ubuntu starts a new one
+                if r!=0:
+                    #fallback to using SIGINT:
+                    pa_proc.terminate()
             except:
                 log.warn("error trying to stop pulseaudio", exc_info=True)
     _cleanups.append(cleanup_pa)
