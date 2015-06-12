@@ -1,7 +1,11 @@
-v0.14.26 (2015-06-02)
+v0.14.26 (2015-06-12)
 ======================
 	-- fix executable-not-elf-or-script warning in html5 client tree
 	-- fix displayfd Xorg version check: require version 1.13
+	-- fix GUI debug script on OSX
+	-- fix typo in list of supported X11 atoms
+	-- fix exit-with-children: support sharing mode
+	-- blacklist Ubuntu Vivid, which broke Xdummy, again
 
 
 v0.14.25 (2015-06-02)
