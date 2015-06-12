@@ -6,6 +6,7 @@ v0.15.1 (2015-06-12)
 	-- fix exit-with-children: support sharing mode
 	-- fix html option for client only builds
 	-- fix pulseaudio not killed on exit on Ubuntu
+	-- include shared mime info file mapping
 	-- blacklist Ubuntu Vivid, which broke Xdummy, again
 	-- raise maximum clipboard requests per second to 20
 	-- remove old VP9 performance warnings

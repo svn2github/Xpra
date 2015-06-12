@@ -5,11 +5,12 @@ xpra (0.15.1-1) UNRELEASED; urgency=low
   * fix exit-with-children: support sharing mode
   * fix html option for client only builds
   * fix pulseaudio not killed on exit on Ubuntu
+  * include shared mime info file mapping
   * blacklist Ubuntu Vivid, which broke Xdummy, again
   * raise maximum clipboard requests per second to 20
   * remove old VP9 performance warnings
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 12 Jun 2015 16:20:20 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 12 Jun 2015 22:29:50 +0200
 
 xpra (0.15.0-2) UNRELEASED; urgency=low
   * rebuild with workarounds for Ubuntu vivid and Debian build paths

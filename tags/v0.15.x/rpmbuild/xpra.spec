@@ -249,6 +249,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/man/man1/xpra*
 %{_datadir}/applications/xpra_launcher.desktop
 %{_datadir}/applications/xpra.desktop
+%{_datadir}/mime/packages/application-x-xpraconfig.xml
 %{_datadir}/appdata/xpra.appdata.xml
 %{_datadir}/icons/xpra.png
 /usr/lib/cups/backend/xpraforwarder
@@ -285,12 +286,14 @@ popd
 
 
 %post
+/usr/bin/update-mime-database &> /dev/null || :
 /usr/bin/update-desktop-database &> /dev/null || :
 /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 /bin/chmod 700 /usr/lib/cups/backend/xpraforwarder
 
 
 %postun
+/usr/bin/update-mime-database &> /dev/null || :
 /usr/bin/update-desktop-database &> /dev/null || :
 if [ $1 -eq 0 ] ; then
     /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
@@ -310,6 +313,7 @@ fi
 - fix exit-with-children: support sharing mode
 - fix html option for client only builds
 - fix pulseaudio not killed on exit on Ubuntu
+- include shared mime info file mapping
 - blacklist Ubuntu Vivid, which broke Xdummy, again
 - raise maximum clipboard requests per second to 20
 - remove old VP9 performance warnings
