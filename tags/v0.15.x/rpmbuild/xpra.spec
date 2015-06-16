@@ -306,7 +306,7 @@ fi
 
 
 %changelog
-* Fri Jun 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
+* Tue Jun 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
 - fix displayfd Xorg version check: require version 1.13
 - fix GUI debug script on OSX
 - fix typo in list of supported X11 atoms
@@ -315,6 +315,7 @@ fi
 - fix pulseaudio not killed on exit on Ubuntu
 - include shared mime info file mapping
 - blacklist Ubuntu Vivid, which broke Xdummy, again
+- don't reject clients providing a password when none is expected
 - raise maximum clipboard requests per second to 20
 - remove old VP9 performance warnings
 

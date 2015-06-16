@@ -1,4 +1,4 @@
-v0.15.1 (2015-06-12)
+v0.15.1 (2015-06-16)
 ======================
 	-- fix displayfd Xorg version check: require version 1.13
 	-- fix GUI debug script on OSX
@@ -8,6 +8,7 @@ v0.15.1 (2015-06-12)
 	-- fix pulseaudio not killed on exit on Ubuntu
 	-- include shared mime info file mapping
 	-- blacklist Ubuntu Vivid, which broke Xdummy, again
+	-- don't reject clients providing a password when none is expected
 	-- raise maximum clipboard requests per second to 20
 	-- remove old VP9 performance warnings
 

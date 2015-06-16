@@ -1,4 +1,4 @@
-v0.14.26 (2015-06-12)
+v0.14.26 (2015-06-16)
 ======================
 	-- fix executable-not-elf-or-script warning in html5 client tree
 	-- fix displayfd Xorg version check: require version 1.13
@@ -7,6 +7,7 @@ v0.14.26 (2015-06-12)
 	-- fix exit-with-children: support sharing mode
 	-- fix pulseaudio not killed on exit on Ubuntu
 	-- blacklist Ubuntu Vivid, which broke Xdummy, again
+        -- don't reject clients providing a password when none is expected
 
 
 v0.14.25 (2015-06-02)
