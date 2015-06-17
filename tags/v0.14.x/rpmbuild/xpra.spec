@@ -242,13 +242,14 @@ fi
 
 
 %changelog
-* Tue Jun 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
+* Wed Jun 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
 - fix executable-not-elf-or-script warning in html5 client tree
 - fix displayfd Xorg version check: require version 1.13
 - fix GUI debug script on OSX
 - fix typo in list of supported X11 atoms
 - fix exit-with-children: support sharing mode
 - fix pulseaudio not killed on exit on Ubuntu
+- fix signal leak when client disconnects
 - blacklist Ubuntu Vivid, which broke Xdummy, again
 - don't reject clients providing a password when none is expected
 

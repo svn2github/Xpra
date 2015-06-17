@@ -313,6 +313,7 @@ fi
 - fix exit-with-children: support sharing mode
 - fix html option for client only builds
 - fix pulseaudio not killed on exit on Ubuntu
+- fix signal leak when client disconnects
 - include shared mime info file mapping
 - blacklist Ubuntu Vivid, which broke Xdummy, again
 - don't reject clients providing a password when none is expected

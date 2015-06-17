@@ -128,7 +128,7 @@ class WindowSource(object):
         self.fullscreen = window.get_property("fullscreen")
         self.scaling = None
         self.maximized = False          #set by the client!
-        window.connect("notify::fullscreen", self._fullscreen_changed)
+        self.fs_sig_handler = (window, window.connect("notify::fullscreen", self._fullscreen_changed))
 
         #for deciding between small regions and full screen updates:
         self.max_small_regions = 40
@@ -254,6 +254,12 @@ class WindowSource(object):
         log("encoding_totals for wid=%s with primary encoding=%s : %s", self.wid, self.encoding, self.statistics.encoding_totals)
         self.init_vars()
         self._damage_cancelled = float("inf")
+        def clean_fs_sig_handler():
+            if self.fs_sig_handler:
+                window, sid = self.fs_sig_handler
+                window.disconnect(sid)
+            self.fs_sig_handler = None
+        self.idle_add(clean_fs_sig_handler)
 
 
     def get_info(self):

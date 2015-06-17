@@ -5,10 +5,11 @@ xpra (0.14.26-1) UNRELEASED; urgency=low
   * fix typo in list of supported X11 atoms
   * fix exit-with-children: support sharing mode
   * fix pulseaudio not killed on exit on Ubuntu
+  * fix signal leak when client disconnects
   * blacklist Ubuntu Vivid, which broke Xdummy, again
   * don't reject clients providing a password when none is expected
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 16 Jun 2015 18:41:27 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 17 Jun 2015 14:00:10 +0200
 
 xpra (0.14.25-1) UNRELEASED; urgency=low
   * fix exit path error causing failure to run cleanups
