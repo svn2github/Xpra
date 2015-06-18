@@ -845,6 +845,7 @@ if 'clean' in sys.argv or 'sdist' in sys.argv:
                    "xpra/codecs/vpx/encoder.c",
                    "xpra/codecs/vpx/decoder.c",
                    "xpra/codecs/nvenc3/encoder.c",
+                   "xpra/codecs/vpx/constants.pxi",
                    "xpra/codecs/nvenc3/constants.pxi",
                    "xpra/codecs/nvenc4/encoder.c",
                    "xpra/codecs/nvenc4/constants.pxi",

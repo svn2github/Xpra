@@ -1,3 +1,8 @@
+v0.14.27 (2015-06-18)
+======================
+	-- add missing file to clean list
+
+
 v0.14.26 (2015-06-17)
 ======================
 	-- fix executable-not-elf-or-script warning in html5 client tree
