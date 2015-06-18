@@ -306,7 +306,8 @@ fi
 
 
 %changelog
-* Tue Jun 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
+* Thu Jun 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
+- fix window transparency
 - fix displayfd Xorg version check: require version 1.13
 - fix GUI debug script on OSX
 - fix typo in list of supported X11 atoms

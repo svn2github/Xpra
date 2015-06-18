@@ -218,6 +218,11 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                 self._client_properties["encoding.transparency"] = False
 
 
+    def realize(self):
+        self.set_alpha()
+        gtk.Window.realize(self)
+
+
     def show(self):
         if self.group_leader:
             if not self.is_realized():

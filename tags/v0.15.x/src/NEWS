@@ -1,5 +1,6 @@
-v0.15.1 (2015-06-17)
+v0.15.1 (2015-06-18)
 ======================
+	-- fix window transparency
 	-- fix displayfd Xorg version check: require version 1.13
 	-- fix GUI debug script on OSX
 	-- fix typo in list of supported X11 atoms

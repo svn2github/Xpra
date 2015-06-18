@@ -1,4 +1,5 @@
 xpra (0.15.1-1) UNRELEASED; urgency=low
+  * fix window transparency
   * fix displayfd Xorg version check: require version 1.13
   * fix GUI debug script on OSX
   * fix typo in list of supported X11 atoms
@@ -12,7 +13,7 @@ xpra (0.15.1-1) UNRELEASED; urgency=low
   * raise maximum clipboard requests per second to 20
   * remove old VP9 performance warnings
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 17 Jun 2015 14:00:10 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 18 Jun 2015 14:00:10 +0200
 
 xpra (0.15.0-2) UNRELEASED; urgency=low
   * rebuild with workarounds for Ubuntu vivid and Debian build paths
