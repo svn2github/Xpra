@@ -242,8 +242,10 @@ fi
 
 
 %changelog
-* Thu Jun 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-1
+* Fri Jun 19 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-1
 - add missing file to clean list
+- fix: rgb encodings can use speed setting 
+- fix propagation of dynamic attributes for OR windows
 
 * Wed Jun 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.26-1
 - fix executable-not-elf-or-script warning in html5 client tree

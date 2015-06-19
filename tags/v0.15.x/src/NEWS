@@ -1,6 +1,8 @@
-v0.15.2 (2015-06-18)
+v0.15.2 (2015-06-19)
 ======================
 	-- add missing file to clean list
+	-- fix: rgb encodings can use speed setting
+	-- fix propagation of dynamic attributes for OR windows
 
 
 v0.15.1 (2015-06-18)
