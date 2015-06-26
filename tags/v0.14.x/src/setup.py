@@ -805,6 +805,7 @@ if 'clean' in sys.argv or 'sdist' in sys.argv:
                    "xpra/net/bencode/cython_bencode.c",
                    "xpra/codecs/vpx/encoder.c",
                    "xpra/codecs/vpx/decoder.c",
+                   "xpra/codecs/vpx/constants.pxi",
                    "xpra/codecs/enc_x264/encoder.c",
                    "xpra/codecs/enc_x265/encoder.c",
                    "xpra/codecs/webp/encode.c",
@@ -845,7 +846,6 @@ if "sdist" in sys.argv:
     record_src_info()
 
 if "install" in sys.argv or "build" in sys.argv:
-                   "xpra/codecs/vpx/constants.pxi",
     #if installing from source tree rather than
     #from a source snapshot, we may not have a "src_info" file
     #so create one:
