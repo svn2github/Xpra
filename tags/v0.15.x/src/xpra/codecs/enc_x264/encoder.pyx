@@ -297,7 +297,7 @@ LOG_LEVEL = {
 
 
 #the static logging function we want x264 to use:
-cdef X264_log(void *p_unused, int level, const char *psz_fmt, va_list arg):
+cdef void X264_log(void *p_unused, int level, const char *psz_fmt, va_list arg) with gil:
     cdef char buffer[256]
     cdef int r
     r = vsnprintf(buffer, 256, psz_fmt, arg)
