@@ -6,7 +6,7 @@
 
 # Platform-specific code for Win32 -- the parts that may import gtk.
 
-import os
+import os, sys
 from xpra.log import Logger
 log = Logger("win32")
 grablog = Logger("win32", "grab")
