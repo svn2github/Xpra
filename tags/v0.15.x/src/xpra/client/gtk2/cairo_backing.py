@@ -48,7 +48,6 @@ class CairoBacking(CairoBackingBase):
             if rgb_format=="RGBA":
                 #we have to unpremultiply for pixbuf!
                 img_data = self.unpremultiply(img_data)
-            else:
                 #Pixbuf cannot use the memoryview directly:
                 img_data = memoryview_to_bytes(img_data)
             pixbuf = pixbuf_new_from_data(img_data, COLORSPACE_RGB, has_alpha, 8, width, height, rowstride)
