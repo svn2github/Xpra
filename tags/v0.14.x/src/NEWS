@@ -1,8 +1,10 @@
-v0.14.27 (2015-06-19)
+v0.14.27 (2015-06-28)
 ======================
 	-- add missing file to clean list
-        -- fix: rgb encodings can use speed setting
-        -- fix propagation of dynamic attributes for OR windows
+	-- fix: rgb encodings can use speed setting
+	-- fix propagation of dynamic attributes for OR windows
+	-- fix invalid warnings in parsing client connection options
+	-- fix handling of the window decorations flag
 
 
 v0.14.26 (2015-06-17)

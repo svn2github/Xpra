@@ -2,8 +2,10 @@ xpra (0.14.27-1) UNRELEASED; urgency=low
   * add missing file to clean list
   * fix: rgb encodings can use speed setting
   * fix propagation of dynamic attributes for OR windows
+  * fix invalid warnings in parsing client connection options
+  * fix handling of the window decorations flag
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 19 Jun 2015 11:05:11 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 28 Jun 2015 19:58:32 +0700
 
 xpra (0.14.26-1) UNRELEASED; urgency=low
   * fix executable-not-elf-or-script warning in html5 client tree

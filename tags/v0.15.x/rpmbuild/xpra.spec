@@ -306,10 +306,20 @@ fi
 
 
 %changelog
-* Fri Jun 19 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-1
-- add missing file to clean list
-- fix: rgb encodings can use speed setting
+* Sun Jun 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-1
+- fix rgb encodings can use speed setting
 - fix propagation of dynamic attributes for OR windows
+- fix invalid warnings in parsing client connection options
+- fix handling of the window decorations flag
+- fix missing lock around Python logger callback
+- fix size-hints with shadow servers
+- fix max-size switch
+- fix sound process communication errors during failures
+- fix invalid options shown in default config file
+- add missing file to clean list
+- skip unnecessary workarounds with GTK3 client
+- cleaner thread cleanup on server exit
+- use the safer and slower code with non-OpenGL clients
 
 * Thu Jun 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.1-1
 - fix window transparency

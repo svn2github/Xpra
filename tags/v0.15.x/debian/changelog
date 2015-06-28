@@ -1,9 +1,19 @@
 xpra (0.15.2-1) UNRELEASED; urgency=low
-  * add missing file to clean list
-  * fix: rgb encodings can use speed setting
+  * fix rgb encodings can use speed setting
   * fix propagation of dynamic attributes for OR windows
+  * fix invalid warnings in parsing client connection options
+  * fix handling of the window decorations flag
+  * fix missing lock around Python logger callback
+  * fix size-hints with shadow servers
+  * fix max-size switch
+  * fix sound process communication errors during failures
+  * fix invalid options shown in default config file
+  * add missing file to clean list
+  * skip unnecessary workarounds with GTK3 client
+  * cleaner thread cleanup on server exit
+  * use the safer and slower code with non-OpenGL clients
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 19 Jun 2015 11:05:11 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 28 Jun 2015 20:07:39 +0200
 
 xpra (0.15.1-1) UNRELEASED; urgency=low
   * fix window transparency
