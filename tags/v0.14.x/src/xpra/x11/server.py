@@ -392,7 +392,7 @@ class XpraServer(gobject.GObject, X11ServerBase):
 
     def _add_new_window_common(self, window):
         windowlog("adding window %s", window)
-        for prop in window.get_dynamic_property_names():
+        for prop in window._window_export_properties:
             window.connect("notify::%s" % prop, self._update_metadata)
         wid = X11ServerBase._add_new_window_common(self, window)
         window.managed_connect("client-contents-changed", self._contents_changed)
