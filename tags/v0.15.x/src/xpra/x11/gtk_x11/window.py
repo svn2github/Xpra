@@ -1470,7 +1470,7 @@ class WindowModel(BaseWindowModel):
         motif_hints = prop_get(self.client_window, "_MOTIF_WM_HINTS", "motif-hints", ignore_errors=False, raise_xerrors=True)
         log("_handle_motif_wm_hints() motif_hints=%s", motif_hints)
         DECORATIONS_BIT = 1
-        if motif_hints and motif_hints.flags&(2**MotifWMHints.DECORATIONS_BIT):
+        if motif_hints and motif_hints.flags&(2**DECORATIONS_BIT):
             self._internal_set_property("decorations", motif_hints.decorations)
     _property_handlers["_MOTIF_WM_HINTS"] = _handle_motif_wm_hints
 
