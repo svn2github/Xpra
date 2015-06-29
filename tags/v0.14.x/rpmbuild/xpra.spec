@@ -242,7 +242,10 @@ fi
 
 
 %changelog
-* Sun Jun 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-1
+* Mon Jun 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-2
+- force rebuild with decorations fixup
+
+* Sun Jun 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-1
 - add missing file to clean list
 - fix: rgb encodings can use speed setting
 - fix propagation of dynamic attributes for OR windows

@@ -1,3 +1,8 @@
+xpra (0.15.2-2) UNRELEASED; urgency=low
+  * force rebuild with decorations fixup
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 29 Jun 2015 20:40:47 +0700
+
 xpra (0.15.2-1) UNRELEASED; urgency=low
   * fix rgb encodings can use speed setting
   * fix propagation of dynamic attributes for OR windows

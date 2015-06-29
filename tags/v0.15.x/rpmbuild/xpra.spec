@@ -306,6 +306,9 @@ fi
 
 
 %changelog
+* Mon Jun 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-2
+- force rebuild with decorations fixup
+
 * Sun Jun 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-1
 - fix rgb encodings can use speed setting
 - fix propagation of dynamic attributes for OR windows
