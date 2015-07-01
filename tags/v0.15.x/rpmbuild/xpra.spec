@@ -72,6 +72,10 @@
 %if 0%{?fedora} >= 21
 %define py3requires_printing , python3-cups
 %endif
+#Fedora 22+ have PyOpenGL... and they include PyOpenGL-accelerate bindings. PITA for us.
+%if 0%{?fedora} >= 22
+%define requires_opengl , PyOpenGL, pygtkglext, numpy
+%endif
 
 
 Name: xpra
@@ -306,6 +310,9 @@ fi
 
 
 %changelog
+* Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-4
+- force rebuild with updated Fedora 22+ dependencies
+
 * Mon Jun 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-2
 - force rebuild with decorations fixup
 

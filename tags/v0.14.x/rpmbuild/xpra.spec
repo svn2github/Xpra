@@ -86,6 +86,11 @@
 #fedora 22 removed the void driver
 %define xorg_deps xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-xauth
 %endif
+#Fedora 22+ have PyOpenGL... and they include PyOpenGL-accelerate bindings. PITA for us.
+%if 0%{?fedora} >= 22
+%define requires_opengl , PyOpenGL, pygtkglext, numpy
+%endif
+
 
 %if 0%{?no_sound}
 %define requires_sound %{nil}
@@ -242,6 +247,9 @@ fi
 
 
 %changelog
+* Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-4
+- force rebuild with updated Fedora 22+ dependencies
+
 * Mon Jun 29 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-2
 - force rebuild with decorations fixup
 
