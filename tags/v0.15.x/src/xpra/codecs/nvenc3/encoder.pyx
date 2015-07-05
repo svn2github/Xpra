@@ -1424,6 +1424,7 @@ cdef class Encoder:
             self.kernels = []
             for genk in kernel_gen:
                 kernel_name, kernel = genk(self.cuda_device_id)
+                assert kernel, "failed to load %s for device %i" % (kernel_name, self.cuda_device_id)
                 self.kernel_names.append(kernel_name)
                 self.kernels.append(kernel)
 
