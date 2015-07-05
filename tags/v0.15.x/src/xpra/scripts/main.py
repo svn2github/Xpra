@@ -984,6 +984,16 @@ def parse_display_name(error_cb, opts, display_name):
         opts.display = display_name
         desc["socket_dir"] = osexpand(opts.socket_dir or get_default_socket_dir(), opts.username)
         return desc
+    elif display_name.startswith("socket:"):
+        #use the socketfile specified:
+        sockfile = display_name[len("socket:"):]
+        desc["type"] = "unix-domain"
+        desc["local"] = True
+        desc["display"] = display_name
+        opts.display = display_name
+        desc["socket_path"] = sockfile
+        desc["socket_dir"] = os.path.basename(sockfile)
+        return desc
     elif display_name.startswith("tcp:") or display_name.startswith("tcp/"):
         separator = display_name[3] # ":" or "/"
         desc["type"] = "tcp"
@@ -1141,10 +1151,14 @@ def connect_to(display_desc, debug_cb=None, ssh_fail_cb=ssh_connect_failed):
     elif dtype == "unix-domain":
         if not hasattr(socket, "AF_UNIX"):
             return False, "unix domain sockets are not available on this operating system"
-        sockdir = DotXpra(display_desc["socket_dir"])
+        #if the path was specified, use that:
+        sockfile = display_desc.get("socket_path")
+        if not sockfile:
+            #find the socket using the display:
+            dotxpra = DotXpra(display_desc["socket_dir"])
+            sockfile = dotxpra.socket_path(display_desc["display"])        
         sock = socket.socket(socket.AF_UNIX)
         sock.settimeout(SOCKET_TIMEOUT)
-        sockfile = sockdir.socket_path(display_desc["display"])
         conn = _socket_connect(sock, sockfile, display_name, dtype)
         conn.timeout = SOCKET_TIMEOUT
 
