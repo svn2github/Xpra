@@ -1,3 +1,14 @@
+v0.15.3 (2015-07-05)
+======================
+	-- fix invalid X11 atom
+	-- fix unhandled failure code from libav
+	-- fix default socket permissions when config file is missing
+	-- fix error handling for missing cuda kernels
+	-- more helpful dpi warning
+	-- support connecting to named unix domain sockets
+	-- OpenGL option can force enable despite platform checks
+
+
 v0.15.2 (2015-06-28)
 ======================
 	-- fix rgb encodings can use speed setting

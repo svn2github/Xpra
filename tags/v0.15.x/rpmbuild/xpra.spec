@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.2
+%define version 0.15.3
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -310,6 +310,15 @@ fi
 
 
 %changelog
+* Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
+- fix invalid X11 atom
+- fix unhandled failure code from libav
+- fix default socket permissions when config file is missing
+- fix error handling for missing cuda kernels
+- more helpful dpi warning
+- support connecting to named unix domain sockets
+- OpenGL option can force enable despite platform checks
+
 * Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-4
 - force rebuild with updated Fedora 22+ dependencies
 

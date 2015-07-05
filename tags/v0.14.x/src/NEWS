@@ -1,3 +1,11 @@
+v0.14.28 (2015-07-05)
+======================
+	-- fix invalid X11 atom
+	-- fix unhandled failure code from libav
+	-- more helpful dpi warning
+	-- remove unused remnants of nvenc
+
+
 v0.14.27 (2015-06-28)
 ======================
 	-- add missing file to clean list

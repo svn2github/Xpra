@@ -1,3 +1,14 @@
+xpra (0.15.3-1) UNRELEASED; urgency=low
+  * fix invalid X11 atom
+  * fix unhandled failure code from libav
+  * fix default socket permissions when config file is missing
+  * fix error handling for missing cuda kernels
+  * more helpful dpi warning
+  * support connecting to named unix domain sockets
+  * OpenGL option can force enable despite platform checks
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 05 Jul 2015 17:25:36 +0700
+
 xpra (0.15.2-2) UNRELEASED; urgency=low
   * force rebuild with decorations fixup
 
