@@ -383,7 +383,7 @@ def get_defaults():
                     "input-method"      : "none",
                     "sound-source"      : "",
                     "html"              : "",
-                    "socket-permissions": "660",
+                    "socket-permissions": "600",
                     "quality"           : 0,
                     "min-quality"       : 30,
                     "speed"             : 0,
