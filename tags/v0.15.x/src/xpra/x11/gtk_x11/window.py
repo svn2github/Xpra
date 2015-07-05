@@ -662,7 +662,7 @@ class BaseWindowModel(AutoPropGObjectMixin, gobject.GObject):
             # see if it's override-redirect (and if so treat as NORMAL).
             # But we wouldn't be here if this was override-redirect.
             # (OverrideRedirectWindowModel overrides this method)
-            return "_NET_WM_TYPE_DIALOG"
+            return "_NET_WM_WINDOW_TYPE_DIALOG"
         return "_NET_WM_WINDOW_TYPE_NORMAL"
 
     def is_tray(self):
