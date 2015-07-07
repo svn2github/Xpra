@@ -823,7 +823,6 @@ class ServerBase(ServerCore):
                 return argn_err(1)
             self.session_name = args[0]
             commandlog.info("changed session name: %s", self.session_name)
-            forward_all_clients(["name"])
             return 0, "session name set"
         elif command=="compression":
             if len(args)!=1:

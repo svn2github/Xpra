@@ -1104,7 +1104,6 @@ class ServerBase(ServerCore):
                 return argn_err(1)
             self.session_name = args[0]
             commandlog.info("changed session name: %s", self.session_name)
-            forward_all_clients(["name"])
             return 0, "session name set"
         elif command=="compression":
             if len(args)!=1:
@@ -1373,7 +1372,6 @@ class ServerBase(ServerCore):
                     if len(argp)==2 and len(argp[0])>0:
                         options[argp[0]] = argp[1]
             for ss in sources:
-                ss = sources[0]
                 assert ss.printing
                 ss.send_file(filename, True, True, ss, maxbitrate, printer, title, options)
             return 0, "printing to %s initiated" % client_uuids
