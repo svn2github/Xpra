@@ -3,11 +3,17 @@ xpra (0.15.3-1) UNRELEASED; urgency=low
   * fix unhandled failure code from libav
   * fix default socket permissions when config file is missing
   * fix error handling for missing cuda kernels
+  * fix OpenGL paint early errors
+  * fix "print" control command with multiple clients
+  * skip sending invalid packet to client for the "name" control command
   * more helpful dpi warning
   * support connecting to named unix domain sockets
   * OpenGL option can force enable despite platform checks
+  * replace unsafe deprecated API call in HTML5 client
+  * more reliable and clean shutdown of connections and threads
+  * log internal system failures as errors
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 05 Jul 2015 17:25:36 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 07 Jul 2015 20:27:36vn+0700
 
 xpra (0.15.2-2) UNRELEASED; urgency=low
   * force rebuild with decorations fixup

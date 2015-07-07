@@ -1,12 +1,18 @@
-v0.15.3 (2015-07-05)
+v0.15.3 (2015-07-07)
 ======================
 	-- fix invalid X11 atom
 	-- fix unhandled failure code from libav
 	-- fix default socket permissions when config file is missing
 	-- fix error handling for missing cuda kernels
+	-- fix OpenGL paint early errors
+	-- fix "print" control command with multiple clients
+	-- skip sending invalid packet to client for the "name" control command
 	-- more helpful dpi warning
 	-- support connecting to named unix domain sockets
 	-- OpenGL option can force enable despite platform checks
+	-- replace unsafe deprecated API call in HTML5 client
+	-- more reliable and clean shutdown of connections and threads
+	-- log internal system failures as errors
 
 
 v0.15.2 (2015-06-28)
@@ -35,7 +41,7 @@ v0.15.1 (2015-06-18)
 	-- fix exit-with-children: support sharing mode
 	-- fix html option for client only builds
 	-- fix pulseaudio not killed on exit on Ubuntu
-        -- fix signal leak when client disconnects
+	-- fix signal leak when client disconnects
 	-- include shared mime info file mapping
 	-- blacklist Ubuntu Vivid, which broke Xdummy, again
 	-- don't reject clients providing a password when none is expected

@@ -310,14 +310,20 @@ fi
 
 
 %changelog
-* Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
+* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - fix default socket permissions when config file is missing
 - fix error handling for missing cuda kernels
+- fix OpenGL paint early errors
+- fix "print" control command with multiple clients
+- skip sending invalid packet to client for the "name" control command
 - more helpful dpi warning
 - support connecting to named unix domain sockets
 - OpenGL option can force enable despite platform checks
+- replace unsafe deprecated API call in HTML5 client
+- more reliable and clean shutdown of connections and threads
+- log internal system failures as errors
 
 * Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.2-4
 - force rebuild with updated Fedora 22+ dependencies

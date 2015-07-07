@@ -1,9 +1,12 @@
-v0.14.28 (2015-07-05)
+v0.14.28 (2015-07-07)
 ======================
 	-- fix invalid X11 atom
 	-- fix unhandled failure code from libav
+	-- fix OpenGL paint early errors
 	-- more helpful dpi warning
 	-- remove unused remnants of nvenc
+	-- more reliable and clean shutdown of connections and threads
+	-- skip sending invalid packet to client for the "name" control command
 
 
 v0.14.27 (2015-06-28)

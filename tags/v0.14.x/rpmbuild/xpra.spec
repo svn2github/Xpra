@@ -247,11 +247,13 @@ fi
 
 
 %changelog
-* Sun Jul 05 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-4
+* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-4
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - more helpful dpi warning
 - remove unused remnants of nvenc
+- more reliable and clean shutdown of connections and threads
+- skip sending invalid packet to client for the "name" control command
 
 * Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-4
 - force rebuild with updated Fedora 22+ dependencies
