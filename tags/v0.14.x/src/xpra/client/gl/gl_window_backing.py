@@ -479,6 +479,8 @@ class GLPixmapBacking(GTK2WindowBacking):
         log("%s.present_fbo() done", self)
 
     def gl_expose_event(self, glarea, event):
+        if not self.paint_screen:
+            return
         log("%s.gl_expose_event(%s, %s)", self, glarea, event)
         drawable = self.gl_init()
         if not drawable:
