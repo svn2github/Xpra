@@ -1,5 +1,10 @@
 xpra (0.15.4-1) UNRELEASED; urgency=low
-  * TODO
+  * fix cleanup error on MS Windows, preventing process termination
+  * fix pulseaudio device count reported
+  * fix timer warnings in GTK2 notifier (mostly used on OSX)
+  * fix sound communication errors not causing subprocess termination
+  * safer OpenGL platform checks (prevents crashes with wine)
+  * workaround invalid "help" options in config files
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 16 Jul 2015 13:44:40 +0700
 

@@ -1,8 +1,12 @@
-v0.14.28 (2015-07-07)
+v0.14.28 (2015-07-16)
 ======================
 	-- fix invalid X11 atom
 	-- fix unhandled failure code from libav
+	-- fix cleanup error on MS Windows, preventing process termination
 	-- fix OpenGL paint early errors
+	-- fix pulseaudio device count reported
+	-- fix timer warnings in GTK2 notifier (mostly used on OSX)
+	-- workaround invalid "help" options in config files
 	-- more helpful dpi warning
 	-- remove unused remnants of nvenc
 	-- more reliable and clean shutdown of connections and threads

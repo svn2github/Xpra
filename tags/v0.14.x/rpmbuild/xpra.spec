@@ -247,9 +247,14 @@ fi
 
 
 %changelog
-* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-4
+* Thu Jul 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix invalid X11 atom
 - fix unhandled failure code from libav
+- fix cleanup error on MS Windows, preventing process termination
+- fix OpenGL paint early errors
+- fix pulseaudio device count reported
+- fix timer warnings in GTK2 notifier (mostly used on OSX)
+- workaround invalid "help" options in config files
 - more helpful dpi warning
 - remove unused remnants of nvenc
 - more reliable and clean shutdown of connections and threads
