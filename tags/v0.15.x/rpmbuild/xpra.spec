@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.3
+%define version 0.15.4
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -310,7 +310,7 @@ fi
 
 
 %changelog
-* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
+* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - fix default socket permissions when config file is missing
