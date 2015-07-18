@@ -1326,7 +1326,8 @@ class WindowSource(object):
         delta = -1
         store = -1
         isize = image.get_width() * image.get_height()
-        if DELTA and w>2 and h>2 and not (self._mmap and self._mmap_size>0) and (coding in self.supports_delta) and self.min_delta_size<isize<self.max_delta_size:
+        pixel_format = image.get_pixel_format()
+        if DELTA and w>2 and h>2 and not (self._mmap and self._mmap_size>0) and (coding in self.supports_delta) and self.min_delta_size<isize<self.max_delta_size and pixel_format in self.rgb_formats:
             dpixels = image.get_pixels()
             #hack note: the '[:]' slicing does not make a copy when dealing with a memoryview
             #but it does when dealing with strings! (and so we only make one copy no matter what here)
@@ -1416,3 +1417,4 @@ class WindowSource(object):
 
     def mmap_encode(self, coding, image, options):
         return mmap_encode(coding, image, options)
+        pixel_format = image.get_pixel_format()

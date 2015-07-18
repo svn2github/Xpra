@@ -1479,6 +1479,7 @@ class WindowSource(object):
         start = time.time()
         mmap_data = None
         delta, store, bucket, hits = -1, -1, -1, 0
+        pixel_format = image.get_pixel_format()
         if self._mmap and self._mmap_size>0 and psize>256:
             mmap_data = mmap_send(self._mmap, self._mmap_size, image, self.rgb_formats, self.supports_transparency)
         if mmap_data:
@@ -1490,7 +1491,8 @@ class WindowSource(object):
             coding = "mmap"         #changed encoding!
             options["mmap_data"] = mmap_info
         #if client supports delta pre-compression for this encoding, use it if we can:
-        elif self.delta_buckets>0 and (coding in self.supports_delta) and self.min_delta_size<isize<self.max_delta_size:
+        elif self.delta_buckets>0 and (coding in self.supports_delta) and self.min_delta_size<isize<self.max_delta_size and \
+            pixel_format in self.rgb_formats:
             #this may save space (and lower the cost of xoring):
             restride_image(image)
             #we need to copy the pixels because some encodings
@@ -1499,7 +1501,6 @@ class WindowSource(object):
             #hack note: the '[:]' slicing does not make a copy when dealing with a memoryview
             #but it does when dealing with strings! (and so we only make one copy no matter what here)
             dpixels = memoryview_to_bytes(dpixels[:])
-            pixel_format = image.get_pixel_format()
             dlen = len(dpixels)
             store = sequence
             for i, dr in enumerate(list(self.delta_pixel_data)):
