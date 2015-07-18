@@ -1,11 +1,13 @@
-v0.15.4 (2015-07-16)
+v0.15.4 (2015-07-18)
 ======================
+	-- fix delta compression errors
 	-- fix cleanup error on MS Windows, preventing process termination
 	-- fix pulseaudio device count reported
 	-- fix timer warnings in GTK2 notifier (mostly used on OSX)
 	-- fix sound communication errors not causing subprocess termination
 	-- safer OpenGL platform checks (prevents crashes with wine)
 	-- workaround invalid "help" options in config files
+	-- Fedora: update PyOpenGL package dependency
 
 
 v0.15.3 (2015-07-07)

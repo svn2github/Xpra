@@ -1,5 +1,6 @@
-v0.14.28 (2015-07-16)
+v0.14.28 (2015-07-18)
 ======================
+	-- fix delta compression errors
 	-- fix invalid X11 atom
 	-- fix unhandled failure code from libav
 	-- fix cleanup error on MS Windows, preventing process termination

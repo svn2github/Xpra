@@ -310,7 +310,17 @@ fi
 
 
 %changelog
-* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Sat Jul 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+- fix delta compression errors
+- fix cleanup error on MS Windows, preventing process termination
+- fix pulseaudio device count reported
+- fix timer warnings in GTK2 notifier (mostly used on OSX)
+- fix sound communication errors not causing subprocess termination
+- safer OpenGL platform checks (prevents crashes with wine)
+- workaround invalid "help" options in config files
+- Fedora: update PyOpenGL package dependency
+
+* Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - fix default socket permissions when config file is missing

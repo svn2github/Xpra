@@ -247,7 +247,8 @@ fi
 
 
 %changelog
-* Thu Jul 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Sat Jul 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+- fix delta compression errors
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - fix cleanup error on MS Windows, preventing process termination

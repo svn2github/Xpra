@@ -1,4 +1,5 @@
 xpra (0.15.4-1) UNRELEASED; urgency=low
+  * fix delta compression errors
   * fix cleanup error on MS Windows, preventing process termination
   * fix pulseaudio device count reported
   * fix timer warnings in GTK2 notifier (mostly used on OSX)
@@ -6,7 +7,7 @@ xpra (0.15.4-1) UNRELEASED; urgency=low
   * safer OpenGL platform checks (prevents crashes with wine)
   * workaround invalid "help" options in config files
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 16 Jul 2015 13:44:40 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 18 Jul 2015 20:37:57 +0700
 
 xpra (0.15.3-1) UNRELEASED; urgency=low
   * fix invalid X11 atom
