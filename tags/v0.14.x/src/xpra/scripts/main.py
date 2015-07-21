@@ -83,7 +83,7 @@ class ModifiedOptionParser(optparse.OptionParser):
 
 
 def fixup_defaults(defaults):
-    for k in ("debug", "encoding", "sound-source", "microphone-codec", "speaker-codec"):
+    for k in ("debug", "encoding", "microphone-codec", "speaker-codec"):
         fn = k.replace("-", "_")
         v = getattr(defaults, fn)
         if "help" in v:
