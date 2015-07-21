@@ -1,13 +1,16 @@
 xpra (0.15.4-1) UNRELEASED; urgency=low
   * fix delta compression errors
+  * fix csc Cython red and blue colours swapped on little endian systems
   * fix cleanup error on MS Windows, preventing process termination
   * fix pulseaudio device count reported
   * fix timer warnings in GTK2 notifier (mostly used on OSX)
   * fix sound communication errors not causing subprocess termination
+  * fix Xorg path detection for Fedora 22 onwards
   * safer OpenGL platform checks (prevents crashes with wine)
   * workaround invalid "help" options in config files
+  * ensure any client decoding errors cause a window refresh
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 18 Jul 2015 20:37:57 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 21 Jul 2015 11:51:16 +0700
 
 xpra (0.15.3-1) UNRELEASED; urgency=low
   * fix invalid X11 atom

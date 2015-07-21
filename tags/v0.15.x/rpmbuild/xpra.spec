@@ -310,14 +310,17 @@ fi
 
 
 %changelog
-* Sat Jul 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Tue Jul 21 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
+- fix csc Cython red and blue colours swapped on little endian systems
 - fix cleanup error on MS Windows, preventing process termination
 - fix pulseaudio device count reported
 - fix timer warnings in GTK2 notifier (mostly used on OSX)
 - fix sound communication errors not causing subprocess termination
+- fix Xorg path detection for Fedora 22 onwards
 - safer OpenGL platform checks (prevents crashes with wine)
 - workaround invalid "help" options in config files
+- ensure any client decoding errors cause a window refresh
 - Fedora: update PyOpenGL package dependency
 
 * Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1

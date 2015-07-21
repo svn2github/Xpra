@@ -247,15 +247,18 @@ fi
 
 
 %changelog
-* Sat Jul 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Tue Jul 21 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix delta compression errors
+- fix csc Cython red and blue colours swapped on little endian systems
 - fix invalid X11 atom
 - fix unhandled failure code from libav
 - fix cleanup error on MS Windows, preventing process termination
 - fix OpenGL paint early errors
 - fix pulseaudio device count reported
 - fix timer warnings in GTK2 notifier (mostly used on OSX)
+- fix Xorg path detection for Fedora 22 onwards
 - workaround invalid "help" options in config files
+- ensure any client decoding errors cause a window refresh
 - more helpful dpi warning
 - remove unused remnants of nvenc
 - more reliable and clean shutdown of connections and threads
