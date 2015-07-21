@@ -1192,7 +1192,7 @@ class WindowSource(object):
         #overriden in window video source to exclude the video subregion
         return None
 
-    def full_quality_refresh(self, window, damage_options):
+    def full_quality_refresh(self, window, damage_options={}):
         #called on use request via xpra control,
         #or when we need to resend the window after a send timeout
         if not window.is_managed():
@@ -1250,20 +1250,21 @@ class WindowSource(object):
         self.statistics.damage_in_latency.append((now, width*height, actual_batch_delay, damage_in_latency))
         self.queue_packet(packet, self.wid, width*height, start_send, damage_packet_sent)
 
-    def damage_packet_acked(self, damage_packet_sequence, width, height, decode_time):
+    def damage_packet_acked(self, window, damage_packet_sequence, width, height, decode_time):
         """
             The client is acknowledging a damage packet,
             we record the 'client decode time' (provided by the client itself)
             and the "client latency".
             If we were waiting for pending ACKs to send an expired damage packet,
             check for it.
-            (warning: this runs from the non-UI network parse thread)
+            (warning: this runs from the non-UI network parse thread,
+            don't access the window from here!)
         """
         log("packet decoding sequence %s for window %s %sx%s took %.1fms", damage_packet_sequence, self.wid, width, height, decode_time/1000.0)
         if decode_time>0:
             self.statistics.client_decode_time.append((time.time(), width*height, decode_time))
         elif decode_time<0:
-            self.client_decode_error(decode_time)
+            self.client_decode_error(window, decode_time)
         pending = self.statistics.damage_ack_pending.get(damage_packet_sequence)
         if pending is None:
             log("cannot find sent time for sequence %s", damage_packet_sequence)
@@ -1283,8 +1284,11 @@ class WindowSource(object):
             self.soft_expired = 0
 
     def client_decode_error(self, error):
+        log.warn("client_decode_error: %s", error)
         #something failed client-side, so we can't rely on the delta being available
         self.last_pixmap_data = None
+        if window:
+            self.idle_add(self.full_quality_refresh, window)
 
 
     def make_data_packet(self, damage_time, process_damage_time, wid, image, coding, sequence, options):
