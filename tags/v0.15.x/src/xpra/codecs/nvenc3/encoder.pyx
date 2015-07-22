@@ -1271,8 +1271,8 @@ cdef class Encoder:
     cdef object max_block_sizes
     cdef object max_grid_sizes
     cdef long max_threads_per_block
-    cdef long free_memory
-    cdef long total_memory
+    cdef uint64_t free_memory
+    cdef uint64_t total_memory
     #NVENC:
     cdef NV_ENCODE_API_FUNCTION_LIST functionList               #@DuplicatedSignature
     cdef void *context
