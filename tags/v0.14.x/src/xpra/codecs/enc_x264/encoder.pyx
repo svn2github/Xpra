@@ -250,7 +250,7 @@ def get_input_colorspaces():
 
 def get_output_colorspaces(input_colorspace):
     assert input_colorspace in COLORSPACES
-    return COLORSPACE_FORMATS[input_colorspace]
+    return COLORSPACES[input_colorspace]
 
 def get_spec(encoding, colorspace):
     assert encoding in get_encodings(), "invalid encoding: %s (must be one of %s" % (encoding, get_encodings())
