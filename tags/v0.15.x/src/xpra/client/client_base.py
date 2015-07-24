@@ -180,7 +180,7 @@ class XpraClientBase(object):
             return
         def protocol_closed():
             log("disconnect_and_quit: protocol_closed()")
-            self.quit(exit_code)
+            self.idle_add(self.quit, exit_code)
         if p:
             p.flush_then_close(["disconnect", reason], done_callback=protocol_closed)
         self.timeout_add(1000, self.quit, exit_code)

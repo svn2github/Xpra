@@ -155,7 +155,7 @@ class XpraClientBase(object):
             return
         def do_quit():
             log("disconnect_and_quit: do_quit()")
-            self.quit(exit_code)
+            self.idle_add(self.quit, exit_code)
         if p:
             p.flush_then_close(["disconnect", reason], done_callback=do_quit)
         self.timeout_add(1000, do_quit)
