@@ -479,6 +479,12 @@ def get_window_frame_sizes():
         log.warn("failed to get window frame size information: %s", e)
         return None
 
+def take_screenshot():
+    from xpra.platform.win32.shadow_server import Win32RootWindowModel
+    rwm = Win32RootWindowModel(object())
+    return rwm.take_screenshot()
+
+
 def show_desktop(b):
     #not defined in win32con..
     MIN_ALL         = 419

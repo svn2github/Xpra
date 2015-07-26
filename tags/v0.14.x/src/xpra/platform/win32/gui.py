@@ -71,6 +71,13 @@ def gl_check():
     return None
 
 
+def take_screenshot():
+    #would be better to refactor the code..
+    from xpra.platform.win32.shadow_server import Win32RootWindowModel
+    rwm = Win32RootWindowModel(object())
+    return rwm.take_screenshot()
+
+
 class ClientExtras(object):
     def __init__(self, client, opts):
         self.client = client
