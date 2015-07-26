@@ -4,6 +4,13 @@ set DIR=%CD%
 
 SETLOCAL
 
+SET XPRA_WIN32_BUILD_LIB_PREFIX=C:\
+IF EXIST "E:\Xpra-Build-Libs\" (
+	SET XPRA_WIN32_BUILD_LIB_PREFIX=E:\Xpra-Build-Libs\
+)
+IF EXIST "E:\Xpra-Build-Libs-v0.14.x\" (
+	SET XPRA_WIN32_BUILD_LIB_PREFIX=E:\Xpra-Build-Libs-v0.14.x\
+)
 REM support double-click on BAT file, so run from parent directory:
 set WORKING_DIRECTORY=%cd%
 IF EXIST "MAKE-INSTALLER.BAT" CD ..
