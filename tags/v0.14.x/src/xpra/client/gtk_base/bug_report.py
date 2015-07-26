@@ -7,7 +7,6 @@
 
 import os.path
 import sys
-import signal
 
 from xpra.platform.gui import init as gui_init
 gui_init()
@@ -28,7 +27,7 @@ from xpra.client.client_base import SIGNAMES
 from xpra.platform.paths import get_icon_dir
 from xpra.platform.info import get_user_info
 from xpra.util import nonl, updict
-from xpra.log import Logger, enable_debug_for
+from xpra.log import Logger
 log = Logger("util")
 
 
@@ -309,37 +308,3 @@ class BugReport(object):
         finally:
             zf.close()
 
-
-def main():
-    from xpra.gtk_common.quit import gtk_main_quit_on_fatal_exceptions_enable
-    gtk_main_quit_on_fatal_exceptions_enable()
-
-    from xpra.platform import init as platform_init
-    from xpra.platform.gui import ready as gui_ready
-    platform_init("Xpra-Bug-Report", "Xpra Bug Report")
-
-    #logging init:
-    if "-v" in sys.argv:
-        enable_debug_for("util")
-
-    app = BugReport()
-    app.close = app.quit
-    app.init(True)
-    def app_signal(signum, frame):
-        print("")
-        log("got signal %s" % SIGNAMES.get(signum, signum))
-        app.quit()
-    signal.signal(signal.SIGINT, app_signal)
-    signal.signal(signal.SIGTERM, app_signal)
-    try:
-        gui_ready()
-        app.show()
-        app.run()
-    except KeyboardInterrupt:
-        pass
-    return 0
-
-
-if __name__ == "__main__":
-    v = main()
-    sys.exit(v)
