@@ -1247,9 +1247,6 @@ if WIN32:
     add_data_files('icons', glob.glob('win32\\*.ico') + glob.glob('icons\\*.*'))
     if "install" in sys.argv or "install_exe" in sys.argv or "py2exe" in sys.argv:
         #a bit naughty here: we copy directly to the output dir:
-            if os.path.exists("C:\\Program Files (x86)\\gs"):
-                GHOSTSCRIPT_PARENT_DIR = "C:\\Program Files (x86)\\gs"
-            else:
         try:
             #more uglyness: locate -d DISTDIR in command line:
             dist = sys.argv[sys.argv.index("-d")+1]
