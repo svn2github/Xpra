@@ -310,18 +310,32 @@ fi
 
 
 %changelog
-* Tue Jul 21 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Mon Jul 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
+- fix application deadlocks on exit
+- fix NVENC on cards with over 4GB of RAM
 - fix csc Cython red and blue colours swapped on little endian systems
 - fix cleanup error on MS Windows, preventing process termination
-- fix pulseaudio device count reported
+- fix pulseaudio device count reported 
 - fix timer warnings in GTK2 notifier (mostly used on OSX)
 - fix sound communication errors not causing subprocess termination
 - fix Xorg path detection for Fedora 22 onwards
+- fix invalid list of output colorspaces with x264
+- fix bug report tool window so it can be used more than once
+- fix bug report tool log file error with Vista onwards
+- fix bug report screenshots on MS Windows with multiple screens
+- fix shadow mode on MS Windows with multiple screens
+- fix OpenCL csc module with Python3
+- don't require a nonsensical display name on OSX and win32
+- safer x264 API initialization call
 - safer OpenGL platform checks (prevents crashes with wine)
+- safer NVENC API call
+- safer lz4 version checking code 
 - workaround invalid "help" options in config files
 - ensure any client decoding errors cause a window refresh
+- MS Windows build environment cleanup 
 - Fedora: update PyOpenGL package dependency
+
 
 * Tue Jul 07 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.3-1
 - fix invalid X11 atom

@@ -247,22 +247,32 @@ fi
 
 
 %changelog
-* Tue Jul 21 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Mon Jul 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix delta compression errors
-- fix csc Cython red and blue colours swapped on little endian systems
+- fix application deadlocks on exit
 - fix invalid X11 atom
+- fix csc Cython red and blue colours swapped on little endian systems
 - fix unhandled failure code from libav
 - fix cleanup error on MS Windows, preventing process termination
 - fix OpenGL paint early errors
 - fix pulseaudio device count reported
 - fix timer warnings in GTK2 notifier (mostly used on OSX)
 - fix Xorg path detection for Fedora 22 onwards
+- fix invalid list of output colorspaces with x264
+- fix bug report tool window so it can be used more than once
+- fix bug report tool log file error with Vista onwards
+- fix bug report screenshots on MS Windows with multiple screens
+- fix shadow mode on MS Windows with multiple screens
+- safer x264 API initialization call
+- safer lz4 version checking code
+- don't require a nonsensical display name on OSX and win32
 - workaround invalid "help" options in config files
 - ensure any client decoding errors cause a window refresh
 - more helpful dpi warning
 - remove unused remnants of nvenc
 - more reliable and clean shutdown of connections and threads
 - skip sending invalid packet to client for the "name" control command
+- MS Windows build environment cleanup
 
 * Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.27-4
 - force rebuild with updated Fedora 22+ dependencies
