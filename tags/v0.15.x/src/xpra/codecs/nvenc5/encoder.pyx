@@ -1865,6 +1865,7 @@ cdef class Encoder:
         memset(&mapInputResource, 0, sizeof(NV_ENC_MAP_INPUT_RESOURCE))
         mapInputResource.version = NV_ENC_MAP_INPUT_RESOURCE_VER
         mapInputResource.registeredResource  = self.inputHandle
+        mapInputResource.mappedBufferFmt = self.bufferFmt
         log("nvEncMapInputResource(%#x)", <unsigned long> &mapInputResource)
         with nogil:
             r = self.functionList.nvEncMapInputResource(self.context, &mapInputResource)
