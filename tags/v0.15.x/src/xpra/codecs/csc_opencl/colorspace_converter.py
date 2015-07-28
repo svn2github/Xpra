@@ -13,7 +13,7 @@ import numpy
 import pyopencl             #@UnresolvedImport
 from pyopencl import mem_flags  #@UnresolvedImport
 
-from xpra.os_util import memoryview_to_bytes
+from xpra.os_util import memoryview_to_bytes, _memoryview
 
 PREFERRED_DEVICE_TYPE = os.environ.get("XPRA_OPENCL_DEVICE_TYPE", "GPU")
 PREFERRED_DEVICE_NAME = os.environ.get("XPRA_OPENCL_DEVICE_NAME", "")
@@ -715,7 +715,9 @@ class ColorspaceConverter(object):
         input_images = []
         for i in range(3):
             _, y_div = divs[i]
-            plane = memoryview_to_bytes(pixels[i])
+            plane = pixels[i]
+            if type(plane)==_memoryview:
+                plane = memoryview_to_bytes(plane)
             if type(plane)==str:
                 flags = mem_flags.READ_ONLY | mem_flags.COPY_HOST_PTR
             else:
