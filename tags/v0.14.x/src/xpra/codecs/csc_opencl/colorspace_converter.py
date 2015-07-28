@@ -101,7 +101,10 @@ def select_device():
     log_platforms_info()
     #try to choose a platform and device using *our* heuristics / env options:
     options = {}
+    log("PREFERRED_DEVICE_NAME=%s, dtype==PREFERRED_DEVICE_TYPE=%s, PREFERRED_DEVICE_PLATFORM=%s", PREFERRED_DEVICE_NAME, PREFERRED_DEVICE_TYPE, PREFERRED_DEVICE_PLATFORM)
+    log("select_device() environment preferred DEVICE_NAME=%s, DEVICE_TYPE=%s, DEVICE_PLATFORM=%s", PREFERRED_DEVICE_NAME, PREFERRED_DEVICE_TYPE, PREFERRED_DEVICE_PLATFORM)
     for platform in opencl_platforms:
+        log("evaluating platform=%s", platform.name)
         if platform.name.startswith("AMD") and not AMD_WARNING_SHOWN:
             log.warn("Warning: the AMD OpenCL is loaded, it is known to interfere with signal delivery!")
             log.warn(" please consider disabling OpenCL or removing the AMD icd")
@@ -110,10 +113,12 @@ def select_device():
         is_cuda = platform.name.find("CUDA")>=0
         for d in devices:
             if d.available and d.compiler_available and d.get_info(pyopencl.device_info.IMAGE_SUPPORT):
+                log("evaluating platform=%s", platform.name)
                 if not is_supported(platform.name) and (len(PREFERRED_DEVICE_PLATFORM)==0 or str(platform.name).find(PREFERRED_DEVICE_PLATFORM)<0):
                     log("ignoring unsupported platform/device: %s / %s", platform.name, d.name)
                     continue
                 dtype = device_type(d)
+                log("evaluating device type=%s, name=%s", dtype, d.name)
                 if is_cuda:
                     score = 0
                 elif dtype==PREFERRED_DEVICE_TYPE:
@@ -121,16 +126,18 @@ def select_device():
                 else:
                     score = 10
 
-                if not is_cuda:
-                    if len(PREFERRED_DEVICE_NAME)>0 and d.name.find(PREFERRED_DEVICE_NAME)>=0:
-                        score += 50
-                    if len(PREFERRED_DEVICE_PLATFORM)>0 or str(platform.name).find(PREFERRED_DEVICE_PLATFORM)>=0:
-                        score += 50
+                if len(PREFERRED_DEVICE_NAME)>0 and d.name.find(PREFERRED_DEVICE_NAME)>=0:
+                    score += 50
+                if len(PREFERRED_DEVICE_PLATFORM)>0 and str(platform.name).find(PREFERRED_DEVICE_PLATFORM)>=0:
+                    score += 50
 
                 #Intel SDK does not work (well?) on AMD CPUs
                 #and CUDA has problems doing YUV to RGB..
-                if (platform.name.startswith("Intel") and d.name.startswith("AMD")) or is_cuda:
-                    score = max(0, score - 20)
+                if platform.name.startswith("Intel"):
+                    if d.name.find("AMD")>=0 or is_cuda:
+                        score = max(0, score - 20)
+                    elif d.name.find("Intel")>=0:
+                        score += 10
 
                 options.setdefault(score, []).append((d, platform))
     log("best device/platform options: %s", options)
