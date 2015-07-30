@@ -14,6 +14,12 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * fix bug report tool log file error with Vista onwards
   * fix bug report screenshots on MS Windows with multiple screens
   * fix shadow mode on MS Windows with multiple screens
+  * fix OpenCL platform selection override
+  * fix Python3 Pillow encoding level (must be an integer)
+  * fix capture of subprocesses return code
+  * fix Xvfb dependencies for Ubuntu
+  * updated dependency list for Debian and Ubuntu distros
+  * safer x264 API initialization call
   * safer x264 API initialization call
   * safer lz4 version checking code
   * don't require a nonsensical display name on OSX and win32
@@ -25,7 +31,7 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * skip sending invalid packet to client for the "name" control command
   * MS Windows build environment cleanup
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 27 Jul 2015 22:31:15 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 30 Jul 2015 18:12:47 +0700
 
 xpra (0.14.27-2) UNRELEASED; urgency=low
   * force rebuild with decorations fixup

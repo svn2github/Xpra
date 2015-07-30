@@ -247,7 +247,7 @@ fi
 
 
 %changelog
-* Mon Jul 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Thu Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix delta compression errors
 - fix application deadlocks on exit
 - fix invalid X11 atom
@@ -263,6 +263,11 @@ fi
 - fix bug report tool log file error with Vista onwards
 - fix bug report screenshots on MS Windows with multiple screens
 - fix shadow mode on MS Windows with multiple screens
+- fix OpenCL platform selection override
+- fix Python3 Pillow encoding level (must be an integer)
+- fix capture of subprocesses return code
+- fix Xvfb dependencies for Ubuntu
+- updated dependency list for Debian and Ubuntu distros
 - safer x264 API initialization call
 - safer lz4 version checking code
 - don't require a nonsensical display name on OSX and win32

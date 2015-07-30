@@ -310,7 +310,7 @@ fi
 
 
 %changelog
-* Mon Jul 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Thu Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
 - fix application deadlocks on exit
 - fix NVENC on cards with over 4GB of RAM
@@ -326,6 +326,16 @@ fi
 - fix bug report screenshots on MS Windows with multiple screens
 - fix shadow mode on MS Windows with multiple screens
 - fix OpenCL csc module with Python3
+- fix OpenCL platform selection override
+- fix Python3 Pillow encoding level (must be an integer)
+- fix capture of subprocesses return code
+- fix Xvfb dependencies for Ubuntu
+- fix ldconfig warning on Debian and Ubuntu
+- fix warnings with X11 desktop environments without virtual desktops
+- fix use of deprecated ffmpeg enum names
+- include the CUDA pre-compiled kernels on Debian / Ubuntu (NVENC)
+- packaging fixes for printing on Debian / Ubuntu
+- updated dependency list for Debian and Ubuntu distros
 - don't require a nonsensical display name on OSX and win32
 - safer x264 API initialization call
 - safer OpenGL platform checks (prevents crashes with wine)
