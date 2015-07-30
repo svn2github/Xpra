@@ -48,20 +48,16 @@ Recommends:
 #version specific values (sigh), uncomment the one you need:
 #x264
 #precise:	,libx264-120
-#saucy:		,libx264-123
 #trusty:	,libx264-142
-#utopic:	,libx264-142
 #vivid:		,libx264-142
 #wheezy:	,libx264-123
 #jessie:	,libx264-142
-#sid:		,libx264-142
+#stretch:	,libx264-146
 #webp
 #wheezy ships the outdated and buggy libwebp2 (do not use)
 #jessie:	,libwebp5
-#sid:		,libwebp5
-#saucy:		,libwebp4
+#stretch	,libwebp5
 #trusty:	,libwebp5
-#utopic:	,libwebp5
 #vivid:		,libwebp5
 # audio-related:
         ,gstreamer0.10-plugins-base
@@ -79,7 +75,6 @@ Recommends:
 		,python-lzo
 # we cannot do versionned recommends but we need keyboard-configuration (>= 1.82)
         ,keyboard-configuration
-#vivid:		,python-lz4
 Suggests: openssh-server
 # optional - only really useful with GPU opencl implementations:
         ,python-pyopencl
