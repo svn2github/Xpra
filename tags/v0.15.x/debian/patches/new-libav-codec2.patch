@@ -1,6 +1,6 @@
-Index: src/xpra/codecs/dec_avcodec2/decoder.pyx
+Index: xpra/codecs/dec_avcodec2/decoder.pyx
 ===================================================================
---- a/xpra/codecs/dec_avcodec2/decoder.pyx	(revision 8396)
+--- a/xpra/codecs/dec_avcodec2/decoder.pyx	(revision 10154)
 +++ b/xpra/codecs/dec_avcodec2/decoder.pyx	(working copy)
 @@ -58,8 +58,8 @@
      int AV_PIX_FMT_YUV422P
@@ -15,7 +15,7 @@ Index: src/xpra/codecs/dec_avcodec2/decoder.pyx
      int AV_PIX_FMT_GBRP
 @@ -92,7 +92,7 @@
  
-     AVPixelFormat PIX_FMT_NONE
+     AVPixelFormat AV_PIX_FMT_NONE
      AVCodecID AV_CODEC_ID_H264
 -    AVCodecID AV_CODEC_ID_H265
 +    #AVCodecID AV_CODEC_ID_H265
