@@ -135,6 +135,8 @@ class ChildReaper(object):
             self.check()
 
     def reap(self):
+        if not self.check():
+            return
         while True:
             try:
                 pid, _ = os.waitpid(-1, os.WNOHANG)
