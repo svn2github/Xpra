@@ -28,11 +28,11 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
         ,python-gtk2
         ,x11-xserver-utils
 #we need a vfb: either Xdummy (Debian) or Xvfb (Ubuntu breaks Xorg tty access)
-#wheezy:,xserver-xorg-video-dummy
-#jessie:,xserver-xorg-video-dummy
-#stretch:,xserver-xorg-video-dummy
-#trusty:,xvfb
-#vivid: ,xvfb
+#wheezy:        ,xserver-xorg-video-dummy
+#jessie:        ,xserver-xorg-video-dummy
+#stretch:        ,xserver-xorg-video-dummy
+#trusty:        ,xvfb
+#vivid:        ,xvfb
         ,xserver-xorg-input-void
 # for opengl support:
         ,python-gtkglext1
@@ -42,23 +42,23 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 # for PNG and JPEG support:
         ,python-imaging
 #if you use Ubuntu, you will "want" this mess:
-#		,python-appindicator
+#        ,python-appindicator
 Recommends:
         libswscale2
 #version specific values (sigh), uncomment the one you need:
 #x264
-#precise:	,libx264-120
-#trusty:	,libx264-142
-#vivid:		,libx264-142
-#wheezy:	,libx264-123
-#jessie:	,libx264-142
-#stretch:	,libx264-146
+#precise:        ,libx264-120
+#trusty:        ,libx264-142
+#vivid:        ,libx264-142
+#wheezy:        ,libx264-123
+#jessie:        ,libx264-142
+#stretch:        ,libx264-146
 #webp
 #wheezy ships the outdated and buggy libwebp2 (do not use)
-#jessie:	,libwebp5
-#stretch	,libwebp5
-#trusty:	,libwebp5
-#vivid:		,libwebp5
+#jessie:        ,libwebp5
+#stretch:        ,libwebp5
+#trusty:        ,libwebp5
+#vivid:        ,libwebp5
 # audio-related:
         ,gstreamer0.10-plugins-base
 #                 ^^ vorbis ^^
@@ -70,9 +70,9 @@ Recommends:
         ,openssh-client
         ,ssh-askpass
 # hopefully this will motivate someone to package it (trivial too):
-		,python-lz4
+        ,python-lz4
 # this is not as good as lz4, but it exists today and is still better than zlib:
-		,python-lzo
+        ,python-lzo
 # we cannot do versionned recommends but we need keyboard-configuration (>= 1.82)
         ,keyboard-configuration
 Suggests: openssh-server
@@ -83,10 +83,10 @@ Suggests: openssh-server
 # for printer forwarding:
         ,cups-pdf
         ,python-cups
-#vivid:		,websockify
+#vivid:        ,websockify
         ,python-dbus
 # only useful when connecting using a JSON / YAML only client:
-		,python-yaml
+        ,python-yaml
 Description: tool to detach/reattach running X programs
  Xpra gives you the functionality of GNU Screen for X applications.
  .
