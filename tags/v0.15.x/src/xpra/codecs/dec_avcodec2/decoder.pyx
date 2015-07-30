@@ -90,7 +90,7 @@ cdef extern from "libavcodec/avcodec.h":
         int flags2
         int refcounted_frames
 
-    AVPixelFormat PIX_FMT_NONE
+    AVPixelFormat AV_PIX_FMT_NONE
     AVCodecID AV_CODEC_ID_H264
     AVCodecID AV_CODEC_ID_H265
     AVCodecID AV_CODEC_ID_VP8
@@ -302,8 +302,8 @@ cdef class Decoder:
         if not self.colorspace:
             log.error("invalid pixel format: %s", colorspace)
             return  False
-        self.pix_fmt = FORMAT_TO_ENUM.get(colorspace, PIX_FMT_NONE)
-        if self.pix_fmt==PIX_FMT_NONE:
+        self.pix_fmt = FORMAT_TO_ENUM.get(colorspace, AV_PIX_FMT_NONE)
+        if self.pix_fmt==AV_PIX_FMT_NONE:
             log.error("invalid pixel format: %s", colorspace)
             return  False
         self.actual_pix_fmt = self.pix_fmt
