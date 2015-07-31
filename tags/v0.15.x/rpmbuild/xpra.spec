@@ -310,7 +310,7 @@ fi
 
 
 %changelog
-* Thu Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Fri Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
 - fix application deadlocks on exit
 - fix NVENC on cards with over 4GB of RAM
@@ -333,6 +333,7 @@ fi
 - fix ldconfig warning on Debian and Ubuntu
 - fix warnings with X11 desktop environments without virtual desktops
 - fix use of deprecated ffmpeg enum names
+- fix client error if built without webp support
 - include the CUDA pre-compiled kernels on Debian / Ubuntu (NVENC)
 - packaging fixes for printing on Debian / Ubuntu
 - updated dependency list for Debian and Ubuntu distros

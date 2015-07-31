@@ -18,6 +18,7 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * fix Python3 Pillow encoding level (must be an integer)
   * fix capture of subprocesses return code
   * fix Xvfb dependencies for Ubuntu
+  * fix client error if built without webp support
   * updated dependency list for Debian and Ubuntu distros
   * safer x264 API initialization call
   * safer x264 API initialization call
@@ -31,7 +32,7 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * skip sending invalid packet to client for the "name" control command
   * MS Windows build environment cleanup
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 30 Jul 2015 18:12:47 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 31 Jul 2015 18:33:25 +0700
 
 xpra (0.14.27-2) UNRELEASED; urgency=low
   * force rebuild with decorations fixup

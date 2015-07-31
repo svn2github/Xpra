@@ -247,7 +247,7 @@ fi
 
 
 %changelog
-* Thu Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Fri Jul 31 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix delta compression errors
 - fix application deadlocks on exit
 - fix invalid X11 atom
@@ -267,6 +267,7 @@ fi
 - fix Python3 Pillow encoding level (must be an integer)
 - fix capture of subprocesses return code
 - fix Xvfb dependencies for Ubuntu
+- fix client error if built without webp support
 - updated dependency list for Debian and Ubuntu distros
 - safer x264 API initialization call
 - safer lz4 version checking code
