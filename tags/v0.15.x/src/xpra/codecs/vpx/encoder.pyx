@@ -399,6 +399,8 @@ cdef class Encoder:
             if encoding=="vp9":
                 #disable periodic Q boost which causes latency spikes:
                 self.codec_control("periodic Q boost", VP9E_SET_FRAME_PERIODIC_BOOST, 0)
+        self.do_set_encoding_speed(speed)
+        self.do_set_encoding_quality(quality)
 
 
     def codec_control(self, info, int attr, int value):
@@ -532,7 +534,7 @@ cdef class Encoder:
         if self.frames==0:
             flags |= VPX_EFLAG_FORCE_KF
         #deadline based on speed (also affects quality...)
-        cdef long deadline
+        cdef unsigned long deadline
         if self.speed<10 or self.quality>=90:
             deadline = VPX_DL_BEST_QUALITY
         elif self.speed>=100:
@@ -543,7 +545,7 @@ cdef class Encoder:
             #NEVER use 0 (VPX_DL_BEST_QUALITY) with vp9:
             deadline = max(1, deadline)
         #cap the deadline at 250ms, which is already plenty
-        deadline = min(250, deadline)
+        deadline = min(250*1000, deadline)
         start = time.time()
         with nogil:
             ret = vpx_codec_encode(self.context, image, self.frames, 1, flags, deadline)
@@ -573,6 +575,9 @@ cdef class Encoder:
         if self.speed==pct:
             return
         self.speed = pct
+        self.do_set_encoding_speed(pct)
+
+    cdef do_set_encoding_speed(self, int pct):
         #Valid range for VP8: -16..16
         #Valid range for VP9: -8..8
         range = 8*(1+int(self.encoding=="vp8"))
@@ -585,6 +590,9 @@ cdef class Encoder:
         if self.quality==pct:
             return
         self.quality = pct
+        self.do_set_encoding_quality(pct)
+
+    cdef do_set_encoding_quality(self, int pct):
         self.update_cfg()
         IF ENABLE_VP9:
             if self.encoding=="vp9":
