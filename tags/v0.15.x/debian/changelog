@@ -1,5 +1,6 @@
 xpra (0.15.4-1) UNRELEASED; urgency=low
   * fix delta compression errors
+  * fix VP8 and VP9 performance when speed command line option is used
   * fix application deadlocks on exit
   * fix NVENC on cards with over 4GB of RAM
   * fix csc Cython red and blue colours swapped on little endian systems
@@ -35,7 +36,7 @@ xpra (0.15.4-1) UNRELEASED; urgency=low
   * MS Windows build environment cleanup
   * Fedora: update PyOpenGL package dependency
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 31 Jul 2015 18:33:25 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 01 Aug 2015 14:02:41 +0700
 
 xpra (0.15.3-1) UNRELEASED; urgency=low
   * fix invalid X11 atom

@@ -310,8 +310,9 @@ fi
 
 
 %changelog
-* Fri Jul 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
+* Sat Aug 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
+- fix VP8 and VP9 performance when speed command line option is used
 - fix application deadlocks on exit
 - fix NVENC on cards with over 4GB of RAM
 - fix csc Cython red and blue colours swapped on little endian systems

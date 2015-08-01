@@ -1,6 +1,7 @@
-v0.15.4 (2015-07-31)
+v0.15.4 (2015-08-01)
 ======================
 	-- fix delta compression errors
+	-- fix VP8 and VP9 performance when speed command line option is used
 	-- fix application deadlocks on exit
 	-- fix NVENC on cards with over 4GB of RAM
 	-- fix csc Cython red and blue colours swapped on little endian systems
