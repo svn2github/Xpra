@@ -1,9 +1,10 @@
-v0.14.28 (2015-07-31)
+v0.14.28 (2015-08-02)
 ======================
 	-- fix delta compression errors
 	-- fix application deadlocks on exit
 	-- fix invalid X11 atom
 	-- fix csc Cython red and blue colours swapped on little endian systems
+	-- fix byteswapping fallback code
 	-- fix unhandled failure code from libav
 	-- fix cleanup error on MS Windows, preventing process termination
 	-- fix OpenGL paint early errors

@@ -3,6 +3,7 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * fix application deadlocks on exit
   * fix invalid X11 atom
   * fix csc Cython red and blue colours swapped on little endian systems
+  * fix byteswapping fallback code
   * fix unhandled failure code from libav
   * fix cleanup error on MS Windows, preventing process termination
   * fix OpenGL paint early errors
@@ -32,7 +33,7 @@ xpra (0.14.28-1) UNRELEASED; urgency=low
   * skip sending invalid packet to client for the "name" control command
   * MS Windows build environment cleanup
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 31 Jul 2015 18:33:25 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 02 Aug 2015 23:12:47 +0700
 
 xpra (0.14.27-2) UNRELEASED; urgency=low
   * force rebuild with decorations fixup

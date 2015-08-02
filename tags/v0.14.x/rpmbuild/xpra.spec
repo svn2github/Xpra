@@ -247,11 +247,12 @@ fi
 
 
 %changelog
-* Fri Jul 31 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
+* Sun Aug 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
 - fix delta compression errors
 - fix application deadlocks on exit
 - fix invalid X11 atom
 - fix csc Cython red and blue colours swapped on little endian systems
+- fix byteswapping fallback code
 - fix unhandled failure code from libav
 - fix cleanup error on MS Windows, preventing process termination
 - fix OpenGL paint early errors
