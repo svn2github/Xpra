@@ -63,6 +63,7 @@ cdef argbdata_to_rgb(const unsigned char *argb, int argb_len):
     #3 bytes per pixel:
     rgb = bytearray(mi*3)
     cdef int i = 0                          #@DuplicateSignature
+    cdef int di = 0
     while i < argb_len:
         rgb[di]   = argb[i+1]               #R
         rgb[di+1] = argb[i+2]               #G
