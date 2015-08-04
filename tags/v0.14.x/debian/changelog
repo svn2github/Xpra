@@ -1,3 +1,8 @@
+xpra (0.14.28-2) UNRELEASED; urgency=low
+  * force rebuild with fixup
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 04 Aug 2015 12:52:59 +0700
+
 xpra (0.14.28-1) UNRELEASED; urgency=low
   * fix delta compression errors
   * fix application deadlocks on exit
