@@ -321,6 +321,7 @@ def check_GL_support(gldrawable, glcontext, min_texture_size=0, force_enable=Fal
             gl_check_error("The texture size is too small: %s" % texture_size)
         else:
             log("Texture size GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB=%s, GL_MAX_TEXTURE_SIZE=%s", rect_texture_size, texture_size)
+        props["texture-size-limit"] = min(rect_texture_size, texture_size)
         return props
     finally:
         for x in alogger.handlers[0].records:
