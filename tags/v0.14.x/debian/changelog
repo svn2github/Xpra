@@ -1,3 +1,11 @@
+xpra (0.14.29-1) UNRELEASED; urgency=low
+  * fix spurious errors on closed connections
+  * fix size limits on Cython fallback module
+  * fix some invalid Xorg dummy modelines
+  * show maximum OpenGL texture size in diagnostics and bug reports
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 13 Aug 2015 19:05:00 +0700
+
 xpra (0.14.28-2) UNRELEASED; urgency=low
   * force rebuild with fixup
 

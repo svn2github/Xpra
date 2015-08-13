@@ -1,3 +1,17 @@
+v0.15.5 (2015-08-13)
+======================
+	-- fix spurious errors on closed connections
+	-- fix size limits on Cython fallback module
+	-- fix some invalid Xorg dummy modelines
+	-- fix aspect ratio not honoured and associated warnings
+	-- fix printing file compression
+	-- try not to downscale windows from shadow servers
+	-- add vpx-xpra to the RPM dependency list so we get VPX 1.9 support
+	-- allow the user to remove some atoms from _NET_SUPPORTED
+	-- show maximum OpenGL texture size in diagnostics and bug reports
+	-- minor python3 fixes
+
+
 v0.15.4 (2015-08-02)
 ======================
 	-- fix delta compression errors

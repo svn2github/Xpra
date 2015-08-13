@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.4
+%define version 0.15.5
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -312,6 +312,18 @@ fi
 
 
 %changelog
+* Sun Aug 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.5-1
+- fix spurious errors on closed connections
+- fix size limits on Cython fallback module
+- fix some invalid Xorg dummy modelines
+- fix aspect ratio not honoured and associated warnings
+- fix printing file compression
+- try not to downscale windows from shadow servers
+- add vpx-xpra to the RPM dependency list so we get VPX 1.9 support
+- allow the user to remove some atoms from _NET_SUPPORTED
+- show maximum OpenGL texture size in diagnostics and bug reports
+- minor python3 fixes
+
 * Sun Aug 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.4-1
 - fix delta compression errors
 - fix VP8 and VP9 performance when speed command line option is used
