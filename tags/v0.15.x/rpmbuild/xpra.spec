@@ -32,7 +32,7 @@
 %define with_python3 1
 
 %define libwebp libwebp
-%define libvpx libvpx
+%define libvpx libvpx-xpra
 %define run_tests 1
 
 # any centos / rhel supported:
@@ -54,7 +54,6 @@
 #can't run the tests with python 2.6 which is too old:
 %define run_tests 0
 #distro version is too old replace with our private libraries
-%define libvpx libvpx-xpra
 %define libwebp libwebp-xpra
 #no pycups available in repos:
 %define requires_printing %{nil}
@@ -76,7 +75,10 @@
 #note: probably not working since we don't have gtkglext for Python3?
 %define py3requires_opengl , python3-PyOpenGL, numpy
 %endif
-
+%if 0%{?fedora}>=23
+#Fedora 23 has libvpx 1.4, no need for our own libvpx-xpra packages:
+%define libvpx libvpx
+%endif
 
 Name: xpra
 Version: %{version}
