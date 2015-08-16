@@ -42,11 +42,6 @@ This package provides Python3 bindings for the lz4 compression library
 http://code.google.com/p/lz4/ by Yann Collet.
 %endif
 
-#FIXME: this is fugly
-%if %(egrep -q 'Fedora release 2|CentOS Linux release 7|RedHat Linux release 7' /etc/redhat-release && echo 0 || echo 1)
-%debug_package
-%endif
-
 %prep
 %setup -q -n lz4-%{version}
 #only needed on centos (a fairly brutal solution):
