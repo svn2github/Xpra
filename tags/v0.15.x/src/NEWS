@@ -1,5 +1,10 @@
-v0.15.5 (2015-08-13)
+v0.15.5 (2015-08-19)
 ======================
+	-- fix encryption not enabled when pycrypto is missing: error out
+	-- fix encryption information leak, free network packets after use
+	-- fix the desktop naming code (worked by accident)
+	-- fix OpenGL errors with windows too big for the driver
+	-- fix some subcommands when encryption is enabled
 	-- fix spurious errors on closed connections
 	-- fix size limits on Cython fallback module
 	-- fix some invalid Xorg dummy modelines

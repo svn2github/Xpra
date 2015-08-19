@@ -247,7 +247,10 @@ fi
 
 
 %changelog
-* Thu Aug 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
+* Wed Aug 19 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
+- fix encryption not enabled when pycrypto is missing: error out
+- fix encryption information leak, free network packets after use
+- fix some subcommands when encryption is enabled
 - fix spurious errors on closed connections
 - fix size limits on Cython fallback module
 - fix some invalid Xorg dummy modelines
