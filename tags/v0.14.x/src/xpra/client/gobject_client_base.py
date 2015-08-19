@@ -102,7 +102,8 @@ class GObjectXpraClient(XpraClientBase, gobject.GObject):
 
 class CommandConnectClient(GObjectXpraClient):
     """
-        Utility superclass for clients that only send one command.
+        Utility superclass for clients that only send one command
+        via the hello packet.
     """
 
     def __init__(self, conn, opts):
@@ -126,7 +127,7 @@ class CommandConnectClient(GObjectXpraClient):
 
     def server_connection_established(self):
         #don't bother parsing the network caps:
-        #* it would cause errors because the caps will be missing
+        #* it could cause errors if the caps are missing
         #* we don't care about sending anything back after hello
         log("server_capabilities: %s", self.server_capabilities)
         log("protocol state: %s", self._protocol.save_state())
@@ -134,6 +135,19 @@ class CommandConnectClient(GObjectXpraClient):
 
     def do_command(self):
         raise NotImplementedError()
+
+
+class SendCommandConnectClient(CommandConnectClient):
+    """
+        Utility superclass for clients that only send at least one more packet
+        after the hello packet.
+        So unlike CommandConnectClient, we do need the network and encryption to be setup.
+    """
+
+    def server_connection_established(self):
+        assert self.parse_encryption_capabilities(), "encryption failure"
+        assert self.parse_network_capabilities(), "network capabilities failure"
+        CommandConnectClient.server_connection_established(self)
 
 
 class ScreenshotXpraClient(CommandConnectClient):
@@ -212,7 +226,7 @@ class InfoXpraClient(CommandConnectClient):
         return capabilities
 
 
-class MonitorXpraClient(CommandConnectClient):
+class MonitorXpraClient(SendCommandConnectClient):
     """ This client does one thing only:
         it prints out events received from the server.
         If the server does not support this feature it exits with an error.
@@ -232,12 +246,12 @@ class MonitorXpraClient(CommandConnectClient):
         log.info(": ".join(packet[1:]))
 
     def init_packet_handlers(self):
-        CommandConnectClient.init_packet_handlers(self)
+        SendCommandConnectClient.init_packet_handlers(self)
         self._packet_handlers["server-event"] = self._process_server_event
         self._packet_handlers["ping"] = self._process_ping
 
     def make_hello(self):
-        capabilities = CommandConnectClient.make_hello(self)
+        capabilities = SendCommandConnectClient.make_hello(self)
         log.debug("make_hello() adding info_request to %s", capabilities)
         capabilities["wants_features"]  = True      #so we can verify that the server supports monitor mode
         capabilities["wants_events"]    = True      #tell the server we do support server events
@@ -295,7 +309,7 @@ class ControlXpraClient(CommandConnectClient):
         return capabilities
 
 
-class ExitXpraClient(CommandConnectClient):
+class ExitXpraClient(SendCommandConnectClient):
     """ This client does one thing only:
         it asks the server to terminate (like stop),
         but without killing the Xvfb or clients.
@@ -305,7 +319,7 @@ class ExitXpraClient(CommandConnectClient):
         self.warn_and_quit(EXIT_TIMEOUT, "timeout: server did not disconnect us")
 
     def make_hello(self):
-        capabilities = CommandConnectClient.make_hello(self)
+        capabilities = SendCommandConnectClient.make_hello(self)
         capabilities["exit_request"] = True
         return capabilities
 
@@ -316,13 +330,13 @@ class ExitXpraClient(CommandConnectClient):
         gobject.idle_add(self.send, "exit-server")
 
 
-class StopXpraClient(CommandConnectClient):
+class StopXpraClient(SendCommandConnectClient):
     """ stop a server """
 
     def make_hello(self):
         #used for telling the proxy server we want "stop"
         #(as waiting for the hello back would be too late)
-        capabilities = CommandConnectClient.make_hello(self)
+        capabilities = SendCommandConnectClient.make_hello(self)
         capabilities["stop_request"] = True
         return capabilities
 
@@ -335,14 +349,14 @@ class StopXpraClient(CommandConnectClient):
         #the server should send us the shutdown disconnection message anyway
         #and if not, we will then hit the timeout to tell us something went wrong
 
-class DetachXpraClient(CommandConnectClient):
+class DetachXpraClient(SendCommandConnectClient):
     """ run the detach subcommand """
 
     def make_hello(self):
         #used for telling the proxy server we want "detach"
         #(older versions ignore this flag and detach because this is a new valid connection
         # but this breaks if sharing is enabled!)
-        capabilities = CommandConnectClient.make_hello(self)
+        capabilities = SendCommandConnectClient.make_hello(self)
         capabilities["detach_request"] = True
         return capabilities
 
@@ -351,5 +365,5 @@ class DetachXpraClient(CommandConnectClient):
 
     def do_command(self):
         gobject.idle_add(self.send, "disconnect", DONE, "detaching")
-        #not exitint the client here,
+        #not exiting the client here,
         #the server should disconnect us with the response
