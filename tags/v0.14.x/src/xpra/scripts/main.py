@@ -635,18 +635,14 @@ def do_parse_cmdline(cmdline, defaults):
                       dest="remote_xpra", default=defaults.remote_xpra,
                       metavar="CMD",
                       help="How to run xpra on the remote host (default: '%default')")
-    if len(ENCRYPTION_CIPHERS)>0:
-        group.add_option("--encryption", action="store",
-                          dest="encryption", default=defaults.encryption,
-                          metavar="ALGO",
-                          help="Specifies the encryption cipher to use, supported algorithms are: %s (default: None)" % (", ".join(ENCRYPTION_CIPHERS)))
-        group.add_option("--encryption-keyfile", action="store",
-                          dest="encryption_keyfile", default=defaults.encryption_keyfile,
-                          metavar="FILE",
-                          help="Specifies the file containing the encryption key. (default: '%default')")
-    else:
-        hidden_options["encryption"] = ''
-        hidden_options["encryption_keyfile"] = ''
+    group.add_option("--encryption", action="store",
+                      dest="encryption", default=defaults.encryption,
+                      metavar="ALGO",
+                      help="Specifies the encryption cipher to use, supported algorithms are: %s (default: None)" % (", ".join(ENCRYPTION_CIPHERS) or 'none available'))
+    group.add_option("--encryption-keyfile", action="store",
+                      dest="encryption_keyfile", default=defaults.encryption_keyfile,
+                      metavar="FILE",
+                      help="Specifies the file containing the encryption key. (default: '%default')")
 
     options, args = parser.parse_args(cmdline[1:])
 
@@ -704,10 +700,13 @@ def do_parse_cmdline(cmdline, defaults):
     except Exception, e:
         raise InitException("invalid dpi: %s" % e)
     if options.encryption:
-        assert len(ENCRYPTION_CIPHERS)>0, "cannot use encryption: no ciphers available"
-        if options.encryption not in ENCRYPTION_CIPHERS:
+        if not ENCRYPTION_CIPHERS:
+            raise InitException("cannot use encryption: no ciphers available (pycrypto must be installed)")
+        if options.encryption and options.encryption not in ENCRYPTION_CIPHERS:
             raise InitException("encryption %s is not supported, try: %s" % (options.encryption, ", ".join(ENCRYPTION_CIPHERS)))
-        if not options.password_file and not options.encryption_keyfile:
+        #password file can be used as fallback for encryption keys:
+        has_key = options.password_file or os.environ.get('XPRA_PASSWORD') or os.environ.get('XPRA_ENCRYPTION_KEY')
+        if not has_key and options.encryption and not options.encryption_keyfile:
             raise InitException("encryption %s cannot be used without a keyfile (see --encryption-keyfile option)" % options.encryption)
     #ensure opengl is either True, False or None
     options.opengl = parse_bool("opengl", options.opengl)
