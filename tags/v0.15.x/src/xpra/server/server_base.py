@@ -1731,7 +1731,8 @@ class ServerBase(ServerCore):
                 name = "Main"
             else:
                 name = "Desktop %s" % (i+1)
-            if i<len(ss.desktop_names) and ss.desktop_names[i]:
+            for ss in self._server_sources.values():
+                if ss.desktops and i<len(ss.desktop_names) and ss.desktop_names[i]:
                 name = ss.desktop_names[i]
             names.append(name)
         self.set_desktops(names)
