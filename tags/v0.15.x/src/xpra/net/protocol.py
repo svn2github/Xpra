@@ -626,6 +626,7 @@ class Protocol(object):
         padding = None
         packet_index = 0
         compression_level = False
+        packet = None
         raw_packets = {}
         while not self._closed:
             buf = self._read_queue.get()
@@ -639,6 +640,7 @@ class Protocol(object):
                 read_buffer = buf
             bl = len(read_buffer)
             while not self._closed:
+                packet = None
                 bl = len(read_buffer)
                 if bl<=0:
                     break
@@ -726,7 +728,8 @@ class Protocol(object):
                         msg = "%s packet decompression failed" % ctype
                         if self.cipher_in:
                             msg += " (invalid encryption key?)"
-                        msg = "msg: %s" % e
+                        else:
+                            msg += " %s" % e
                         return self.gibberish(msg, data)
 
                 if self.cipher_in and not (protocol_flags & FLAGS_CIPHER):
@@ -757,7 +760,7 @@ class Protocol(object):
                         return
                     log("failed to parse %s packet: %s", etype, binascii.hexlify(data))
                     msg = "packet index=%s, packet size=%s, buffer size=%s, error=%s" % (packet_index, payload_size, bl, e)
-                    self.gibberish(msg, data)
+                    self.gibberish("failed to parse %s packet" % etype, data)
                     return
 
                 if self._closed:
@@ -780,6 +783,7 @@ class Protocol(object):
                 self.input_packetcount += 1
                 log("processing packet %s", packet_type)
                 self._process_packet_cb(self, packet)
+                packet = None
 
     def flush_then_close(self, last_packet, done_callback=None):
         """ Note: this is best effort only
