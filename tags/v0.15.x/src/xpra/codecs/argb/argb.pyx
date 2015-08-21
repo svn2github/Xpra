@@ -31,6 +31,12 @@ def argb_to_rgba(buf):
     assert object_as_buffer(buf, <const void**> &cbuf, &cbuf_len)==0, "cannot convert %s to a readable buffer" % type(buf)
     return argbdata_to_rgba(cbuf, cbuf_len)
 
+
+cdef inline unsigned char clamp(int v):
+    if v>255:
+        return 255
+    return <unsigned char> v
+
 cdef argbdata_to_rgba(const unsigned char* argb, int argb_len):
     if argb_len <= 0:
         return None
@@ -136,7 +142,7 @@ def premultiply_argb_in_place(buf):
 cdef do_premultiply_argb_in_place(unsigned int *buf, Py_ssize_t argb_len):
     # cbuf contains non-premultiplied ARGB32 data in native-endian.
     # We convert to premultiplied ARGB32 data, in-place.
-    cdef unsigned int a, r, g, b
+    cdef unsigned char a, r, g, b
     cdef unsigned int argb
     assert sizeof(int) == 4
     assert argb_len % 4 == 0, "invalid buffer size: %s is not a multiple of 4" % argb_len
@@ -145,11 +151,11 @@ cdef do_premultiply_argb_in_place(unsigned int *buf, Py_ssize_t argb_len):
         argb = buf[i]
         a = (argb >> 24) & 0xff
         r = (argb >> 16) & 0xff
-        r = r * a / 255
+        r = r * a // 255
         g = (argb >> 8) & 0xff
-        g = g * a / 255
+        g = g * a // 255
         b = (argb >> 0) & 0xff
-        b = b * a / 255
+        b = b * a // 255
         buf[i] = (a << 24) | (r << 16) | (g << 8) | (b << 0)
 
 def unpremultiply_argb_in_place(buf):
@@ -164,7 +170,7 @@ def unpremultiply_argb_in_place(buf):
 cdef do_unpremultiply_argb_in_place(unsigned int * buf, Py_ssize_t buf_len):
     # cbuf contains non-premultiplied ARGB32 data in native-endian.
     # We convert to premultiplied ARGB32 data, in-place.
-    cdef unsigned int a, r, g, b                    #@DuplicateSignature
+    cdef unsigned char a, r, g, b                    #@DuplicateSignature
     cdef unsigned int argb                          #@DuplicateSignature
     assert sizeof(int) == 4
     assert buf_len % 4 == 0, "invalid buffer size: %s is not a multiple of 4" % buf_len
@@ -175,12 +181,9 @@ cdef do_unpremultiply_argb_in_place(unsigned int * buf, Py_ssize_t buf_len):
         if a==0:
             buf[i] = 0
             continue
-        r = (argb >> 16) & 0xff
-        r = r * 255 / a
-        g = (argb >> 8) & 0xff
-        g = g * 255 / a
-        b = (argb >> 0) & 0xff
-        b = b * 255 / a
+        r = clamp(((argb >> 16) & 0xff) * 255 // a)
+        g = clamp(((argb >> 8) & 0xff) * 255 // a)
+        b = clamp(((argb >> 0) & 0xff) * 255 // a)
         buf[i] = (a << 24) | (r << 16) | (g << 8) | (b << 0)
 
 def unpremultiply_argb(buf):
@@ -195,15 +198,15 @@ def unpremultiply_argb(buf):
 
 #precalculate indexes in native endianness:
 tmp = str(struct.pack("=BBBB", 0, 1, 2, 3))
-cdef int B = tmp.find('\0')
-cdef int G = tmp.find('\1')
-cdef int R = tmp.find('\2')
-cdef int A = tmp.find('\3')
+cdef unsigned char B = tmp.find('\0')
+cdef unsigned char G = tmp.find('\1')
+cdef unsigned char R = tmp.find('\2')
+cdef unsigned char A = tmp.find('\3')
 
 cdef do_unpremultiply_argb(unsigned int * argb_in, Py_ssize_t argb_len):
     # cbuf contains non-premultiplied ARGB32 data in native-endian.
     # We convert to premultiplied ARGB32 data
-    cdef unsigned int a, r, g, b                #@DuplicateSignature
+    cdef unsigned char a, r, g, b                #@DuplicateSignature
     cdef unsigned int argb                      #@DuplicateSignature
     assert sizeof(int) == 4
     assert argb_len % 4 == 0, "invalid buffer size: %s is not a multiple of 4" % argb_len
@@ -216,9 +219,9 @@ cdef do_unpremultiply_argb(unsigned int * argb_in, Py_ssize_t argb_len):
         g = (argb >> 8) & 0xff
         b = (argb >> 0) & 0xff
         if a!=0:
-            r = r * 255 / a
-            g = g * 255 / a
-            b = b * 255 / a
+            r = clamp(r * 255 // a)
+            g = clamp(g * 255 // a)
+            b = clamp(b * 255 // a)
         else:
             r = 0
             g = 0
