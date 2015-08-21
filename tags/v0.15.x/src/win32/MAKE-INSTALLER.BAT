@@ -187,7 +187,11 @@ MOVE /Y Output\Xpra_Setup.exe %INSTALLER_FILENAME%
 RMDIR Output
 dir %INSTALLER_FILENAME%
 
-%INSTALLER_FILENAME% %ARGS%
+if "%DO_NOTRUN%"=="1" (
+	ECHO ****** Not Running Installer
+) else (
+	%INSTALLER_FILENAME% %ARGS%
+)
 GOTO END
 
 :ERROR
