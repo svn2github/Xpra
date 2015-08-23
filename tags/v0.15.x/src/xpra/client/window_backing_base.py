@@ -16,7 +16,7 @@ from xpra.util import typedict
 from xpra.codecs.codec_constants import get_PIL_decodings
 from xpra.codecs.loader import get_codec
 from xpra.codecs.video_helper import getVideoHelper
-from xpra.os_util import BytesIOClass, bytestostr
+from xpra.os_util import BytesIOClass, bytestostr, _buffer
 from xpra.codecs.xor.cyxor import xor_str   #@UnresolvedImport
 from xpra.codecs.argb.argb import unpremultiply_argb, unpremultiply_argb_in_place   #@UnresolvedImport
 
@@ -151,7 +151,7 @@ class WindowBackingBase(object):
 
 
     def unpremultiply(self, img_data):
-        if type(img_data)!=str:
+        if type(img_data) not in (str, _buffer):
             try:
                 unpremultiply_argb_in_place(img_data)
                 return img_data
