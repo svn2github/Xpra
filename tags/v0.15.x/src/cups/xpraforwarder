@@ -119,7 +119,7 @@ def main():
 		do_main()
 	except Exception as e:
 		err("failure in xpraforwarder main: %s" % e)
-		for x in traceback.format_tb(sys.exc_info[2]):
+		for x in traceback.format_tb(sys.exc_info()[2]):
 			err(x)
 
 
