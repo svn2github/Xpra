@@ -23,24 +23,40 @@ OPUS = "opus"
 SPEEX = "speex"
 WAVPACK = "wavpack"
 
-#format: encoder, formatter, decoder, parser
+#format: encoder, container-formatter, decoder, container-parser
 #we keep multiple options here for the same encoding
 #and will populate the ones that are actually available into the "CODECS" dict
+MS_TO_NS = 1000000
+OGG_DELAY = 20*MS_TO_NS
+C_FORMAT = "oggmux"
+C_PARSER = "oggdemux"
+#C_FORMAT = "gdppay"
+#C_PARSER = "gdpdepay"
 CODEC_OPTIONS = [
-            #VORBIS : ("vorbisenc", "oggmux", "vorbisdec", "oggdemux"),
-            #AAC     : ("faac",          "oggmux",   "faad",         "aacparse"),
-            (FLAC        , "flacenc",       "oggmux",   "flacdec",      "oggdemux"),
+            (VORBIS      , "vorbisenc",     "gdppay",   "vorbisdec",    "gdpdepay"),
+            (FLAC        , "flacenc",       C_FORMAT,   "flacdec",      C_PARSER),
             (MP3         , "lamemp3enc",    None,       "mad",          "mp3parse"),
             (MP3         , "lamemp3enc",    None,       "mad",          "mpegaudioparse"),
             (WAV         , "wavenc",        None,       None,           "wavparse"),
-            (OPUS        , "opusenc",       "oggmux",   "opusdec",      "oggdemux"),
-            (SPEEX       , "speexenc",      "oggmux",   "speexdec",     "oggdemux"),
+            (OPUS        , "opusenc",       C_FORMAT,   "opusdec",      C_PARSER),
+            (SPEEX       , "speexenc",      C_FORMAT,   "speexdec",     C_PARSER),
             (WAVPACK     , "wavpackenc",    None,       "wavpackdec",   "wavpackparse"),
             ]
 CODECS = {}
 
 CODEC_ORDER = [MP3, WAVPACK, WAV, FLAC, SPEEX]
 
+
+#we may want to review this if/when we implement UDP transport:
+GDPPAY_CRC = False
+MUXER_DEFAULT_OPTIONS = {
+            "oggmux"        : {"max-delay"      : OGG_DELAY,
+                               "max-page-delay" : OGG_DELAY,
+                               },
+            "gdppay"        : {"crc-header"    : int(GDPPAY_CRC),
+                               "crc-payload"   : int(GDPPAY_CRC),
+                               },
+           }
 
 #code to temporarily redirect stderr and restore it afterwards, adapted from:
 #http://stackoverflow.com/questions/5081657/how-do-i-prevent-a-c-shared-library-to-print-on-stdout-in-python

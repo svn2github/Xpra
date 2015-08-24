@@ -9,7 +9,7 @@ import sys, os
 from xpra.sound.sound_pipeline import SoundPipeline, gobject
 from xpra.gtk_common.gobject_util import n_arg_signal
 from xpra.sound.pulseaudio_util import has_pa
-from xpra.sound.gstreamer_util import plugin_str, get_encoder_formatter, MP3, CODECS
+from xpra.sound.gstreamer_util import plugin_str, get_encoder_formatter, MP3, CODECS, MUXER_DEFAULT_OPTIONS
 from xpra.log import Logger
 log = Logger("sound")
 
@@ -58,6 +58,7 @@ class SoundSource(SoundPipeline):
         self.src_type = src_type
         source_str = plugin_str(src_type, src_options)
         encoder_str = plugin_str(encoder, encoder_options)
+        fmt_str = plugin_str(fmt, MUXER_DEFAULT_OPTIONS.get(fmt, {}))
         pipeline_els = [source_str]
         if AUDIOCONVERT:
             pipeline_els += ["audioconvert"]
@@ -67,7 +68,7 @@ class SoundSource(SoundPipeline):
                          "audio/x-raw-int,rate=44100,channels=2"]
         pipeline_els.append("volume name=volume volume=%s" % volume)
         pipeline_els += [encoder_str,
-                        fmt,
+                        fmt_str,
                         "appsink name=sink"]
         self.setup_pipeline_and_bus(pipeline_els)
         self.volume = self.pipeline.get_by_name("volume")
