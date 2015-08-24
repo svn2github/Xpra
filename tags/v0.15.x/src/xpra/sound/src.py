@@ -10,7 +10,7 @@ import time
 from xpra.os_util import SIGNAMES
 from xpra.sound.sound_pipeline import SoundPipeline, gobject
 from xpra.gtk_common.gobject_util import n_arg_signal
-from xpra.sound.gstreamer_util import plugin_str, get_encoder_formatter, get_source_plugins, get_queue_time, normv, MP3, CODECS, CODEC_ORDER, QUEUE_LEAK
+from xpra.sound.gstreamer_util import plugin_str, get_encoder_formatter, get_source_plugins, get_queue_time, normv, MP3, CODECS, CODEC_ORDER, MUXER_DEFAULT_OPTIONS, QUEUE_LEAK
 from xpra.log import Logger
 log = Logger("sound")
 
@@ -53,6 +53,7 @@ class SoundSource(SoundPipeline):
         self.src_type = src_type
         source_str = plugin_str(src_type, src_options)
         encoder_str = plugin_str(encoder, codec_options)
+        fmt_str = plugin_str(fmt, MUXER_DEFAULT_OPTIONS.get(fmt, {}))
         pipeline_els = [source_str]
         if AUDIOCONVERT:
             pipeline_els += ["audioconvert"]
@@ -70,7 +71,7 @@ class SoundSource(SoundPipeline):
                          "leaky=%s" % QUEUE_LEAK]
             pipeline_els.append(" ".join(queue_el))
         pipeline_els += [encoder_str,
-                        fmt,
+                        fmt_str,
                         "appsink name=sink"]
         self.setup_pipeline_and_bus(pipeline_els)
         self.volume = self.pipeline.get_by_name("volume")
