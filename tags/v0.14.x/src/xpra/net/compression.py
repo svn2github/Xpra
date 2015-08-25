@@ -47,7 +47,7 @@ try:
                 #we want at least two numbers first:
                 if len(tmpv)>=2:
                     #ie: (0, 7, 0)
-                    lz4_version = ".".join(tmpv)
+                    lz4_version = ".".join([str(x) for x in tmpv])
     assert lz4_version>="0.7", "versions older than 0.7.0 are vulnerable and should not be used, see CVE-2014-4715"
     if hasattr(lz4, "LZ4_VERSION"):
         lz4_version += "."+str(lz4.LZ4_VERSION)
