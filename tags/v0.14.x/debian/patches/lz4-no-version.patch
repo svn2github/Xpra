@@ -1,0 +1,21 @@
+Index: src/xpra/net/compression.py
+===================================================================
+--- src/xpra/net/compression.py	(revision 10440)
++++ src/xpra/net/compression.py	(working copy)
+@@ -48,9 +48,13 @@
+                 if len(tmpv)>=2:
+                     #ie: (0, 7, 0)
+                     lz4_version = ".".join([str(x) for x in tmpv])
+-    assert lz4_version>="0.7", "versions older than 0.7.0 are vulnerable and should not be used, see CVE-2014-4715"
+-    if hasattr(lz4, "LZ4_VERSION"):
+-        lz4_version += "."+str(lz4.LZ4_VERSION)
++    if not lz4_version:
++        log.warn("Warning: unknown version of python-lz4 installed")
++        lz4_version = ""
++    else:
++        assert lz4_version>="0.7", "versions older than 0.7.0 are vulnerable and should not be used, see CVE-2014-4715"
++        if hasattr(lz4, "LZ4_VERSION"):
++            lz4_version += "."+str(lz4.LZ4_VERSION)
+ except Exception, e:
+     log("lz4 not found: %s", e)
+     LZ4_uncompress = None
