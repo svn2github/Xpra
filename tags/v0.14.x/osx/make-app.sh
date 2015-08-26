@@ -156,7 +156,7 @@ echo
 echo "*******************************************************************************"
 echo "Ship a default xpra.conf"
 #the build / install step should have placed on there:
-cp ../src/build/xpra.conf ${RSCDIR}/
+cp ../src/build/etc/xpra/xpra.conf ${RSCDIR}/
 
 
 echo
