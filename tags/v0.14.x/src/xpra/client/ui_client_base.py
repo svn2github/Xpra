@@ -894,6 +894,7 @@ class UIXpraClient(XpraClientBase):
             "cursors"                   : self.client_supports_cursors,
             "bell"                      : self.client_supports_bell,
             "sound.server_driven"       : True,
+            "sound.ogg-latency-fix"     : True,
             "encoding.client_options"   : True,
             "encoding_client_options"   : True,
             "encoding.csc_atoms"        : True,

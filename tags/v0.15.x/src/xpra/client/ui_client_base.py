@@ -976,6 +976,7 @@ class UIXpraClient(XpraClientBase):
             "double_click.time"         : get_double_click_time(),
             "double_click.distance"     : get_double_click_distance(),
             "sound.server_driven"       : True,
+            "sound.ogg-latency-fix"     : True,
             "encoding.scaling.control"  : self.scaling,
             "encoding.client_options"   : True,
             "encoding_client_options"   : True,
