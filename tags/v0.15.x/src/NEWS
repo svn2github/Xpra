@@ -2,16 +2,28 @@ v0.15.5 (2015-08-19)
 ======================
 	-- fix encryption not enabled when pycrypto is missing: error out
 	-- fix encryption information leak, free network packets after use
+	-- fix authentication plugins
+	-- fix latency with many sound codecs: vorbis, flac, opus, speex
 	-- fix the desktop naming code (worked by accident)
 	-- fix OpenGL errors with windows too big for the driver
 	-- fix some subcommands when encryption is enabled
 	-- fix spurious errors on closed connections
+	-- fix incorrect colours using CSC Cython fallback module
 	-- fix size limits on Cython fallback module
 	-- fix some invalid Xorg dummy modelines
 	-- fix aspect ratio not honoured and associated warnings
 	-- fix printing file compression
+	-- fix errors in packet layer accounting
+	-- fix regression in python-lz4 version guessing code
+	-- fix RPM packaging: prefer our private libraries to the system ones
+	-- fix pactl output parsing
+	-- fix error on Posix desktop environments without virtual desktops
+	-- fix unlikely connection closing errors
+	-- fix value overflows when unpremultiplying alpha channel
+	-- ship a default configuration file on OSX
 	-- try not to downscale windows from shadow servers
 	-- add vpx-xpra to the RPM dependency list so we get VPX 1.9 support
+	-- make it possible to generate the EXE installer without running it
 	-- allow the user to remove some atoms from _NET_SUPPORTED
 	-- show maximum OpenGL texture size in diagnostics and bug reports
 	-- minor python3 fixes

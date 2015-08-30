@@ -247,13 +247,21 @@ fi
 
 
 %changelog
-* Wed Aug 19 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
+* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
+- fix authentication plugins
+- fix latency with many sound codecs: vorbis, flac, opus, speex
 - fix some subcommands when encryption is enabled
 - fix spurious errors on closed connections
+- fix incorrect colours using CSC Cython fallback module
 - fix size limits on Cython fallback module
 - fix some invalid Xorg dummy modelines
+- fix errors in packet layer accounting
+- fix regression in python-lz4 version guessing code
+- fix RPM packaging: prefer our private libraries to the system ones
+- fix pactl output parsing
+- ship a default configuration file on OSX
 - show maximum OpenGL texture size in diagnostics and bug reports
 
 * Sun Aug 02 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.28-1
