@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.5
+%define version 0.15.6
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -312,7 +312,13 @@ fi
 
 
 %changelog
-* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.5-1
+* Wed Sep 09 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
+- fix server-side copy of the client's desktop dimensions
+- fix X11 client errors when window managers clear the window state
+- fix spurious warnings if X11 desktop properties are not present
+- fix server failing to report sound failures (dangling process)
+
+* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
 - fix authentication plugins

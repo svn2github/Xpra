@@ -1,3 +1,8 @@
+v0.14.30 (2015-09-09)
+======================
+	-- fix server-side copy of the client's desktop dimensions
+
+
 v0.14.29 (2015-08-19)
 ======================
 	-- fix encryption not enabled when pycrypto is missing: error out

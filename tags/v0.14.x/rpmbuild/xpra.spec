@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.29
+%define version 0.14.30
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -247,6 +247,9 @@ fi
 
 
 %changelog
+* Wed Sep 09 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.30-1
+- fix server-side copy of the client's desktop dimensions
+
 * Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
@@ -364,7 +367,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.29-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.30-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures

@@ -1,3 +1,8 @@
+xpra (0.14.30-1) UNRELEASED; urgency=low
+  * fix server-side copy of the client's desktop dimensions
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 09 Sep 2015 12:01:58 +0700
+
 xpra (0.14.29-1) UNRELEASED; urgency=low
   * fix encryption not enabled when pycrypto is missing: error out
   * fix encryption information leak, free network packets after use
