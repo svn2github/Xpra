@@ -1264,6 +1264,7 @@ class ServerBase(ServerCore):
         ss = self._server_sources.get(proto)
         if ss is None:
             return
+        ss.desktop_size = (width, height)
         if len(packet)>=4:
             ss.set_screen_sizes(packet[3])
         log("client requesting new size: %sx%s", width, height)

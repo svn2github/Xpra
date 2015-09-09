@@ -1705,6 +1705,7 @@ class ServerBase(ServerCore):
         ss = self._server_sources.get(proto)
         if ss is None:
             return
+        ss.desktop_size = (width, height)
         if len(packet)>=6:
             desktops, desktop_names = packet[4:6]
             ss.set_desktops(desktops, desktop_names)
