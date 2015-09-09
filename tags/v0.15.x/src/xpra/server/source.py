@@ -775,6 +775,9 @@ class ServerSource(object):
                 ss.start()
         except Exception as e:
             log.error("error setting up sound: %s", e, exc_info=True)
+        if ss is None:
+            #tell the client we're not sending anything:
+            self.send_eos(codec)
 
     def sound_source_exit(self, source, *args):
         log("sound_source_exit(%s, %s)", source, args)
@@ -789,11 +792,14 @@ class ServerSource(object):
         soundlog("stop_sending_sound() sound_source=%s", ss)
         if ss:
             self.sound_source = None
-            if self.server_driven:
-                #tell the client this is the end:
-                self.send("sound-data", ss.codec, "", {"end-of-stream" : True,
-                                                       "sequence"      : ss.sequence})
+            self.send_eos(ss.codec, ss.sequence)
             ss.cleanup()
+
+    def send_eos(self, codec, sequence=0):
+        if self.server_driven:
+            #tell the client this is the end:
+            self.send("sound-data", codec, "", {"end-of-stream" : True,
+                                                   "sequence"      : sequence})
 
     def new_stream(self, sound_source, codec):
         soundlog("new_stream(%s)", codec)
