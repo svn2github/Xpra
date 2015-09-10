@@ -710,6 +710,7 @@ def detect_xorg_setup(install_dir=None):
                               "+extension", "GLX",
                               "+extension", "RANDR",
                               "+extension", "RENDER",
+                              "-auth", "$XAUTHORITY",
                               "-logfile", "${HOME}/.xpra/Xorg.${DISPLAY}.log",
                               "-config", xorg_conf])
 

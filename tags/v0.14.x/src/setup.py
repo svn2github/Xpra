@@ -702,7 +702,7 @@ def detect_xorg_setup():
         if sys.prefix!="/usr":
             #ie: /usr/local/etc/xpra/xorg.conf
             xorg_conf = os.path.join(sys.prefix, xorg_conf)
-        Xorg_args = "-dpi 96 -noreset -nolisten tcp +extension GLX +extension RANDR +extension RENDER -logfile ${HOME}/.xpra/Xorg.${DISPLAY}.log -config %s" % xorg_conf
+        Xorg_args = "-dpi 96 -noreset -nolisten tcp +extension GLX +extension RANDR +extension RENDER -auth $XAUTHORITY -logfile ${HOME}/.xpra/Xorg.${DISPLAY}.log -config %s" % xorg_conf
 
         if Xdummy_wrapper_ENABLED is not None:
             #honour what was specified:
