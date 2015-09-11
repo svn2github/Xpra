@@ -36,7 +36,7 @@ class CairoBacking(GTKWindowBacking):
 
     if not is_gtk3():
         #with gtk2 we can convert these directly to a cairo image surface:
-        RGB_MODES = ["ARGB", "XRGB"]
+        RGB_MODES = ["ARGB"]
     else:
         RGB_MODES = []
     RGB_MODES += ["RGBA", "RGBX", "RGB"]
@@ -164,7 +164,7 @@ class CairoBacking(GTKWindowBacking):
         # "PyGObject just lacks the glue code that allows it to pass the statically-wrapped
         # cairo.Pattern to introspected methods"
 
-        if not is_gtk3() and rgb_format in ("ARGB", "XRGB"):
+        if not is_gtk3() and rgb_format in ("ARGB", ):
             #the pixel format is also what cairo expects
             #maybe we should also check that the stride is acceptable for cairo?
             #cairo_stride = cairo.ImageSurface.format_stride_for_width(cairo_format, width)
