@@ -1,7 +1,10 @@
 xpra (0.14.30-1) UNRELEASED; urgency=low
+  * fix missing auth argument with Xdummy
   * fix server-side copy of the client's desktop dimensions
+  * fix paint errors with cairo backing
+  * fix window positionning issues when monitors are added (osx and win32)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 09 Sep 2015 12:01:58 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 11 Sep 2015 12:42:21 +0700
 
 xpra (0.14.29-1) UNRELEASED; urgency=low
   * fix encryption not enabled when pycrypto is missing: error out

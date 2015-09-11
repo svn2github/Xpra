@@ -312,11 +312,14 @@ fi
 
 
 %changelog
-* Wed Sep 09 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
+* Fri Sep 11 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
+- fix missing auth argument with Xdummy
 - fix server-side copy of the client's desktop dimensions
 - fix X11 client errors when window managers clear the window state
 - fix spurious warnings if X11 desktop properties are not present
 - fix server failing to report sound failures (dangling process)
+- fix paint errors with cairo backing
+- fix window positionning issues when monitors are added (osx and win32)
 
 * Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
 - fix encryption not enabled when pycrypto is missing: error out
