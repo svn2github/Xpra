@@ -637,6 +637,9 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
         self.idle_add(self._focus_change, "initial")
 
 
+    def send_configure(self):
+        self.process_configure_event()
+
     def do_configure_event(self, event):
         eventslog("%s.do_configure_event(%s)", self, event)
         gtk.Window.do_configure_event(self, event)

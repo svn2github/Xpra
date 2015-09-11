@@ -8,6 +8,7 @@
 import os
 
 SYSTEM_TRAY_SUPPORTED = True
+REINIT_WINDOWS = True
 SHADOW_SUPPORTED = True
 os.environ["PLINK_PROTOCOL"] = "ssh"
 DEFAULT_SSH_CMD = "plink"

@@ -29,7 +29,7 @@ from xpra.client.client_base import XpraClientBase, EXIT_TIMEOUT, EXIT_MMAP_TOKE
 from xpra.client.client_tray import ClientTray
 from xpra.client.keyboard_helper import KeyboardHelper
 from xpra.platform import set_application_name
-from xpra.platform.features import MMAP_SUPPORTED, SYSTEM_TRAY_SUPPORTED, CLIPBOARD_WANT_TARGETS, CLIPBOARD_GREEDY, CLIPBOARDS
+from xpra.platform.features import MMAP_SUPPORTED, SYSTEM_TRAY_SUPPORTED, CLIPBOARD_WANT_TARGETS, CLIPBOARD_GREEDY, CLIPBOARDS, REINIT_WINDOWS
 from xpra.platform.gui import ready as gui_ready, get_native_notifier_classes, get_native_tray_classes, get_native_system_tray_classes, get_native_tray_menu_helper_classes, ClientExtras
 from xpra.codecs.codec_constants import get_PIL_decodings
 from xpra.codecs.loader import codec_versions, has_codec, get_codec, PREFERED_ENCODING_ORDER, ALL_NEW_ENCODING_NAMES_TO_OLD, OLD_ENCODING_NAMES_TO_NEW, PROBLEMATIC_ENCODINGS
@@ -48,6 +48,7 @@ FAKE_BROKEN_CONNECTION = int(os.environ.get("XPRA_FAKE_BROKEN_CONNECTION", "0"))
 PING_TIMEOUT = int(os.environ.get("XPRA_PING_TIMEOUT", "60"))
 UNGRAB_KEY = os.environ.get("XPRA_UNGRAB_KEY", "Escape")
 
+MONITOR_CHANGE_REINIT = os.environ.get("XPRA_MONITOR_CHANGE_REINIT")
 
 """
 Utility superclass for client classes which have a UI.
@@ -642,6 +643,13 @@ class UIXpraClient(XpraClientBase):
             self._last_screen_settings = screen_settings
             #update the max packet size (may have gone up):
             self.set_max_packet_size()
+            if MONITOR_CHANGE_REINIT and MONITOR_CHANGE_REINIT=="0":
+                return
+            if MONITOR_CHANGE_REINIT or REINIT_WINDOWS:
+                screenlog.info("screen size change: will reinit the windows")
+                for window in self._id_to_window.values():
+                    window.send_configure()
+
         #update via timer so the data is more likely to be final (up to date) when we query it,
         #some properties (like _NET_WORKAREA for X11 clients via xposix "ClientExtras") may
         #trigger multiple calls to screen_size_changed, delayed by some amount

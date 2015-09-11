@@ -4,6 +4,7 @@
 # later version. See the file COPYING for details.
 
 DEFAULT_SSH_CMD = "ssh"
+REINIT_WINDOWS = True
 GOT_PASSWORD_PROMPT_SUGGESTION = "Perhaps you need to set up your ssh agent?\n"
 SYSTEM_TRAY_SUPPORTED = True
 CLIPBOARDS=["CLIPBOARD"]
