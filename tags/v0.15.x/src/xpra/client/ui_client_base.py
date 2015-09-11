@@ -698,7 +698,7 @@ class UIXpraClient(XpraClientBase):
             if MONITOR_CHANGE_REINIT and MONITOR_CHANGE_REINIT=="0":
                 return
             if MONITOR_CHANGE_REINIT or REINIT_WINDOWS:
-                screenlog.info("screen size change: will reinit the windows")
+                screenlog("screen size change: will reinit the windows")
                 for window in self._id_to_window.values():
                     window.send_configure()
 
