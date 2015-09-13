@@ -312,8 +312,9 @@ fi
 
 
 %changelog
-* Fri Sep 11 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
+* Sun Sep 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
 - fix missing auth argument with Xdummy
+- fix oversize print jobs causing disconnections
 - fix server-side copy of the client's desktop dimensions
 - fix X11 client errors when window managers clear the window state
 - fix spurious warnings if X11 desktop properties are not present

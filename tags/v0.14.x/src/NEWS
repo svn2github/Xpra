@@ -1,9 +1,10 @@
-v0.14.30 (2015-09-11)
+v0.14.30 (2015-09-13)
 ======================
 	-- fix missing auth argument with Xdummy
 	-- fix server-side copy of the client's desktop dimensions
 	-- fix paint errors with cairo backing
 	-- fix window positionning issues when monitors are added (osx and win32)
+	-- fix group warnings on MS Windows
 
 
 v0.14.29 (2015-08-19)
