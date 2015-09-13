@@ -104,6 +104,7 @@ class ServerBase(ServerCore):
         self.supports_dbus_proxy = False
         self.dbus_helper = None
         self.file_transfer = False
+        self.file_size_limit = 10
         self.printing = False
         self.lpadmin = ""
         self.exit_with_children = False
@@ -196,6 +197,7 @@ class ServerBase(ServerCore):
         self.env = parse_env(opts.env)
         self.send_pings = opts.pings
         self.file_transfer = opts.file_transfer
+        self.file_size_limit = opts.file_size_limit
         self.lpadmin = opts.lpadmin
         #server-side printer handling is only for posix via pycups for now:
         if os.name=="posix" and opts.printing:
@@ -936,6 +938,8 @@ class ServerBase(ServerCore):
                  "cursors"                      : self.cursors,
                  "dbus_proxy"                   : self.supports_dbus_proxy,
                  "file-transfer"                : self.file_transfer,
+                 #not exposed as this is currently unused by the client (we only transfer from server to client)
+                 #"file-size-limit"              : self.file_size_limit,
                  "printing"                     : self.printing,
                  "printer.attributes"           : ("printer-info", "device-uri"),
                  "start-new-commands"           : self.start_new_commands,
@@ -1327,10 +1331,14 @@ class ServerBase(ServerCore):
             sources = get_sources(client_uuids, "file_transfer")
             if not sources:
                 return arg_err("no clients found matching: %s" % client_uuids)
+            data = load_binary_file(actual_filename)
+            file_size_MB = len(data)//1024//1024
+            if file_size_MB>self.file_size_limit:
+                return 1, "file '%s' is too large: %iMB (limit is %iMB)" % (filename, file_size_MB, self.file_size_limit)
             maxbitrate = args[3]
             for ss in sources:
                 assert ss.file_transfer
-                ss.send_file(filename, False, openit, ss, maxbitrate)
+                ss.send_file(filename, "", data, False, openit)
             return 0, "file transfer to %s initiated" % client_uuids
         elif command=="print":
             #ie: print filename printer client_uuids maxbitrate title *options

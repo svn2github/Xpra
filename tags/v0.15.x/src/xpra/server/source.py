@@ -305,6 +305,7 @@ class ServerSource(object):
         self.show_desktop_allowed = False
         self.supports_transparency = False
         self.file_transfer = False
+        self.file_size_limit = 10
         self.printing = False
         self.printers = {}
         self.vrefresh = -1
@@ -575,6 +576,7 @@ class ServerSource(object):
         self.clipboard_set_enabled = c.boolget("clipboard.set_enabled")
         self.share = c.boolget("share")
         self.file_transfer = c.boolget("file-transfer")
+        self.file_size_limit = c.intget("file-size-limit")
         self.printing = c.boolget("printing")
         self.named_cursors = c.boolget("named_cursors")
         self.window_initiate_moveresize = c.boolget("window.initiate-moveresize")
@@ -1191,6 +1193,7 @@ class ServerSource(object):
                            "send_bell"          : "bell"}.items():
             battr(name, prop)
         for prop, name in {"vrefresh"               : "vertical-refresh",
+                           "file_size_limit"        : "file-size-limit",
                            "double_click_time"      : "double_click.time",
                            "double_click_distance"  : "double_click.distance"}.items():
             info[name] = getattr(self, prop)
@@ -1306,7 +1309,11 @@ class ServerSource(object):
 
     def compressed_wrapper(self, datatype, data):
         if self.zlib or self.lz4 or self.lzo:
-            return compressed_wrapper(datatype, data, zlib=self.zlib, lz4=self.lz4, lzo=self.lzo, can_inline=False)
+            cw = compressed_wrapper(datatype, data, zlib=self.zlib, lz4=self.lz4, lzo=self.lzo, can_inline=False)
+            if len(cw)<len(data):
+                #the compressed version is smaller, use it:
+                return cw
+            #skip compressed version: fall through
         #we can't compress, so at least avoid warnings in the protocol layer:
         return Compressed("raw %s" % datatype, data, can_inline=True)
 
@@ -1427,6 +1434,9 @@ class ServerSource(object):
         basefilename = os.path.basename(filename)
         filesize = len(data)
         cdata = self.compressed_wrapper("file-data", data)
+        assert len(cdata)<=filesize     #compressed wrapper ensures this is true
+        if filesize>self.file_size_limit*1024*1024:
+            raise Exception("this file is too large: %iMB (the file size limit for this client is %iMB" % (filesize//1024//1024, self.file_size_limit))
         self.send("send-file", basefilename, mimetype, printit, openit, filesize, cdata, options)
 
     def send_client_command(self, *args):

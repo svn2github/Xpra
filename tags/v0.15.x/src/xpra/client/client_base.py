@@ -48,6 +48,7 @@ EXIT_NO_AUTHENTICATION = 11
 EXIT_UNSUPPORTED = 12
 EXIT_REMOTE_ERROR = 13
 EXIT_INTERNAL_ERROR = 14
+EXIT_FILE_TOO_BIG = 15
 
 
 EXTRA_TIMEOUT = 10
@@ -87,6 +88,7 @@ class XpraClientBase(object):
         self.speed = 0
         self.min_speed = -1
         self.file_transfer = False
+        self.file_size_limit = 10
         self.printing = False
         self.printer_attributes = []
         self.send_printers_pending = False
@@ -125,7 +127,8 @@ class XpraClientBase(object):
         self.speed = opts.speed
         self.min_speed = opts.min_speed
         self.file_transfer = opts.file_transfer
-        self.printing = opts.printing and self.file_transfer
+        self.file_size_limit = opts.file_size_limit
+        self.printing = opts.printing
         self.open_command = opts.open_command
 
         if DETECT_LEAKS:
@@ -271,6 +274,7 @@ class XpraClientBase(object):
                 "encoding.generic"      : True,
                 "namespace"             : True,
                 "file-transfer"         : self.file_transfer,
+                "file-size-limit"       : self.file_size_limit,
                 "printing"              : self.printing,
                 "hostname"              : socket.gethostname(),
                 "uuid"                  : self.uuid,
@@ -703,6 +707,14 @@ class XpraClientBase(object):
         else:
             assert self.file_transfer
         assert filesize>0 and file_data
+        if len(file_data)!=filesize:
+            log.error("Error: invalid data size for file '%s'", basefilename)
+            log.error(" received %i bytes, expected %i bytes", len(file_data), filesize)
+            return
+        if filesize>self.file_size_limit*1024*1024:
+            log.error("Error: file '%s' is too large:", basefilename)
+            log.error(" %iMB, the file size limit is %iMB", filesize//1024//1024, self.file_size_limit)
+            return
         #check digest if present:
         digest = options.get("sha1")
         if digest:
@@ -762,7 +774,12 @@ class XpraClientBase(object):
 
     def _print_file(self, filename, printer, title, options):
         import time
-        from xpra.platform.printing import print_files, printing_finished
+        from xpra.platform.printing import print_files, printing_finished, get_printers
+        printers = get_printers()
+        if printer not in printers:
+            printlog.error("Error: printer '%s' does not exist!", printer)
+            printlog.error(" printers available: %s", printers.keys() or "none")
+            return
         job = print_files(printer, [filename], title, options)
         printlog("printing %s, job=%s", filename, job)
         if not job:

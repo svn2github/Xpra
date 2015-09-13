@@ -15,7 +15,7 @@ import re
 from xpra.util import nonl, DONE
 from xpra.os_util import bytestostr
 from xpra.client.client_base import XpraClientBase, EXTRA_TIMEOUT, \
-    EXIT_TIMEOUT, EXIT_OK, EXIT_UNSUPPORTED, EXIT_REMOTE_ERROR
+    EXIT_TIMEOUT, EXIT_OK, EXIT_UNSUPPORTED, EXIT_REMOTE_ERROR, EXIT_FILE_TOO_BIG
 
 
 class GObjectXpraClient(XpraClientBase, gobject.GObject):
@@ -111,6 +111,11 @@ class CommandConnectClient(GObjectXpraClient):
         GObjectXpraClient.init(self, opts)
         self.connect_with_timeout(conn)
         self._protocol._log_stats  = False
+        #not used by command line clients,
+        #so don't try probing for printers, etc
+        self.file_transfer = False
+        self.printing = False
+
 
     def make_hello(self):
         capabilities = GObjectXpraClient.make_hello(self)
@@ -322,11 +327,10 @@ class PrintClient(SendCommandConnectClient):
             self.filename = command[2]
             #read file from stdin
             self.file_data = sys.stdin.read()
+            log("read %i bytes from stdin", len(self.file_data))
         else:
             self.file_data = load_binary_file(self.filename)
         assert self.file_data, "no data found for '%s'" % self.filename
-        self.file_transfer = True
-        self.printing = True
 
     def client_type(self):
         return "Python/GObject/Print"
@@ -343,6 +347,7 @@ class PrintClient(SendCommandConnectClient):
         from xpra.net.compression import Compressed
         blob = Compressed("print", self.file_data)
         self.send("print", self.filename, blob, *self.command)
+        log("print: sending %s as %s for printing", self.filename, blob)
         gobject.idle_add(self.send, "disconnect", DONE, "detaching")
 
     def make_hello(self):
