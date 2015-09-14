@@ -180,11 +180,11 @@ def get_current_desktop():
     try:
         d = _get_X11_root_property("_NET_CURRENT_DESKTOP", "CARDINAL")
         if d:
-        v = struct.unpack("=I", d)[0]
+            v = struct.unpack("=I", d)[0]
     except Exception as e:
         log.warn("failed to get current desktop: %s", e)
     log("get_current_desktop() %s=%s", d, v)
-        return v
+    return v
 
 def get_workarea():
     try:
@@ -214,7 +214,7 @@ def get_number_of_desktops():
     try:
         d = _get_X11_root_property("_NET_NUMBER_OF_DESKTOPS", "CARDINAL")
         if d:
-        v = struct.unpack("=I", d)[0]
+            v = struct.unpack("=I", d)[0]
     except Exception as e:
         screenlog.warn("failed to get number of desktop: %s", e)
     v = max(1, v)
@@ -233,7 +233,7 @@ def get_desktop_names():
     except Exception as e:
         screenlog.warn("failed to get desktop names: %s", e)
     screenlog("get_desktop_names() %s=%s", d, v)
-            return v
+    return v
 
 
 def get_vrefresh():
@@ -244,8 +244,8 @@ def get_vrefresh():
     except Exception as e:
         screenlog.warn("failed to get VREFRESH: %s", e)
         v = -1
-        screenlog("get_vrefresh()=%s", v)
-        return v
+    screenlog("get_vrefresh()=%s", v)
+    return v
 
 
 def _get_xsettings_int(name, default_value):
