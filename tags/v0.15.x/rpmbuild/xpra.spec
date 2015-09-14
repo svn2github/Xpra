@@ -312,6 +312,9 @@ fi
 
 
 %changelog
+* Mon Sep 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-2
+- force rebuild after fixing patch epic fail
+
 * Sun Sep 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
 - fix missing auth argument with Xdummy
 - fix oversize print jobs causing disconnections

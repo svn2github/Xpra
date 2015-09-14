@@ -1,3 +1,8 @@
+xpra (0.15.6-2) UNRELEASED; urgency=low
+  * force rebuild after fixing patch epic fail
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 14 Sep 2015 17:32:23 +0700
+
 xpra (0.15.6-1) UNRELEASED; urgency=low
   * fix missing auth argument with Xdummy
   * fix oversize print jobs causing disconnections
