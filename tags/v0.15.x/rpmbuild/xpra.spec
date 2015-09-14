@@ -320,7 +320,7 @@ fi
 - fix spurious warnings if X11 desktop properties are not present
 - fix server failing to report sound failures (dangling process)
 - fix paint errors with cairo backing
-- fix window positionning issues when monitors are added (osx and win32)
+- fix window positioning issues when monitors are added (osx and win32)
 
 * Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
 - fix encryption not enabled when pycrypto is missing: error out
