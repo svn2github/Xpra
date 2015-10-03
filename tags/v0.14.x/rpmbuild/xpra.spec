@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.30
+%define version 0.14.31
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -247,6 +247,13 @@ fi
 
 
 %changelog
+* Sat Oct 03 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.31-1
+- fix inband info requests
+- fix monitor hotplugging workaround code
+- fix OSX menus which should not be shown
+- don't show opengl toggle menu if opengl is not supported
+- add new common X11 modes (4k, 5k, etc)
+
 * Sun Sep 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.30-1
 - fix missing auth argument with Xdummy
 - fix server-side copy of the client's desktop dimensions
@@ -371,7 +378,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.30-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.31-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures

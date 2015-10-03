@@ -1,3 +1,12 @@
+xpra (0.15.7-1) UNRELEASED; urgency=low
+  * fix inband info requests
+  * fix monitor hotplugging workaround code
+  * fix OSX menus which should not be shown
+  * don't show opengl toggle menu if opengl is not supported
+  * add new common X11 modes (4k, 5k, etc)
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 03 Oct 2015 09:03:56 +0700
+
 xpra (0.15.6-2) UNRELEASED; urgency=low
   * force rebuild after fixing patch epic fail
 

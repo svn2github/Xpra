@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.6
+%define version 0.15.7
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -312,6 +312,13 @@ fi
 
 
 %changelog
+* Sat Oct 03 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-2
+- fix inband info requests
+- fix monitor hotplugging workaround code
+- fix OSX menus which should not be shown
+- don't show opengl toggle menu if opengl is not supported
+- add new common X11 modes (4k, 5k, etc)
+
 * Mon Sep 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-2
 - force rebuild after fixing patch epic fail
 
@@ -325,7 +332,7 @@ fi
 - fix paint errors with cairo backing
 - fix window positioning issues when monitors are added (osx and win32)
 
-* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.6-1
+* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
 - fix authentication plugins
