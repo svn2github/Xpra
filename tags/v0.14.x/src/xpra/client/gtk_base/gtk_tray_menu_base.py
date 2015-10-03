@@ -555,7 +555,8 @@ class GTKTrayMenuBase(object):
         def gl_set(*args):
             log("gl_set(%s) opengl_enabled=%s, window_unmap=%s", args, self.client.opengl_enabled, self.client.window_unmap)
             gl.set_active(self.client.opengl_enabled)
-            gl.set_sensitive(self.client.window_unmap)
+            can_gl = self.client.window_unmap and self.client.client_supports_opengl
+            gl.set_sensitive(can_gl)
             if not self.client.window_unmap:
                 set_tooltip_text(gl, "no server support for runtime switching")
                 return
