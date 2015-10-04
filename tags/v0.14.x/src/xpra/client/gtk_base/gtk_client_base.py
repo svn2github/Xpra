@@ -17,7 +17,7 @@ log = Logger("gtk", "main")
 
 from xpra.gtk_common.quit import (gtk_main_quit_really,
                            gtk_main_quit_on_fatal_exceptions_enable)
-from xpra.gtk_common.cursor_names import cursor_names
+from xpra.gtk_common.cursor_names import cursor_types
 from xpra.gtk_common.gtk_util import get_gtk_version_info, scaled_image, pixbuf_new_from_file, display_get_default, window_set_default_icon
 from xpra.client.ui_client_base import UIXpraClient
 from xpra.client.gobject_client_base import GObjectXpraClient
@@ -191,7 +191,7 @@ class GTKXpraClient(UIXpraClient, GObjectXpraClient):
 
     def make_hello(self):
         capabilities = UIXpraClient.make_hello(self)
-        capabilities["named_cursors"] = len(cursor_names)>0
+        capabilities["named_cursors"] = len(cursor_types)>0
         #we need the bindings to support initiate-moveresize (posix only for now):
         from xpra.client.gtk_base.gtk_client_window_base import HAS_X11_BINDINGS
         capabilities["window.initiate-moveresize"] = HAS_X11_BINDINGS

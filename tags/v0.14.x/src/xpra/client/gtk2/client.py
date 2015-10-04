@@ -25,7 +25,7 @@ from xpra.gtk_common.gtk2common import gtk2main
 from xpra.gtk_common.gtk_util import get_pixbuf_from_data, INTERP_BILINEAR
 from xpra.client.gtk_base.gtk_client_base import GTKXpraClient, xor_str
 from xpra.client.gtk2.tray_menu import GTK2TrayMenu
-from xpra.gtk_common.cursor_names import cursor_names
+from xpra.gtk_common.cursor_names import cursor_types
 from xpra.client.window_border import WindowBorder
 from xpra.net.compression import Uncompressed
 from xpra.platform.gui import get_fixed_cursor_size
@@ -339,10 +339,10 @@ class XpraClient(GTKXpraClient):
 
     def make_cursor(self, cursor_data):
         #if present, try cursor ny name:
-        if len(cursor_data)>=9 and cursor_names:
+        if len(cursor_data)>=9 and cursor_types:
             cursor_name = cursor_data[8]
             if cursor_name:
-                gdk_cursor = cursor_names.get(cursor_name.upper())
+                gdk_cursor = cursor_types.get(cursor_name.upper())
                 if gdk_cursor is not None:
                     cursorlog("setting new cursor by name: %s=%s", cursor_name, gdk_cursor)
                     return gdk.Cursor(gdk_cursor)
