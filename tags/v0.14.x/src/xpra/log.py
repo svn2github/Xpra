@@ -185,3 +185,4 @@ class CaptureHandler(logging.Handler):
 
     def createLock(self):
         self.lock = None
+                ("x265"         , "libx265 encoder"),

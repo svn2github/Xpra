@@ -190,6 +190,7 @@ class Logger(object):
         global_logging_handler(self.logger.log, level, msg, *args, **kwargs)
 
     def __call__(self, msg, *args, **kwargs):
+                ("x265"         , "libx265 encoder"),
         if self.debug_enabled:
             self.log(logging.DEBUG, msg, *args, **kwargs)
     def debug(self, msg, *args, **kwargs):
