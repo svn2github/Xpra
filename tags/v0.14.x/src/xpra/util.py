@@ -258,7 +258,7 @@ def do_log_screen_sizes(root_w, root_h, sizes):
             continue
         #more detailed output:
         display_name, width, height, width_mm, height_mm, \
-        monitors, work_x, work_y, work_width, work_height = s[:11]
+        monitors, work_x, work_y, work_width, work_height = s[:10]
         #always log plug name:
         info = ["'%s'" % prettify_plug_name(display_name)]
         if width!=root_w or height!=root_h:
