@@ -114,6 +114,7 @@ KNOWN_FILTERS = ["auth", "cairo", "client", "clipboard", "codec", "loader", "vid
                  "csc", "cuda", "cython", "opencl", "swscale",
                  "decoder", "avcodec", "vpx", "nvenc", "proxy",
                  "x264", "webp",
+                 "x265",
                  "gobject", "gtk", "main", "util", "dbus",
                  "window", "icon", "info", "launcher", "mdns", "cursor",
                  "mmap", "network", "protocol", "crypto", "encoder", "stats",
@@ -190,7 +191,6 @@ class Logger(object):
         global_logging_handler(self.logger.log, level, msg, *args, **kwargs)
 
     def __call__(self, msg, *args, **kwargs):
-                ("x265"         , "libx265 encoder"),
         if self.debug_enabled:
             self.log(logging.DEBUG, msg, *args, **kwargs)
     def debug(self, msg, *args, **kwargs):
