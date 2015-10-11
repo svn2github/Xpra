@@ -947,7 +947,9 @@ class XpraServer(gobject.GObject, X11ServerBase):
         if reset:
             #FIXME: preserve serial? (what happens when we change values which had the same serial?)
             self.reset_settings()
-            self._settings = self.default_xsettings or {}
+            self._settings = {}
+            if self.default_xsettings:
+                self._settings = self._default_xsettings[1]
         old_settings = dict(self._settings)
         settingslog("server_settings: old=%s, updating with=%s", nonl(old_settings), nonl(settings))
         settingslog("overrides: dpi=%s, double click time=%s, double click distance=%s", self.dpi, self.double_click_time, self.double_click_distance)

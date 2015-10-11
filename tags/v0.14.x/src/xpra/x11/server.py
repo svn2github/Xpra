@@ -832,7 +832,9 @@ class XpraServer(gobject.GObject, X11ServerBase):
             return
         if reset:
             self.reset_settings()
-            self._settings = self.default_xsettings or {}
+            self._settings = {}
+            if self.default_xsettings:
+                self._settings = self._default_xsettings[1]
         old_settings = dict(self._settings)
         settingslog("server_settings: old=%s, updating with=%s", nonl(old_settings), nonl(settings))
         self._settings.update(settings)
