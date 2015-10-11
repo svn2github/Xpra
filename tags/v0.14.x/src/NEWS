@@ -1,10 +1,13 @@
-v0.14.31 (2015-10-03)
+v0.14.31 (2015-10-11)
 ======================
 	-- fix inband info requests
 	-- fix monitor hotplugging workaround code
 	-- fix OSX menus which should not be shown
+	-- fix cursor lookup by name in local theme
+	-- fix repaint when using the magic key to toggle window borders
 	-- don't show opengl toggle menu if opengl is not supported
 	-- add new common X11 modes (4k, 5k, etc)
+	-- add missing logging category for x265 (fixes warnings on start)
 
 
 v0.14.30 (2015-09-13)
