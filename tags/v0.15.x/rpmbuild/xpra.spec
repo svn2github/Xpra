@@ -312,7 +312,7 @@ fi
 
 
 %changelog
-* Sun Oct 11 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-2
+* Mon Oct 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-2
 - fix inband info requests
 - fix monitor hotplugging workaround code
 - fix OSX menus which should not be shown
@@ -321,6 +321,10 @@ fi
 - fix max-size handling for windows without any constraints (all platforms)
 - fix repaint when using the magic key to toggle window borders
 - fix iconification handling
+- fix connection error when there are XSettings already present
+- fix parsing of invalid display structures
+- fix video region detection after resize
+- fix vpx quality setting
 - don't show opengl toggle menu if opengl is not supported
 - add new common X11 modes (4k, 5k, etc)
 - add missing logging category for x265 (fixes warnings on start)
