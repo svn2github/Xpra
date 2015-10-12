@@ -129,7 +129,7 @@ class VideoSubregion(object):
         self.set_at = 0
         self.counter = 0
 
-    def identify_video_subregion(self, ww, wh, damage_events_count, last_damage_events):
+    def identify_video_subregion(self, ww, wh, damage_events_count, last_damage_events, starting_at=0):
 
         def setnewregion(rect, msg="", *args):
             if rect.x<=0 and rect.y<=0 and rect.width>=ww and rect.height>=wh:
@@ -176,7 +176,7 @@ class VideoSubregion(object):
             return
 
         #create a list (copy) to work on:
-        lde = list(last_damage_events)
+        lde = [x for x in list(last_damage_events) if x[0]>=starting_at]
         dc = len(lde)
         if dc<=MIN_EVENTS:
             return self.novideoregion("not enough damage events yet (%s)", dc)
