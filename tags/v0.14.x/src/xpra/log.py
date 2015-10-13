@@ -86,6 +86,7 @@ KNOWN_FILTERS = ["auth", "cairo", "client", "clipboard", "codec", "loader", "vid
                  "csc", "cuda", "cython", "opencl", "swscale",
                  "decoder", "avcodec", "vpx", "proxy",
                  "x264", "webp",
+                 "x265",
                  "gobject", "gtk", "main", "util", "dbus",
                  "window", "icon", "info", "launcher", "mdns", "cursor",
                  "mmap", "network", "protocol", "crypto", "encoder", "stats",
@@ -185,4 +186,4 @@ class CaptureHandler(logging.Handler):
 
     def createLock(self):
         self.lock = None
-                ("x265"         , "libx265 encoder"),
+
