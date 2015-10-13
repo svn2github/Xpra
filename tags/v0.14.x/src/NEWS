@@ -1,4 +1,4 @@
-v0.14.31 (2015-10-12)
+v0.14.31 (2015-10-13)
 ======================
 	-- fix inband info requests
 	-- fix monitor hotplugging workaround code
@@ -9,6 +9,7 @@ v0.14.31 (2015-10-12)
 	-- fix parsing of invalid display structures
 	-- fix video region detection after resize
 	-- fix vpx quality setting
+	-- fix cursor crashes on Ubuntu
 	-- don't show opengl toggle menu if opengl is not supported
 	-- add new common X11 modes (4k, 5k, etc)
 	-- add missing logging category for x265 (fixes warnings on start)

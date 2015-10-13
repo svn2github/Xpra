@@ -8,11 +8,12 @@ xpra (0.14.31-1) UNRELEASED; urgency=low
   * fix parsing of invalid display structures
   * fix video region detection after resize
   * fix vpx quality setting
+  * fix cursor crashes on Ubuntu
   * don't show opengl toggle menu if opengl is not supported
   * add new common X11 modes (4k, 5k, etc)
   * add missing logging category for x265 (fixes warnings on start)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 12 Oct 2015 22:12:39 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 13 Oct 2015 16:39:03 +0700
 
 xpra (0.14.30-1) UNRELEASED; urgency=low
   * fix missing auth argument with Xdummy

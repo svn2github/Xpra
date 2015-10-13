@@ -247,7 +247,7 @@ fi
 
 
 %changelog
-* Mon Oct 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.31-1
+* Tue Oct 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.31-1
 - fix inband info requests
 - fix monitor hotplugging workaround code
 - fix OSX menus which should not be shown
@@ -257,6 +257,7 @@ fi
 - fix parsing of invalid display structures
 - fix video region detection after resize
 - fix vpx quality setting
+- fix cursor crashes on Ubuntu
 - don't show opengl toggle menu if opengl is not supported
 - add new common X11 modes (4k, 5k, etc)
 - add missing logging category for x265 (fixes warnings on start)
