@@ -833,6 +833,7 @@ if 'clean' in sys.argv or 'sdist' in sys.argv:
     CLEAN_FILES = [
                    "xpra/build_info.py",
                    "xpra/gtk_common/gdk_atoms.c",
+                   "xpra/client/gtk3/cairo_workaround.c",
                    "xpra/x11/gtk_x11/constants.pxi",
                    "xpra/x11/gtk_x11/gdk_bindings.c",
                    "xpra/x11/gtk_x11/gdk_display_source.c",
@@ -872,6 +873,8 @@ if 'clean' in sys.argv or 'sdist' in sys.argv:
                    "xpra/codecs/xor/cyxor.c",
                    "xpra/codecs/argb/argb.c",
                    "xpra/server/stats/cymaths.c",
+                   "xpra/server/cystats.c",
+                   "xpra/server/region.c",
                    "etc/xpra/xpra.conf"]
     if WIN32:
         #on win32, the build creates ".pyd" files, clean those too:
