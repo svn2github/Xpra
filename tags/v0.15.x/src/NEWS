@@ -1,3 +1,8 @@
+v0.15.8 (2015-10-15)
+======================
+	-- fix missing files from build clean target
+
+
 v0.15.7 (2015-10-13)
 ======================
 	-- fix inband info requests

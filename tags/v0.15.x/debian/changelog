@@ -1,3 +1,8 @@
+xpra (0.15.8-1) UNRELEASED; urgency=low
+  * fix missing files from build clean target
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 15 Oct 2015 15:09:13 +0700
+
 xpra (0.15.7-1) UNRELEASED; urgency=low
   * fix inband info requests
   * fix monitor hotplugging workaround code
