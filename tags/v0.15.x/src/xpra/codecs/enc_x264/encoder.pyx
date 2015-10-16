@@ -539,8 +539,8 @@ cdef class Encoder:
         client_options = {
                 "frame"     : self.frames,
                 "pts"       : pic_out.i_pts,
-                "quality"   : min(99, quality),
-                "speed"     : speed}
+                "quality"   : min(99, self.quality),
+                "speed"     : self.speed}
         #accounting:
         end = time.time()
         self.time += end-start
