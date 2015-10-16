@@ -547,12 +547,13 @@ class ServerCore(object):
             auth_caps = None
 
         #verify authentication if required:
-        if proto.authenticator and proto.authenticator.requires_challenge():
+        if (proto.authenticator and proto.authenticator.requires_challenge()) or c.get("challenge") is not None:
             challenge_response = c.strget("challenge_response")
             client_salt = c.strget("challenge_client_salt")
             log("processing authentication with %s, response=%s, client_salt=%s", proto.authenticator, challenge_response, binascii.hexlify(client_salt or ""))
             #send challenge if this is not a response:
             if not challenge_response:
+                if proto.authenticator:
                 challenge = proto.authenticator.get_challenge()
                 if challenge is None:
                     auth_failed("invalid authentication state: unexpected challenge response")
@@ -562,6 +563,12 @@ class ServerCore(object):
                 if digest not in self.digest_modes:
                     auth_failed("cannot proceed without %s digest support" % digest)
                     return False
+                else:
+                    authlog.warn("Warning: client expects a challenge but this connection is unauthenticated")
+                    #fake challenge so the client will send the real hello:
+                    from xpra.os_util import get_hex_uuid
+                    salt = get_hex_uuid()+get_hex_uuid()
+                    digest = "hmac"
                 proto.send_now(("challenge", salt, auth_caps or "", digest))
                 return False
 
