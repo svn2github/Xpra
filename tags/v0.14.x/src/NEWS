@@ -1,3 +1,8 @@
+v0.14.32 (2015-10-16)
+======================
+	-- workaround clients supplying a password when none is required
+
+
 v0.14.31 (2015-10-13)
 ======================
 	-- fix inband info requests
