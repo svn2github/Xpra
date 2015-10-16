@@ -314,8 +314,13 @@ fi
 
 
 %changelog
-* Thu Oct 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+* Fri Oct 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix missing files from build clean target
+- fix the session info sound graphs when sound stops
+- fix RPM packaging of the cups backend
+- fix the speed and quality values reported to the clients for x264 encoder
+- workaround clients supplying a password when none is required
+- run the window opengl cleanup code
 
 * Tue Oct 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-2
 - fix inband info requests

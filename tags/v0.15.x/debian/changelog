@@ -1,7 +1,12 @@
 xpra (0.15.8-1) UNRELEASED; urgency=low
   * fix missing files from build clean target
+  * fix the session info sound graphs when sound stops
+  * fix RPM packaging of the cups backend
+  * fix the speed and quality values reported to the clients for x264 encoder
+  * workaround clients supplying a password when none is required
+  * run the window opengl cleanup code
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 15 Oct 2015 15:09:13 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 16 Oct 2015 19:06:41 +0700
 
 xpra (0.15.7-1) UNRELEASED; urgency=low
   * fix inband info requests

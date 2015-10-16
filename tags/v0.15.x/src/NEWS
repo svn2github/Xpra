@@ -1,6 +1,11 @@
-v0.15.8 (2015-10-15)
+v0.15.8 (2015-10-16)
 ======================
 	-- fix missing files from build clean target
+	-- fix the session info sound graphs when sound stops
+	-- fix RPM packaging of the cups backend
+	-- fix the speed and quality values reported to the clients for x264 encoder
+	-- workaround clients supplying a password when none is required
+	-- run the window opengl cleanup code
 
 
 v0.15.7 (2015-10-13)
