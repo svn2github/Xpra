@@ -500,7 +500,7 @@ class SessionInfo(gtk.Window):
         #record bytecount every second:
         self.net_in_bytecount.append(self.connection.input_bytecount)
         self.net_out_bytecount.append(self.connection.output_bytecount)
-        if SHOW_SOUND_STATS:
+        if SHOW_SOUND_STATS and self.client.sound_sink:
             if self.client.sound_in_bytecount>0:
                 self.sound_in_bytecount.append(self.client.sound_in_bytecount)
             if self.client.sound_out_bytecount>0:
