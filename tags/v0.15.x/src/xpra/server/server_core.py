@@ -612,15 +612,15 @@ class ServerCore(object):
             #send challenge if this is not a response:
             if not challenge_response:
                 if proto.authenticator:
-                challenge = proto.authenticator.get_challenge()
-                if challenge is None:
-                    auth_failed("invalid authentication state: unexpected challenge response")
-                    return False
-                salt, digest = challenge
-                log.info("Authentication required, %s sending challenge for '%s' using digest %s", proto.authenticator, username, digest)
-                if digest not in self.digest_modes:
-                    auth_failed("cannot proceed without %s digest support" % digest)
-                    return False
+                    challenge = proto.authenticator.get_challenge()
+                    if challenge is None:
+                        auth_failed("invalid authentication state: unexpected challenge response")
+                        return False
+                    salt, digest = challenge
+                    log.info("Authentication required, %s sending challenge for '%s' using digest %s", proto.authenticator, username, digest)
+                    if digest not in self.digest_modes:
+                        auth_failed("cannot proceed without %s digest support" % digest)
+                        return False
                 else:
                     authlog.warn("Warning: client expects a challenge but this connection is unauthenticated")
                     #fake challenge so the client will send the real hello:
