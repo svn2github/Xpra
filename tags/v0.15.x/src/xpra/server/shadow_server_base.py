@@ -50,7 +50,7 @@ class RootWindowModel(object):
         raise NotImplementedError()
 
     def get_property_names(self):
-        return ("title", "class-instance", "client-machine", "window-type", "size-hints", "icon")
+        return ("title", "class-instance", "client-machine", "window-type", "size-hints", "icon", "shadow")
 
     def get_dynamic_property_names(self):
         #nothing changes
@@ -74,6 +74,8 @@ class RootWindowModel(object):
             return ["NORMAL"]
         elif prop=="fullscreen":
             return False
+        elif prop=="shadow":
+            return True
         elif prop=="scaling":
             return None
         elif prop=="opacity":
