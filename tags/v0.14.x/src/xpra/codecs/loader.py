@@ -89,6 +89,28 @@ def add_codec_version(name, top_module, version="get_version()", alt_version="__
         log("", exc_info=True)
     return None
 
+def PIL_logging_workaround():
+    import logging
+    PIL_DEBUG = os.environ.get("XPRA_PIL_DEBUG", "0")=="1"
+    if PIL_DEBUG:
+        from xpra.log import Logger
+        log = Logger("util")
+        log.info("enabling PIL.DEBUG")
+        level = logging.DEBUG
+    else:
+        level = logging.INFO
+
+    #newer versions use this logger,
+    #we must initialize it before we load the class:
+    for x in ("Image", "PngImagePlugin", "WebPImagePlugin", "JpegImagePlugin"):
+        logger = logging.getLogger("PIL.%s" % x)
+        logger.setLevel(level)
+    import PIL
+    from PIL import Image
+    assert PIL and Image
+    if hasattr(Image, "DEBUG"):
+        #for older versions (pre 3.0), use Image.DEBUG flag:
+        Image.DEBUG = int(PIL_DEBUG)
 
 loaded = False
 def load_codecs():
@@ -97,6 +119,10 @@ def load_codecs():
         return
     loaded = True
     log("loading codecs")
+    try:
+        PIL_logging_workaround()
+    except:
+        log("error in PIL logging workaround", exc_info=True)
     codec_import_check("PIL", "Python Imaging Library", "PIL", "PIL", "Image")
     add_codec_version("PIL", "PIL.Image", "PILLOW_VERSION", "VERSION")
 
