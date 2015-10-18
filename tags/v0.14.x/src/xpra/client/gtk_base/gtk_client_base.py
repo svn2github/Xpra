@@ -260,3 +260,8 @@ class GTKXpraClient(UIXpraClient, GObjectXpraClient):
         if not system_bell(gdkwindow, device, percent, pitch, duration, bell_class, bell_id, bell_name):
             #fallback to simple beep:
             gdk.beep()
+            driver_info = self.opengl_props.get("renderer") or self.opengl_props.get("vendor") or "unknown card"
+            if self.opengl_enabled:
+                opengllog.info("OpenGL enabled with %s", driver_info)
+            elif self.client_supports_opengl:
+                opengllog("OpenGL supported with %s, but not enabled", driver_info)
