@@ -485,9 +485,9 @@ class WindowBackingBase(object):
             if rowstride==0:
                 rowstride = width * Bpp
             if Bpp==3:
-            self.paint_rgb24(img_data, x, y, width, height, rowstride, options, callbacks)
+                self.paint_rgb24(img_data, x, y, width, height, rowstride, options, callbacks)
             else:
-            self.paint_rgb32(img_data, x, y, width, height, rowstride, options, callbacks)
+                self.paint_rgb32(img_data, x, y, width, height, rowstride, options, callbacks)
         elif coding in VIDEO_DECODERS:
             self.paint_with_video_decoder(VIDEO_DECODERS.get(coding), coding, img_data, x, y, width, height, options, callbacks)
         elif coding == "webp":
