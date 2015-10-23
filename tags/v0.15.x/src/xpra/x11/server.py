@@ -971,6 +971,7 @@ class XpraServer(gobject.GObject, X11ServerBase):
                         continue
                     values[parts[0]] = parts[1]
                 values["Xft.dpi"] = self.dpi
+                values["Xft/DPI"] = self.dpi*1024
                 values["gnome.Xft/DPI"] = self.dpi*1024
                 if self.antialias:
                     ad = typedict(self.antialias)
