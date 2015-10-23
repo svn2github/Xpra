@@ -175,7 +175,6 @@ class ClientExtras(object):
         except:
             log.error("failed to get XSETTINGS", exc_info=True)
             return
-                  "Xft/DPI"         : 1024,
         log("xsettings_changed new value=%s", settings)
         if settings is not None:
             self.client.send("server-settings", {"xsettings-blob": settings})
