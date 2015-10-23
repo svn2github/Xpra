@@ -314,11 +314,21 @@ fi
 
 
 %changelog
-* Fri Oct 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+* Fri Oct 23 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix missing files from build clean target
 - fix the session info sound graphs when sound stops
 - fix RPM packaging of the cups backend
 - fix the speed and quality values reported to the clients for x264 encoder
+- fix OSX El Capitan sound compatibility issue
+- fix codec import error handler
+- fix compatibility with Python Pillow 3.0.0 (logging issue)
+- fix support for Ubuntu Vivid (Xorg still unusable)
+- fix batch delay heuristics during resizing and queue overload
+- fix "always batch" mode
+- fix missing network-send-speed accounting
+- support Xft/DPI
+- workaround clients supplying a password when none is required
+- log OpenGL driver information
 - workaround clients supplying a password when none is required
 - run the window opengl cleanup code
 

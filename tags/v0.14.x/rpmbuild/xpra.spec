@@ -247,8 +247,17 @@ fi
 
 
 %changelog
-* Fri Oct 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+* Fri Oct 23 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+- fix OSX El Capitan sound compatibility issue
+- fix codec import error handler
+- fix compatibility with Python Pillow 3.0.0 (logging issue)
+- fix support for Ubuntu Vivid (Xorg still unusable)
+- fix batch delay heuristics during resizing and queue overload
+- fix "always batch" mode
+- fix missing network-send-speed accounting
+- support Xft/DPI
 - workaround clients supplying a password when none is required
+- log OpenGL driver information
 
 * Tue Oct 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.31-1
 - fix inband info requests

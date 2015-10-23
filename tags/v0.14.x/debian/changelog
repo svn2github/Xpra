@@ -1,7 +1,17 @@
 xpra (0.14.32-1) UNRELEASED; urgency=low
+  * fix OSX El Capitan sound compatibility issue
+  * fix codec import error handler
+  * fix compatibility with Python Pillow 3.0.0 (logging issue)
+  * fix support for Ubuntu Vivid (Xorg still unusable)
+  * fix batch delay heuristics during resizing and queue overload
+  * fix "always batch" mode
+  * fix missing network-send-speed accounting
+  * support Xft/DPI
+  * workaround clients supplying a password when none is required
+  * log OpenGL driver information
   * workaround clients supplying a password when none is required
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 16 Oct 2015 19:06:41 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 23 Oct 2015 14:32:46 +0700
 
 xpra (0.14.31-1) UNRELEASED; urgency=low
   * fix inband info requests
