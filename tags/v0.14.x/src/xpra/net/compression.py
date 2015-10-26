@@ -27,8 +27,14 @@ try:
     #try to figure out the version number:
     if hasattr(lz4, "VERSION"):
         lz4_version = str(lz4.VERSION)
-    elif hasattr(lz4, "__file__"):
+    else:
         #hack it..
+        try:
+           import pkg_resources
+           lz4_version = pkg_resources.get_distribution("lz4").version
+        except:
+           lz4_version = None
+    if not lz4_version and hasattr(lz4, "__file__"):
         import os.path
         f = lz4.__file__
         #ie: /usr/lib/python2.7/site-packages/lz4-0.7.0-py2.7-linux-x86_64.egg/lz4.so
