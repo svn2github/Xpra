@@ -247,7 +247,7 @@ fi
 
 
 %changelog
-* Fri Oct 23 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+* Tue Oct 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
 - fix OSX El Capitan sound compatibility issue
 - fix codec import error handler
 - fix compatibility with Python Pillow 3.0.0 (logging issue)
@@ -255,6 +255,13 @@ fi
 - fix batch delay heuristics during resizing and queue overload
 - fix "always batch" mode
 - fix missing network-send-speed accounting
+- fix error in override redirect window geometry handling
+- fix invalid error logging call
+- fix error in XSettings handling causing connection failures
+- fix race condition causing corrupted video streams
+- fix encoding bug triggered when dependencies are missing
+- support Xorg location and arguments required by Arch Linux
+- improved lz4 version detection workaround code
 - support Xft/DPI
 - workaround clients supplying a password when none is required
 - log OpenGL driver information

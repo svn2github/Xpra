@@ -314,7 +314,7 @@ fi
 
 
 %changelog
-* Fri Oct 23 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+* Tue Oct 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix missing files from build clean target
 - fix the session info sound graphs when sound stops
 - fix RPM packaging of the cups backend
@@ -326,6 +326,15 @@ fi
 - fix batch delay heuristics during resizing and queue overload
 - fix "always batch" mode
 - fix missing network-send-speed accounting
+- fix error in override redirect window geometry handling
+- fix invalid error logging call
+- fix error in XSettings handling causing connection failures
+- fix race condition causing corrupted video streams
+- fix unnecessary double refresh on client decoding error
+- fix encoding bug triggered when dependencies are missing
+- fix window size hints handling
+- support Xorg location and arguments required by Arch Linux
+- improved lz4 version detection workaround code
 - support Xft/DPI
 - workaround clients supplying a password when none is required
 - log OpenGL driver information
