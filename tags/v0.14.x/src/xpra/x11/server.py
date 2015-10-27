@@ -478,7 +478,7 @@ class XpraServer(gobject.GObject, X11ServerBase):
             #so we *should* get a signal when the window goes away
 
     def _or_window_geometry_changed(self, window, pspec=None):
-        (x, y, w, h) = window.get_property("geometry")
+        (x, y, w, h) = window.get_property("geometry")[:4]
         if w>=32768 or h>=32768:
             self.error("not sending new invalid window dimensions: %ix%i !", w, h)
             return
