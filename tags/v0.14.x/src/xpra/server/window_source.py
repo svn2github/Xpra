@@ -238,7 +238,6 @@ class WindowSource(object):
         self._damage_delayed = None
         self._damage_delayed_expired = False
         self._sequence = 1
-        self._last_sequence_queued = 0
         self._damage_cancelled = 0
         self._damage_packet_sequence = 1
         encoders = {}
@@ -1291,7 +1290,7 @@ class WindowSource(object):
         #something failed client-side, so we can't rely on the delta being available
         self.last_pixmap_data = None
         if window:
-            self.idle_add(self.full_quality_refresh, window)
+            self.timeout_add(250, self.full_quality_refresh, window)
 
 
     def make_data_packet(self, damage_time, process_damage_time, wid, image, coding, sequence, options):
@@ -1398,7 +1397,6 @@ class WindowSource(object):
         totals = self.statistics.encoding_totals.setdefault(coding, [0, 0])
         totals[0] = totals[0] + 1
         totals[1] = totals[1] + w*h
-        self._last_sequence_queued = sequence
         self.encoding_last_used = coding
         #log("make_data_packet: returning packet=%s", packet[:7]+[".."]+packet[8:])
         return packet
