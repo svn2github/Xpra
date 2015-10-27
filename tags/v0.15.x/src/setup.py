@@ -711,6 +711,7 @@ def detect_xorg_setup(install_dir=None):
                               "+extension", "RENDER",
                               "-auth", "$XAUTHORITY",
                               "-logfile", "${HOME}/.xpra/Xorg.${DISPLAY}.log",
+                              "-configdir", "${HOME}/.xpra",       ##required on arch linux, but actually unused!
                               "-config", xorg_conf])
 
         if Xdummy_wrapper_ENABLED is not None:
