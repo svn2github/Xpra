@@ -113,7 +113,7 @@ def set_settings(disp, d):
             if setting_type==XSettingsTypeInteger:
                 assert type(value) in (int, long), "invalid value type (int or long wanted): %s" % type(value)
                 x += struct.pack("=I", int(value))
-           elif setting_type==XSettingsTypeString:
+            elif setting_type==XSettingsTypeString:
                 if type(value)==unicode:
                     value = str(value)
                 else:
