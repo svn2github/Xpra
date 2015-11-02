@@ -49,7 +49,7 @@ metadatalog = Logger("x11", "metadata")
 
 import xpra
 from xpra.util import nonl, typedict
-from xpra.os_util import StringIOClass
+from xpra.os_util import StringIOClass, _memoryview
 from xpra.x11.x11_server_base import X11ServerBase, mouselog
 from xpra.net.compression import Compressed
 
@@ -896,10 +896,14 @@ class XpraServer(gobject.GObject, X11ServerBase):
                      "XRGB"   : "RGB",
                      "BGRX"   : "RGB",
                      "BGRA"   : "RGBA"}.get(pixel_format, pixel_format)
+            pixels = img.get_pixels()
+            #PIL cannot use the memoryview directly:
+            if _memoryview and isinstance(pixels, _memoryview):
+                pixels = pixels.tobytes()
             try:
-                window_image = Image.frombuffer(target_format, (w, h), img.get_pixels(), "raw", pixel_format, img.get_rowstride())
+                window_image = Image.frombuffer(target_format, (w, h), pixels, "raw", pixel_format, img.get_rowstride())
             except:
-                log.warn("failed to parse window pixels in %s format", pixel_format)
+                log.error("Error parsing window pixels in %s format", pixel_format, exc_info=True)
                 continue
             tx = x-minx
             ty = y-miny
