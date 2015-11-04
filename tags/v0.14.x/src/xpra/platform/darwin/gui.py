@@ -141,7 +141,7 @@ class NotificationHandler(NSObject):
         log("handleSleepNotification(%s)", aNotification)
         if self.sleep_callback:
             try:
-        self.sleep_callback()
+                self.sleep_callback()
             except:
                 log.error("Error in sleep callback %s", self.sleep_callback, exc_info=True)
 
@@ -149,7 +149,7 @@ class NotificationHandler(NSObject):
         log("handleWakeNotification(%s)", aNotification)
         if self.wake_callback:
             try:
-        self.wake_callback()
+                self.wake_callback()
             except:
                 log.error("Error in wake callback %s", self.wake_callback, exc_info=True)
 
