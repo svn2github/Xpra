@@ -726,7 +726,7 @@ class XpraServer(gobject.GObject, X11ServerBase):
         if len(packet)>=8:
             self._set_window_state(proto, wid, window, packet[7])
         ax, ay, aw, ah = self._clamp_window(proto, wid, window, x, y, w, h)
- 	self._desktop_manager.configure_window(window, ax, ay, aw, ah)
+        self._desktop_manager.configure_window(window, ax, ay, aw, ah)
         self._desktop_manager.show_window(window)
         if len(packet)>=7:
             self._set_client_properties(proto, wid, window, packet[6])
