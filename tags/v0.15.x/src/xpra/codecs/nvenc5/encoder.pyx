@@ -2204,6 +2204,8 @@ cdef class Encoder:
 
 
 def init_module():
+    global YUV444_ENABLED, LOSSLESS_ENABLED
+    YUV444_ENABLED, LOSSLESS_ENABLED = True, True
     log("nvenc.init_module()")
     #TODO: this should be a build time check:
     if NVENCAPI_VERSION<0x50:
@@ -2212,12 +2214,11 @@ def init_module():
 
     #this should log the kernel module version
     get_nvidia_module_version()
+            log.warn(" disabling YUV444P support")
+            YUV444_ENABLED = False
 
     #load the library / DLL:
     init_nvencode_library()
-
-    global YUV444_ENABLED, LOSSLESS_ENABLED
-    YUV444_ENABLED, LOSSLESS_ENABLED = True, True
 
     test_encoder = Encoder()
     for encoding in get_encodings():
