@@ -247,8 +247,11 @@ fi
 
 
 %changelog
-* Tue Oct 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+* Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
 - fix OSX El Capitan sound compatibility issue
+- fix x265 encoder
+- fix libvpx bitrate calculations
+- fix validation of mmap security token
 - fix codec import error handler
 - fix compatibility with Python Pillow 3.0.0 (logging issue)
 - fix support for Ubuntu Vivid (Xorg still unusable)
@@ -263,6 +266,7 @@ fi
 - support Xorg location and arguments required by Arch Linux
 - improved lz4 version detection workaround code
 - support Xft/DPI
+- safer OSX power event handling code
 - workaround clients supplying a password when none is required
 - log OpenGL driver information
 

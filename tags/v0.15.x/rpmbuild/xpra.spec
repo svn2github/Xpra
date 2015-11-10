@@ -314,8 +314,16 @@ fi
 
 
 %changelog
-* Tue Oct 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+* Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix missing files from build clean target
+- fix x265 encoder
+- fix libvpx bitrate calculations, reduce logging spam
+- fix validation of mmap security token
+- fix handling of file transfers before authentication (disallowed)
+- fix handling of requests to open files (honour command line / config flag)
+- fix MS Windows multiple monitor bug (when primary monitor is re-added)
+- fix NVENC visual corruption with unsupported driver versions (disable YUV444)
+- fix video encoding automatic selection for encoders that accept RGB directly
 - fix the session info sound graphs when sound stops
 - fix RPM packaging of the cups backend
 - fix the speed and quality values reported to the clients for x264 encoder
@@ -336,9 +344,15 @@ fi
 - support Xorg location and arguments required by Arch Linux
 - improved lz4 version detection workaround code
 - support Xft/DPI
+- safer OSX power event handling code
 - workaround clients supplying a password when none is required
 - log OpenGL driver information
+- clamp desktop size to the maximum screen size
+- avoid potential errors with bytes-per-pixel confusion with rgb modes
+- disable workspace support by default (compatibility issues with some WM)
+- always watch for property changes, even without workspace support
 - workaround clients supplying a password when none is required
+- export shadow servers flag
 - run the window opengl cleanup code
 
 * Tue Oct 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.7-2
