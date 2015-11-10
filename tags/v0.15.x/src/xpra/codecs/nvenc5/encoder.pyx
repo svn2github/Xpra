@@ -2214,8 +2214,6 @@ def init_module():
 
     #this should log the kernel module version
     get_nvidia_module_version()
-            log.warn(" disabling YUV444P support")
-            YUV444_ENABLED = False
 
     #load the library / DLL:
     init_nvencode_library()

@@ -6,7 +6,6 @@ xpra (0.15.8-1) UNRELEASED; urgency=low
   * fix handling of file transfers before authentication (disallowed)
   * fix handling of requests to open files (honour command line / config flag)
   * fix MS Windows multiple monitor bug (when primary monitor is re-added)
-  * fix NVENC visual corruption with unsupported driver versions (disable YUV444)
   * fix video encoding automatic selection for encoders that accept RGB directly
   * fix the session info sound graphs when sound stops
   * fix RPM packaging of the cups backend
