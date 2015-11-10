@@ -1,5 +1,6 @@
 xpra (0.14.32-2) UNRELEASED; urgency=low
   * fix OSX El Capitan sound compatibility issue
+  * fix unnecessary auto-refresh events
   * fix x265 encoder
   * fix libvpx bitrate calculations
   * fix safe validation of mmap security token
@@ -21,7 +22,7 @@ xpra (0.14.32-2) UNRELEASED; urgency=low
   * workaround clients supplying a password when none is required
   * log OpenGL driver information
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 10 Nov 2015 13:08:51 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 10 Nov 2015 22:51:46 +0700
 
 xpra (0.14.31-1) UNRELEASED; urgency=low
   * fix inband info requests

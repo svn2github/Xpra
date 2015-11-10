@@ -1,5 +1,6 @@
 xpra (0.15.8-1) UNRELEASED; urgency=low
   * fix missing files from build clean target
+  * fix unnecessary auto-refresh events
   * fix x265 encoder
   * fix libvpx bitrate calculations, reduce logging spam
   * fix validation of mmap security token
@@ -39,7 +40,7 @@ xpra (0.15.8-1) UNRELEASED; urgency=low
   * run the window opengl cleanup code
 
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 10 Nov 2015 13:04:04 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 10 Nov 2015 22:51:46 +0700
 
 xpra (0.15.7-1) UNRELEASED; urgency=low
   * fix inband info requests

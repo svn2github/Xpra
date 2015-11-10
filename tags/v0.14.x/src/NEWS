@@ -1,6 +1,7 @@
 v0.14.32 (2015-11-10)
 ======================
 	-- fix OSX El Capitan sound compatibility issue
+	-- fix unnecessary auto-refresh events
 	-- fix x265 encoder
 	-- fix libvpx bitrate calculations
 	-- fix validation of mmap security token

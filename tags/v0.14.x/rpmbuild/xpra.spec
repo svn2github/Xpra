@@ -249,6 +249,7 @@ fi
 %changelog
 * Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
 - fix OSX El Capitan sound compatibility issue
+- fix unnecessary auto-refresh events
 - fix x265 encoder
 - fix libvpx bitrate calculations
 - fix validation of mmap security token

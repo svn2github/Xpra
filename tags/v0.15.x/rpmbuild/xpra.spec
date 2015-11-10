@@ -316,6 +316,7 @@ fi
 %changelog
 * Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix missing files from build clean target
+- fix unnecessary auto-refresh events
 - fix x265 encoder
 - fix libvpx bitrate calculations, reduce logging spam
 - fix validation of mmap security token
