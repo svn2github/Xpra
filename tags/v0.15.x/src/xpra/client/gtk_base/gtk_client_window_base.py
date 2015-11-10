@@ -35,7 +35,7 @@ PixbufLoader = import_pixbufloader()
 
 CAN_SET_WORKSPACE = False
 HAS_X11_BINDINGS = False
-if os.name=="posix" and os.environ.get("XPRA_SET_WORKSPACE", "1")!="0":
+if os.name=="posix":
     try:
         from xpra.x11.gtk_x11.prop import prop_get, prop_set
         from xpra.x11.bindings.window_bindings import constants, X11WindowBindings  #@UnresolvedImport
@@ -54,7 +54,7 @@ if os.name=="posix" and os.environ.get("XPRA_SET_WORKSPACE", "1")!="0":
             #TODO: in theory this is not a proper check, meh - that will do
             root = gtk.gdk.get_default_root_window()
             supported = prop_get(root, "_NET_SUPPORTED", ["atom"], ignore_errors=True)
-            CAN_SET_WORKSPACE = bool(supported) and "_NET_WM_DESKTOP" in supported
+            CAN_SET_WORKSPACE = os.environ.get("XPRA_SET_WORKSPACE", "0")=="1" and bool(supported) and "_NET_WM_DESKTOP" in supported
         except Exception as e:
             log.info("failed to setup workspace hooks: %s", e)
     except ImportError:
