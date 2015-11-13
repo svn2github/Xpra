@@ -1,4 +1,5 @@
 xpra (0.15.8-1) UNRELEASED; urgency=low
+  * fix potential security issue with password challenge
   * fix missing files from build clean target
   * fix unnecessary auto-refresh events
   * fix x265 encoder
@@ -39,8 +40,7 @@ xpra (0.15.8-1) UNRELEASED; urgency=low
   * export shadow servers flag
   * run the window opengl cleanup code
 
-
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 10 Nov 2015 22:51:46 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 13 Nov 2015 19:50:49 +0700
 
 xpra (0.15.7-1) UNRELEASED; urgency=low
   * fix inband info requests

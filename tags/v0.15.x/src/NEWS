@@ -1,5 +1,6 @@
-v0.15.8 (2015-11-10)
+v0.15.8 (2015-11-13)
 ======================
+	-- fix potential security issue with password challenge
 	-- fix missing files from build clean target
 	-- fix unnecessary auto-refresh events
 	-- fix x265 encoder

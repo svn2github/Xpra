@@ -314,7 +314,8 @@ fi
 
 
 %changelog
-* Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+* Fri Nov 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
+- fix potential security issue with password challenge
 - fix missing files from build clean target
 - fix unnecessary auto-refresh events
 - fix x265 encoder

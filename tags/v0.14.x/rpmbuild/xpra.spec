@@ -247,8 +247,9 @@ fi
 
 
 %changelog
-* Tue Nov 10 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+* Fri Nov 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
 - fix OSX El Capitan sound compatibility issue
+- fix potential security issue with password challenge
 - fix unnecessary auto-refresh events
 - fix x265 encoder
 - fix libvpx bitrate calculations
