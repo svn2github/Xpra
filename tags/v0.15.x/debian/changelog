@@ -1,4 +1,4 @@
-xpra (0.15.8-1) UNRELEASED; urgency=low
+xpra (0.15.8-2) UNRELEASED; urgency=low
   * fix potential security issue with password challenge
   * fix missing files from build clean target
   * fix unnecessary auto-refresh events
