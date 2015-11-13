@@ -463,6 +463,11 @@ class XpraClientBase(object):
         if digest:
             log("%s(%s, %s)=%s", digest, password, salt, challenge_response)
         self.password_sent = True
+        for d in (self._packet_handlers, self._ui_packet_handlers):
+            try:
+                del d["challenge"]
+            except:
+                pass
         self.send_hello(challenge_response, client_salt)
 
     def set_server_encryption(self, capabilities, key):
