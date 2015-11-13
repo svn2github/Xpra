@@ -101,7 +101,7 @@ def _get_xsettings_dpi():
         if k in d:
             value_type, value = d.get(k)
             if value_type==XSettingsTypeInteger:
-                log.info("get_dpi() found %s=%s", k, value)
+                log("get_dpi() found %s=%s", k, value)
                 return max(10, min(1000, value/div))
     return -1
 
