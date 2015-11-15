@@ -253,7 +253,7 @@ pulseaudio-command = pulseaudio --start --daemonize=false --system=false \
 # - Old Xvfb option:
 # xvfb=Xvfb +extension Composite -screen 0 3840x2560x24+32 -nolisten tcp -noreset -auth $XAUTHORITY
 # - With Xorg 1.12 or newer and the dummy driver:
-# xvfb=/usr/bin/Xorg -dpi 96 -noreset -nolisten tcp +extension GLX +extension RANDR +extension RENDER -logfile ${HOME}/.xpra/Xorg.${DISPLAY}.log -configdir ${HOME}/.xpra/xorgconfigdir -config /etc/xpra/xorg.conf
+# xvfb=/usr/bin/Xorg -dpi 96 -noreset -nolisten tcp +extension GLX +extension RANDR +extension RENDER -logfile ${HOME}/.xpra/Xorg.${DISPLAY}.log -configdir ${HOME}/.xpra/xorg.conf.d -config /etc/xpra/xorg.conf
 #
 # Selecting virtual X server:
 xvfb=%(xvfb_command)s
