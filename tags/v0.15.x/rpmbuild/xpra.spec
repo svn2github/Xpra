@@ -316,6 +316,7 @@ fi
 %changelog
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-3
 - fix Xorg error when there are config files in the user's xpra directory
+- fix logging error in authentication backport
 
 * Fri Nov 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-2
 - fix potential security issue with password challenge

@@ -1,5 +1,6 @@
 xpra (0.15.8-3) UNRELEASED; urgency=low
   * fix Xorg error when there are config files in the user's xpra directory
+  * fix logging error in authentication backport
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 15 Nov 2015 14:49:21 +0700
 

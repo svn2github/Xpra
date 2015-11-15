@@ -249,6 +249,7 @@ fi
 %changelog
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2
 - fix Xorg error when there are config files in the user's xpra directory
+- fix logging error in authentication backport
 
 * Fri Nov 13 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
 - fix OSX El Capitan sound compatibility issue
