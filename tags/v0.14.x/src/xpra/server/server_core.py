@@ -564,7 +564,7 @@ class ServerCore(object):
                         auth_failed("cannot proceed without %s digest support" % digest)
                         return False
                 else:
-                    authlog.warn("Warning: client expects a challenge but this connection is unauthenticated")
+                    log.warn("Warning: client expects a challenge but this connection is unauthenticated")
                     #fake challenge so the client will send the real hello:
                     from xpra.os_util import get_hex_uuid
                     salt = get_hex_uuid()+get_hex_uuid()
@@ -579,7 +579,7 @@ class ServerCore(object):
         else:
             #did the client expect a challenge?
             if c.boolget("challenge"):
-                authlog.warn("this server does not require authentication (client supplied a challenge)")
+                log.warn("this server does not require authentication (client supplied a challenge)")
         return auth_caps
 
     def filedata_nocrlf(self, filename):
