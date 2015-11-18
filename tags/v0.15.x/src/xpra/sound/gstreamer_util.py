@@ -532,6 +532,9 @@ def main():
     finally:
         clean()
 
+def format_element_options(options):
+    return csv("%s=%s" % (k,v) for k,v in options.items())
+
 
 if __name__ == "__main__":
     main()

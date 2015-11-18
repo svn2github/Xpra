@@ -229,9 +229,10 @@ class sound_subprocess_wrapper(subprocess_caller):
 class source_subprocess_wrapper(sound_subprocess_wrapper):
 
     def __init__(self, plugin, options, codecs, volume, element_options):
+        from xpra.sound.gstreamer_util import format_element_options
         sound_subprocess_wrapper.__init__(self, "sound-source")
         self.large_packets = ["new-buffer"]
-        self.command = [get_sound_executable(), "_sound_record", "-", "-", plugin or "", "", ",".join(codecs), "", str(volume)]
+        self.command = [get_sound_executable(), "_sound_record", "-", "-", plugin or "", format_element_options(element_options), ",".join(codecs), "", str(volume)]
         self._add_debug_args()
 
     def __repr__(self):
@@ -241,10 +242,11 @@ class source_subprocess_wrapper(sound_subprocess_wrapper):
 class sink_subprocess_wrapper(sound_subprocess_wrapper):
 
     def __init__(self, plugin, options, codec, volume, element_options):
+        from xpra.sound.gstreamer_util import format_element_options
         sound_subprocess_wrapper.__init__(self, "sound-sink")
         self.large_packets = ["add_data"]
         self.codec = codec
-        self.command = [get_sound_executable(), "_sound_play", "-", "-", plugin or "", "", codec, "", str(volume)]
+        self.command = [get_sound_executable(), "_sound_play", "-", "-", plugin or "", format_element_options(element_options), codec, "", str(volume)]
         self._add_debug_args()
 
     def add_data(self, data, metadata):
@@ -273,7 +275,7 @@ def start_sending_sound(sound_source_plugin, codec, volume, remote_decoders, rem
         log("parsed '%s':", sound_source_plugin)
         log("plugin=%s", plugin)
         log("options=%s", options)
-        return source_subprocess_wrapper(plugin, options, remote_decoders, volume, {})
+        return source_subprocess_wrapper(plugin, options, remote_decoders, volume, options)
     except Exception as e:
         log.error("error setting up sound: %s", e, exc_info=True)
         return None
