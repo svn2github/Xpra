@@ -681,7 +681,7 @@ class ServerSource(object):
                         self.mmap = None
                         self.mmap_size = 0
                     else:
-                    self.mmap_client_token = new_token
+                        self.mmap_client_token = new_token
 
         if self.mmap_size>0:
             log.info("mmap is enabled using %sB area in %s", std_unit(self.mmap_size, unit=1024), mmap_filename)
