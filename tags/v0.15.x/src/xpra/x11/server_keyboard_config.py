@@ -398,6 +398,13 @@ class KeyboardConfig(KeyboardConfigBase):
                     log("modifier %s ignored (ignored keycode=%s)", modifier, ignored_modifier_keycode)
                     continue
                 #nuisance keys (lock, num, scroll) are toggled by a
+                if not press:
+                    #since we want to unpress something,
+                    #let's try the keycodes we know are pressed first:
+                    kdown = X11Keyboard.get_keycodes_down()
+                    pressed = [x for x in keycodes if x in kdown]
+                    others = [x for x in keycodes if x not in kdown]
+                    keycodes = pressed+others
                 #full key press + key release (so act accordingly in the loop below)
                 nuisance = modifier in DEFAULT_MODIFIER_NUISANCE
                 log("keynames(%s)=%s, keycodes=%s, nuisance=%s", modifier, keynames, keycodes, nuisance)
@@ -409,12 +416,14 @@ class KeyboardConfig(KeyboardConfigBase):
                         X11Keyboard.xtest_fake_key(keycode, press)
                     new_mask = self.get_current_mask()
                     success = (modifier in new_mask)==press
-                    log("make_keymask_match(%s) %s modifier %s using %s, success: %s", info, modifier_list, modifier, keycode, success)
+                    log("change_mask(%s) %s modifier %s using %s, success: %s", info, modifier_list, modifier, keycode, success)
                     if success:
                         break
                     elif not nuisance:
-                        log("%s %s with keycode %s did not work - trying to undo it!", info, modifier, keycode)
-                        X11Keyboard.xtest_fake_key(keycode, not press)
+                        log("%s %s with keycode %s did not work", info, modifier, keycode)
+                        if press:
+                            log(" trying to unpress it!", info, modifier, keycode)
+                            X11Keyboard.xtest_fake_key(keycode, False)
                         new_mask = self.get_current_mask()
                         #maybe doing the full keypress (down+up or u+down) worked:
                         if (modifier in new_mask)==press:
