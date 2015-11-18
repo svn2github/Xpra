@@ -4,11 +4,15 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
+import os
 from xpra.platform.darwin.osx_menu import getOSXMenuHelper
 from xpra.platform.paths import get_icon
 
 from xpra.log import Logger
 log = Logger("osx", "events")
+
+
+SLEEP_HANDLER = os.environ.get("XPRA_OSX_SLEEP_HANDLER", "0")=="1"
 
 
 exit_cb = None
@@ -160,7 +164,8 @@ class ClientExtras(object):
         log("ClientExtras.__init__(%s, %s, %s) swap_keys=%s", client, opts, blocking, swap_keys)
         self.client = client
         self.blocking = blocking
-        self.setup_event_loop()
+        if SLEEP_HANDLER:
+            self.setup_event_loop()
         if opts and client:
             log("setting swap_keys=%s using %s", swap_keys, client.keyboard_helper)
             if client.keyboard_helper and client.keyboard_helper.keyboard:
