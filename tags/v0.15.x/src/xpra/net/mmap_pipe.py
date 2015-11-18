@@ -54,7 +54,7 @@ def init_client_mmap(token, mmap_group=None, socket_filename=None, size=128*1024
         assert size>=1024*1024, "mmap size is too small: %s (minimum is 1MB)" % to_std_unit(size)
         assert size<=1024*1024*1024, "mmap is too big: %s (maximum is 1GB)" % to_std_unit(size)
         unit = max(4096, mmap.PAGESIZE)
-        mmap_size = roundup(size, unit)
+        mmap_size = roundup(size + 8, unit)
         log("using mmap file %s, fd=%s, size=%s", mmap_filename, fd, mmap_size)
         os.lseek(fd, mmap_size-1, os.SEEK_SET)
         assert os.write(fd, strtobytes('\x00'))
@@ -193,7 +193,11 @@ def mmap_write(mmap_area, mmap_size, data):
     l = len(data)
     #update global mmap stats:
     mmap_free_size = available-l
-    if mmap_free_size<=0:
+    if l>(mmap_size-8):
+        log.warn("Warning: mmap area is too small!")
+        log.warn(" we need to store %s bytes but the mmap area is limited to %i", l, (mmap_size-8))
+        return None, mmap_free_size
+    elif mmap_free_size<=0:
         log.warn("mmap area full: we need more than %s but only %s left! ouch!", l, available)
         return None, mmap_free_size
     if l<chunk:
