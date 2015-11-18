@@ -314,7 +314,15 @@ fi
 
 
 %changelog
-* Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
+* Wed Nov 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
+- fix OSX crashes caused by power events (disable the handler for now)
+- fix keyboard modifier synchronization (wrong keys pressed or stuck)
+- fix mmap corner case handling: disable it rather than erroring out
+- fix sound subprocess plugin options (ie: honour device selection)
+- fix limit the number of authentication requests per connection
+- fix video encoding pipeline evaluation
+
+* Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-3
 - fix Xorg error when there are config files in the user's xpra directory
 - fix logging error in authentication backport
 

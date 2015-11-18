@@ -1,6 +1,9 @@
 v0.14.33 (2015-11-18)
 ======================
-	-- TODO
+	-- fix OSX crashes caused by power events (disable the handler for now)
+	-- fix keyboard modifier synchronization (wrong keys pressed or stuck)
+	-- fix mmap corner case handling: disable it rather than erroring out
+	-- fix limit the number of authentication requests per connection
 
 
 v0.14.32 (2015-11-13)

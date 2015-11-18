@@ -1,5 +1,10 @@
 xpra (0.15.9-1) UNRELEASED; urgency=low
-  * TODO
+  * fix OSX crashes caused by power events (disable the handler for now)
+  * fix keyboard modifier synchronization (wrong keys pressed or stuck)
+  * fix mmap corner case handling: disable it rather than erroring out
+  * fix sound subprocess plugin options (ie: honour device selection)
+  * fix limit the number of authentication requests per connection
+  * fix video encoding pipeline evaluation
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 18 Nov 2015 10:49:18 +0700
 

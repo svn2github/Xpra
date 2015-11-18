@@ -1,5 +1,8 @@
 xpra (0.14.33-1) UNRELEASED; urgency=low
-  * TODO
+  * fix OSX crashes caused by power events (disable the handler for now)
+  * fix keyboard modifier synchronization (wrong keys pressed or stuck)
+  * fix mmap corner case handling: disable it rather than erroring out
+  * fix limit the number of authentication requests per connection
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 18 Nov 2015 10:50:07 +0700
 

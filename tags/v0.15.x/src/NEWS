@@ -1,6 +1,11 @@
 v0.15.9 (2015-11-18)
 ======================
-	-- TODO
+	-- fix OSX crashes caused by power events (disable the handler for now)
+	-- fix keyboard modifier synchronization (wrong keys pressed or stuck)
+	-- fix mmap corner case handling: disable it rather than erroring out
+	-- fix sound subprocess plugin options (ie: honour device selection)
+	-- fix limit the number of authentication requests per connection
+	-- fix video encoding pipeline evaluation
 
 
 v0.15.8 (2015-11-13)
