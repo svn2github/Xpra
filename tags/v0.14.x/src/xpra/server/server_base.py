@@ -52,6 +52,7 @@ class ServerBase(ServerCore):
         self.client_properties = {}
 
         self.supports_mmap = False
+        self.min_mmap_size = 64*1024*1024
         self.randr = False
 
         self._window_to_id = {}
@@ -561,7 +562,7 @@ class ServerBase(ServerCore):
                           self.default_speed, self.default_min_speed)
         log("process_hello serversource=%s", ss)
         try:
-            ss.parse_hello(c)
+            ss.parse_hello(c, self.min_mmap_size)
         except:
             #close it already
             ss.close()
