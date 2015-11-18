@@ -148,6 +148,7 @@ class WindowSource(object):
             self.max_small_regions = 10
             self.max_bytes_percent = 25
             self.small_packet_cost = 4096
+        self.pixel_format = None                            #ie: BGRX
 
         #for sending and batching window icon updates:
         self.window_icon_data = None
@@ -307,6 +308,8 @@ class WindowSource(object):
                 "delta"                 : self.supports_delta,
                 "delta.buckets"         : self.delta_buckets,
                 })
+        if self.pixel_format:
+            info["pixel-format"] = self.pixel_format
         now = time.time()
         for i,x in enumerate(self.delta_pixel_data):
             if x:
@@ -1181,6 +1184,7 @@ class WindowSource(object):
         if self.is_cancelled(sequence):
             image.free()
             return
+        self.pixel_format = image.get_pixel_format()
 
         now = time.time()
         log("process_damage_regions: wid=%s, adding %s pixel data to queue, elapsed time: %.1f ms, request time: %.1f ms",
