@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.32
+%define version 0.14.33
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -247,7 +247,7 @@ fi
 
 
 %changelog
-* Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2
+* Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix Xorg error when there are config files in the user's xpra directory
 - fix logging error in authentication backport
 
@@ -415,7 +415,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures
