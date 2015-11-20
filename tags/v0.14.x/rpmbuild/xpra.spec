@@ -45,6 +45,11 @@
 %define requires_sound %{nil}
 %endif
 
+%if 0%{?el7}
+#distro version is too old replace with our private libraries
+%define libwebp libwebp-xpra
+%endif
+
 %if 0%{?el6}
 #distro version is too old replace with our private libraries
 %define libvpx libvpx-xpra

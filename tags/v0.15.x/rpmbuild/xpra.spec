@@ -37,6 +37,8 @@
 
 # any centos / rhel supported:
 %if 0%{?el6}%{?el7}
+#distro version is too old replace with our private libraries
+%define libwebp libwebp-xpra
 #not available:
 %define requires_websockify %{nil}
 %define requires_lzo %{nil}
@@ -53,8 +55,6 @@
 %if 0%{?el6}
 #can't run the tests with python 2.6 which is too old:
 %define run_tests 0
-#distro version is too old replace with our private libraries
-%define libwebp libwebp-xpra
 #no pycups available in repos:
 %define requires_printing %{nil}
 #only v6.4 onwards have Xdummy support:
