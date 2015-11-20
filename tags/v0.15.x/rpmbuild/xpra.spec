@@ -112,7 +112,7 @@ Requires: %{libvpx}
 Requires: %{libwebp}
 Requires: x264-xpra
 Requires: ffmpeg-xpra
-Requires: xpra-common
+Requires: xpra-common = %{version}-%{build_no}%{dist}
 
 BuildRequires: pkgconfig
 BuildRequires: Cython
