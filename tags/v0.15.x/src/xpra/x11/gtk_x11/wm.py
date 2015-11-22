@@ -30,6 +30,11 @@ focuslog = Logger("x11", "window", "focus")
 screenlog = Logger("x11", "window", "screen")
 
 
+CWX             = constants["CWX"]
+CWY             = constants["CWY"]
+CWWidth         = constants["CWWidth"]
+CWHeight        = constants["CWHeight"]
+
 NotifyPointerRoot   = constants["NotifyPointerRoot"]
 NotifyDetailNone    = constants["NotifyDetailNone"]
 
@@ -416,8 +421,19 @@ class Wm(gobject.GObject):
             return
         log("Reconfigure on withdrawn window")
         with xswallow:
-            X11Window.configureAndNotify(event.window.xid, event.x, event.y,
-                     event.width, event.height, event.value_mask)
+            xid = event.window.xid
+            x, y, w, h = X11Window.getGeometry(xid)[:4]
+            if event.value_mask & CWX:
+                x = event.x
+            if event.value_mask & CWY:
+                y = event.y
+            if event.value_mask & CWWidth:
+                w = event.width
+            if event.value_mask & CWHeight:
+                h = event.height
+            if event.value_mask & (CWX | CWY | CWWidth | CWHeight):
+                log("updated window geometry for window %#x from %s to %s", xid, X11Window.getGeometry(xid)[:4], (x, y, w, h))
+            X11Window.configureAndNotify(xid, x, y, w, h, event.value_mask)
 
     def do_xpra_focus_in_event(self, event):
         # The purpose of this function is to detect when the focus mode has
