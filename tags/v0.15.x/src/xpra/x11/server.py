@@ -457,6 +457,9 @@ class XpraServer(gobject.GObject, X11ServerBase):
             return
         geom[:4] = [x, y, nw, nh]
         lcce = self.last_client_configure_event
+        if not self._desktop_manager.is_shown(window):
+            self.size_notify_clients(window)
+            return
         if self.snc_timer>0:
             gobject.source_remove(self.snc_timer)
         #TODO: find a better way to choose the timer delay:
@@ -465,11 +468,11 @@ class XpraServer(gobject.GObject, X11ServerBase):
         delay = max(100, min(250, 250 + 1000 * (lcce-time.time())))
         self.snc_timer = gobject.timeout_add(int(delay), self.size_notify_clients, window, lcce)
 
-    def size_notify_clients(self, window, lcce):
+    def size_notify_clients(self, window, lcce=-1):
         log("size_notify_clients(%s, %s) last_client_configure_event=%s", window, lcce, self.last_client_configure_event)
         self.snc_timer = 0
         wid = self._window_to_id.get(window)
-        if lcce!=self.last_client_configure_event or not wid:
+        if lcce>0 and lcce!=self.last_client_configure_event or not wid:
             #we have received a new client resize since,
             #or the window is simply gone
             return
