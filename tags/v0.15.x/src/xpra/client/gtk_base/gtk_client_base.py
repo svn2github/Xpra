@@ -389,6 +389,11 @@ class GTKXpraClient(UIXpraClient, GObjectXpraClient):
             cursor_pixbuf = pixbuf.scale_simple(w, h, INTERP_BILINEAR)
         else:
             cursor_pixbuf = pixbuf
+        #clamp to pixbuf size:
+        w = cursor_pixbuf.get_width()
+        h = cursor_pixbuf.get_height()
+        x = max(0, min(w-1))
+        y = max(0, min(h-1))
         return new_Cursor_from_pixbuf(display, cursor_pixbuf, x, y)
 
 
