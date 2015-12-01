@@ -314,13 +314,21 @@ fi
 
 
 %changelog
-* Wed Nov 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
+* Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
 - fix OSX crashes caused by power events (disable the handler for now)
+- fix libwebp dependency with CentOS 7
+- fix network layer error with bencode and missing workspace attribute
+- fix handling of window configure requests before the window is shown
+- fix for applications sending configure requests to the root window
+- fix keyboard "nuisance" modifiers handling
 - fix keyboard modifier synchronization (wrong keys pressed or stuck)
+- fix clamping of cursor hotspot when the cursor image is scaled
 - fix mmap corner case handling: disable it rather than erroring out
 - fix sound subprocess plugin options (ie: honour device selection)
 - fix limit the number of authentication requests per connection
+- fix handling of speed / quality and min speed / quality changes
 - fix video encoding pipeline evaluation
+- ensure xpra vs xpra-common lockstep RPM package dependency
 
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.8-3
 - fix Xorg error when there are config files in the user's xpra directory

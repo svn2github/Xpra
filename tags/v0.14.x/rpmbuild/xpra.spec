@@ -252,8 +252,12 @@ fi
 
 
 %changelog
-* Wed Nov 18 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
+* Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix OSX crashes caused by power events (disable the handler for now)
+- fix libwebp dependency with CentOS 7
+- fix network layer error with bencode and missing workspace attribute
+- fix handling of window configure requests before the window is shown
+- fix keyboard "nuisance" modifiers handling
 - fix keyboard modifier synchronization (wrong keys pressed or stuck)
 - fix mmap corner case handling: disable it rather than erroring out
 - fix limit the number of authentication requests per connection
