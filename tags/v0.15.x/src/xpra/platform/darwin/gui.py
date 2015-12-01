@@ -183,6 +183,8 @@ class ClientExtras(object):
         swap_keys = opts and opts.swap_keys
         log("ClientExtras.__init__(%s, %s, %s) swap_keys=%s", client, opts, blocking, swap_keys)
         self.client = client
+        self.notificationCenter = None
+        self.handler = None
         self.blocking = blocking
         if SLEEP_HANDLER:
             self.setup_event_loop()
