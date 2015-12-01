@@ -787,8 +787,8 @@ class WindowSource(object):
 
     def set_min_quality(self, min_quality):
         if self._fixed_min_quality!=min_quality:
-        self._fixed_min_quality = min_quality
-        self.update_quality()
+            self._fixed_min_quality = min_quality
+            self.update_quality()
             self.reconfigure(True)
 
     def set_quality(self, quality):
