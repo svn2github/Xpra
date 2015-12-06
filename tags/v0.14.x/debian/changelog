@@ -7,6 +7,7 @@ xpra (0.14.33-1) UNRELEASED; urgency=low
   * fix keyboard modifier synchronization (wrong keys pressed or stuck)
   * fix mmap corner case handling: disable it rather than erroring out
   * fix limit the number of authentication requests per connection
+  * allow building against libvpx 1.5 on MS Windows
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 01 Dec 2015 16:40:54 +0700
 

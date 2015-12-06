@@ -8,6 +8,7 @@ v0.14.33 (2015-12-01)
 	-- fix keyboard modifier synchronization (wrong keys pressed or stuck)
 	-- fix mmap corner case handling: disable it rather than erroring out
 	-- fix limit the number of authentication requests per connection
+	-- allow building against libvpx 1.5 on MS Windows
 
 
 v0.14.32 (2015-11-13)

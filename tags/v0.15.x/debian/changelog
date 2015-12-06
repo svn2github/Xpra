@@ -1,5 +1,5 @@
 xpra (0.15.10-1) UNRELEASED; urgency=low
-  * TODO
+  * allow building against libvpx 1.5 on MS Windows
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 06 Dec 2015 17:44:46 +0700
 

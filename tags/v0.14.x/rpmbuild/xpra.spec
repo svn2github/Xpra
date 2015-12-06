@@ -261,6 +261,7 @@ fi
 - fix keyboard modifier synchronization (wrong keys pressed or stuck)
 - fix mmap corner case handling: disable it rather than erroring out
 - fix limit the number of authentication requests per connection
+- allow building against libvpx 1.5 on MS Windows
 
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2
 - fix Xorg error when there are config files in the user's xpra directory

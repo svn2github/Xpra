@@ -315,7 +315,7 @@ fi
 
 %changelog
 * Sun Dec 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
-- TODO
+- allow building against libvpx 1.5 on MS Windows
 
 * Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
 - fix OSX crashes caused by power events (disable the handler for now)
