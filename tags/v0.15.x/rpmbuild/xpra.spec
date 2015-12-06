@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.9
+%define version 0.15.10
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -314,6 +314,9 @@ fi
 
 
 %changelog
+* Sun Dec 06 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
+- TODO
+
 * Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
 - fix OSX crashes caused by power events (disable the handler for now)
 - fix libwebp dependency with CentOS 7
@@ -407,7 +410,7 @@ fi
 - fix paint errors with cairo backing
 - fix window positioning issues when monitors are added (osx and win32)
 
-* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1
+* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
 - fix authentication plugins
