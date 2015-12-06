@@ -155,6 +155,20 @@ def is_Ubuntu():
     except:
         return False
 
+def getUbuntuVersion():
+    from xpra.scripts.config import python_platform
+    distro = ""
+    if hasattr(python_platform, "linux_distribution"):
+        distro = python_platform.linux_distribution()
+    if distro and len(distro)==3 and distro[0]=="Ubuntu":
+        ur = distro[1]  #ie: "12.04"
+        try:
+            rnum = [int(x) for x in ur.split(".")]  #ie: [12, 4]
+            return rnum
+        except:
+            pass
+    return []
+
 def load_binary_file(filename):
     if not os.path.exists(filename):
         return None

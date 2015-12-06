@@ -23,6 +23,13 @@ if False:
     BLACKLIST["vendor"].append("NVIDIA Corporation")
     WHITELIST["renderer"] = ["GeForce GTX 760/PCIe/SSE2"]
 
+GREYLIST.setdefault("vendor", []).append("Intel Open Source Technology Center")
+from xpra.os_util import getUbuntuVersion
+uv = getUbuntuVersion()
+if uv and uv<[15]:
+    #Ubuntu 14.x drivers are just too old
+    GREYLIST.setdefault("vendor", []).append("X.Org")
+
 if sys.platform.startswith("darwin") or sys.platform.startswith("win"):
     #crashes were reported with the Intel driver on OSX and win32:
     GREYLIST.setdefault("vendor", []).append("Intel Inc.")
