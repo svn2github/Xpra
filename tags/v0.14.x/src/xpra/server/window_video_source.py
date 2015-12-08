@@ -675,6 +675,12 @@ class WindowVideoSource(WindowSource):
             else:
                 pixel_format = ve.get_src_format()
             width, height = self.window_dimensions
+            vs = self.video_subregion
+            if vs:
+                r = vs.rectangle
+                if r:
+                    width = r.width & self.width_mask
+                    height = r.height & self.width_mask
 
             scores = self.get_video_pipeline_options(ve.get_encoding(), width, height, pixel_format)
             if len(scores)==0:
