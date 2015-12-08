@@ -7,9 +7,11 @@ xpra (0.14.33-1) UNRELEASED; urgency=low
   * fix keyboard modifier synchronization (wrong keys pressed or stuck)
   * fix mmap corner case handling: disable it rather than erroring out
   * fix limit the number of authentication requests per connection
+  * fix compatibility with Pillow 3.x (fixes systray on MS Windows)
+  * fix video region stuttering and high network traffic
   * allow building against libvpx 1.5 on MS Windows
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 01 Dec 2015 16:40:54 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 08 Dec 2015 19:20:41 +0700
 
 xpra (0.14.32-3) UNRELEASED; urgency=low
   * fix Xorg error when there are config files in the user's xpra directory

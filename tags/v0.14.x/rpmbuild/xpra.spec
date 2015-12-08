@@ -252,7 +252,7 @@ fi
 
 
 %changelog
-* Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
+* Tue Dec 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix OSX crashes caused by power events (disable the handler for now)
 - fix libwebp dependency with CentOS 7
 - fix network layer error with bencode and missing workspace attribute
@@ -261,6 +261,8 @@ fi
 - fix keyboard modifier synchronization (wrong keys pressed or stuck)
 - fix mmap corner case handling: disable it rather than erroring out
 - fix limit the number of authentication requests per connection
+- fix compatibility with Pillow 3.x (fixes systray on MS Windows)
+- fix video region stuttering and high network traffic
 - allow building against libvpx 1.5 on MS Windows
 
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2

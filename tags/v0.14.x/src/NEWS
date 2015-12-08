@@ -8,6 +8,8 @@ v0.14.33 (2015-12-01)
 	-- fix keyboard modifier synchronization (wrong keys pressed or stuck)
 	-- fix mmap corner case handling: disable it rather than erroring out
 	-- fix limit the number of authentication requests per connection
+	-- fix compatibility with Pillow 3.x (fixes systray on MS Windows)
+	-- fix video region stuttering and high network traffic
 	-- allow building against libvpx 1.5 on MS Windows
 
 

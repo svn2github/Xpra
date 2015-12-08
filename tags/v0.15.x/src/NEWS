@@ -1,7 +1,9 @@
-v0.15.10 (2015-12-06)
+v0.15.10 (2015-12-08)
 ======================
 	-- fix OpenGL errors with outdated drivers (now disabled by default)
 	-- fix workspace detection on MS Windows (primary monitor out of place)
+	-- fix video region stuttering and high network traffic
+	-- fix compatibility with Pillow 3.x (fixes systray on MS Windows)
 	-- allow building against libvpx 1.5 on MS Windows
 
 
