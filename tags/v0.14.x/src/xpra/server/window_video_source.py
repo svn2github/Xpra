@@ -1099,6 +1099,7 @@ class WindowVideoSource(WindowSource):
                     log("setup_pipeline: csc=%s, info=%s, setup took %.2fms",
                           self._csc_encoder, self._csc_encoder.get_info(), (csc_end-csc_start)*1000.0)
                 else:
+                    self._csc_encoder = None
                     #use the encoder's mask directly since that's all we have to worry about!
                     width_mask = encoder_spec.width_mask
                     height_mask = encoder_spec.height_mask
