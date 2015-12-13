@@ -418,7 +418,7 @@ class Wm(gobject.GObject):
         # accurate info on what the app is actually requesting.
         log("do_child_configure_request_event(%s)", event)
         if event.window in self._windows:
-            log("do_child_configure_request_event(%s) value_mask=%s, forwarding to %s", event, configure_bits(event.value_mask), model)
+            log("do_child_configure_request_event(%s) value_mask=%s, forwarding to %s", event, event.value_mask, model)
             model.do_child_configure_request_event(event)
             return
         log("Reconfigure on withdrawn window")
