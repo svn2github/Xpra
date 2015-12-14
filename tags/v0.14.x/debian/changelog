@@ -9,9 +9,11 @@ xpra (0.14.33-1) UNRELEASED; urgency=low
   * fix limit the number of authentication requests per connection
   * fix compatibility with Pillow 3.x (fixes systray on MS Windows)
   * fix video region stuttering and high network traffic
+  * fix bug report tool compatibility with Python 2.6 and earlier
+  * fix systray position on MS Windows with multiple monitors
   * allow building against libvpx 1.5 on MS Windows
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 08 Dec 2015 19:20:41 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 14 Dec 2015 12:05:09 +0700
 
 xpra (0.14.32-3) UNRELEASED; urgency=low
   * fix Xorg error when there are config files in the user's xpra directory

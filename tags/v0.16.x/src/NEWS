@@ -1,4 +1,4 @@
-v0.16.0 (2015-11-13)
+v0.16.0 (2015-12-14)
 ======================
 	-- remove more legacy code, cleanups, etc
 	-- switch to GStreamer 1.x on most platforms

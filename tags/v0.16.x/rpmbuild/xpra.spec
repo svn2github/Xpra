@@ -385,7 +385,7 @@ fi
 
 
 %changelog
-* Wed Jul 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-1
+* Mon Dec 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-1
 - TODO
 
 * Tue Apr 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.0-1

@@ -314,11 +314,13 @@ fi
 
 
 %changelog
-* Tue Dec 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
+* Mon Dec 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
 - fix OpenGL errors with outdated drivers (now disabled by default)
 - fix workspace detection on MS Windows (primary monitor out of place)
 - fix video region stuttering and high network traffic
 - fix compatibility with Pillow 3.x (fixes systray on MS Windows)
+- fix bug report tool compatibility with Python 2.6 and earlier
+- fix systray position on MS Windows with multiple monitors
 - allow building against libvpx 1.5 on MS Windows
 
 * Tue Dec 01 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.9-1

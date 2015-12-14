@@ -252,7 +252,7 @@ fi
 
 
 %changelog
-* Tue Dec 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
+* Mon Dec 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix OSX crashes caused by power events (disable the handler for now)
 - fix libwebp dependency with CentOS 7
 - fix network layer error with bencode and missing workspace attribute
@@ -263,6 +263,8 @@ fi
 - fix limit the number of authentication requests per connection
 - fix compatibility with Pillow 3.x (fixes systray on MS Windows)
 - fix video region stuttering and high network traffic
+- fix bug report tool compatibility with Python 2.6 and earlier
+- fix systray position on MS Windows with multiple monitors
 - allow building against libvpx 1.5 on MS Windows
 
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2
