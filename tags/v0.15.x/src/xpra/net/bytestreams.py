@@ -168,7 +168,12 @@ class TwoFileConnection(Connection):
         return self._write(self._oswrite, self._write_fd, buf)
 
     def close(self):
+        log("%s.close() close callback=%s, readable=%s, writeable=%s", self, self._close_cb, self._readable, self._writeable)
         Connection.close(self)
+        cc = self._close_cb
+        if cc:
+            self._close_cb = None
+            cc()
         try:
             self._readable.close()
         except:
@@ -177,10 +182,6 @@ class TwoFileConnection(Connection):
             self._writeable.close()
         except:
             pass
-        cc = self._close_cb
-        if cc:
-            self._close_cb = None
-            cc()
 
     def __repr__(self):
         return "TwoFileConnection(%s)" % str(self.target)
