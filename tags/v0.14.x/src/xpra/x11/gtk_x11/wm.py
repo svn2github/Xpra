@@ -36,6 +36,11 @@ from xpra.log import Logger
 log = Logger("x11", "window")
 focuslog = Logger("x11", "window", "focus")
 
+CWX             = constants["CWX"]
+CWY             = constants["CWY"]
+CWWidth         = constants["CWWidth"]
+CWHeight        = constants["CWHeight"]
+
 
 XPRA_NET_WM_NAME = os.environ.get("XPRA_NET_WM_NAME", "Xpra")
 

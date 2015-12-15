@@ -677,6 +677,16 @@ cdef class X11WindowBindings(X11CoreBindings):
         self.addXSelectInput(xwindow, FocusChangeMask)
 
 
+    def getGeometry(self, Drawable d):
+        cdef Window root_return
+        cdef int x, y                                           #@pydev dupe
+        cdef unsigned int width, height, border_width, depth    #@pydev dupe
+        if not XGetGeometry(self.display, d, &root_return,
+                        &x, &y, &width, &height, &border_width, &depth):
+            return None
+        return x, y, width, height, border_width, depth
+
+
     def XGetWindowProperty(self, Window xwindow, property, req_type, etype=None):
         # NB: Accepts req_type == 0 for AnyPropertyType
         # "64k is enough for anybody"
