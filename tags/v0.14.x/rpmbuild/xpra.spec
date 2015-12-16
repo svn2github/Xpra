@@ -267,6 +267,7 @@ fi
 - fix systray position on MS Windows with multiple monitors
 - fix bug report tool colour scheme with KDE
 - fix MS Windows disconnection error handling (new error codes)
+- fix clean disconnection reported as error
 - add keyboard shortcut for showing the bug report tool (Alt+Shift+F3)
 - allow building against libvpx 1.5 on MS Windows
 
