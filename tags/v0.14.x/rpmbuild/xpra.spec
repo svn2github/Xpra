@@ -252,7 +252,7 @@ fi
 
 
 %changelog
-* Mon Dec 14 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
+* Wed Dec 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.33-1
 - fix OSX crashes caused by power events (disable the handler for now)
 - fix libwebp dependency with CentOS 7
 - fix network layer error with bencode and missing workspace attribute
@@ -265,6 +265,9 @@ fi
 - fix video region stuttering and high network traffic
 - fix bug report tool compatibility with Python 2.6 and earlier
 - fix systray position on MS Windows with multiple monitors
+- fix bug report tool colour scheme with KDE
+- fix MS Windows disconnection error handling (new error codes)
+- add keyboard shortcut for showing the bug report tool (Alt+Shift+F3)
 - allow building against libvpx 1.5 on MS Windows
 
 * Sun Nov 15 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.32-2
