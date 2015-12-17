@@ -1,4 +1,4 @@
-v0.15.10 (2015-12-16)
+v0.15.10 (2015-12-17)
 ======================
 	-- fix OpenGL errors with outdated drivers (now disabled by default)
 	-- fix workspace detection on MS Windows (primary monitor out of place)
@@ -11,6 +11,8 @@ v0.15.10 (2015-12-16)
 	-- fix MS Windows disconnection error handling (new error codes)
 	-- fix MS Windows connection shutdown with SSH mode
 	-- fix clean disconnection reported as error
+	-- fix pixel buffer copy race condition
+	-- blacklist all Intel drivers on all platforms (crashes)
 	-- add keyboard shortcut for showing the bug report tool (Alt+Shift+F3)
 	-- allow building against libvpx 1.5 on MS Windows
 

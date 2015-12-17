@@ -314,7 +314,7 @@ fi
 
 
 %changelog
-* Wed Dec 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
+* Thu Dec 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
 - fix OpenGL errors with outdated drivers (now disabled by default)
 - fix workspace detection on MS Windows (primary monitor out of place)
 - fix video region stuttering and high network traffic
@@ -326,6 +326,8 @@ fi
 - fix MS Windows disconnection error handling (new error codes)
 - fix MS Windows connection shutdown with SSH mode
 - fix clean disconnection reported as error
+- fix pixel buffer copy race condition
+- blacklist all Intel drivers on all platforms (crashes)
 - add keyboard shortcut for showing the bug report tool (Alt+Shift+F3)
 - allow building against libvpx 1.5 on MS Windows
 
