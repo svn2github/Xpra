@@ -23,6 +23,8 @@ if False:
     BLACKLIST["vendor"].append("NVIDIA Corporation")
     WHITELIST["renderer"] = ["GeForce GTX 760/PCIe/SSE2"]
 
+GREYLIST.setdefault("vendor", []).append("Intel")
+GREYLIST.setdefault("vendor", []).append("Intel Inc.")
 GREYLIST.setdefault("vendor", []).append("Intel Open Source Technology Center")
 from xpra.os_util import getUbuntuVersion
 uv = getUbuntuVersion()
