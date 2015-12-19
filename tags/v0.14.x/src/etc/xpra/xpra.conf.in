@@ -178,6 +178,7 @@ keyboard-sync = yes
 #ssh = /usr/bin/ssh
 
 # Key Shortcuts:
+key-shortcut = Meta+Shift+F1:show_menu
 key-shortcut = Meta+Shift+F4:quit
 key-shortcut = Meta+Shift+F3:show_bug_report
 key-shortcut = Meta+Shift+F8:magic_key

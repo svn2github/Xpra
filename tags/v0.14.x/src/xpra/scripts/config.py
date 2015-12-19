@@ -407,7 +407,7 @@ def get_defaults():
                     "microphone-codec"  : [],
                     "compressors"       : ["all"],
                     "packet-encoders"   : ["all"],
-                    "key-shortcut"      : ["Meta+Shift+F4:quit", "Meta+Shift+F8:magic_key", "Meta+Shift+F11:show_session_info"],
+                    "key-shortcut"      : ["Meta+Shift+F1:show_menu", "Meta+Shift+F4:quit", "Meta+Shift+F8:magic_key", "Meta+Shift+F11:show_session_info"],
                     "bind-tcp"          : None,
                     "start-child"       : None,
                     }
