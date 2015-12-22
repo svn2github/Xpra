@@ -194,7 +194,10 @@ class SoundSink(SoundPipeline):
     def add_data(self, data, metadata=None):
         #debug("adding %s bytes to %s, metadata: %s, level=%s", len(data), self.src, metadata, int(self.queue.get_property("current-level-time")/MS_TO_NS))
         if not self.src:
-            log("add_data(..) dropped")
+            log("add_data(..) dropped, no source")
+            return
+        if self.state=="stopped":
+            log("add_data(..) dropped, pipeline is stopped")
             return
         log("add_data(%s bytes, %s) queue_state=%s, src=%s", len(data), metadata, self.queue_state, self.src)
         if self.queue_state == "overrun":
