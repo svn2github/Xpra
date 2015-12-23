@@ -1653,20 +1653,22 @@ class UIXpraClient(XpraClientBase):
         self.on_sink_ready = sink_ready
         self.start_sound_sink(codec)
 
-    def stop_receiving_sound(self, tell_server=True):
+    def stop_receiving_sound(self, sequence=None):
         """ ask the server to stop sending sound, toggle flag so we ignore further packets and emit client signal """
-        soundlog("stop_receiving_sound(%s) sound sink=%s", tell_server, self.sound_sink)
+        soundlog("stop_receiving_sound(%s) sound sink=%s", sequence, self.sound_sink)
+        if sequence is None:
+            sequence = self.min_sound_sequence
         ss = self.sound_sink
         self.speaker_enabled = False
-        if tell_server:
-            self.send("sound-control", "stop")
+        if sequence>=0:
+            self.send("sound-control", "stop", sequence)
         if ss is None:
             return
         self.sound_sink = None
-        soundlog("stop_receiving_sound(%s) calling %s", tell_server, ss.cleanup)
+        soundlog("stop_receiving_sound sequence used=%s, calling %s", sequence, ss.cleanup)
         ss.cleanup()
         self.emit("speaker-changed")
-        soundlog("stop_receiving_sound(%s) done", tell_server)
+        soundlog("stop_receiving_sound done")
 
     def bump_sound_sequence(self):
         if self.server_sound_sequence:
@@ -1717,9 +1719,10 @@ class UIXpraClient(XpraClientBase):
             return
         soundlog.warn("re-starting speaker because of overrun")
         codec = self.sound_sink.codec
+        sequence = self.min_sound_sequence
         if self.server_sound_sequence:
             self.min_sound_sequence += 1
-        self.stop_receiving_sound()
+        self.stop_receiving_sound(sequence)
         def restart():
             soundlog("restarting sound sound_sink=%s, codec=%s, server_sound_sequence=%s", self.sound_sink, codec, self.server_sound_sequence)
             if self.server_sound_sequence:
@@ -1793,7 +1796,7 @@ class UIXpraClient(XpraClientBase):
                 #server is asking us to start playing sound
                 if not self.speaker_allowed:
                     #no can do!
-                    self.stop_receiving_sound(True)
+                    self.stop_receiving_sound()
                     return
                 self.speaker_enabled = True
                 self.emit("speaker-changed")
@@ -1810,7 +1813,7 @@ class UIXpraClient(XpraClientBase):
             return
         if metadata.boolget("end-of-stream"):
             soundlog("server sent end-of-stream for sequence %s, closing sound pipeline", seq)
-            self.stop_receiving_sound(False)
+            self.stop_receiving_sound(-1)
             return
         if codec!=ss.codec:
             log.error("sound codec change not supported! (from %s to %s)", ss.codec, codec)
