@@ -32,7 +32,7 @@ xpra (0.16.0-1) UNRELEASED; urgency=low
   * more robust error handling and recovery from client errors
   * NVENC support for MS Windows shadow servers
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 16 Dec 2015 10:12:01 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 27 Dec 2015 22:05:43 +0700
 
 
 xpra (0.15.0-1) UNRELEASED; urgency=low

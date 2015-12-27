@@ -387,7 +387,7 @@ fi
 
 
 %changelog
-* Wed Dec 16 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-1
+* Sun Dec 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-1
 - remove more legacy code, cleanups, etc
 - switch to GStreamer 1.x on most platforms
 - mostly gapless audio playback
