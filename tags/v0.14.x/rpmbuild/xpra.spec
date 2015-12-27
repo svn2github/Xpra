@@ -138,6 +138,8 @@ BuildRequires: pygtk2-devel
 BuildRequires: python, python-setuptools
 BuildRequires: pygobject2-devel
 BuildRequires: libxkbfile-devel
+#used for locating the Xorg binary:
+Requires: which
 BuildRequires: libXtst-devel
 BuildRequires: libXfixes-devel
 BuildRequires: libXcomposite-devel

@@ -99,6 +99,8 @@ Requires: python-lz4
 Requires: pygtk2
 Requires: dbus-python
 Requires: python-crypto
+#used for locating the Xorg binary:
+Requires: which
 #we cannot depend on 'avahi-ui-tools' which we need for mdns support
 #(it provides the avahi python bindings)
 #because Fedora and CentOS bring in some insane dependencies with it (vnc)
