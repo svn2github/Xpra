@@ -387,6 +387,9 @@ fi
 
 
 %changelog
+* Mon Dec 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-2
+- workaround unusable gi bindings found on CentOS 7
+
 * Sun Dec 27 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-1
 - remove more legacy code, cleanups, etc
 - switch to GStreamer 1.x on most platforms
