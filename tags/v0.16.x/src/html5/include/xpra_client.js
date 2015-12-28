@@ -24,7 +24,7 @@ function XpraClient(container) {
 	this.capabilities = {};
 	this.OLD_ENCODING_NAMES_TO_NEW = {"x264" : "h264", "vpx" : "vp8"};
 	this.RGB_FORMATS = ["RGBX", "RGBA"];
-	this.supported_encodings = ["h264", "jpeg", "png", "rgb32"];
+	this.supported_encodings = ["h264", "jpeg", "png", "rgb", "rgb32"];
 	this.enabled_encodings = [];
 	this.normal_fullscreen_mode = false;
 	this.username = "html5user";
@@ -225,20 +225,14 @@ XpraClient.prototype._route_packet = function(packet, ctx) {
 	// ctx refers to `this` because we came through a callback
 	var packet_type = "";
 	var fn = "";
-	try {
-		packet_type = packet[0];
-		console.log("received a " + packet_type + " packet");
-		fn = ctx.packet_handlers[packet_type];
-		if (fn==undefined) {
-			console.error("no packet handler for "+packet_type+"!");
-			console.log(packet);
-		}
-		else
-			fn(packet, ctx);
-	}
-	catch (e) {
-		console.error("error processing '"+packet_type+"' with '"+fn+"': "+e);
-		throw e;
+	packet_type = packet[0];
+	console.log("received a " + packet_type + " packet");
+	fn = ctx.packet_handlers[packet_type];
+	if (fn==undefined) {
+		console.error("no packet handler for "+packet_type+"!");
+		console.log(packet);
+	} else {
+		fn(packet, ctx);
 	}
 }
 
