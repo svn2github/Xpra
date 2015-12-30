@@ -104,7 +104,6 @@ xpra \- viewer for remote, persistent X applications
 [\fB\-\-remote\-xpra\fP=\fICMD\fP]
 [\fB\-\-password\-file\fP=\fIFILENAME\fP]
 [\fB\-\-dpi\fP=\fIVALUE\fP]
-[\fB\-\-mouse\-polling\fP=\fIVALUE\fP]
 [\fB\-\-socket\-dir\fP=\fIDIR\fP]
 [\fB\-\-socket\-dirs\fP=\fIDIRS\fP]
 [\fB\-\-pings\fP=\fIyes\fP|\fIno\fP]
@@ -600,6 +599,7 @@ After starting the server, runs the command \fICMD\fP using the
 default shell.  The command is run with its \fB$DISPLAY\fP set to point to
 the newly-started server.  This option may be given multiple times to
 start multiple commands.
+.TP
 \fB\-\-start\-child\fP=\fICMD\fP
 Identical to \fB\-\-start\fP, except that the commands are taken into
 account by \fB\-\-exit\-with\-children\fP.
@@ -764,13 +764,6 @@ This numeric value should be in the range 10 to 500 to be useful.
 Many applications will only read this value when starting up,
 so connecting to an existing session started with a different DPI
 value may not have the desired effect.
-.TP
-\fB\-\-mouse\-polling\fP=\fIVALUE\fP
-How often to poll the mouse position when the cursor is not hovering
-over one of our windows, this is measured in seconds.
-If you do not wish the server to be able to have a rough overview
-of your mouse movements, or if you simply wish to disable the feature,
-use the special value '0'.
 .TP
 \fB\-\-cursors\fP=\fIyes\fP|\fIno\fP
 Enable or disable forwarding of custom application mouse cursors.
@@ -1168,11 +1161,13 @@ X protocol.  It does, however, degrade gracefully, and patches for each
 feature would be gratefully accepted.
 
 The xpra server allocates an over-large framebuffer when using Xvfb;
-this wastes memory, and can cause applications to misbehave (e.g.,
-by letting menus go off-screen).  Conversely, if the framebuffer is ever
-insufficiently large, clients will misbehave in other ways (e.g.,
-input events will be misdirected).  This is not a problem when using
-Xdummy, see the \fB\-\-xvfb\fP= switch for details.
+this wastes memory.
+If the Xvfb does not support RandR this can also cause applications
+to misbehave (e.g. by letting menus go off\-screen). This is not a
+problem when using Xdummy, see the \fB\-\-xvfb\fP= switch for details.
+Conversely, if the framebuffer is ever insufficiently large,
+clients will misbehave in other ways (e.g., input events will be
+misdirected).
 .\" --------------------------------------------------------------------
 .SH REPORTING BUGS
 Send any questions or bugs reports to <antoine@devloop.org.uk>.
