@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.16.0
+%define version 0.16.1
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -387,6 +387,14 @@ fi
 
 
 %changelog
+* Wed Dec 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.1-1
+- fix OSX crashes with python optimizations enable via env var
+- fix compatibility with incomplete gi bindings found in centos 7
+- fix invalid cups paper orientation default option
+- fix character encoding errors in print utility command output
+- fix invalid openSUSE package name if "dist" is not defined
+- reduce log spam when pulseaudio is not reachable
+
 * Mon Dec 28 2015 Antoine Martin <antoine@devloop.org.uk> 0.16.0-2
 - workaround unusable gi bindings found on CentOS 7
 

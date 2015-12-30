@@ -1,3 +1,13 @@
+v0.16.1 (2015-12-30)
+======================
+	-- fix OSX crashes with python optimizations enable via env var
+	-- fix compatibility with incomplete gi bindings found in centos 7
+	-- fix invalid cups paper orientation default option
+	-- fix character encoding errors in print utility command output
+	-- fix invalid openSUSE package name if "dist" is not defined
+	-- reduce log spam when pulseaudio is not reachable
+
+
 v0.16.0 (2015-12-27)
 ======================
 	-- remove more legacy code, cleanups, etc

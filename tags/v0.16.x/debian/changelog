@@ -1,3 +1,13 @@
+xpra (0.16.1-1) UNRELEASED; urgency=low
+  * fix OSX crashes with python optimizations enable via env var
+  * fix compatibility with incomplete gi bindings found in centos 7
+  * fix invalid cups paper orientation default option
+  * fix character encoding errors in print utility command output
+  * fix invalid openSUSE package name if "dist" is not defined
+  * reduce log spam when pulseaudio is not reachable
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 30 Dec 2015 11:56:19 +0700
+
 xpra (0.16.0-1) UNRELEASED; urgency=low
   * remove more legacy code, cleanups, etc
   * switch to GStreamer 1.x on most platforms

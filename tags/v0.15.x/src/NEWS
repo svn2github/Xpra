@@ -1,3 +1,19 @@
+v0.15.11 (2015-12-30)
+======================
+	-- fix OSX crashes with python optimizations enable via env var
+	-- fix pulseaudio sound output with GStreamer 1.x
+	-- fix errors when stopping sound output
+	-- fix mistimed sound stop requests
+	-- fix build for FreeBSD DragonFly
+	-- fix FreeBSD socket library location
+	-- fix cleanup error on win32 shadow servers exit
+	-- fix RPM dependency: we need "which" for the Xdummy wrapper
+	-- fix default window icon lookup by window class
+	-- fix html5 rgb encoding and parameter parsing
+	-- add new shortcut workaround for showing the system tray menu
+	-- reduce log spam when pulseaudio is not reachable
+
+
 v0.15.10 (2015-12-17)
 ======================
 	-- fix OpenGL errors with outdated drivers (now disabled by default)

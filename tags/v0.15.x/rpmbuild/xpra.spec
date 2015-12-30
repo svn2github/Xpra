@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.15.10
+%define version 0.15.11
 %if 0%{?rhel} && 0%{?rhel} <= 6
 %{!?__python2: %global __python2 /usr/bin/python2}
 %{!?python2_sitearch: %global python2_sitearch %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -316,6 +316,20 @@ fi
 
 
 %changelog
+* Wed Dec 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
+- fix OSX crashes with python optimizations enable via env var
+- fix pulseaudio sound output with GStreamer 1.x
+- fix errors when stopping sound output
+- fix mistimed sound stop requests
+- fix build for FreeBSD DragonFly
+- fix FreeBSD socket library location
+- fix cleanup error on win32 shadow servers exit
+- fix RPM dependency: we need "which" for the Xdummy wrapper
+- fix default window icon lookup by window class
+- fix html5 rgb encoding and parameter parsing
+- add new shortcut workaround for showing the system tray menu
+- reduce log spam when pulseaudio is not reachable
+
 * Thu Dec 17 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
 - fix OpenGL errors with outdated drivers (now disabled by default)
 - fix workspace detection on MS Windows (primary monitor out of place)
@@ -426,7 +440,7 @@ fi
 - fix paint errors with cairo backing
 - fix window positioning issues when monitors are added (osx and win32)
 
-* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.10-1
+* Sun Aug 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
 - fix encryption not enabled when pycrypto is missing: error out
 - fix encryption information leak, free network packets after use
 - fix authentication plugins
