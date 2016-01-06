@@ -1306,7 +1306,7 @@ class WindowSource(object):
             l = len(self.encode_queue)
             if l>=self.encode_queue_max_size:
                 av_delay = 0        #we must free some space!
-            avsynclog("scheduling encode queue iteration in %ims, pixels frozen=%s, encode queue size=%i (max=%i)", av_delay, frozen, l, self.encode_queue_max_size)
+            avsynclog("scheduling encode queue iteration in %ims, encode queue size=%i (max=%i)", av_delay, l, self.encode_queue_max_size)
             self.timeout_add(av_delay, self.call_in_encode_thread, self.encode_from_queue)
 
     def encode_from_queue(self):
