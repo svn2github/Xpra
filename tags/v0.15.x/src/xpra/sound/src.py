@@ -140,7 +140,7 @@ class SoundSource(SoundPipeline):
         #            "offset"    : buf.offset,
         #            "offset_end": buf.offset_end}
         self.do_emit_buffer(buf.data, {
-                                       "caps"      : buf.get_caps().to_string(),
+                                       #"caps"      : buf.get_caps().to_string(),
                                        "timestamp" : normv(buf.timestamp),
                                        "duration"  : normv(buf.duration)
                                        })
