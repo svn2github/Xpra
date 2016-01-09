@@ -123,6 +123,15 @@
             repo="downloads.xiph.org"/>
   </autotools>
 
+
+  <autotools id="opus" autogenargs="" autogen-sh="configure">
+    <branch module="/releases/opus/opus-1.1.1.tar.gz"
+			version="1.1.1"
+			hash="md5:cfb354d4c65217ca32a762f8ab15f2ac"
+		repo="downloads.xiph.org"/>
+  </autotools>
+
+
   <autotools id="wavpack" autogenargs="" autogen-sh="configure">
     <branch module="/wavpack-4.70.0.tar.bz2"
 			version="4.70.0"
@@ -176,9 +185,9 @@
 --disable-filter=atrim --disable-filter=null
 --disable-programs --disable-avfilter --disable-doc"
              autogen-sh="configure">
-    <branch module="/releases/ffmpeg-2.8.3.tar.bz2"
-            version="2.8.3"
-            hash="md5:937a6573ba399cf3e6808c9c6ea3d6d6"
+    <branch module="/releases/ffmpeg-2.8.4.tar.bz2"
+            version="2.8.4"
+            hash="md5:5a312bebaf71688703644c18ef3f26e8"
             repo="ffmpeg.org"/>
   <dependencies>
       <dep package="x264"/>
@@ -309,9 +318,9 @@
 
   <distutils id="python-pillow">
      <branch repo="pypi.python.org"
-	     module="/packages/source/P/Pillow/Pillow-3.0.0.zip"
-             hash="md5:dd81f6cc3f3a5e5fe72f0f1d936339c3"
-	     version="3.0.0"/>
+	     module="/packages/source/P/Pillow/Pillow-3.1.0.zip"
+             hash="md5:d70bd4cf57409f785662e221a345ef4b"
+	     version="3.1.0"/>
   </distutils>
 
   <distutils id="python-py2app">
@@ -330,9 +339,9 @@
 
   <distutils id="python-numpy">
      <branch repo="pypi.python.org"
-	     module="/packages/source/n/numpy/numpy-1.9.2.tar.gz"
-	     version="1.9.2"
-	     hash="md5:a1ed53432dbcd256398898d35bc8e645"
+	     module="/packages/source/n/numpy/numpy-1.10.2.tar.gz"
+	     version="1.10.2"
+	     hash="md5:816518282f1617636aaf26e7cd9b127b"
 	     />
   </distutils>
 
