@@ -268,7 +268,13 @@ class SoundPipeline(gobject.GObject):
             if mode[0] is True and self.codec_mode!=mode[1]:
                 log("mode: %s", mode[1])
                 self.codec_mode = mode[1]
-        if len([x for x in tags if x in ("bitrate", "codec", "audio-codec", "mode")])==0:
+        if "encoder" in tags:
+            desc = taglist.get_string("encoder")
+            log("encoder: %s", desc[1])
+        if "description" in tags:
+            desc = taglist.get_string("description")
+            log("description: %s", desc[1])
+        if len([x for x in tags if x in ("bitrate", "codec", "audio-codec", "mode", "container-format", "encoder", "description")])==0:
             #no match yet
             if len([x for x in tags if x in ("minimum-bitrate", "maximum-bitrate", "channel-mode")])==0:
                 structure = message.get_structure()
