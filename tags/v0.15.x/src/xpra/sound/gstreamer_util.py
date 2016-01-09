@@ -90,7 +90,7 @@ CODEC_OPTIONS = [
             ]
 CODECS = {}
 
-CODEC_ORDER = [MP3, WAVPACK, WAV, FLAC, SPEEX]
+CODEC_ORDER = [MP3, VORBIS, WAVPACK, WAV, FLAC, SPEEX]
 #CODEC_ORDER = [MP3, FLAC, SPEEX]
 
 #we may want to review this if/when we implement UDP transport:
