@@ -652,6 +652,9 @@ def get_conf_dir(install_dir, stripbuildroot=True):
     dirs = (install_dir or sys.prefix).split(os.path.sep)
     if install_dir and stripbuildroot:
         if "BUILDROOT" in dirs:
+                if sys.platform.startswith("netbsd"):
+                    #see: http://trac.cython.org/ticket/395
+                    eifd += ["-fno-strict-aliasing"]
             if "debian" in dirs and "tmp" in dirs:
                 #ugly fix for stripping the debian tmp dir:
                 #ie: "???/tmp/???/tags/v0.15.x/src/debian/tmp/" -> ""
