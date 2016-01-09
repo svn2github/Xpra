@@ -107,8 +107,8 @@ class SoundSink(SoundPipeline):
             queue_el.append("silent=%s" % QUEUE_SILENT)
         pipeline_els.append(" ".join(queue_el))
         sink_attributes = SINK_SHARED_DEFAULT_ATTRIBUTES.copy()
-        from xpra.sound.gstreamer_util import gst_major_version
-        sink_attributes.update(SINK_DEFAULT_ATTRIBUTES.get(gst_major_version, {}).get(sink_type, {}))
+        from xpra.sound.gstreamer_util import _gst_major_version
+        sink_attributes.update(SINK_DEFAULT_ATTRIBUTES.get(_gst_major_version, {}).get(sink_type, {}))
         sink_attributes.update(sink_options)
         sink_str = plugin_str(sink_type, sink_attributes)
         pipeline_els.append(sink_str)
