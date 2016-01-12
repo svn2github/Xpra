@@ -584,6 +584,9 @@ def exec_pkgconfig(*pkgs_options, **ekw):
             eifd = "-Werror=implicit-function-declaration"
         else:
             eifd = "-Werror-implicit-function-declaration"
+        if sys.platform.startswith("netbsd"):
+            #see: http://trac.cython.org/ticket/395
+            eifd += ["-fno-strict-aliasing"]
         add_to_keywords(kw, 'extra_compile_args', eifd)
     if PIC_ENABLED and not is_msvc():
         add_to_keywords(kw, 'extra_compile_args', "-fPIC")
@@ -652,9 +655,6 @@ def get_conf_dir(install_dir, stripbuildroot=True):
     dirs = (install_dir or sys.prefix).split(os.path.sep)
     if install_dir and stripbuildroot:
         if "BUILDROOT" in dirs:
-                if sys.platform.startswith("netbsd"):
-                    #see: http://trac.cython.org/ticket/395
-                    eifd += ["-fno-strict-aliasing"]
             if "debian" in dirs and "tmp" in dirs:
                 #ugly fix for stripping the debian tmp dir:
                 #ie: "???/tmp/???/tags/v0.15.x/src/debian/tmp/" -> ""
