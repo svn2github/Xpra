@@ -226,6 +226,7 @@ class XpraClientBase(object):
             "challenge":                self._process_challenge,
             "disconnect":               self._process_disconnect,
             "set_deflate":              self._process_set_deflate,
+            "startup-complete":         self._process_startup_complete,
             Protocol.CONNECTION_LOST:   self._process_connection_lost,
             Protocol.GIBBERISH:         self._process_gibberish,
             Protocol.INVALID:           self._process_invalid,
@@ -702,6 +703,11 @@ class XpraClientBase(object):
 
     def _process_set_deflate(self, packet):
         #legacy, should not be used for anything
+        pass
+
+    def _process_startup_complete(self, packet):
+        #can be received if we connect with "xpra stop" or other command line client
+        #as the server is starting up
         pass
 
 
