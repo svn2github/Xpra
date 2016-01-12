@@ -1,14 +1,16 @@
 xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
+  * fix OSX client preventing system shutdown
   * fix build for FreeBSD DragonFly
   * fix FreeBSD socket library location
   * fix cleanup error on win32 shadow servers exit
   * fix RPM dependency: we need "which" for the Xdummy wrapper
+  * fix spurious warnings when connecting very early to a server
   * blacklist more spellings of the Intel driver name
   * add new shortcut workaround for showing the system tray menu
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 30 Dec 2015 11:51:09 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 12 Jan 2016 12:11:18 +0700
 
 xpra (0.14.33-1) UNRELEASED; urgency=low
   * fix OSX crashes caused by power events (disable the handler for now)

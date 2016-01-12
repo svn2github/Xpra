@@ -316,8 +316,9 @@ fi
 
 
 %changelog
-* Wed Dec 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
+* Tue Jan 12 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
 - fix OSX crashes with python optimizations enable via env var
+- fix OSX client preventing system shutdown
 - fix pulseaudio sound output with GStreamer 1.x
 - fix errors when stopping sound output
 - fix mistimed sound stop requests
@@ -327,6 +328,10 @@ fi
 - fix RPM dependency: we need "which" for the Xdummy wrapper
 - fix default window icon lookup by window class
 - fix html5 rgb encoding and parameter parsing
+- fix spurious warnings when connecting very early to a server
+- fix overly large sound packets with some encodings (unused data)
+- fix build on NetBSD
+- allow vorbis sound codec to be selected
 - add new shortcut workaround for showing the system tray menu
 - reduce log spam when pulseaudio is not reachable
 

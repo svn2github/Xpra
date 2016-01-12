@@ -254,12 +254,14 @@ fi
 
 
 %changelog
-* Wed Dec 30 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
+* Tue Jan 12 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
 - fix OSX crashes with python optimizations enable via env var
+- fix OSX client preventing system shutdown
 - fix build for FreeBSD DragonFly
 - fix FreeBSD socket library location
 - fix cleanup error on win32 shadow servers exit
 - fix RPM dependency: we need "which" for the Xdummy wrapper
+- fix spurious warnings when connecting very early to a server
 - blacklist more spellings of the Intel driver name
 - add new shortcut workaround for showing the system tray menu
 - reduce log spam when pulseaudio is not reachable

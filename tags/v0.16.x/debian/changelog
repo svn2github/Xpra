@@ -1,14 +1,24 @@
 xpra (0.16.1-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
+  * fix OSX client preventing system shutdown
+  * fix OSX landscape printing (use Postscript instead of PDF)
+  * fix desktop-scaling handling of corner cases, logging
+  * fix rare race condition error in window source cleanup
   * fix compatibility with incomplete gi bindings found in centos 7
   * fix invalid cups paper orientation default option
   * fix character encoding errors in print utility command output
   * fix invalid openSUSE package name if "dist" is not defined
-  * fix missing get_realized function with som supported pygtk versions
-  * do not prevent system shutdown on OSX
+  * fix spurious warnings when connecting very early to a server
+  * fix win32 Python 3.x build with MSVC
+  * fix compatibility with older versions of pygtk (ie: CentOS 6.x)
+  * fix spurious sound warnings with some codecs, logging format
+  * fix unused variable compilation warning / error
+  * fix picture codecs max-size selftest
+  * try harder to avoid some race condition warnings
+  * clarify man page bugs section
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 31 Dec 2015 00:26:12 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 12 Jan 2016 12:11:18 +0700
 
 xpra (0.16.0-1) UNRELEASED; urgency=low
   * remove more legacy code, cleanups, etc
