@@ -259,7 +259,7 @@ class ServerCore(object):
             i += 1
 
 
-    def reaper_quit(self):
+    def reaper_exit(self):
         self.clean_quit()
 
     def signal_quit(self, signum, frame):
@@ -276,8 +276,8 @@ class ServerCore(object):
         if self.child_reaper:
             def noop():
                 pass
-            self.reaper_quit = noop
-            log("clean_quit: reaper_quit=%s", self.reaper_quit)
+            self.reaper_exit = noop
+            log("clean_quit: reaper_exit=%s", self.reaper_exit)
         self.cleanup()
         def quit_timer(*args):
             log.debug("quit_timer()")
