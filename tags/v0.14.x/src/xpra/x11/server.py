@@ -188,7 +188,9 @@ class XpraServer(gobject.GObject, X11ServerBase):
         self._wm = Wm(self.clobber, self.wm_name)
         self._wm.connect("new-window", self._new_window_signaled)
         self._wm.connect("bell", self._bell_signaled)
-        self._wm.connect("quit", lambda _: self.clean_quit(True))
+        def wm_quit(*args):
+            self.clean_quit(upgrading=True)
+        self._wm.connect("quit", wm_quit)
 
         #save default xsettings:
         self.default_xsettings = XSettingsHelper().get_settings()
