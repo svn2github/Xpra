@@ -316,9 +316,12 @@ fi
 
 
 %changelog
-* Tue Jan 12 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
+* Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
+- fix OSX shadow server warning
+- fix xpra upgrade
+- fix race condition with exit-with-children
 - fix pulseaudio sound output with GStreamer 1.x
 - fix errors when stopping sound output
 - fix mistimed sound stop requests

@@ -2,7 +2,14 @@ xpra (0.16.1-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
   * fix OSX client preventing system shutdown
   * fix OSX landscape printing (use Postscript instead of PDF)
-  * fix desktop-scaling handling of corner cases, logging
+  * fix OSX shadow server warning
+  * fix clipboard warnings with OSX and MS Windows shadow servers
+  * fix sound errors with OSX and MS Windows shadow servers
+  * fix MS Windows shadow servers startup
+  * fix xpra upgrade
+  * fix desktop-scaling handling of corner cases, logging, parsing
+  * fix missing xpra group for tmpfiles.d in DEB packages
+  * fix race condition with exit-with-children
   * fix rare race condition error in window source cleanup
   * fix compatibility with incomplete gi bindings found in centos 7
   * fix invalid cups paper orientation default option
@@ -18,7 +25,7 @@ xpra (0.16.1-1) UNRELEASED; urgency=low
   * clarify man page bugs section
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 12 Jan 2016 12:11:18 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 22 Jan 2016 20:35:58 -0700
 
 xpra (0.16.0-1) UNRELEASED; urgency=low
   * remove more legacy code, cleanups, etc

@@ -254,9 +254,11 @@ fi
 
 
 %changelog
-* Tue Jan 12 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
+* Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
+- fix OSX shadow server warning
+- fix xpra upgrade
 - fix build for FreeBSD DragonFly
 - fix FreeBSD socket library location
 - fix cleanup error on win32 shadow servers exit

@@ -1,7 +1,9 @@
-v0.14.34 (2016-01-12)
+v0.14.34 (2016-01-22)
 ======================
 	-- fix OSX crashes with python optimizations enable via env var
 	-- fix OSX client preventing system shutdown
+	-- fix OSX shadow server warning
+	-- fix xpra upgrade
 	-- fix build for FreeBSD DragonFly
 	-- fix FreeBSD socket library location
 	-- fix cleanup error on win32 shadow servers exit
