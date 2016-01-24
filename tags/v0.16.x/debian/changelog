@@ -1,3 +1,8 @@
+xpra (0.16.2-1) UNRELEASED; urgency=low
+  * TODO
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 24 Jan 2016 11:53:56 -0800
+
 xpra (0.16.1-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
   * fix OSX client preventing system shutdown

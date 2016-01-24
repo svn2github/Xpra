@@ -566,7 +566,7 @@ XpraClient.prototype._make_hello_base = function() {
 	this.capabilities = {};
 	this._update_capabilities({
 		// version and platform
-		"version"					: "0.16.1",
+		"version"					: "0.16.2",
 		"platform"					: this._guess_platform(),
 		"platform.name"				: this._guess_platform_name(),
 		"platform.processor"		: this._guess_platform_processor(),

@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.16.1
+%define version 0.16.2
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -387,6 +387,9 @@ fi
 
 
 %changelog
+* Sun Jan 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
+- TODO
+
 * Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.1-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
