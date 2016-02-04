@@ -428,12 +428,12 @@ class UIXpraClient(XpraClientBase):
             if root_w<=1920 or root_h<=1080:
                 return 1,1              #100% no auto scaling up to 1080p
             if root_w<=2560 or root_h<=1600:
-                return 1.25,1.25        #150% upscaling up to WQXGA
+                return 1.25,1.25        #125% upscaling up to WQXGA
             if root_w<=3960 or root_h<=2160:
-                return 1.5,1.5          #200% upscaling up to UHD
+                return 1.5,1.5          #150% upscaling up to UHD
             if root_w<=7680 or root_h<=4320:
-                return 2,2              #300% upscaling up to FUHD
-            return 3,3                  #400% if higher (who has this anyway?)
+                return 5.0/3,5.0/3      #166% upscaling up to FUHD
+            return 2,2                  #200% if higher (who has this anyway?)
         def parse_item(v):
             div = 1
             try:
