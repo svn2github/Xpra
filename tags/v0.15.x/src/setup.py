@@ -127,7 +127,7 @@ printing_ENABLED        = True
 enc_proxy_ENABLED       = True
 enc_x264_ENABLED        = True          #too important to detect
 enc_x265_ENABLED        = pkg_config_ok("--exists", "x265")
-webp_ENABLED            = pkg_config_ok("--atleast-version=0.3", "libwebp", fallback=WIN32)
+webp_ENABLED            = OSX
 vpx_ENABLED             = pkg_config_ok("--atleast-version=1.0", "vpx", fallback=WIN32) or pkg_config_ok("--atleast-version=1.0", "libvpx", fallback=WIN32)
 #ffmpeg 2 onwards:
 dec_avcodec2_ENABLED    = pkg_config_ok("--atleast-version=55", "libavcodec", fallback=WIN32)
