@@ -319,7 +319,7 @@ fi
 
 
 %changelog
-* Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
+* Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
 - fix OSX shadow server warning
@@ -337,6 +337,8 @@ fi
 - fix spurious warnings when connecting very early to a server
 - fix overly large sound packets with some encodings (unused data)
 - fix build on NetBSD
+- fix webp library conflicts
+- fix magic key border toggle
 - allow vorbis sound codec to be selected
 - add new shortcut workaround for showing the system tray menu
 - reduce log spam when pulseaudio is not reachable

@@ -16,11 +16,13 @@ xpra (0.15.11-1) UNRELEASED; urgency=low
   * fix spurious warnings when connecting very early to a server
   * fix overly large sound packets with some encodings (unused data)
   * fix build on NetBSD
+  * fix webp library conflicts
+  * fix magic key border toggle
   * allow vorbis sound codec to be selected
   * add new shortcut workaround for showing the system tray menu
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 22 Jan 2016 20:35:58 -0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 06 Feb 2016 23:59:33 -0700
 
 xpra (0.15.10-1) UNRELEASED; urgency=low
   * fix OpenGL errors with outdated drivers (now disabled by default)

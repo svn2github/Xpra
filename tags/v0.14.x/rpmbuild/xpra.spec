@@ -251,7 +251,7 @@ fi
 
 
 %changelog
-* Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
+* Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
 - fix OSX shadow server warning
@@ -261,6 +261,8 @@ fi
 - fix cleanup error on win32 shadow servers exit
 - fix RPM dependency: we need "which" for the Xdummy wrapper
 - fix spurious warnings when connecting very early to a server
+- fix webp library conflicts
+- fix magic key border toggle
 - blacklist more spellings of the Intel driver name
 - add new shortcut workaround for showing the system tray menu
 - reduce log spam when pulseaudio is not reachable

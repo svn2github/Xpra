@@ -1,4 +1,4 @@
-v0.14.34 (2016-01-22)
+v0.14.34 (2016-02-06)
 ======================
 	-- fix OSX crashes with python optimizations enable via env var
 	-- fix OSX client preventing system shutdown
@@ -9,6 +9,8 @@ v0.14.34 (2016-01-22)
 	-- fix cleanup error on win32 shadow servers exit
 	-- fix RPM dependency: we need "which" for the Xdummy wrapper
 	-- fix spurious warnings when connecting very early to a server
+	-- fix webp library conflicts
+	-- fix magic key border toggle
 	-- blacklist more spellings of the Intel driver name
 	-- add new shortcut workaround for showing the system tray menu
 	-- reduce log spam when pulseaudio is not reachable

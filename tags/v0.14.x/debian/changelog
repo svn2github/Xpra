@@ -8,11 +8,13 @@ xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix cleanup error on win32 shadow servers exit
   * fix RPM dependency: we need "which" for the Xdummy wrapper
   * fix spurious warnings when connecting very early to a server
+  * fix webp library conflicts
+  * fix magic key border toggle
   * blacklist more spellings of the Intel driver name
   * add new shortcut workaround for showing the system tray menu
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 22 Jan 2016 20:35:58 -0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 06 Feb 2016 23:59:33 -0700
 
 xpra (0.14.33-1) UNRELEASED; urgency=low
   * fix OSX crashes caused by power events (disable the handler for now)

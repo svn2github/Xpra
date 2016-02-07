@@ -385,8 +385,25 @@ fi
 
 
 %changelog
-* Sun Jan 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
-- TODO
+* Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
+- fix subcommand logging clutter
+- fix clean build target (failed to clean some html files)
+- fix focus regression
+- fix client message on server upgrade
+- fix opus sound codec bundling on OSX
+- fix exception logging on MS Windows exit errors
+- fix missing window icons after window re-initialization
+- fix NVENC crashes with some card / driver combinations
+- fix system tray location mapping when scaling is active
+- fix forwarding of network printers on MS Windows
+- fix webp library conflicts
+- fix magic key border toggle
+- fix window decorations flag detection
+- include workaround for some Java applications (disabled)
+- reduce the amount of default "desktop-scaling" applied
+- filter out more problematic desktop environment variables
+- skip comments when showing command line help
+- remove confusing unused code
 
 * Fri Jan 22 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.1-1
 - fix OSX crashes with python optimizations enable via env var
