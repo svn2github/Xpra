@@ -47,7 +47,6 @@
 #This would add support for mp3, but is not in the default repositories:
 %define with_python3 1
 
-%define libwebp libwebp
 %define libvpx libvpx-xpra
 %define run_tests 1
 
@@ -71,7 +70,6 @@ Patch0: centos-ignore-invalid-gcc-warning.patch
 #can't run the tests with python 2.6 which is too old:
 %define run_tests 0
 #distro version is too old replace with our private libraries
-%define libwebp libwebp-xpra
 #no pycups available in repos:
 %define requires_printing %{nil}
 #only v6.4 onwards have Xdummy support:
@@ -82,11 +80,6 @@ Patch0: centos-ignore-invalid-gcc-warning.patch
 %if %(egrep -q 'release 6.0|release 6.1|release 6.2|release 6.3|release 6.4' /etc/redhat-release && echo 1 || echo 0)
 %define requires_opengl %{nil}
 %endif
-%endif
-
-%if 0%{?el7}
-#distro version is too old replace with our private libraries
-%define libwebp libwebp-xpra
 %endif
 
 %if 0%{?fedora}
@@ -108,7 +101,6 @@ Patch0: centos-ignore-invalid-gcc-warning.patch
 %define numpy python-numpy
 %define requires_xorg xauth, xf86-video-dummy
 %define requires_lzo %{nil}
-%define libwebp libwebp-xpra
 %define requires_cython python-Cython
 %define requires_pygobject2 python-gobject2
 %define requires_pygtk2 python-gtk
@@ -154,7 +146,9 @@ Requires: libfakeXinerama
 Requires: gtk2-immodule-xim
 Requires: %{requires_xorg}
 Requires: %{libvpx}
-Requires: %{libwebp}
+%if 0%{?fedora}
+Requires: libwebp
+%endif
 Requires: x264-xpra
 Requires: ffmpeg-xpra
 Requires: %{numpy}
@@ -179,7 +173,9 @@ BuildRequires: libXdamage-devel
 BuildRequires: libXrandr-devel
 BuildRequires: libXext-devel
 BuildRequires: %{libvpx}-devel
-BuildRequires: %{libwebp}-devel
+%if 0%{?fedora}
+BuildRequires: libwebp-devel
+%endif
 BuildRequires: x264-xpra-devel
 BuildRequires: ffmpeg-xpra-devel
 BuildRequires: desktop-file-utils
@@ -238,7 +234,9 @@ Requires: xorg-x11-server-utils
 Requires: xorg-x11-drv-dummy
 Requires: xorg-x11-xauth
 Requires: %{libvpx}
+%if 0%{?fedora}
 Requires: %{libwebp}
+%endif
 Requires: x264-xpra
 Requires: ffmpeg-xpra
 Requires: xpra-common = %{build_no}%{dist}

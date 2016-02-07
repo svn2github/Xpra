@@ -140,7 +140,7 @@ sound_ENABLED           = True
 enc_proxy_ENABLED       = True
 enc_x264_ENABLED        = True          #too important to detect
 enc_x265_ENABLED        = pkg_config_ok("--exists", "x265")
-webp_ENABLED            = OSX
+webp_ENABLED            = pkg_config_ok("--atleast-version=0.4", "webp")
 x264_static_ENABLED     = False
 x265_static_ENABLED     = False
 webp_static_ENABLED     = False

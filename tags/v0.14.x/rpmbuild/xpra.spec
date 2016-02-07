@@ -28,7 +28,6 @@
 
 #Vfb (Xvfb or Xdummy):
 %define xorg_deps xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-drv-void, xorg-x11-xauth
-%define libwebp libwebp
 %define libvpx libvpx
 #we cannot depend on 'avahi-ui-tools' which we need for mdns support
 #(it provides the avahi python bindings)
@@ -45,15 +44,9 @@
 %define requires_sound %{nil}
 %endif
 
-%if 0%{?el7}
-#distro version is too old replace with our private libraries
-%define libwebp libwebp-xpra
-%endif
-
 %if 0%{?el6}
 #distro version is too old replace with our private libraries
 %define libvpx libvpx-xpra
-%define libwebp libwebp-xpra
 #only v6.4 onwards have Xdummy support:
 %if %(egrep -q 'release 6.0|release 6.1|release 6.2|release 6.3' /etc/redhat-release && echo 1 || echo 0)
 %define dummy --without-Xdummy
@@ -69,7 +62,6 @@
 %if 0%{?el5}
 #distro version is too old replace with our private libraries
 %define libvpx libvpx-xpra
-%define libwebp libwebp-xpra
 #does not build against python24:
 %define requires_lz4 %{nil}
 %define dummy --without-Xdummy
@@ -125,9 +117,11 @@ Requires: %{mdns_deps}
 Requires: libfakeXinerama
 Requires: %{xorg_deps}
 Requires: %{libvpx}
-Requires: %{libwebp}
 Requires: x264-xpra
 Requires: ffmpeg-xpra
+%if 0%{?fedora}
+Requires: libwebp
+%endif
 
 #v0.15.x onwards splits into two packages:
 Conflicts: xpra-common
@@ -150,6 +144,9 @@ BuildRequires: %{libwebp}-devel
 BuildRequires: x264-xpra-devel
 BuildRequires: ffmpeg-xpra-devel
 BuildRequires: desktop-file-utils
+%if 0%{?fedora}
+BuildRequires: libwebp-devel
+%endif
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 

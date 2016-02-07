@@ -31,14 +31,12 @@
 #gstreamer-plugins-ugly
 %define with_python3 1
 
-%define libwebp libwebp
 %define libvpx libvpx-xpra
 %define run_tests 1
 
 # any centos / rhel supported:
 %if 0%{?el6}%{?el7}
 #distro version is too old replace with our private libraries
-%define libwebp libwebp-xpra
 #not available:
 %define requires_websockify %{nil}
 %define requires_lzo %{nil}
@@ -111,10 +109,12 @@ Requires: libfakeXinerama
 Requires: gtk2-immodule-xim
 Requires: xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-xauth
 Requires: %{libvpx}
-Requires: %{libwebp}
 Requires: x264-xpra
 Requires: ffmpeg-xpra
 Requires: xpra-common = %{version}-%{build_no}%{dist}
+%if 0%{?fedora}
+Requires: libwebp
+%endif
 
 BuildRequires: pkgconfig
 BuildRequires: Cython
@@ -128,7 +128,9 @@ BuildRequires: libXcomposite-devel
 BuildRequires: libXdamage-devel
 BuildRequires: libXrandr-devel
 BuildRequires: %{libvpx}-devel
-BuildRequires: %{libwebp}-devel
+%if 0%{?fedora}
+BuildRequires: libwebp-devel
+%endif
 BuildRequires: x264-xpra-devel
 BuildRequires: ffmpeg-xpra-devel
 BuildRequires: desktop-file-utils
@@ -176,8 +178,9 @@ Requires: python3-pillow
 Requires: libfakeXinerama
 Requires: gtk3-immodule-xim
 Requires: xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-xauth
-Requires: %{libvpx}
-Requires: %{libwebp}
+%if 0%{?fedora}
+Requires: libwebp
+%endif
 Requires: x264-xpra
 Requires: ffmpeg-xpra
 Requires: xpra-common
