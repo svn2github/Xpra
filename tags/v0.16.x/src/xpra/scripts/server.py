@@ -726,6 +726,11 @@ def guess_xpra_display(socket_dir, socket_dirs):
 
 
 def run_server(error_cb, opts, mode, xpra_file, extra_args):
+    try:
+        cwd = os.getcwd()
+    except:
+        cwd = os.path.expanduser("~")
+        sys.stderr.write("current working directory does not exist, using '%s'\n" % cwd)
     if opts.encoding and opts.encoding=="help":
         #avoid errors and warnings:
         opts.encoding = ""
@@ -970,6 +975,7 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args):
         info = "xpra"
 
     try:
+        app.exec_cwd = cwd
         app.init(opts)
     except Exception as e:
         log.error("Error: cannot start the %s server", info, exc_info=True)

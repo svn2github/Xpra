@@ -134,6 +134,7 @@ class ServerBase(ServerCore, FileTransferHandler):
         self.remote_logging = False
         self.env = []
         self.child_reaper = getChildReaper(self.reaper_exit)
+        self.exec_cwd = None
         self.send_pings = False
         self.scaling_control = False
         self.rpc_handlers = {}
@@ -663,7 +664,7 @@ class ServerBase(ServerCore, FileTransferHandler):
         import subprocess
         env = self.get_child_env()
         try:
-            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, shell=True, close_fds=True)
+            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, shell=True, cwd=self.exec_cwd, close_fds=True)
             self.add_process(proc, name, child_cmd, ignore=ignore, callback=callback)
             if type(child_cmd) in (list, tuple):
                 info = " ".join(child_cmd)
