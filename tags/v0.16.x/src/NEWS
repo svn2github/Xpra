@@ -1,4 +1,4 @@
-v0.16.2 (2016-02-06)
+v0.16.2 (2016-02-08)
 ======================
 	-- fix subcommand logging clutter
 	-- fix clean build target (failed to clean some html files)
@@ -13,6 +13,7 @@ v0.16.2 (2016-02-06)
 	-- fix webp library conflicts
 	-- fix magic key border toggle
 	-- fix window decorations flag detection
+	-- fix current working directory of start commands
 	-- include workaround for some Java applications (disabled)
 	-- reduce the amount of default "desktop-scaling" applied
 	-- filter out more problematic desktop environment variables

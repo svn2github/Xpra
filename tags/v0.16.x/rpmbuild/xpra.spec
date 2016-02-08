@@ -385,7 +385,7 @@ fi
 
 
 %changelog
-* Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
+* Mon Feb 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
 - fix subcommand logging clutter
 - fix clean build target (failed to clean some html files)
 - fix focus regression
@@ -399,6 +399,7 @@ fi
 - fix webp library conflicts
 - fix magic key border toggle
 - fix window decorations flag detection
+- fix current working directory of start commands
 - include workaround for some Java applications (disabled)
 - reduce the amount of default "desktop-scaling" applied
 - filter out more problematic desktop environment variables
