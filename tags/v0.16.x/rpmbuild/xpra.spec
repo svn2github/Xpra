@@ -235,7 +235,7 @@ Requires: xorg-x11-drv-dummy
 Requires: xorg-x11-xauth
 Requires: %{libvpx}
 %if 0%{?fedora}
-Requires: %{libwebp}
+Requires: libwebp
 %endif
 Requires: x264-xpra
 Requires: ffmpeg-xpra
