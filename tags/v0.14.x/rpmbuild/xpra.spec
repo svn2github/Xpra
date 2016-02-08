@@ -140,7 +140,6 @@ BuildRequires: libXcomposite-devel
 BuildRequires: libXdamage-devel
 BuildRequires: libXrandr-devel
 BuildRequires: %{libvpx}-devel
-BuildRequires: %{libwebp}-devel
 BuildRequires: x264-xpra-devel
 BuildRequires: ffmpeg-xpra-devel
 BuildRequires: desktop-file-utils
