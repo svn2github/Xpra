@@ -94,7 +94,7 @@ class Win32EventListener(object):
         if self.hwnd:
             try:
                 win32gui.DestroyWindow(self.hwnd)
-            except Exception as e:
+            except Exception, e:
                 log.warn("error during win32 events cleanup: %s", e)
             self.hwnd = None
             win32gui.UnregisterClass(self.wc.lpszClassName, None)

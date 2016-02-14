@@ -29,7 +29,7 @@ def codec_import_check(name, description, top_module, class_module, *classnames)
             log("", exc_info=True)
             codec_errors[name] = e
             return None
-    except Exception as e:
+    except Exception, e:
         log.warn(" cannot load %s (%s):", name, description, exc_info=True)
         codec_errors[name] = e
         return None

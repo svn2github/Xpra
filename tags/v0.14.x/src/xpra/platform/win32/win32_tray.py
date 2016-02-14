@@ -61,7 +61,7 @@ class Win32Tray(TrayBase):
                 mx1, my1, _, _ = mi['Monitor']
                 self.offset_x = max(self.offset_x, -mx1)
                 self.offset_y = max(self.offset_y, -my1)
-        except Exception as e:
+        except Exception, e:
             log.warn("failed to query monitors: %s", e)
         log("calculate_offset() x=%i, y=%i", self.offset_x, self.offset_y)
 

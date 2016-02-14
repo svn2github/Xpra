@@ -130,7 +130,7 @@ def set_settings(disp, d):
                 continue
             log("set_settings(..) %s -> %s", setting, list(x))
             all_bin_settings.append(x)
-        except Exception as e:
+        except Exception, e:
             log.error("Error processing XSettings property %s:", prop_name)
             log.error(" type=%s, value=%s", XSettingsNames.get(setting_type, "INVALID!"), value)
             log.error(" %s", e)
