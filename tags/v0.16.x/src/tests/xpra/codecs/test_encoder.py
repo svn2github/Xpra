@@ -51,10 +51,10 @@ def test_encoder(encoder_module, options={}, dimensions=DEFAULT_TEST_DIMENSIONS,
         ics = encoder_module.get_input_colorspaces(encoding)
         log("input colorspaces(%s)=%s", encoding, ics)
         for ic in ics:
-            for encoding in encoder_module.get_encodings():
-                ocs = encoder_module.get_output_colorspaces(encoding, ic)
+            for e in encoder_module.get_encodings():
+                ocs = encoder_module.get_output_colorspaces(e, ic)
                 for c in ocs:
-                    log("spec(%s)=%s" % (c, encoder_module.get_spec(encoding, ic)))
+                    log("spec(%s)=%s" % (c, encoder_module.get_spec(e, ic)))
         for src_format in ics:
             spec = encoder_module.get_spec(encoding, src_format)
             for w,h in dimensions:
