@@ -1,3 +1,12 @@
+xpra (0.16.3-1) UNRELEASED; urgency=low
+  * fix Vfb not getting killed on server startup error
+  * fix handling of authentication setup errors
+  * fix codec test code (some encodings were skipped)
+  * fix NVENC handling of runtime speed and quality changes
+  * fix error in unlikely error handler
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 14 Feb 2016 11:39:25 +0700
+
 xpra (0.16.2-1) UNRELEASED; urgency=low
   * fix subcommand logging clutter
   * fix clean build target (failed to clean some html files)

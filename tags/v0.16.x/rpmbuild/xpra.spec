@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.16.2
+%define version 0.16.3
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -385,6 +385,13 @@ fi
 
 
 %changelog
+* Sun Feb 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+- fix Vfb not getting killed on server startup error
+- fix handling of authentication setup errors
+- fix codec test code (some encodings were skipped)
+- fix NVENC handling of runtime speed and quality changes
+- fix error in unlikely error handler
+
 * Mon Feb 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
 - fix subcommand logging clutter
 - fix clean build target (failed to clean some html files)
