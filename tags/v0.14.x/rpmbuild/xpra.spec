@@ -250,6 +250,9 @@ fi
 
 
 %changelog
+* Sun Feb 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-2
+- rebuild with Python 2.4 compatibility fix
+
 * Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
