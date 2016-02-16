@@ -41,7 +41,7 @@ cdef extern from "libavcodec/version.h":
     int LIBSWSCALE_VERSION_MICRO
 
 cdef extern from "libavcodec/avcodec.h":
-    AVPixelFormat PIX_FMT_NONE
+    AVPixelFormat AV_PIX_FMT_NONE
 
 ctypedef void SwsContext
 cdef extern from "libswscale/swscale.h":
@@ -394,11 +394,11 @@ cdef class ColorspaceConverter:
             self.context = NULL
         self.src_width = 0
         self.src_height = 0
-        self.src_format_enum = PIX_FMT_NONE
+        self.src_format_enum = AV_PIX_FMT_NONE
         self.src_format = ""
         self.dst_width = 0
         self.dst_height = 0
-        self.dst_format_enum = PIX_FMT_NONE
+        self.dst_format_enum = AV_PIX_FMT_NONE
         self.dst_format = ""
         self.frames = 0
         self.time = 0
