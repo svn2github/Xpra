@@ -352,8 +352,11 @@ class WindowVideoSource(WindowSource):
             #quality or speed override, best not to force video encoder re-init
             return nonvideo()
 
+        #ensure the dimensions we use for decision making are the ones actually used:
+        cww = ww & self.width_mask
+        cwh = wh & self.height_mask
         sr = self.video_subregion.rectangle
-        if sr and (sr.width!=ww or sr.height!=wh):
+        if sr and ((sr.width&self.width_mask)!=cww or (sr.height&self.height_mask)!=cwh):
             #we have a video region, and this is not it, so don't use video
             #raise the quality as the areas around video tend to not be graphics
             return nonvideo(q=quality+30)
@@ -369,10 +372,7 @@ class WindowVideoSource(WindowSource):
             #below threshold
             return nonvideo()
 
-        #ensure the dimensions we use for decision making are the ones actually used:
-        ww = ww & self.width_mask
-        wh = wh & self.height_mask
-        if ww<self.min_w or ww>self.max_w or wh<self.min_h or wh>self.max_h:
+        if cww<self.min_w or cww>self.max_w or cwh<self.min_h or cwh>self.max_h:
             #failsafe:
             return nonvideo()
         return current_encoding
