@@ -267,9 +267,6 @@ class ClientWindowBase(ClientWidgetBase):
     def set_xid(self, xid):
         pass
 
-    def show_menu(self, *args):
-        self._client.show_menu(*args)
-
     def magic_key(self, *args):
         log.info("magic_key(%s) not handled in %s", args, type(self))
 
