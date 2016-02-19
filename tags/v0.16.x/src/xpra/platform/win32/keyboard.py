@@ -4,6 +4,8 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
+import win32api         #@UnresolvedImport
+import win32con         #@UnresolvedImport
 import os
 
 from xpra.platform.keyboard_base import KeyboardBase
@@ -58,8 +60,6 @@ class Keyboard(KeyboardBase):
             self.AltGr_modifiers(names)
         if self.num_lock_modifier:
             try:
-                import win32api         #@UnresolvedImport
-                import win32con         #@UnresolvedImport
                 numlock = win32api.GetKeyState(win32con.VK_NUMLOCK)
                 if numlock and self.num_lock_modifier not in names:
                     names.append(self.num_lock_modifier)
@@ -101,7 +101,6 @@ class Keyboard(KeyboardBase):
         variant = None
         variants = None
         try:
-            import win32api         #@UnresolvedImport
             kbid = win32api.GetKeyboardLayout(0) & 0xffff
             if kbid in WIN32_LAYOUTS:
                 code, _, _, _, layout, variants = WIN32_LAYOUTS.get(kbid)
@@ -116,8 +115,6 @@ class Keyboard(KeyboardBase):
 
     def get_keyboard_repeat(self):
         try:
-            import win32con         #@UnresolvedImport
-            import win32gui         #@UnresolvedImport
             _delay = win32gui.SystemParametersInfo(win32con.SPI_GETKEYBOARDDELAY)
             _speed = win32gui.SystemParametersInfo(win32con.SPI_GETKEYBOARDSPEED)
             #now we need to normalize those weird win32 values:
