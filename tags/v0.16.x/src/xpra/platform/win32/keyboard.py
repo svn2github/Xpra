@@ -6,6 +6,7 @@
 
 import win32api         #@UnresolvedImport
 import win32con         #@UnresolvedImport
+import win32gui         #@UnresolvedImport
 import os
 
 from xpra.platform.keyboard_base import KeyboardBase
