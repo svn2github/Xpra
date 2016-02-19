@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.34
+%define version 0.14.35
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -250,6 +250,12 @@ fi
 
 
 %changelog
+* Fri Feb 19 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+- fix compatibility with ffmpeg 3.0
+- fix division by zero in encoding selection code
+- fix 'show systray' menu shortcut code
+- fix server deadlock on exit with tcp-proxy or html server
+
 * Sun Feb 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-2
 - rebuild with Python 2.4 compatibility fix
 
@@ -456,7 +462,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.34-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.35-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures

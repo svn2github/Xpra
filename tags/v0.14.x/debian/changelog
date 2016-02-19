@@ -1,3 +1,11 @@
+xpra (0.14.35-1) UNRELEASED; urgency=low
+  * fix compatibility with ffmpeg 3.0
+  * fix division by zero in encoding selection code
+  * fix 'show systray' menu shortcut code
+  * fix server deadlock on exit with tcp-proxy or html server
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 19 Feb 2016 22:16:41 +0700
+
 xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
   * fix OSX client preventing system shutdown
