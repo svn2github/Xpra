@@ -1978,7 +1978,8 @@ class UIXpraClient(XpraClientBase):
             return False
         try:
             from xpra.sound.wrapper import start_sending_sound
-            ss = start_sending_sound(self.sound_source_plugin, None, 1.0, matching_codecs, self.server_pulseaudio_server, self.server_pulseaudio_id)
+            plugins = self.sound_properties.get("plugins")
+            ss = start_sending_sound(plugins, self.sound_source_plugin, None, 1.0, matching_codecs, self.server_pulseaudio_server, self.server_pulseaudio_id)
             if not ss:
                 return False
             self.sound_source = ss
@@ -2001,8 +2002,7 @@ class UIXpraClient(XpraClientBase):
         #tell the server this is the start:
         self.send("sound-data", sound_source.codec, "",
                   {"start-of-stream"    : True,
-                   "codec"              : sound_source.codec,
-                   "sequence"           : sound_source.sequence})
+                   "codec"              : sound_source.codec})
 
     def stop_sending_sound(self):
         """ stop the sound source and emit client signal """
