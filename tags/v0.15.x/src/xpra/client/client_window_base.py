@@ -459,6 +459,9 @@ class ClientWindowBase(ClientWidgetBase):
     def show_session_info(self, *args):
         self._client.show_session_info(*args)
 
+    def show_menu(self, *args):
+        self._client.show_menu(*args)
+
     def show_start_new_command(self, *args):
         self._client.show_start_new_command(*args)
 
