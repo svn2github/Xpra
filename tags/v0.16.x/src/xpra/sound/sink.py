@@ -333,7 +333,9 @@ def main():
             codec = args[2]
             if codec not in codecs:
                 print("invalid codec: %s" % codec)
+                print("only supported: %s" % str(codecs.keys()))
                 return 2
+            codecs = [codec]
         else:
             codec = None
             parts = filename.split(".")
@@ -345,17 +347,17 @@ def main():
             if codec is None:
                 print("assuming this is an mp3 file...")
                 codec = MP3
+            codecs = [codec]
 
         log.enable_debug()
         with open(filename, "rb") as f:
             data = f.read()
         print("loaded %s bytes from %s" % (len(data), filename))
         #force no leak since we push all the data at once
-        global QUEUE_LEAK, GST_QUEUE_NO_LEAK, QUEUE_SILENT
+        global QUEUE_LEAK, QUEUE_SILENT
         QUEUE_LEAK = GST_QUEUE_NO_LEAK
         QUEUE_SILENT = 1
-        ss = SoundSink(codec=codec)
-        ss.add_data(data)
+        ss = SoundSink(codecs=codecs)
         def eos(*args):
             print("eos")
             glib.idle_add(glib_mainloop.quit)
@@ -379,6 +381,7 @@ def main():
                 return False
             return True
         glib.timeout_add(1000, check_for_end)
+        glib.idle_add(ss.add_data, data)
 
         glib_mainloop.run()
         return 0
