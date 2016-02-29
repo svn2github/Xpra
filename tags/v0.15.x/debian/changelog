@@ -4,6 +4,7 @@ xpra (0.15.11-1) UNRELEASED; urgency=low
   * fix OSX shadow server warning
   * fix xpra upgrade
   * fix race condition with exit-with-children
+  * fix microphone forwarding, stop on disconnection or exit
   * fix pulseaudio sound output with GStreamer 1.x
   * fix errors when stopping sound output
   * fix mistimed sound stop requests
@@ -13,16 +14,20 @@ xpra (0.15.11-1) UNRELEASED; urgency=low
   * fix RPM dependency: we need "which" for the Xdummy wrapper
   * fix default window icon lookup by window class
   * fix html5 rgb encoding and parameter parsing
+  * fix NVENC handling of runtime speed and quality changes
   * fix spurious warnings when connecting very early to a server
   * fix overly large sound packets with some encodings (unused data)
   * fix build on NetBSD
   * fix webp library conflicts
   * fix magic key border toggle
+  * fix logging large packet warning
+  * fix MS Windows shadow server key mapping
+  * more user friendly missing Xvfb error message
   * allow vorbis sound codec to be selected
   * add new shortcut workaround for showing the system tray menu
   * reduce log spam when pulseaudio is not reachable
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 06 Feb 2016 23:59:33 -0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 29 Feb 2016 22:39:24 -0700
 
 xpra (0.15.10-1) UNRELEASED; urgency=low
   * fix OpenGL errors with outdated drivers (now disabled by default)

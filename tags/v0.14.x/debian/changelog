@@ -3,8 +3,12 @@ xpra (0.14.35-1) UNRELEASED; urgency=low
   * fix division by zero in encoding selection code
   * fix 'show systray' menu shortcut code
   * fix server deadlock on exit with tcp-proxy or html server
+  * fix encoding errors with zero dimension windows
+  * fix stop microphone forwarding, correctly notify the server
+  * more user friendly missing Xvfb error message
+  * fix MS Windows shadow server key mapping
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 19 Feb 2016 22:16:41 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 29 Feb 2016 22:39:24 +0700
 
 xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var

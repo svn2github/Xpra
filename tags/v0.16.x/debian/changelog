@@ -1,11 +1,39 @@
 xpra (0.16.3-1) UNRELEASED; urgency=low
+  * fix window decorations flag forwarding
+  * fix undecorated window positioning adjustments
+  * fix microphone forwarding, stop on disconnection or exit
+  * fix sound-source options parsing errors
+  * fix sound command line tools
+  * fix sound error in duration message parsing
+  * fix pulseaudio microphone input device selection
+  * fix gstreamer automatic version selection errors
+  * fix webp package detection
   * fix Vfb not getting killed on server startup error
   * fix handling of authentication setup errors
   * fix codec test code (some encodings were skipped)
   * fix NVENC handling of runtime speed and quality changes
+  * fix video region detection off-by-one
   * fix error in unlikely error handler
+  * fix deadlock on exit with HTML server
+  * fix socket timeout code - use blocking sockets
+  * fix for Java applications enabled by default
+  * fix "AltGr" key event forwarding for MS Windows clients
+  * fix encoding errors with zero dimension windows
+  * fix example Xdummy command line in default config file
+  * fix Xorg command line path expansion
+  * fix honour XPRA_SCRIPT_BIN_DIR environment override
+  * fix some automatic quality heuristics calculations
+  * fix logging large packet warning
+  * fix MS Windows shadow server key mapping
+  * fix authentication errors with Python 2.6 and older
+  * more user friendly missing Xvfb error message
+  * hide unusable tray menu entries
+  * make it possible to disable force-quit code
+  * add shortcut for showing tray menu
+  * add some new common resolutions to xorg.conf
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 14 Feb 2016 11:39:25 +0700
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 29 Feb 2016 22:39:24 +0700
 
 xpra (0.16.2-1) UNRELEASED; urgency=low
   * fix subcommand logging clutter

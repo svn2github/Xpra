@@ -196,7 +196,7 @@ BuildRequires: python3-rencode
 
 
 %description
-Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent" -- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later -- even from another computer -- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops -- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
+Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent"- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later- even from another computer- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
 
 So basically it's screen for remote X apps.
 
@@ -242,7 +242,7 @@ Requires: ffmpeg-xpra
 Requires: xpra-common = %{build_no}%{dist}
 
 %description -n python3-xpra
-Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent" -- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later -- even from another computer -- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops -- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
+Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent"- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later- even from another computer- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
 
 So basically it's screen for remote X apps.
 %endif
@@ -385,12 +385,39 @@ fi
 
 
 %changelog
-* Sun Feb 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+* Mon Feb 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+- fix window decorations flag forwarding
+- fix undecorated window positioning adjustments
+- fix microphone forwarding, stop on disconnection or exit
+- fix sound-source options parsing errors
+- fix sound command line tools
+- fix sound error in duration message parsing
+- fix pulseaudio microphone input device selection
+- fix gstreamer automatic version selection errors
+- fix webp package detection
 - fix Vfb not getting killed on server startup error
 - fix handling of authentication setup errors
 - fix codec test code (some encodings were skipped)
 - fix NVENC handling of runtime speed and quality changes
+- fix video region detection off-by-one
 - fix error in unlikely error handler
+- fix deadlock on exit with HTML server
+- fix socket timeout code - use blocking sockets
+- fix for Java applications enabled by default
+- fix "AltGr" key event forwarding for MS Windows clients
+- fix encoding errors with zero dimension windows
+- fix example Xdummy command line in default config file
+- fix Xorg command line path expansion
+- fix honour XPRA_SCRIPT_BIN_DIR environment override
+- fix some automatic quality heuristics calculations
+- fix logging large packet warning
+- fix MS Windows shadow server key mapping
+- fix authentication errors with Python 2.6 and older
+- more user friendly missing Xvfb error message
+- hide unusable tray menu entries
+- make it possible to disable force-quit code
+- add shortcut for showing tray menu
+- add some new common resolutions to xorg.conf
 
 * Mon Feb 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.2-1
 - fix subcommand logging clutter

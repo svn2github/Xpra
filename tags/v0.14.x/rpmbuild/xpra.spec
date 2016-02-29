@@ -250,11 +250,15 @@ fi
 
 
 %changelog
-* Fri Feb 19 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Mon Feb 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
 - fix compatibility with ffmpeg 3.0
 - fix division by zero in encoding selection code
 - fix 'show systray' menu shortcut code
 - fix server deadlock on exit with tcp-proxy or html server
+- fix encoding errors with zero dimension windows
+- fix stop microphone forwarding, correctly notify the server
+- more user friendly missing Xvfb error message
+- fix MS Windows shadow server key mapping
 
 * Sun Feb 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.34-2
 - rebuild with Python 2.4 compatibility fix

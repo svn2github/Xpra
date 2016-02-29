@@ -148,7 +148,7 @@ BuildRequires: python3-rencode
 
 
 %description
-Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent" -- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later -- even from another computer -- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops -- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
+Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent"- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later- even from another computer- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
 
 So basically it's screen for remote X apps.
 
@@ -186,7 +186,7 @@ Requires: ffmpeg-xpra
 Requires: xpra-common
 
 %description -n python3-xpra
-Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent" -- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later -- even from another computer -- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops -- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
+Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent"- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later- even from another computer- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
 
 So basically it's screen for remote X apps.
 %endif
@@ -319,12 +319,13 @@ fi
 
 
 %changelog
-* Sat Feb 06 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
+* Mon Feb 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.15.11-1
 - fix OSX crashes with python optimizations enable via env var
 - fix OSX client preventing system shutdown
 - fix OSX shadow server warning
 - fix xpra upgrade
 - fix race condition with exit-with-children
+- fix microphone forwarding, stop on disconnection or exit
 - fix pulseaudio sound output with GStreamer 1.x
 - fix errors when stopping sound output
 - fix mistimed sound stop requests
@@ -334,11 +335,15 @@ fi
 - fix RPM dependency: we need "which" for the Xdummy wrapper
 - fix default window icon lookup by window class
 - fix html5 rgb encoding and parameter parsing
+- fix NVENC handling of runtime speed and quality changes
 - fix spurious warnings when connecting very early to a server
 - fix overly large sound packets with some encodings (unused data)
 - fix build on NetBSD
 - fix webp library conflicts
 - fix magic key border toggle
+- fix logging large packet warning
+- fix MS Windows shadow server key mapping
+- more user friendly missing Xvfb error message
 - allow vorbis sound codec to be selected
 - add new shortcut workaround for showing the system tray menu
 - reduce log spam when pulseaudio is not reachable
