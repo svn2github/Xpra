@@ -80,6 +80,9 @@ VIRTUAL_KEYS = {
     "NUMPAD7"               : "KP_7",
     "NUMPAD8"               : "KP_8",
     "NUMPAD9"               : "KP_9",
+    "OEM_PERIOD"            : "KP_Decimal",
+    "ASCIITILDE"            : "asciitilde",
+    "DEAD_GRAVE"            : "grave",
     "OEM_1"                 : "OEM_1",
     "OEM_102"               : "OEM_102",
     "OEM_2"                 : "OEM_2",
@@ -108,7 +111,6 @@ VIRTUAL_KEYS = {
     "OEM_PA1"               : "OemPa1",
     "OEM_PA2"               : "OemPa2",
     "OEM_PA3"               : "OemPa3",
-    "OEM_PERIOD"            : "period",
     "OEM_PLUS"              : "plus",
     "OEM_RESET"             : "Reset",
     "OEM_WSCTRL"            : "WsCtrl",
@@ -172,12 +174,11 @@ VIRTUAL_KEYS = {
     "LAUNCH_APP2"           : "XF86LaunchB",
     "LAUNCH_MAIL"           : "XF86Mail",
     "LAUNCH_MEDIA_SELECT"   : "XF86AudioMedia",
-    "LBUTTON"               : "Left",
-    "LCONTROL"              : "Left",
+    "LCONTROL"              : "Control_L",
     "LEFT"                  : "Left",
-    "LMENU"                 : "Left",
+    "LMENU"                 : "Alt_L",
     "LSHIFT"                : "Shift_L",
-    "LWIN"                  : "Left",
+    "LWIN"                  : "Super_L",
     "MBUTTON"               : "Middle",
     "MEDIA_NEXT_TRACK"      : "Next",
     "MEDIA_PLAY_PAUSE"      : "Play",
@@ -191,12 +192,11 @@ VIRTUAL_KEYS = {
     "PAUSE"                 : "Pause",
     "PRINT"                 : "Print",
     "PRIOR"                 : "Page",
-    "RBUTTON"               : "Right",
-    "RCONTROL"              : "Right",
+    "RCONTROL"              : "Control_R",
     "RIGHT"                 : "Right",
-    "RMENU"                 : "Menu",
+    "RMENU"                 : "Alt_R",
     "RSHIFT"                : "Shift_R",
-    "RWIN"                  : "Right",
+    "RWIN"                  : "Super_R",
     "SCROLL"                : "Scroll_Lock",
     "SLEEP"                 : "XF86Sleep",
     "SNAPSHOT"              : "Print",
@@ -256,17 +256,25 @@ DEFS = {
     "OEM_FINISH"            : 0xF1,
     "OEM_ENLW"              : 0xF4,
     "OEM_BACKTAB"           : 0xF5,
+    "ASCIITILDE"            : 65107,        #aka 0x00fe53
+    "DEAD_GRAVE"            : 65104,        #aka 0x00fe50
 }
 
 #lookup the constants:
 KEYCODES = {}
 for vk, name in VIRTUAL_KEYS.items():
     vk_name = "VK_%s" % vk
+for name, val in DEFS.items():
+    VK_NAMES[val] = name
     if hasattr(win32con, vk_name):
-        KEYCODES[name] = getattr(win32con, vk_name)
+        val = getattr(win32con, vk_name)
+        KEYCODES[name] = val
+        log("KEYCODES[%s]=win32con.%s=%s", name, vk_name, val)
     elif vk in DEFS:
         #fallback to our hardcoded definitions:
-        KEYCODES[name] = DEFS[vk]
+        val = DEFS[vk]
+        KEYCODES[name] = val
+        log("KEYCODES[%s]=%s=%s", name, vk, val)
     else:
         log.warn("missing key constant: %s", vk_name)
 for c in "abcdefghijklmnopqrstuvwxyz":
