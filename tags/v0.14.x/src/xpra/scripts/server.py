@@ -561,6 +561,8 @@ def start_Xvfb(xvfb_str, display_name):
             #trying to continue anyway!
             sys.stderr.write("Error trying to create XAUTHORITY file %s: %s\n" % (xauthority, e))
 
+    if not xvfb_str:
+        raise InitException("the 'xvfb' command is not defined")
     #identify logfile argument if it exists and if we may have to rename it:
     xvfb_cmd = xvfb_str.split()
     if '-logfile' in xvfb_cmd and display_name[0]=='S':
