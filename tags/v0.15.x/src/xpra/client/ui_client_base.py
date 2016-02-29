@@ -1624,6 +1624,8 @@ class UIXpraClient(XpraClientBase):
         if ss is None:
             log.warn("stop_sending_sound: sound not started!")
             return
+        #tell the server to stop:
+        self.send("sound-data", ss.codec or "", "", {"end-of-stream" : True})
         ss.cleanup()
         self.emit("microphone-changed")
 
