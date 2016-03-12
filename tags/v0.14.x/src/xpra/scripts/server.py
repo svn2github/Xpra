@@ -728,7 +728,7 @@ def find_fakeXinerama():
     return find_lib("libfakeXinerama.so.1")
 
 
-def start_children(child_reaper, commands, fake_xinerama):
+def start_children(child_reaper, cwd, commands, fake_xinerama):
     assert os.name=="posix"
     from xpra.log import Logger
     log = Logger("server")
@@ -750,7 +750,7 @@ def start_children(child_reaper, commands, fake_xinerama):
         if not child_cmd:
             continue
         try:
-            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, shell=True, close_fds=True)
+            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, cwd=cwd, shell=True, close_fds=True)
             child_reaper.add_process(proc, child_cmd)
             log.info("started child '%s' with pid %s", child_cmd, proc.pid)
         except OSError, e:
@@ -758,6 +758,11 @@ def start_children(child_reaper, commands, fake_xinerama):
 
 
 def run_server(error_cb, opts, mode, xpra_file, extra_args):
+    try:
+        cwd = os.getcwd()
+    except:
+        cwd = os.path.expanduser("~")
+        sys.stderr.write("current working directory does not exist, using '%s'\n" % cwd)
     if opts.encoding and opts.encoding=="help":
         #avoid errors and warnings:
         opts.encoding = ""
@@ -989,6 +994,7 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args):
             log.error("Xpra is a compositing manager, it cannot use a display which lacks the XComposite extension!")
             return 1
         app = XpraServer()
+        app.exec_cwd = cwd
         app.init(clobber, opts)
     log("%s(%s)", app.init_sockets, sockets)
     app.init_sockets(sockets)
@@ -1020,7 +1026,7 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args):
             assert opts.start_child, "exit-with-children was specified but start-child is missing!"
         if opts.start_child:
             assert os.name=="posix", "start-child cannot be used on %s" % os.name
-            start_children(child_reaper, opts.start_child, (opts.fake_xinerama and not shadowing))
+            start_children(child_reaper, cwd, opts.start_child, (opts.fake_xinerama and not shadowing))
         app.child_reaper = child_reaper
 
     try:

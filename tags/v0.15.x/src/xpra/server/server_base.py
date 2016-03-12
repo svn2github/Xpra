@@ -111,6 +111,7 @@ class ServerBase(ServerCore):
         self.exit_with_children = False
         self.start_new_commands = False
         self.remote_logging = False
+        self.exec_cwd = None
         self.env = []
         self.child_reaper = getChildReaper(self.reaper_exit)
         self.send_pings = False
@@ -554,7 +555,7 @@ class ServerBase(ServerCore):
         import subprocess
         env = self.get_child_env()
         try:
-            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, shell=True, close_fds=True)
+            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, cwd=self.exec_cwd shell=True, close_fds=True)
             self.add_process(proc, name, child_cmd, ignore=ignore, callback=callback)
             if ignore:
                 log("started child '%s' with pid %s (ignored)", child_cmd, proc.pid)
