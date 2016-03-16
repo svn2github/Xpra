@@ -385,7 +385,13 @@ fi
 
 
 %changelog
-* Mon Feb 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+* Wed Mar 16 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+- fix clipboard timeouts and high CPU usage
+- fix out-of-date bug report data
+- fix startup failures on some invalid MS Windows configurations
+- fix HTML5 client with Internet Exporer and zoom
+- fix visual corruption with transparent windows
+- fix pulseaudio starting before we request it
 - fix window decorations flag forwarding
 - fix undecorated window positioning adjustments
 - fix microphone forwarding, stop on disconnection or exit

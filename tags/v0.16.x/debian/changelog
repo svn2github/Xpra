@@ -1,4 +1,10 @@
 xpra (0.16.3-1) UNRELEASED; urgency=low
+  * fix clipboard timeouts and high CPU usage
+  * fix out-of-date bug report data
+  * fix startup failures on some invalid MS Windows configurations
+  * fix HTML5 client with Internet Exporer and zoom
+  * fix visual corruption with transparent windows
+  * fix pulseaudio starting before we request it
   * fix window decorations flag forwarding
   * fix undecorated window positioning adjustments
   * fix microphone forwarding, stop on disconnection or exit
@@ -32,8 +38,7 @@ xpra (0.16.3-1) UNRELEASED; urgency=low
   * add shortcut for showing tray menu
   * add some new common resolutions to xorg.conf
 
-
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 29 Feb 2016 22:39:24 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 16 Mar 2016 23:31:35 +0700
 
 xpra (0.16.2-1) UNRELEASED; urgency=low
   * fix subcommand logging clutter
