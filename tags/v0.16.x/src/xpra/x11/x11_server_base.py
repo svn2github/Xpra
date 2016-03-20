@@ -76,6 +76,10 @@ class X11ServerBase(GTKServerBase):
     def init(self, opts):
         self.fake_xinerama = opts.fake_xinerama
         self.current_xinerama_config = None
+        if self.fake_xinerama:
+            self.libfakeXinerama_so = find_libfakeXinerama()
+        else:
+            self.libfakeXinerama_so = None
         self.x11_init()
         GTKServerBase.init(self, opts)
 
@@ -145,10 +149,8 @@ class X11ServerBase(GTKServerBase):
     def get_child_env(self):
         #adds fakeXinerama:
         env = GTKServerBase.get_child_env(self)
-        if self.fake_xinerama:
-            libfakeXinerama_so = find_libfakeXinerama()
-            if libfakeXinerama_so:
-                env["LD_PRELOAD"] = libfakeXinerama_so
+        if self.fake_xinerama and self.libfakeXinerama_so:
+            env["LD_PRELOAD"] = self.libfakeXinerama_so
         return env
 
 
@@ -198,12 +200,8 @@ class X11ServerBase(GTKServerBase):
                 info["server.randr.options"] = list(reversed(sorted(sizes)))
         except:
             pass
-        try:
-            fx = find_libfakeXinerama()
-        except:
-            fx = None
-        info["server.fakeXinerama"] = self.fake_xinerama and bool(fx)
-        info["server.libfakeXinerama"] = fx or ""
+        info["server.fakeXinerama"] = self.fake_xinerama and bool(self.libfakeXinerama_so)
+        info["server.libfakeXinerama"] = self.libfakeXinerama_so or ""
         #this is added here because the server keyboard config doesn't know about "keys_pressed"..
         info["keyboard.state.keys_pressed"] = list(self.keys_pressed.keys())
         info["keyboard.fast-switching"] = True
