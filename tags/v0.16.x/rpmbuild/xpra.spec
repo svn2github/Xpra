@@ -385,7 +385,9 @@ fi
 
 
 %changelog
-* Wed Mar 16 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+* Wed Mar 23 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
+- fix xpra info major performance issues
+- fix restore windows when OSX dock is clicked
 - fix clipboard timeouts and high CPU usage
 - fix out-of-date bug report data
 - fix startup failures on some invalid MS Windows configurations
@@ -419,8 +421,10 @@ fi
 - fix logging large packet warning
 - fix MS Windows shadow server key mapping
 - fix authentication errors with Python 2.6 and older
+- fix dbus menu forwarding component loading
 - more user friendly missing Xvfb error message
 - hide unusable tray menu entries
+- make it possible to tune or disable optimistic sending
 - make it possible to disable force-quit code
 - add shortcut for showing tray menu
 - add some new common resolutions to xorg.conf
