@@ -32,6 +32,7 @@ MIN_DELTA_SIZE = int(os.environ.get("XPRA_MIN_DELTA_SIZE", "1024"))
 MAX_DELTA_SIZE = int(os.environ.get("XPRA_MAX_DELTA_SIZE", "32768"))
 MAX_DELTA_HITS = int(os.environ.get("XPRA_MAX_DELTA_HITS", "20"))
 MIN_WINDOW_REGION_SIZE = int(os.environ.get("XPRA_MIN_WINDOW_REGION_SIZE", "1024"))
+MAX_SOFT_EXPIRED = int(os.environ.get("XPRA_MAX_SOFT_EXPIRED", "5"))
 
 HAS_ALPHA = os.environ.get("XPRA_ALPHA", "1")=="1"
 FORCE_BATCH = os.environ.get("XPRA_FORCE_BATCH", "0")=="1"
@@ -255,7 +256,7 @@ class WindowSource(object):
         self.expire_timer = None
         self.soft_timer = None
         self.soft_expired = 0
-        self.max_soft_expired = 5
+        self.max_soft_expired = MAX_SOFT_EXPIRED
         self.min_delta_size = MIN_DELTA_SIZE
         self.max_delta_size = MAX_DELTA_SIZE
         self.is_OR = False
