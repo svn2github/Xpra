@@ -1372,7 +1372,12 @@ class ServerSource(object):
             updict(info, prefix, d)
         up("encoding",      self.default_encoding_options)
         up("encoding",      self.encoding_options)
-        up("icons",         self.icons_encoding_options)
+        ieo = dict(self.icons_encoding_options)
+        try:
+            del ieo["default.icons"]
+        except:
+            pass
+        up("icons",         ieo)
         up("connection",    self.protocol.get_info())
         up("av-sync",       {"client.delay"         : self.av_sync_delay,
                              "total"                : self.av_sync_delay_total,

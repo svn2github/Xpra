@@ -361,7 +361,12 @@ class WindowSource(object):
                 "elapsed"               : int(1000*(time.time()-larm[0])),
                 "message"               : larm[1],
                                                      })
-        up("icons", self.icons_encoding_options)
+        ieo = dict(self.icons_encoding_options)
+        try:
+            del ieo["default.icons"]
+        except:
+            pass
+        up("icons", ieo)
         idata = self.window_icon_data
         if idata:
             pixel_data, stride, w, h = idata
