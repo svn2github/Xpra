@@ -94,6 +94,7 @@ grablog("detail constants: %s", DETAIL_CONSTANTS)
 MAX_WINDOW_SIZE = 2**15-1
 MAX_ASPECT = 2**15-1
 USE_XSHM = os.environ.get("XPRA_XSHM", "1")=="1"
+FORCE_QUIT = os.environ.get("XPRA_FORCE_QUIT", "1")=="1"
 
 #these properties are not handled, and we don't want to spam the log file
 #whenever an app decides to change them:
@@ -1798,9 +1799,15 @@ class WindowModel(BaseWindowModel):
         else:
             title = self.get_property("title")
             xid = self.get_property("xid")
-            log.warn("window %#x ('%s') does not support WM_DELETE_WINDOW... using force_quit()", xid, title)
-            # You don't wanna play ball?  Then no more Mr. Nice Guy!
-            self.force_quit()
+            if FORCE_QUIT:
+                log.warn("window %#x ('%s') does not support WM_DELETE_WINDOW... using force_quit()", xid, title)
+                # You don't wanna play ball?  Then no more Mr. Nice Guy!
+                self.force_quit()
+            else:
+                log.warn("window %#x ('%s') cannot be closed,", xid, title)
+                log.warn(" it does not support WM_DELETE_WINDOW")
+                log.warn(" and FORCE_QUIT is disabled")
+
 
     def force_quit(self):
         pid = self.get_property("pid")
