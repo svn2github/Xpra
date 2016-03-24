@@ -250,7 +250,11 @@ fi
 
 
 %changelog
-* Mon Feb 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Thu Mar 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+- fix clipboard timeouts and high CPU usage
+- fix out-of-date bug report data
+- fix startup failures on some invalid MS Windows configurations
+- fix current working directory of start commands
 - fix compatibility with ffmpeg 3.0
 - fix division by zero in encoding selection code
 - fix 'show systray' menu shortcut code
