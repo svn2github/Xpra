@@ -385,6 +385,9 @@ fi
 
 
 %changelog
+* Thu Mar 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-2
+* fix CentOS pulsesink sound errors
+
 * Wed Mar 23 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
 - fix xpra info major performance issues
 - fix restore windows when OSX dock is clicked
