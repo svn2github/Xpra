@@ -144,7 +144,9 @@ def print_files(printer, filenames, title, options):
         PATH = os.environ.get("PATH")
         os.environ["PATH"] = str(PATH+";"+gsview_dir)
         log("environment: %s", os.environ)
-        process = subprocess.Popen(command, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=gsview_dir)
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        process = subprocess.Popen(command, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=GSVIEW_DIR, startupinfo=startupinfo)
         process.print_filename = filename
         #we just let it run, no need for reaping the process on win32
         processes.append(process)
