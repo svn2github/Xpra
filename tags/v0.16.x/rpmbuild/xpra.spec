@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.16.3
+%define version 0.16.4
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -385,8 +385,12 @@ fi
 
 
 %changelog
-* Thu Mar 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-2
-* fix CentOS pulsesink sound errors
+* Tue Mar 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.4-2
+- fix spurious ffmpeg codec warnings during self tests
+- fix support for broken system tray proxies (ie: KDE)
+- fix mDNS errors with newer avahi / dbus libraries
+- fix hide shell window when printing on MS Windows
+- fix show network printers by default on MS Windows
 
 * Wed Mar 23 2016 Antoine Martin <antoine@devloop.org.uk> 0.16.3-1
 - fix xpra info major performance issues

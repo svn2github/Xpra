@@ -1,3 +1,12 @@
+v0.16.4 (2016-03-29)
+======================
+	-- fix spurious ffmpeg codec warnings during self tests
+	-- fix support for broken system tray proxies (ie: KDE)
+	-- fix mDNS errors with newer avahi / dbus libraries
+	-- fix hide shell window when printing on MS Windows
+	-- fix show network printers by default on MS Windows
+
+
 v0.16.3 (2016-03-23)
 ======================
 	-- fix xpra info major performance issues

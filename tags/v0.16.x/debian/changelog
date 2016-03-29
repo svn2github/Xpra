@@ -1,3 +1,12 @@
+xpra (0.16.4-1) UNRELEASED; urgency=low
+  * fix spurious ffmpeg codec warnings during self tests
+  * fix support for broken system tray proxies (ie: KDE)
+  * fix mDNS errors with newer avahi / dbus libraries
+  * fix hide shell window when printing on MS Windows
+  * fix show network printers by default on MS Windows
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 29 Mar 2016 23:40:57 +0700
+
 xpra (0.16.3-1) UNRELEASED; urgency=low
   * fix xpra info major performance issues
   * fix restore windows when OSX dock is clicked
