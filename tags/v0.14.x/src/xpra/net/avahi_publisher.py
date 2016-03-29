@@ -88,14 +88,14 @@ class AvahiPublishers:
 
 class AvahiPublisher:
 
-	def __init__(self, name, port, stype=XPRA_MDNS_TYPE, domain="", host="", text="", interface=avahi.IF_UNSPEC):
+	def __init__(self, name, port, stype=XPRA_MDNS_TYPE, domain="", host="", text=[], interface=avahi.IF_UNSPEC):
 		log("AvahiPublisher%s", (name, port, stype, domain, host, text, interface))
 		self.name = name
 		self.stype = stype
 		self.domain = domain
 		self.host = host
 		self.port = port
-		self.text = text
+		self.text = avahi.string_array_to_txt_array(text)
 		self.interface = interface
 		self.group = None
 
@@ -156,7 +156,7 @@ def main():
 	port = int(20000*random.random())+10000
 	host = "0.0.0.0"
 	name = "test service"
-	publisher = AvahiPublisher(name, port, stype=XPRA_MDNS_TYPE, host=host, text="somename: somevalue")
+	publisher = AvahiPublisher(name, port, stype=XPRA_MDNS_TYPE, host=host, text=["somename: somevalue"])
 	assert publisher
 	gobject.idle_add(publisher.start)
 	signal.signal(signal.SIGTERM, exit)
