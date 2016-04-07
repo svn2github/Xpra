@@ -37,7 +37,7 @@ def get_proc_driver_version():
     proc_file = "/proc/driver/nvidia/version"
     v = load_binary_file(proc_file)
     if not v:
-        log.warn("Warning: NVvidia kernel module not installed?")
+        log.warn("Warning: NVidia kernel module not installed?")
         log.warn(" cannot open '%s'", proc_file)
         return ""
     KSTR = "Kernel Module"
@@ -74,8 +74,9 @@ def identify_nvidia_module_version():
             except ValueError:
                 if len(numver)==0:
                     raise
-        log.info("NVidia driver version %s", pver(numver))
-        return numver
+        if numver:
+            log.info("NVidia driver version %s", pver(numver))
+            return numver
     except Exception as e:
         log.warn("failed to parse Nvidia driver version '%s': %s", v, e)
     return []
