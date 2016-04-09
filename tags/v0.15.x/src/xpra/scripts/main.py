@@ -519,9 +519,9 @@ def do_parse_cmdline(cmdline, defaults):
                           dest="sound_source", default=defaults.sound_source,
                           help="Specifies which sound system to use to capture the sound stream (use 'help' for options)")
     else:
-        hidden_options["speaker"] = False
+        hidden_options["speaker"] = "no"
         hidden_options["speaker_codec"] = []
-        hidden_options["microphone"] = False
+        hidden_options["microphone"] = "no"
         hidden_options["microphone_codec"] = []
         hidden_options["sound_source"] = ""
 

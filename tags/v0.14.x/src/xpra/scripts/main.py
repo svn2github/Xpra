@@ -469,9 +469,9 @@ def do_parse_cmdline(cmdline, defaults):
                           dest="microphone_codec", default=list(defaults.microphone_codec or []),
                           help=CODEC_HELP % "microphone")
     else:
-        hidden_options["speaker"] = False
+        hidden_options["speaker"] = "no"
         hidden_options["speaker_codec"] = []
-        hidden_options["microphone"] = False
+        hidden_options["microphone"] = "no"
         hidden_options["microphone_codec"] = []
 
     group = optparse.OptionGroup(parser, "Encoding and Compression Options",
