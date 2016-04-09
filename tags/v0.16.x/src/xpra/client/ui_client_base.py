@@ -1605,10 +1605,6 @@ class UIXpraClient(XpraClientBase):
         if not XpraClientBase.parse_server_capabilities(self):
             return  False
         c = self.server_capabilities
-        #enable remote logging asap:
-        if self.client_supports_remote_logging and c.boolget("remote-logging"):
-            log.info("enabled remote logging, see server log file for output")
-            self.local_logging = set_global_logging_handler(self.remote_logging_handler)
         if not self.session_name:
             self.session_name = c.strget("session_name", "")
         from xpra.platform import set_name
@@ -1800,6 +1796,15 @@ class UIXpraClient(XpraClientBase):
         if not c.boolget("notify-startup-complete"):
             #we won't get notified, so assume it is now:
             self._startup_complete()
+
+    def parse_logging_capabilities(self):
+        c = self.server_capabilities
+        if self.client_supports_remote_logging and c.boolget("remote-logging"):
+            log.info("enabled remote logging")
+            if not self.log_both:
+                log.info(" see server log file for further output")
+            self.local_logging = set_global_logging_handler(self.remote_logging_handler)
+
 
     def _startup_complete(self, *args):
         log("all the existing windows and system trays have been received: %s items", len(self._id_to_window))
