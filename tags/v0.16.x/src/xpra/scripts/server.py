@@ -869,7 +869,8 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args):
         socket = setup_tcp_socket(host, iport)
         sockets.append(socket)
         if opts.mdns:
-            mdns_recs.append(("tcp", bind_tcp))
+            rec = "tcp", [(host, iport)]
+            mdns_recs.append(rec)
 
     # Do this after writing out the shell script:
     if display_name[0] != 'S':
