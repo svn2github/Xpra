@@ -102,6 +102,15 @@ def check_pyopencl_AMD():
         pass
     return True
 
+def is_RH():
+    try:
+        with open("/etc/redhat-release", mode='rb') as f:
+            data = f.read()
+        return data.startswith("CentOS") or data.startswith("RedHat")
+    except:
+        pass
+    return False
+
 from xpra.platform.features import LOCAL_SERVERS_SUPPORTED, SHADOW_SUPPORTED
 shadow_ENABLED = SHADOW_SUPPORTED and not PYTHON3       #shadow servers use some GTK2 code..
 server_ENABLED = (LOCAL_SERVERS_SUPPORTED or shadow_ENABLED) and not PYTHON3
@@ -813,7 +822,7 @@ def build_xpra_conf(install_dir):
             'env'            : env,
             'has_displayfd'  : bstr(has_displayfd),
             'conf_dir'       : conf_dir,
-            'mdns'           : bstr(not WIN32),
+            'mdns'           : bstr(not WIN32) and not is_RH(),
             'pulseaudio'     : bstr(not OSX and not WIN32)}
     conf = template % SUBS
     #get conf dir for install, without stripping the build root
