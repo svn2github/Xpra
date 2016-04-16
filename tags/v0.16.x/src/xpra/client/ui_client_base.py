@@ -1801,8 +1801,6 @@ class UIXpraClient(XpraClientBase):
         c = self.server_capabilities
         if self.client_supports_remote_logging and c.boolget("remote-logging"):
             log.info("enabled remote logging")
-            if not self.log_both:
-                log.info(" see server log file for further output")
             self.local_logging = set_global_logging_handler(self.remote_logging_handler)
 
 
