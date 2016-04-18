@@ -1,0 +1,21 @@
+include COPYING NEWS README
+include xpra/inline.h
+include xpra/inline.c
+include xpra/buffers/memalign.h
+include xpra/buffers/memalign.c
+include xpra/buffers/buffers.h
+include xpra/buffers/new_buffers.c
+include xpra/buffers/old_buffers.c
+include xpra/codecs/cuda_common/*.cu
+recursive-include html5 *
+recursive-include man *
+recursive-include patches *
+recursive-include etc *
+recursive-include xdg *
+recursive-include cups *
+recursive-include icons *
+recursive-include scripts *
+recursive-include tmpfiles.d *
+global-include *.py *.txt *.pyx *.pxd
+global-exclude *~ \#* *.orig *.bak *.rej *.pxi
+prune build

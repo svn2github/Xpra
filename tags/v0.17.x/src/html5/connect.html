@@ -1,0 +1,258 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    <title>Xpra HTML5 Client</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="icon" type="image/png" href="/favicon.png" />
+
+	<script type="text/javascript" src="include/jquery.min.js"></script>
+  </head>
+
+<body>
+
+<div class="container">
+
+
+		<form class="form-signin">
+
+      	<img src="include/xpra-logo.png" />
+        <h2 class="form-signin-heading">Xpra HTML5 Client</h2>
+
+        <div id="alert-disconnect" class="alert alert-info" role="alert" style="display:none;">
+		  	<p>You were disconnected for the following reason:</p>
+		  	<p><span id="disconnect-reason"></span></p>
+		  </div>
+
+		  <div class="form-group form-inline">
+		    <label class="sr-only" for="server">Server</label>
+		    <input type="text" class="form-control" id="server" placeholder="Server">
+		    <label class="sr-only" for="port">Port</label>
+		    <input type="text" class="form-control" id="port" placeholder="Port">
+		  </div>
+
+		  <div class="form-group form-inline">
+		    <label class="sr-only" for="encoding">Encoding</label>
+		    <select id="encoding">
+		      <option value="h264">H.264</option>
+		      <option value="jpeg">JPEG</option>
+			  <option value="png">PNG</option>
+			  <option value="rgb">Raw RGB</option>
+			</select>
+		  </div>
+
+		  <div class="form-group form-inline">
+		    <label class="sr-only" for="keyboard_layout">Keyboard Layout</label>
+		    <select id="keyboard_layout">
+		      <option value="us">English USA</option>
+		      <option value="gb">United Kingdom</option>
+		      <option value="fr">France</option>
+			  <option value="de">Germany</option>
+			  <option value="ad">Andorra</option>
+			  <option value="af">Afghanistan</option>
+			  <option value="ara">Arabic</option>
+			  <option value="al">Albania</option>
+			  <option value="am">Armenia</option>
+			  <option value="az">Azerbaijan</option>
+			  <option value="by">Belarus</option>
+			  <option value="be">Belgium</option>
+			  <option value="bd">Bangladesh</option>
+			  <option value="in">India</option>
+			  <option value="ba">Bosnia</option>
+			  <option value="br">Brazil</option>
+			  <option value="bg">Bulgaria</option>
+			  <option value="ma">Morocco</option>
+			  <option value="mm">Myanmar</option>
+			  <option value="ca">Canada</option>
+			  <option value="cd">Congo,</option>
+			  <option value="cn">China</option>
+			  <option value="hr">Croatia</option>
+			  <option value="cz">Czechia</option>
+			  <option value="dk">Denmark</option>
+			  <option value="nl">Netherlands</option>
+			  <option value="bt">Bhutan</option>
+			  <option value="ee">Estonia</option>
+			  <option value="ir">Iran</option>
+			  <option value="iq">Iraq</option>
+			  <option value="fo">Faroe</option>
+			  <option value="fi">Finland</option>
+			  <option value="fr">France</option>
+			  <option value="gh">Ghana</option>
+			  <option value="gn">Guinea</option>
+			  <option value="ge">Georgia</option>
+			  <option value="gr">Greece</option>
+			  <option value="hu">Hungary</option>
+			  <option value="is">Iceland</option>
+			  <option value="il">Israel</option>
+			  <option value="it">Italy</option>
+			  <option value="jp">Japan</option>
+			  <option value="kg">Kyrgyzstan</option>
+			  <option value="kh">Cambodia</option>
+			  <option value="kz">Kazakhstan</option>
+			  <option value="la">Laos</option>
+			  <option value="latam">Latin</option>
+			  <option value="lt">Lithuania</option>
+			  <option value="lv">Latvia</option>
+			  <option value="mao">Maori</option>
+			  <option value="me">Montenegro</option>
+			  <option value="mk">Macedonia</option>
+			  <option value="mt">Malta</option>
+			  <option value="mn">Mongolia</option>
+			  <option value="no">Norway</option>
+			  <option value="pl">Poland</option>
+			  <option value="pt">Portugal</option>
+			  <option value="ro">Romania</option>
+			  <option value="ru">Russia</option>
+			  <option value="rs">Serbia</option>
+			  <option value="si">Slovenia</option>
+			  <option value="sk">Slovakia</option>
+			  <option value="es">Spain</option>
+			  <option value="se">Sweden</option>
+			  <option value="ch">Switzerland</option>
+			  <option value="sy">Syria</option>
+			  <option value="tj">Tajikistan</option>
+			  <option value="lk">Sri</option>
+			  <option value="th">Thailand</option>
+			  <option value="tr">Turkey</option>
+			  <option value="tw">Taiwan</option>
+			  <option value="ua">Ukraine</option>
+			  <option value="gb">United</option>
+			  <option value="uz">Uzbekistan</option>
+			  <option value="vn">Vietnam</option>
+			  <option value="kr">Korea,</option>
+			  <option value="jp">Japan</option>
+			  <option value="ie">Ireland</option>
+			  <option value="pk">Pakistan</option>
+			  <option value="mv">Maldives</option>
+			  <option value="za">South</option>
+			  <option value="epo">Esperanto</option>
+			  <option value="np">Nepal</option>
+			  <option value="ng">Nigeria</option>
+			  <option value="et">Ethiopia</option>
+			  <option value="sn">Senegal</option>
+			  <option value="brai">Braille</option>
+			  <option value="tm">Turkmenistan</option>
+			  <option value="ml">Mali</option>
+			  <option value="tz">Tanzania</option>
+			</select>
+		  </div>
+
+		  <div class="form-group">
+		  	<a class="btn btn-lg btn-success" role="button" onclick="doConnect();">Connect</a>
+		  </div>
+
+		  <div class="panel-group" role="tablist" style="padding-top:8px;">
+		    <div class="panel panel-default">
+		      <div id="expandopts" class="panel-heading" role="tab">
+		        <h4 class="panel-title">Advanced options</h4>
+		      </div>
+		      <div id="hiddenopts" class="panel-collapse collapse in" role="tabpanel" style="display:none;">
+		        <ul class="list-group">
+		          <li class="list-group-item"><input type="checkbox" id="sound"> Experimental sound support</li>
+		          <li class="list-group-item"><input type="checkbox" id="normal_fullscreen"> Normal fullscreen windows</li>
+		        </ul>
+		      </div>
+		    </div>
+		  </div>
+
+		</form>
+
+
+
+    </div> <!-- /container -->
+
+<script>
+
+/**
+ * Adds window.location.getParameter to those browsers that don't have it:
+ *
+ * See:
+ * http://stackoverflow.com/a/8812157/428751
+ */
+if (!window.location.getParameter ) {
+	window.location.getParameter = function(key) {
+		function parseParams() {
+				var params = {},
+						e,
+						a = /\+/g,	// Regex for replacing addition symbol with a space
+						r = /([^&=]+)=?([^&]*)/g,
+						d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+						q = window.location.search.substring(1);
+
+				while (e = r.exec(q))
+						params[d(e[1])] = d(e[2]);
+
+				return params;
+		}
+
+		if (!this.queryStringParams)
+				this.queryStringParams = parseParams();
+
+		return this.queryStringParams[key];
+	};
+}
+
+function doConnect() {
+	var server = document.getElementById("server").value;
+	var port = parseInt(document.getElementById("port").value);
+	var encoding = document.getElementById("encoding").value;
+	var keyboard_layout = document.getElementById("keyboard_layout").value;
+	// url to client
+	var url = "/index.html?server="+encodeURIComponent(server)+"&port="+port+"&encoding="+encodeURIComponent(encoding)+"&keyboard_layout="+encodeURIComponent(keyboard_layout)+"&submit=true";
+	// check options
+	var normal_fullscreen = document.getElementById("normal_fullscreen").checked;
+	if(normal_fullscreen) {
+		url = url + "&normal_fullscreen=true";
+	}
+	var sound = document.getElementById("sound").checked;
+	if(sound) {
+		url = url + "&sound=true";
+	}
+	//alert("connect to "+server+" on port "+port+" using "+encoding);
+	window.location = url;
+}
+
+$(document).ready(function() {
+
+	var disconnect_reason = window.location.getParameter("disconnect") || null;
+
+	if(disconnect_reason) {
+		document.getElementById("alert-disconnect").style.display = "block";
+		document.getElementById("disconnect-reason").innerHTML = disconnect_reason;
+	}
+
+	//IE:
+	//navigator.systemLanguage
+	//navigator.browserLanguage
+	var v = window.navigator.userLanguage || window.navigator.language;
+	var keyboard_layout = "";
+	//ie: v="en_GB";
+	v = v.split(",")[0];
+	var l = v.split("-", 2);
+	if (l.length==1)
+		l = v.split("_", 2);
+	if (l.length==1)
+		//ie: "en"
+		keyboard_layout = l[0];
+	else
+		keyboard_layout = l[1].toLowerCase();
+
+	document.getElementById('keyboard_layout').value = keyboard_layout;
+
+	$("#expandopts").click(function() {
+		$("#hiddenopts").slideToggle();
+	});
+
+});
+
+</script>
+
+</body>
+</html>
