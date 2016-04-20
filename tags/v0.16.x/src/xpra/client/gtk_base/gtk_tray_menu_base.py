@@ -83,7 +83,7 @@ class TrayCheckMenuItem(gtk.CheckMenuItem):
 
 def set_use_tray_workaround(enabled):
     global CheckMenuItem
-    if enabled and sys.platform.startswith("win"):
+    if enabled:
         CheckMenuItem = TrayCheckMenuItem
     else:
         CheckMenuItem = gtk.CheckMenuItem
