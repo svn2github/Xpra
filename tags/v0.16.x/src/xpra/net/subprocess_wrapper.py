@@ -78,7 +78,7 @@ class subprocess_callee(object):
         self.name = ""
         self.input_filename = input_filename
         self.output_filename = output_filename
-        self.method_whitelist = None
+        self.method_whitelist = method_whitelist
         self.large_packets = []
         #the gobject instance which is wrapped:
         self.wrapped_object = wrapped_object
@@ -241,6 +241,10 @@ class subprocess_callee(object):
         elif command=="stop":
             log("received stop message")
             self.net_stop()
+            return
+        elif command=="exit":
+            log("received exit message")
+            sys.exit(0)
             return
         #make it easier to hookup signals to methods:
         attr = command.replace("-", "_")
