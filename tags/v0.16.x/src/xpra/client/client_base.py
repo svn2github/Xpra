@@ -605,7 +605,7 @@ class XpraClientBase(FileTransferHandler):
             password = password.decode("utf8").strip("\n\r")
         except:
             password = str(password)
-        netlog("password read from file %s is %s", self.password_file, "".join(["*" for _ in password]))
+        netlog("password read from file %s is %s", self.password_file, "".join(["*" for _ in (password or "")]))
         return password
 
     def _process_hello(self, packet):
