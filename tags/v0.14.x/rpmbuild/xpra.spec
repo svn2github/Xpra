@@ -108,6 +108,7 @@ Vendor: http://xpra.org/
 Source: xpra-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
+Requires(pre): shadow-utils
 Requires: python %{requires_extra} %{requires_opengl} %{requires_sound} %{requires_lz4} %{requires_lzo} %{requires_rencode} %{requires_pil} %{requires_xim}
 Requires: pygtk2
 Requires: python-imaging
