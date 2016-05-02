@@ -644,7 +644,11 @@ def start_Xvfb(xvfb_str, display_name):
             #ie: ${HOME}/.xpra/Xorg.${DISPLAY}.log -> /home/antoine/.xpra/Xorg.:1.log
             f1 = shellsub(xorg_log_file, subs)
             if f0 != f1:
-                os.rename(f0, f1)
+                try:
+                    os.rename(f0, f1)
+                except Exception as e:
+                    sys.stderr.write("failed to rename Xorg log file from '%s' to '%s'\n" % (f0, f1))
+                    sys.stderr.write(" %s\n" % e)
         display_name = new_display_name
     else:
         # use display specified
@@ -820,7 +824,10 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args):
         #either for the vfb, or for our own log file
         log_dir = os.path.expanduser(opts.log_dir)
         if not os.path.exists(log_dir):
-            os.mkdir(log_dir, 0o700)
+            try:
+                os.mkdir(log_dir, 0o700)
+            except OSError as e:
+                raise InitException("failed to create the Xorg log directory '%s': %s" % (xorg_log_dir, e))
 
     stdout = sys.stdout
     stderr = sys.stderr

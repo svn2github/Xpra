@@ -741,7 +741,10 @@ def start_Xvfb(xvfb_str, display_name, cwd):
         #make sure the Xorg log directory exists:
         xorg_log_dir = osexpand(os.path.dirname(xvfb_cmd[logfile_argindex+1]))
         if not os.path.exists(xorg_log_dir):
-            os.mkdir(xorg_log_dir, 0o700)
+            try:
+                os.mkdir(xorg_log_dir, 0o700)
+            except OSError as e:
+                raise InitException("failed to create the Xorg log directory '%s': %s" % (xorg_log_dir, e))
 
     #apply string substitutions:
     subs = {"XAUTHORITY"    : xauthority,
@@ -802,7 +805,11 @@ def start_Xvfb(xvfb_str, display_name, cwd):
             #ie: ${HOME}/.xpra/Xorg.${DISPLAY}.log -> /home/antoine/.xpra/Xorg.:1.log
             f1 = shellsub(tmp_xorg_log_file, subs)
             if f0 != f1:
-                os.rename(f0, f1)
+                try:
+                    os.rename(f0, f1)
+                except Exception as e:
+                    sys.stderr.write("failed to rename Xorg log file from '%s' to '%s'\n" % (f0, f1))
+                    sys.stderr.write(" %s\n" % e)
         display_name = new_display_name
     else:
         # use display specified
