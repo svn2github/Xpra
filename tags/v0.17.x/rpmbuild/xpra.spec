@@ -399,8 +399,17 @@ fi
 
 
 %changelog
-* Tue Apr 19 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.1-1
-- fix ssh error handler
+* Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.1-1
+-- fix SSH error handler
+-- fix SSH connections with tcsh
+-- fix launcher GUI with SSH mode
+-- fix RPM packaging for automatic system installation
+-- fix / workaround bug in Xorg server 1.18.1 and later
+-- fix unhelpful systray GDK warning with some desktop environments
+-- fix duplicate socket paths listed
+-- fix clipboard issues: timeouts and re-enabling from systray
+-- fix frame extents warning message to blame the culprit
+-- fix installation alert message format on Windows XP
 
 * Mon Apr 18 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.0-1
 - GStreamer 1.6.x on MS Windows and OSX
