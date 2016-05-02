@@ -1418,7 +1418,8 @@ class ServerBase(ServerCore):
         self.set_clipboard_enabled_status(ss, clipboard_enabled)
 
     def set_clipboard_enabled_status(self, ss, clipboard_enabled):
-        if not self._clipboard_helper:
+        ch = self._clipboard_helper
+        if not ch:
             log.warn("client toggled clipboard-enabled but we do not support clipboard at all! ignoring it")
             return
         assert self._clipboard_client==ss, \
@@ -1427,6 +1428,8 @@ class ServerBase(ServerCore):
         log("toggled clipboard to %s", clipboard_enabled)
 
     def _process_keyboard_sync_enabled_status(self, proto, packet):
+        if not clipboard_enabled:
+            ch.enable_selections([])
         self.keyboard_sync = bool(packet[1])
         keylog("toggled keyboard-sync to %s", self.keyboard_sync)
 
