@@ -1757,11 +1757,11 @@ if x11_ENABLED:
 
     cython_add(Extension("xpra.x11.bindings.window_bindings",
                 ["xpra/x11/bindings/window_bindings.pyx"],
-                **pkgconfig("xtst", "xfixes", "xcomposite", "xdamage")
+                **pkgconfig("x11", "xtst", "xfixes", "xcomposite", "xdamage")
                 ))
     cython_add(Extension("xpra.x11.bindings.ximage",
                 ["xpra/x11/bindings/ximage.pyx", buffers_c],
-                **pkgconfig("xcomposite", "xdamage", "xext")
+                **pkgconfig("x11", "xcomposite", "xdamage", "xext")
                 ))
 
 toggle_packages(gtk_x11_ENABLED, "xpra.x11.gtk_x11")
@@ -1778,7 +1778,7 @@ if gtk_x11_ENABLED:
                     ["xpra/x11/gtk_x11/gdk_display_source.pyx"],
                     **pkgconfig(*PYGTK_PACKAGES)
                     ))
-        GDK_BINDINGS_PACKAGES = PYGTK_PACKAGES + ["xfixes", "xdamage"]
+        GDK_BINDINGS_PACKAGES = PYGTK_PACKAGES + ["x11", "xext", "xfixes", "xdamage"]
         cython_add(Extension("xpra.x11.gtk_x11.gdk_bindings",
                     ["xpra/x11/gtk_x11/gdk_bindings.pyx"],
                     **pkgconfig(*GDK_BINDINGS_PACKAGES)
