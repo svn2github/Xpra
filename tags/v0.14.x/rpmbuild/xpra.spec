@@ -251,7 +251,17 @@ fi
 
 
 %changelog
-* Thu Mar 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+- fix / workaround bug in Xorg server 1.18.1 and later
+- fix support for broken system tray proxies (ie: KDE)
+- fix transparency with webp encoding
+- fix honour username via TCP
+- fix build errors with sound disabled
+- fix always use lossless when mmap is enabled (no video detection)
+- fix error with unicode characters found in %PATH% on MS Windows
+- fix support for Alpine Linux / musl C
+- fix RPM packaging for automatic system installation
+- fix clipboard timeouts and high CPU usage
 - fix clipboard timeouts and high CPU usage
 - fix out-of-date bug report data
 - fix startup failures on some invalid MS Windows configurations
