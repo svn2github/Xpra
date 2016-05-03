@@ -1,7 +1,7 @@
 Index: xpra/codecs/dec_avcodec2/decoder.pyx
 ===================================================================
---- a/xpra/codecs/dec_avcodec2/decoder.pyx	(revision 6508)
-+++ b/xpra/codecs/dec_avcodec2/decoder.pyx	(working copy)
+--- a/xpra/codecs/dec_avcodec2/decoder.pyx	2016-05-03 09:33:44.820392388 +0700
++++ b/xpra/codecs/dec_avcodec2/decoder.pyx	2016-05-03 09:33:48.811334966 +0700
 @@ -57,8 +57,8 @@
      int AV_PIX_FMT_YUV422P
      int AV_PIX_FMT_YUV444P
@@ -15,7 +15,7 @@ Index: xpra/codecs/dec_avcodec2/decoder.pyx
      int AV_PIX_FMT_GBRP
 @@ -94,7 +94,7 @@
  
-     AVPixelFormat PIX_FMT_NONE
+     AVPixelFormat AV_PIX_FMT_NONE
      AVCodecID AV_CODEC_ID_H264
 -    AVCodecID AV_CODEC_ID_H265
 +    #AVCodecID AV_CODEC_ID_H265
@@ -44,7 +44,7 @@ Index: xpra/codecs/dec_avcodec2/decoder.pyx
  log("avcodec2.init_module: CODECS=%s", CODECS)
  
  
-@@ -316,7 +316,7 @@
+@@ -318,7 +318,7 @@
                  log.error("codec H264 not found!")
                  return  False
          elif self.encoding=="h265":

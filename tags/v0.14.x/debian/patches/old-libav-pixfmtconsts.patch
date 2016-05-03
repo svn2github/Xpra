@@ -1,8 +1,8 @@
 Index: xpra/codecs/csc_swscale/colorspace_converter.pyx
 ===================================================================
---- a/xpra/codecs/csc_swscale/colorspace_converter.pyx	(revision 5751)
-+++ b/xpra/codecs/csc_swscale/colorspace_converter.pyx	(working copy)
-@@ -77,16 +77,16 @@
+--- a/xpra/codecs/csc_swscale/colorspace_converter.pyx	2016-05-03 09:36:07.434329364 +0700
++++ b/xpra/codecs/csc_swscale/colorspace_converter.pyx	2016-05-03 09:36:19.962146993 +0700
+@@ -80,16 +80,16 @@
  COLORSPACES = []
  #keeping this array in scope ensures the strings don't go away!
  FORMAT_OPTIONS = [
@@ -92,9 +92,9 @@ Index: xpra/codecs/dec_avcodec/constants.txt
  CODEC_FLAG2_FAST
 Index: xpra/codecs/dec_avcodec/decoder.pyx
 ===================================================================
---- a/xpra/codecs/dec_avcodec/decoder.pyx	(revision 5751)
-+++ b/xpra/codecs/dec_avcodec/decoder.pyx	(working copy)
-@@ -134,15 +134,15 @@
+--- a/xpra/codecs/dec_avcodec/decoder.pyx	2016-05-03 09:37:39.009996265 +0700
++++ b/xpra/codecs/dec_avcodec/decoder.pyx	2016-05-03 09:37:41.824955287 +0700
+@@ -142,15 +142,15 @@
  COLORSPACES = []
  OUTPUT_COLORSPACES = {}
  for pix_fmt, av_enum_str in {
