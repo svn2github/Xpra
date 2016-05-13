@@ -67,6 +67,7 @@
 
 %if 0%{?el6}
 Patch0: centos-ignore-invalid-gcc-warning.patch
+Patch1: centos-sound.patch
 #can't run the tests with python 2.6 which is too old:
 %define run_tests 0
 #distro version is too old replace with our private libraries
@@ -255,6 +256,7 @@ bzcat $RPM_SOURCE_DIR/xpra-%{version}.tar.bz2 | tar -xf -
 %if 0%{?el6}
 cd $RPM_BUILD_DIR/xpra-%{version}
 %patch0 -p1
+%patch1 -p1
 %endif
 mv $RPM_BUILD_DIR/xpra-%{version} $RPM_BUILD_DIR/xpra-%{version}-python2
 %if %{with_python3}
