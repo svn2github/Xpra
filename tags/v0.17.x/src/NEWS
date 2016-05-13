@@ -1,3 +1,15 @@
+v0.17.2 (2016-05-13)
+======================
+	-- fix suse leap builds (no python3 because os missing dependencies)
+	-- fix aspect-ratio hint handling
+	-- fix sound queue state not getting updated
+	-- fix socket protocol and family information reported
+	-- fix scratchy sound with GStreamer 0.10 (ie: CentOS 6.x)
+	-- fix handling of DPI command line switch client side
+	-- fix printer requests wrongly honoured when printing is disabled
+	-- fix error in websockify error handler
+
+
 v0.17.1 (2016-05-02)
 ======================
 	-- fix SSH error handler

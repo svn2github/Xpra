@@ -1,3 +1,15 @@
+xpra (0.17.2-1) UNRELEASED; urgency=low
+  * fix suse leap builds (no python3 because os missing dependencies)
+  * fix aspect-ratio hint handling
+  * fix sound queue state not getting updated
+  * fix socket protocol and family information reported
+  * fix scratchy sound with GStreamer 0.10 (ie: CentOS 6.x)
+  * fix handling of DPI command line switch client side
+  * fix printer requests wrongly honoured when printing is disabled
+  * fix error in websockify error handler
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 13 May 2016 11:38:55 +0700
+
 xpra (0.17.1-1) UNRELEASED; urgency=low
   * fix SSH error handler
   * fix SSH connections with tcsh
