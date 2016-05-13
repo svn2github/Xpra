@@ -8,6 +8,7 @@ v0.17.2 (2016-05-13)
 	-- fix handling of DPI command line switch client side
 	-- fix printer requests wrongly honoured when printing is disabled
 	-- fix error in websockify error handler
+	-- fix missing matroska container on OSX
 
 
 v0.17.1 (2016-05-02)

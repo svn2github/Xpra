@@ -414,6 +414,7 @@ fi
 - fix handling of DPI command line switch client side
 - fix printer requests wrongly honoured when printing is disabled
 - fix error in websockify error handler
+- fix missing matroska container on OSX
 
 * Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.1-1
 - fix SSH error handler
