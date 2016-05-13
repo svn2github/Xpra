@@ -1,0 +1,316 @@
+Index: src/xpra/sound/sink.py
+===================================================================
+--- src/xpra/sound/sink.py	(revision 12533)
++++ src/xpra/sound/sink.py	(working copy)
+@@ -12,6 +12,7 @@
+ from xpra.gtk_common.gobject_util import one_arg_signal, gobject
+ from xpra.sound.gstreamer_util import plugin_str, get_decoder_parser, get_queue_time, normv, get_codecs, get_default_sink, get_sink_plugins, \
+                                         MP3, CODEC_ORDER, gst, QUEUE_LEAK, GST_QUEUE_NO_LEAK, MS_TO_NS, DEFAULT_SINK_PLUGIN_OPTIONS
++from xpra.gtk_common.gobject_compat import import_glib
+ 
+ from xpra.scripts.config import InitExit
+ from xpra.util import csv
+@@ -20,7 +21,9 @@
+ log = Logger("sound")
+ gstlog = Logger("gstreamer")
+ 
++glib = import_glib()
+ 
++
+ SINKS = get_sink_plugins()
+ DEFAULT_SINK = get_default_sink()
+ 
+@@ -40,9 +43,12 @@
+ QUEUE_SILENT = 0
+ QUEUE_TIME = get_queue_time(450)
+ 
++UNMUTE_DELAY = int(os.environ.get("XPRA_UNMUTE_DELAY", "1000"))
+ GRACE_PERIOD = int(os.environ.get("XPRA_SOUND_GRACE_PERIOD", "2000"))
+ #percentage: from 0 for no margin, to 200% which triples the buffer target
+ MARGIN = max(0, min(200, int(os.environ.get("XPRA_SOUND_MARGIN", "50"))))
++#how high we push up the min-level to prevent underruns:
++UNDERRUN_MIN_LEVEL = max(0, int(os.environ.get("XPRA_SOUND_UNDERRUN_MIN_LEVEL", "50")))
+ 
+ 
+ GST_FORMAT_BYTES = 2
+@@ -78,10 +84,14 @@
+         self.volume = None
+         self.src    = None
+         self.queue  = None
++        self.normal_volume = volume
++        self.target_volume = volume
++        self.volume_timer = 0
+         self.overruns = 0
+         self.underruns = 0
+         self.overrun_events = deque(maxlen=100)
+         self.queue_state = "starting"
++        self.last_data = None
+         self.last_underrun = 0
+         self.last_overrun = 0
+         self.last_max_update = time.time()
+@@ -101,19 +111,15 @@
+         pipeline_els.append(decoder_str)
+         pipeline_els.append("audioconvert")
+         pipeline_els.append("audioresample")
+-        pipeline_els.append("volume name=volume volume=%s" % volume)
+-        queue_el = ["queue",
+-                    "name=queue",
+-                    "min-threshold-time=0",
+-                    "max-size-buffers=0",
+-                    "max-size-bytes=0",
+-                    "max-size-time=%s" % QUEUE_TIME,
+-                    "leaky=%s" % QUEUE_LEAK]
+-        if QUEUE_SILENT:
+-            queue_el.append("silent=%s" % QUEUE_SILENT)
++        pipeline_els.append("volume name=volume volume=0")
+         if QUEUE_TIME>0:
+-            #pipeline_els.append("audiorate")
+-            pipeline_els.append(" ".join(queue_el))
++            pipeline_els.append(" ".join(["queue",
++                                          "name=queue",
++                                          "min-threshold-time=0",
++                                          "max-size-buffers=0",
++                                          "max-size-bytes=0",
++                                          "max-size-time=%s" % QUEUE_TIME,
++                                          "leaky=%s" % QUEUE_LEAK]))
+         sink_attributes = SINK_SHARED_DEFAULT_ATTRIBUTES.copy()
+         from xpra.sound.gstreamer_util import gst_major_version, get_gst_version
+         #anything older than this may cause problems (ie: centos 6.x)
+@@ -133,7 +139,7 @@
+         self.volume = self.pipeline.get_by_name("volume")
+         self.src    = self.pipeline.get_by_name("src")
+         self.queue  = self.pipeline.get_by_name("queue")
+-        if QUEUE_SILENT==0 and self.queue:
++        if self.queue:
+             self.queue.connect("overrun", self.queue_overrun)
+             self.queue.connect("underrun", self.queue_underrun)
+             self.queue.connect("running", self.queue_running)
+@@ -143,107 +149,85 @@
+         return "SoundSink('%s' - %s)" % (self.pipeline_str, self.state)
+ 
+     def cleanup(self):
++        if self.volume_timer!=0:
++            glib.source_remove(self.volume_timer)
++            self.volume_timer = 0
+         SoundPipeline.cleanup(self)
+         self.sink_type = ""
+         self.src = None
+ 
++    def start(self):
++        SoundPipeline.start(self)
++        self.timeout_add(UNMUTE_DELAY, self.start_adjust_volume)
+ 
++    def start_adjust_volume(self, interval=100):
++        if self.volume_timer!=0:
++            glib.source_remove(self.volume_timer)
++        self.volume_timer = self.timeout_add(interval, self.adjust_volume)
++        return False
++
++
++    def adjust_volume(self):
++        if not self.volume:
++            self.volume_timer = 0
++            return False
++        cv = self.volume.get_property("volume")
++        delta = self.target_volume-cv
++        from math import sqrt, copysign
++        change = copysign(sqrt(abs(delta)), delta)/15.0
++        gstlog("adjust_volume current volume=%.2f, change=%.2f", cv, change)
++        self.volume.set_property("volume", max(0, cv+change))
++        if abs(delta)<0.01:
++            self.volume_timer = 0
++            return False
++        return True
++
++
+     def queue_pushing(self, *args):
++        gstlog("queue_pushing")
+         self.queue_state = "pushing"
+         self.emit_info()
+         return True
+ 
+     def queue_running(self, *args):
++        gstlog("queue_running")
+         self.queue_state = "running"
+-        self.set_min_level()
+-        self.set_max_level()
+         self.emit_info()
+         return True
+ 
+     def queue_underrun(self, *args):
+         now = time.time()
+-        if self.queue_state=="starting" or 1000*(now-self.start_time)<GRACE_PERIOD:
+-            gstlog("ignoring underrun during startup")
+-            return 1
++        gstlog("queue_underrun")
+         self.queue_state = "underrun"
+-        if now-self.last_underrun>2:
+-            self.last_underrun = now
+-            self.set_min_level()
++        self.last_underrun = now
++        clt = self.queue.get_property("current-level-time")//MS_TO_NS
++        mintt = self.queue.get_property("min-threshold-time")//MS_TO_NS
++        gstlog("underrun: clt=%s mintt=%s state=%s", clt, mintt, self.state)
++        if clt==0 and mintt==0 and self.state in ("running", "active"):
++            if self.last_data:
++                self.add_data(self.last_data)
++                #this is going to cause scratchy sound,
++                #temporarily lower the volume:
++                def fadeout():
++                    gstlog("fadeout")
++                    self.target_volume = 0.0
++                    self.start_adjust_volume(1)
++                def fadein():
++                    gstlog("fadein")
++                    self.target_volume = self.normal_volume
++                    self.start_adjust_volume(10)
++                fadeout()
++                glib.timeout_add(300, fadein)
++                return 1
+         self.emit_info()
+         return 1
+ 
+-    def get_level_range(self, mintime=2, maxtime=10):
+-        now = time.time()
+-        filtered = [v for t,v in list(self.levels) if (now-t)>=mintime and (now-t)<=maxtime]
+-        if len(filtered)>=10:
+-            maxl = max(filtered)
+-            minl = min(filtered)
+-            #range of the levels recorded:
+-            return maxl-minl
+-        return 0
+-
+-    def set_min_level(self):
+-        if not self.level_lock.acquire(False):
+-            return
+-        try:
+-            lrange = self.get_level_range()
+-            if lrange>0 and self.queue:
+-                cmtt = self.queue.get_property("min-threshold-time")//MS_TO_NS
+-                #from 100% down to 0% in 2 seconds after underrun:
+-                now = time.time()
+-                pct = max(0, int((self.last_underrun+2-now)*50))
+-                mtt = min(50, pct*max(50, lrange)//200)
+-                log("set_min_level pct=%2i, cmtt=%3i, mtt=%3i", pct, cmtt, mtt)
+-                if cmtt!=mtt:
+-                    self.queue.set_property("min-threshold-time", mtt*MS_TO_NS)
+-                    log("set_min_level min-threshold-time=%s", mtt)
+-        finally:
+-            self.level_lock.release()
+-
+-    def set_max_level(self, force=False):
+-        if not self.level_lock.acquire(False):
+-            return
+-        try:
+-            lrange = self.get_level_range(mintime=0)
+-            now = time.time()
+-            log("set_max_level lrange=%3i, last_max_update=%is", lrange, int(now-self.last_max_update))
+-            #more than one second since last update and we have a range:
+-            if now-self.last_max_update>1 and lrange>0 and self.queue:
+-                cmst = self.queue.get_property("max-size-time")//MS_TO_NS
+-                #overruns in the last minute:
+-                olm = len([x for x in list(self.overrun_events) if now-x<60])
+-                #increase target if we have more than 5 overruns in the last minute:
+-                target_mst = lrange*(100 + MARGIN + min(100, olm*20))//100
+-                #from 100% down to 0% in 2 seconds after underrun:
+-                pct = max(0, int((self.last_overrun+2-now)*50))
+-                #use this last_overrun percentage value to temporarily decrease the target
+-                #(causes overruns that drop packets and lower the buffer level)
+-                target_mst = max(50, int(target_mst - pct*lrange//100))
+-                mst = (cmst + target_mst)//2
+-                #cap it at 1 second:
+-                mst = min(mst, 1000)
+-                log("set_max_level overrun count=%-2i, margin=%3i, pct=%2i, cmst=%3i, mst=%3i", olm, MARGIN, pct, cmst, mst)
+-                if force or abs(cmst-mst)>=max(50, lrange//2):
+-                    self.queue.set_property("max-size-time", mst*MS_TO_NS)
+-                    self.last_max_update = now
+-        finally:
+-            self.level_lock.release()
+-
+     def queue_overrun(self, *args):
+-        now = time.time()
+-        if self.queue_state=="starting" or 1000*(now-self.start_time)<GRACE_PERIOD:
+-            gstlog("ignoring overrun during startup")
+-            return 1
+         clt = self.queue.get_property("current-level-time")//MS_TO_NS
+         log("overrun level=%ims", clt)
+         now = time.time()
+-        #grace period of recording overruns:
+-        #(because when we record an overrun, we lower the max-time,
+-        # which causes more overruns!)
+-        if self.last_overrun is None or now-self.last_overrun>2:
+-            self.last_overrun = now
+-            self.set_max_level()
+-            self.overrun_events.append(now)
++        self.last_overrun = now
++        self.overrun_events.append(now)
+         self.overruns += 1
+         return 1
+ 
+@@ -273,11 +257,35 @@
+ 
+     def add_data(self, data, metadata=None):
+         if not self.src:
+-            log("add_data(..) dropped, no source")
++            log("no source, dropping buffer")
+             return
+-        if self.state=="stopped":
+-            log("add_data(..) dropped, pipeline is stopped")
++        if self.state in ("stopped", "error"):
++            log("pipeline is %s, dropping buffer", self.state)
+             return
++        self.last_data = data
++        now = time.time()
++        clt = self.queue.get_property("current-level-time")//MS_TO_NS
++        delta = QUEUE_TIME//MS_TO_NS-clt
++        gstlog("add_data current-level-time=%s, QUEUE_TIME=%s, delta=%s", clt, QUEUE_TIME//MS_TO_NS, delta)
++        def fade():
++            #this is going to cause scratchy sound,
++            #temporarily lower the volume:
++            def fadeout():
++                gstlog("fadeout")
++                self.target_volume = 0.0
++                self.start_adjust_volume(10)
++            def fadein():
++                gstlog("fadein")
++                self.target_volume = self.normal_volume
++                self.start_adjust_volume(10)
++            glib.timeout_add(max(0, clt-100), fadeout)
++            glib.timeout_add(clt+300, fadein)
++        if now-self.last_overrun<QUEUE_TIME//MS_TO_NS//2//1000:
++            gstlog("dropping sample to try to stop overrun")
++            return
++        if delta<50:
++            gstlog("dropping sample to try to avoid overrun")
++            return
+         #having a timestamp causes problems with the queue and overruns:
+         log("add_data(%s bytes, %s) queue_state=%s", len(data), metadata, self.queue_state)
+         buf = gst.new_buffer(data)
+@@ -299,9 +307,6 @@
+                 clt = self.queue.get_property("current-level-time")//MS_TO_NS
+                 log("pushed %5i bytes, new buffer level: %3ims, queue state=%s", len(data), clt, self.queue_state)
+                 self.levels.append((time.time(), clt))
+-            if self.queue_state=="pushing":
+-                self.set_min_level()
+-                self.set_max_level()
+         self.emit_info()
+ 
+     def push_buffer(self, buf):
+@@ -326,8 +331,6 @@
+ def main():
+     from xpra.platform import program_context
+     with program_context("Sound-Record"):
+-        from xpra.gtk_common.gobject_compat import import_glib
+-        glib = import_glib()
+         args = sys.argv
+         log.enable_debug()
+         import os.path
+@@ -366,7 +369,7 @@
+         #force no leak since we push all the data at once
+         global QUEUE_LEAK, QUEUE_SILENT
+         QUEUE_LEAK = GST_QUEUE_NO_LEAK
+-        QUEUE_SILENT = 1
++        QUEUE_SILENT = True
+         ss = SoundSink(codecs=codecs)
+         def eos(*args):
+             print("eos")
