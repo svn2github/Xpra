@@ -8,8 +8,9 @@ xpra (0.17.2-1) UNRELEASED; urgency=low
   * fix printer requests wrongly honoured when printing is disabled
   * fix error in websockify error handler
   * fix missing matroska container on OSX
+  * fix Webcam and GTK info scripts on OSX
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 13 May 2016 16:54:00 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 14 May 2016 13:10:13 +0700
 
 xpra (0.17.1-1) UNRELEASED; urgency=low
   * fix SSH error handler

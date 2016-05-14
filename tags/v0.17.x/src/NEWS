@@ -1,4 +1,4 @@
-v0.17.2 (2016-05-13)
+v0.17.2 (2016-05-14)
 ======================
 	-- fix suse leap builds (no python3 because os missing dependencies)
 	-- fix aspect-ratio hint handling
@@ -9,6 +9,7 @@ v0.17.2 (2016-05-13)
 	-- fix printer requests wrongly honoured when printing is disabled
 	-- fix error in websockify error handler
 	-- fix missing matroska container on OSX
+	-- fix Webcam and GTK info scripts on OSX
 
 
 v0.17.1 (2016-05-02)

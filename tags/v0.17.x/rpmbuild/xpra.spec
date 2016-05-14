@@ -405,7 +405,7 @@ fi
 
 
 %changelog
-* Fri May 13 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.2-1
+* Sat May 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.2-1
 - fix suse leap builds (no python3 because os missing dependencies)
 - fix aspect-ratio hint handling
 - fix sound queue state not getting updated
@@ -415,6 +415,7 @@ fi
 - fix printer requests wrongly honoured when printing is disabled
 - fix error in websockify error handler
 - fix missing matroska container on OSX
+- fix Webcam and GTK info scripts on OSX
 
 * Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.1-1
 - fix SSH error handler
