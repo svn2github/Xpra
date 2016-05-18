@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.17.2
+%define version 0.17.3
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -405,6 +405,12 @@ fi
 
 
 %changelog
+* Wed May 18 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.3-1
+- fix logging errors with libyuv module (hiding real errors)
+- fix memory handling in error cases with x264 encoder
+- fix video encoder and colourspace converter leak
+- fix rate delta encoding errors
+
 * Sat May 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.2-1
 - fix suse leap builds (no python3 because os missing dependencies)
 - fix aspect-ratio hint handling

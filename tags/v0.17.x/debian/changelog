@@ -1,3 +1,11 @@
+xpra (0.17.3-1) UNRELEASED; urgency=low
+  * fix logging errors with libyuv module (hiding real errors)
+  * fix memory handling in error cases with x264 encoder
+  * fix video encoder and colourspace converter leak
+  * fix rate delta encoding errors
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 18 May 2016 16:30:53 +0700
+
 xpra (0.17.2-1) UNRELEASED; urgency=low
   * fix suse leap builds (no python3 because os missing dependencies)
   * fix aspect-ratio hint handling
