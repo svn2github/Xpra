@@ -1631,7 +1631,7 @@ class ServerSource(object):
             Must run until we hit the end of queue marker,
             to ensure all the queued items get called.
         """
-        while not self.is_closed():
+        while True:
             fn_and_args = self.compression_work_queue.get(True)
             if fn_and_args is None:
                 return              #empty marker
@@ -1641,6 +1641,6 @@ class ServerSource(object):
                 if self.is_closed():
                     log("ignoring encoding error in %s as source is already closed:", fn_and_args[0])
                     log(" %s", e)
-                    return
-                log.error("Error during encoding:", exc_info=True)
+                else:
+                    log.error("Error during encoding:", exc_info=True)
             NOYIELD or time.sleep(0)
