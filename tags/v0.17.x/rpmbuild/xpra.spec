@@ -82,6 +82,12 @@ Patch1: centos-sound.patch
 %endif
 %endif
 
+%if "%{?dist}"==".el7_0"
+#no python cryptography:
+%define requires_crypto python-crypto
+%endif
+
+
 %if 0%{?fedora}
 #the only distro to provide py3k cups bindings:
 %define py3requires_printing , python3-cups
