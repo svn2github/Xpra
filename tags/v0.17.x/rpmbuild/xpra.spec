@@ -411,11 +411,27 @@ fi
 
 
 %changelog
-* Wed May 18 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.3-1
+* Fri Jun 03 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.3-1
 - fix logging errors with libyuv module (hiding real errors)
 - fix memory handling in error cases with x264 encoder
 - fix video encoder and colourspace converter leak
 - fix rate delta encoding errors
+- fix dbus x11 dependency in RPM packaging
+- fix dependencies for RHEL 7.0
+- fix DPI option miscalculation when used from the client
+- fix window aspect ratio hints handling
+- fix stripping of temporary build paths
+- fix sound subprocess stuck in paused state after an early error
+- fix H264 decoding in HTML5 client (disabled for now)
+- fix AES padding errors with HTML5 client
+- fix spurious import statements in NVENC codecs
+- fix crashes in X11 keyboard handling
+- fix compatibility with newer GCC versions
+- fix OSX and win32 shadow server key mappings
+- fix OSX shadow server disconnections with invalid RGB packet data
+- fix OSX shadow server crashes with webp
+- fix OSX shadow server errors with opus sound codec (disable it)
+- fix RGB compression algorithm reported in logging
 
 * Sat May 14 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.2-1
 - fix suse leap builds (no python3 because os missing dependencies)
