@@ -415,7 +415,7 @@ fi
 - fix logging errors with libyuv module (hiding real errors)
 - fix memory handling in error cases with x264 encoder
 - fix video encoder and colourspace converter leak
-- fix rate delta encoding errors
+- fix rare delta encoding errors
 - fix dbus x11 dependency in RPM packaging
 - fix dependencies for RHEL 7.0
 - fix DPI option miscalculation when used from the client
