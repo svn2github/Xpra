@@ -26,6 +26,7 @@
 %define requires_websockify , python-websockify
 %define requires_lzo , python-lzo
 %define numpy numpy
+%define requires_shadow shadow-utils
 %define requires_cython Cython
 %define requires_pygobject2 pygobject2
 %define requires_pygtk2 pygtk2
@@ -109,6 +110,7 @@ Patch1: centos-sound.patch
 #causes problems with automatic dependency calculations:
 %global __requires_exclude typelib\\(.*\\)
 %define numpy python-numpy
+%define requires_shadow shadow
 %define requires_xorg xauth, xf86-video-dummy
 %define requires_lzo %{nil}
 %define requires_cython python-Cython
@@ -121,6 +123,8 @@ Patch1: centos-sound.patch
 #(see recommends below)
 %define requires_sound %{gstreamer1}, pulseaudio, pulseaudio-utils
 %define py3requires_sound %{gstreamer1}, pulseaudio, pulseaudio-utils
+%define requires_opengl , python-opengl, python-opengl-accelerate, python-gtkglext
+%define py3requires_opengl , python3-opengl, python3-opengl-accelerate
 %define requires_crypto python-pycrypto
 %define py3requires_crypto python3-pycrypto
 #different naming prefix ("python-") for pygtkglext:
@@ -222,7 +226,7 @@ So basically it's screen for remote X apps.
 Summary: Common files for xpra packages
 Group: Networking
 BuildArch: noarch
-Requires(pre): shadow-utils
+Requires(pre): %{requires_shadow}
 %description common
 This package contains the files which are common to both the Python 2 and Python 3 xpra packages.
 
