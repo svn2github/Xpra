@@ -1,6 +1,6 @@
 [Setup]
 AppName=Xpra
-AppVerName=Xpra 0.17.3
+AppVerName=Xpra 0.17.4
 AppPublisher=devloop
 AppPublisherURL=http://xpra.org/
 DefaultDirName={pf}\Xpra
@@ -10,7 +10,7 @@ OutputBaseFilename=Xpra_Setup
 Compression=lzma
 SolidCompression=true
 AllowUNCPath=false
-VersionInfoVersion=0.17.3
+VersionInfoVersion=0.17.4
 VersionInfoCompany=devloop
 VersionInfoDescription=multi-platform screen and application forwarding system
 WizardImageFile=win32\xpra-logo.bmp

@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.17.3
+%define version 0.17.4
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -415,6 +415,17 @@ fi
 
 
 %changelog
+* Sat Jun 11 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
+- fix path stripping during packaging
+- fix password leak in server log file
+- fix keyboard layout change handling
+- fix openSUSE RPM packaging dependencies
+- fix video region API stickyness
+- fix application iconification support
+- fix XShape performance when scaling
+- CUDA 8 and Pascal GPU optimization support
+- disable webp (black rectangles with some versions)
+
 * Fri Jun 03 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.3-1
 - fix logging errors with libyuv module (hiding real errors)
 - fix memory handling in error cases with x264 encoder

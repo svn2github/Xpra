@@ -1,3 +1,16 @@
+xpra (0.17.4-1) UNRELEASED; urgency=low
+  * fix path stripping during packaging
+  * fix password leak in server log file
+  * fix keyboard layout change handling
+  * fix openSUSE RPM packaging dependencies
+  * fix video region API stickyness
+  * fix application iconification support
+  * fix XShape performance when scaling
+  * CUDA 8 and Pascal GPU optimization support
+  * disable webp (black rectangles with some versions)
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 11 Jun 2016 19:32:01 +0700
+
 xpra (0.17.3-1) UNRELEASED; urgency=low
   * fix logging errors with libyuv module (hiding real errors)
   * fix memory handling in error cases with x264 encoder

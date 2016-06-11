@@ -1,3 +1,16 @@
+v0.17.4 (2016-06-11)
+======================
+	-- fix path stripping during packaging
+	-- fix password leak in server log file
+	-- fix keyboard layout change handling
+	-- fix openSUSE RPM packaging dependencies
+	-- fix video region API stickyness
+	-- fix application iconification support
+	-- fix XShape performance when scaling
+	-- CUDA 8 and Pascal GPU optimization support
+	-- disable webp (black rectangles with some versions)
+
+
 v0.17.3 (2016-06-03)
 ======================
 	-- fix logging errors with libyuv module (hiding real errors)
