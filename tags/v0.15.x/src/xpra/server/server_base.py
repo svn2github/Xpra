@@ -555,7 +555,7 @@ class ServerBase(ServerCore):
         import subprocess
         env = self.get_child_env()
         try:
-            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, cwd=self.exec_cwd shell=True, close_fds=True)
+            proc = subprocess.Popen(child_cmd, stdin=subprocess.PIPE, env=env, cwd=self.exec_cwd, shell=True, close_fds=True)
             self.add_process(proc, name, child_cmd, ignore=ignore, callback=callback)
             if ignore:
                 log("started child '%s' with pid %s (ignored)", child_cmd, proc.pid)
