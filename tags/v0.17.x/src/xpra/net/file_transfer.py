@@ -58,7 +58,7 @@ class FileTransferHandler(object):
     def _process_send_file(self, packet):
         #send-file basefilename, printit, openit, filesize, 0, data)
         from xpra.platform.paths import get_download_dir
-        basefilename, mimetype, printit, openit, filesize, file_data, options = packet[1:11]
+        basefilename, mimetype, printit, openit, filesize, file_data, options = packet[1:8]
         options = typedict(options)
         if printit:
             l = printlog
@@ -89,7 +89,7 @@ class FileTransferHandler(object):
             if digest!=u.hexdigest():
                 l.error("Error: data does not match, invalid %s file digest for %s", algo, basefilename)
                 l.error(" received %s, expected %s", u.hexdigest(), digest)
-                return
+                raise Exception("failed %s digest verification" % algo)
         check_digest("sha1", hashlib.sha1)
         check_digest("md5", hashlib.md5)
 
