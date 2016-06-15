@@ -6,7 +6,7 @@
 import os
 
 from xpra.log import Logger
-log = Logger("client")
+log = Logger("webcam")
 from xpra.util import engs
 
 
