@@ -1,4 +1,4 @@
-v0.17.4 (2016-06-11)
+v0.17.4 (2016-06-17)
 ======================
 	-- fix path stripping during packaging
 	-- fix password leak in server log file
@@ -7,6 +7,9 @@ v0.17.4 (2016-06-11)
 	-- fix video region API stickyness
 	-- fix application iconification support
 	-- fix XShape performance when scaling
+	-- fix file transfer packet handling and checksum validation
+	-- fix webcam forwarding
+	-- fix spurious pulseaudio exit message on shutdown
 	-- CUDA 8 and Pascal GPU optimization support
 	-- disable webp (black rectangles with some versions)
 

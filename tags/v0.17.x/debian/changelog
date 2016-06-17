@@ -6,10 +6,13 @@ xpra (0.17.4-1) UNRELEASED; urgency=low
   * fix video region API stickyness
   * fix application iconification support
   * fix XShape performance when scaling
+  * fix file transfer packet handling and checksum validation
+  * fix webcam forwarding
+  * fix spurious pulseaudio exit message on shutdown
   * CUDA 8 and Pascal GPU optimization support
   * disable webp (black rectangles with some versions)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 11 Jun 2016 19:32:01 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 17 Jun 2016 12:11:45 +0700
 
 xpra (0.17.3-1) UNRELEASED; urgency=low
   * fix logging errors with libyuv module (hiding real errors)

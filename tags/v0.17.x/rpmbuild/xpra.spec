@@ -415,7 +415,7 @@ fi
 
 
 %changelog
-* Sat Jun 11 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
+* Fri Jun 17 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
 - fix path stripping during packaging
 - fix password leak in server log file
 - fix keyboard layout change handling
@@ -423,6 +423,9 @@ fi
 - fix video region API stickyness
 - fix application iconification support
 - fix XShape performance when scaling
+- fix file transfer packet handling and checksum validation
+- fix webcam forwarding
+- fix spurious pulseaudio exit message on shutdown
 - CUDA 8 and Pascal GPU optimization support
 - disable webp (black rectangles with some versions)
 
