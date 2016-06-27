@@ -415,7 +415,9 @@ fi
 
 
 %changelog
-* Fri Jun 17 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
+* Mon Jun 27 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
+- fix severe regression in damage handling
+- fix lossless refresh causing endless loops
 - fix path stripping during packaging
 - fix password leak in server log file
 - fix keyboard layout change handling

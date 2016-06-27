@@ -1,5 +1,7 @@
-v0.17.4 (2016-06-17)
+v0.17.4 (2016-06-27)
 ======================
+	-- fix severe regression in damage handling
+	-- fix lossless refresh causing endless loops
 	-- fix path stripping during packaging
 	-- fix password leak in server log file
 	-- fix keyboard layout change handling
