@@ -1564,21 +1564,21 @@ class WindowSource(object):
         self.refresh_event_time = 0
         regions = self.refresh_regions
         self.refresh_regions = []
-        if self.can_refresh(window) and regions and ret>0:
+        if self.can_refresh() and regions and ret>0:
             now = time.time()
-            refreshlog("timer_full_refresh() after %ims, regions=%s", 1000.0*(time.time()-ret), regions)
-            #choose an encoding:
-            ww, wh = window.get_dimensions()
-            encoding = self.auto_refresh_encodings[0]
-            best_encoding = self.get_best_encoding(ww*wh, ww, wh, AUTO_REFRESH_SPEED, AUTO_REFRESH_QUALITY, encoding)
-            refresh_encodings = self.auto_refresh_encodings
-            if best_encoding in refresh_encodings:
-                encoding = best_encoding
             options = self.get_refresh_options()
-            refreshlog("timer_full_refresh() size=%s, encoding=%s, best=%s, auto_refresh_encodings=%s, refresh_encodings=%s, options=%s",
-                            (ww, wh), encoding, best_encoding, self.auto_refresh_encodings, refresh_encodings, options)
-            WindowSource.do_send_delayed_regions(self, now, window, regions, encoding, options, exclude_region=self.get_refresh_exclude())
+            refreshlog("timer_full_refresh() after %ims, auto_refresh_encodings=%s, options=%s, regions=%s", 1000.0*(time.time()-ret), self.auto_refresh_encodings, options, regions)
+            WindowSource.do_send_delayed_regions(self, now, window, regions, self.auto_refresh_encodings[0], options, exclude_region=self.get_refresh_exclude(), get_best_encoding=self.get_refresh_encoding)
         return False
+
+    def get_refresh_encoding(self, pixel_count, ww, wh, speed, quality, coding):
+        refresh_encodings = self.auto_refresh_encodings
+        encoding = refresh_encodings[0]
+        best_encoding = self.get_best_encoding(ww*wh, ww, wh, AUTO_REFRESH_SPEED, AUTO_REFRESH_QUALITY, encoding)
+        if best_encoding not in refresh_encodings:
+            best_encoding = refresh_encodings[0]
+        refreshlog("get_refresh_encoding(%i, %i, %i, %i, %i, %s)=%s", pixel_count, ww, wh, speed, quality, coding, best_encoding)
+        return best_encoding
 
     def get_refresh_exclude(self):
         #overriden in window video source to exclude the video subregion
