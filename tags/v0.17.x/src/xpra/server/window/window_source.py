@@ -1564,7 +1564,7 @@ class WindowSource(object):
         self.refresh_event_time = 0
         regions = self.refresh_regions
         self.refresh_regions = []
-        if self.can_refresh() and regions and ret>0:
+        if self.can_refresh(window) and regions and ret>0:
             now = time.time()
             options = self.get_refresh_options()
             refreshlog("timer_full_refresh() after %ims, auto_refresh_encodings=%s, options=%s, regions=%s", 1000.0*(time.time()-ret), self.auto_refresh_encodings, options, regions)
