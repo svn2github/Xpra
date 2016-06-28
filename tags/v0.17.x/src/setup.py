@@ -918,6 +918,7 @@ def build_xpra_conf(install_dir):
         if line:
             lines.append(line+" \\\n")
         return  (" ".join(lines)).rstrip("\\\n")
+    log_dir = get_default_log_dir().replace("~/", "${HOME}/")
     SUBS = {'xvfb_command'          : pretty_cmd(xvfb_command),
             'ssh_command'           : DEFAULT_SSH_COMMAND,
             'key_shortcuts'         : "".join(("key-shortcut = %s\n" % x) for x in get_default_key_shortcuts()),
@@ -929,7 +930,7 @@ def build_xpra_conf(install_dir):
             'conf_dir'              : conf_dir,
             'bind'                  : bind,
             'socket_dirs'           : "".join(("socket-dirs = %s\n" % x) for x in socket_dirs),
-            'log_dir'               : get_default_log_dir(),
+            'log_dir'               : log_dir,
             'mdns'                  : not is_RH(),      #no python-avahi on RH / CentOS
             'dbus_proxy'            : bstr(not OSX and not WIN32),
             'pulseaudio'            : bstr(not OSX and not WIN32),
