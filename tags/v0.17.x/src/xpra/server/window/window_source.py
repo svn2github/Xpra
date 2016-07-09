@@ -125,7 +125,7 @@ class WindowSource(object):
         self.supports_transparency = HAS_ALPHA and encoding_options.boolget("transparency")
         self.full_frames_only = self.is_tray or encoding_options.boolget("full_frames_only")
         self.supports_flush = encoding_options.get("flush")
-        ropts = set(("png", "webp", "rgb24", "rgb32", "jpeg", "webp"))     #default encodings for auto-refresh
+        ropts = set(("png", "webp", "rgb24", "rgb32", "webp"))     #default encodings for auto-refresh
         ropts = ropts.intersection(set(self.server_core_encodings)) #ensure the server has support for it
         ropts = ropts.intersection(set(self.core_encodings))        #ensure the client has support for it
         self.client_refresh_encodings = encoding_options.strlistget("auto_refresh_encodings", list(ropts))
