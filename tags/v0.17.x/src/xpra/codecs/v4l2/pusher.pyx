@@ -418,7 +418,7 @@ cdef class Pusher:
         if DEFAULT_OFFSET>=0:
             offset = DEFAULT_OFFSET
         #log("offset(%s)=%s", self.rowstride, offset)
-        cdef size_t l = self.framesize + offset + self.rowstride*8
+        cdef size_t l = self.framesize + offset + self.rowstride
         cdef uint8_t* buf = <uint8_t*> xmemalign(l)
         memset(buf, 0, l)
         assert buf!=NULL, "failed to allocate temporary output buffer"
