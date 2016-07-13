@@ -1,3 +1,16 @@
+xpra (0.17.5-1) UNRELEASED; urgency=low
+  * fix webcam skewed picture
+  * fix size calculations for the 1 pixel bottom edge of video areas
+  * fix heavy import with side effects for shadow servers
+  * fix MS Windows shadow servers picture corruption
+  * fix jpeg wrongly included in auto-refresh encodings
+  * fix compatibility with ffmpeg 3.1+, warn but don't fail
+  * fix socket-dir option not being honoured
+  * fix log dir in commented out Xvfb example
+  * fix build on some non US locales
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 13 Jul 2016 15:57:03 +0200
+
 xpra (0.17.4-1) UNRELEASED; urgency=low
   * fix severe regression in damage handling
   * fix lossless refresh causing endless loops

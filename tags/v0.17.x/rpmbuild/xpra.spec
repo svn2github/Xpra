@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.17.4
+%define version 0.17.5
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -415,6 +415,17 @@ fi
 
 
 %changelog
+* Wed Jul 13 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix webcam skewed picture
+- fix size calculations for the 1 pixel bottom edge of video areas
+- fix heavy import with side effects for shadow servers
+- fix MS Windows shadow servers picture corruption
+- fix jpeg wrongly included in auto-refresh encodings
+- fix compatibility with ffmpeg 3.1+, warn but don't fail
+- fix socket-dir option not being honoured
+- fix log dir in commented out Xvfb example
+- fix build on some non US locales
+
 * Mon Jun 27 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.4-1
 - fix severe regression in damage handling
 - fix lossless refresh causing endless loops

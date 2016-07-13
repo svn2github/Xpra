@@ -1,3 +1,16 @@
+v0.17.5 (2016-07-13)
+======================
+	-- fix webcam skewed picture
+	-- fix size calculations for the 1 pixel bottom edge of video areas
+	-- fix heavy import with side effects for shadow servers
+	-- fix MS Windows shadow servers picture corruption
+	-- fix jpeg wrongly included in auto-refresh encodings
+	-- fix compatibility with ffmpeg 3.1+, warn but don't fail
+	-- fix socket-dir option not being honoured
+	-- fix log dir in commented out Xvfb example
+	-- fix build on some non US locales
+
+
 v0.17.4 (2016-06-27)
 ======================
 	-- fix severe regression in damage handling
