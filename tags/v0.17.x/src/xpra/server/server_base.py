@@ -2545,7 +2545,7 @@ class ServerBase(ServerCore, FileTransferHandler):
             self._set_client_properties(proto, wid, window, client_properties)
             ss.update_batch(wid, window, batch_props)
 
-    def refresh_windows(self, proto, wid_windows, opts=None):
+    def refresh_windows(self, proto, wid_windows, opts={}):
         ss = self._server_sources.get(proto)
         if ss is None:
             return
@@ -2557,21 +2557,24 @@ class ServerBase(ServerCore, FileTransferHandler):
                 continue
             ss.refresh(wid, window, opts)
 
+    def _idle_refresh_all_windows(self, proto):
+        self.idle_add(self.refresh_windows, proto, self._id_to_window)
+
     def _process_quality(self, proto, packet):
         quality = packet[1]
-        log("Setting quality to ", quality)
+        log("Setting quality to %s", quality)
         ss = self._server_sources.get(proto)
         if ss:
             ss.set_quality(quality)
-            self.refresh_windows(proto, self._id_to_window)
+            self._idle_refresh_all_windows(proto)
 
     def _process_min_quality(self, proto, packet):
         min_quality = packet[1]
-        log("Setting min quality to ", min_quality)
+        log("Setting min quality to %s", min_quality)
         ss = self._server_sources.get(proto)
         if ss:
             ss.set_min_quality(min_quality)
-            self.refresh_windows(proto, self._id_to_window)
+            self._idle_refresh_all_windows(proto)
 
     def _process_speed(self, proto, packet):
         speed = packet[1]
@@ -2579,7 +2582,7 @@ class ServerBase(ServerCore, FileTransferHandler):
         ss = self._server_sources.get(proto)
         if ss:
             ss.set_speed(speed)
-            self.refresh_windows(proto, self._id_to_window)
+            self._idle_refresh_all_windows(proto)
 
     def _process_min_speed(self, proto, packet):
         min_speed = packet[1]
@@ -2587,7 +2590,7 @@ class ServerBase(ServerCore, FileTransferHandler):
         ss = self._server_sources.get(proto)
         if ss:
             ss.set_min_speed(min_speed)
-            self.refresh_windows(proto, self._id_to_window)
+            self._idle_refresh_all_windows(proto)
 
 
     def _process_map_window(self, proto, packet):
