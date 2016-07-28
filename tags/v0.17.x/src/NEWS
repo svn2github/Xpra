@@ -1,5 +1,13 @@
-v0.17.5 (2016-07-13)
+v0.17.5 (2016-07-27)
 ======================
+	-- fix proxy server: connection errors, video proxy encoding, etc
+	-- fix Xnest / Xephyr window detection code
+	-- fix incorrect value for x264 API
+	-- fix paths accumulating duplicates in run-xpra script
+	-- fix race condition in video cleanup
+	-- fix socket-dirs option syntax in default config file
+	-- fix multifile authentication module
+	-- fix dbus crash on exit which prevented Xvfb from being killed
 	-- fix webcam skewed picture
 	-- fix size calculations for the 1 pixel bottom edge of video areas
 	-- fix heavy import with side effects for shadow servers
