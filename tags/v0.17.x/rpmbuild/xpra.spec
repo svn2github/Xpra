@@ -87,6 +87,10 @@ Patch1: centos-sound.patch
 #no python cryptography:
 %define requires_crypto python-crypto
 %endif
+%if "%{?dist}"==".el7_1"
+#no python cryptography:
+%define requires_crypto python-crypto
+%endif
 
 
 %if 0%{?fedora}
