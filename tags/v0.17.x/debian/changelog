@@ -1,4 +1,10 @@
 xpra (0.17.5-1) UNRELEASED; urgency=low
+  * fix v4l2 module build on older platforms, add missing build switch
+  * fix CentOS 7.1 cryptography packaging dependency
+  * fix misleading cryptography import error message
+  * fix logging loops with 'network' and 'crypto' debug flags
+  * fix spurious sound log messages on some platforms (ie: CentOS 6.x)
+  * fix webcam spurious warnings when already disabled
   * fix webcam skewed picture
   * fix size calculations for the 1 pixel bottom edge of video areas
   * fix heavy import with side effects for shadow servers
@@ -9,7 +15,7 @@ xpra (0.17.5-1) UNRELEASED; urgency=low
   * fix log dir in commented out Xvfb example
   * fix build on some non US locales
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 13 Jul 2016 15:57:03 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Aug 2016 00:05:51 +0200
 
 xpra (0.17.4-1) UNRELEASED; urgency=low
   * fix severe regression in damage handling

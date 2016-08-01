@@ -419,7 +419,13 @@ fi
 
 
 %changelog
-* Wed Jul 13 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Tue Aug 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix v4l2 module build on older platforms, add missing build switch
+- fix CentOS 7.1 cryptography packaging dependency
+- fix misleading cryptography import error message
+- fix logging loops with 'network' and 'crypto' debug flags
+- fix spurious sound log messages on some platforms (ie: CentOS 6.x)
+- fix webcam spurious warnings when already disabled
 - fix webcam skewed picture
 - fix size calculations for the 1 pixel bottom edge of video areas
 - fix heavy import with side effects for shadow servers

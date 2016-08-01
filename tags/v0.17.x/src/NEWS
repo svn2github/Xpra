@@ -1,5 +1,11 @@
-v0.17.5 (2016-07-27)
+v0.17.5 (2016-08-02)
 ======================
+	-- fix v4l2 module build on older platforms, add missing build switch
+	-- fix CentOS 7.1 cryptography packaging dependency
+	-- fix misleading cryptography import error message
+	-- fix logging loops with 'network' and 'crypto' debug flags
+	-- fix spurious sound log messages on some platforms (ie: CentOS 6.x)
+	-- fix webcam spurious warnings when already disabled
 	-- fix proxy server: connection errors, video proxy encoding, etc
 	-- fix Xnest / Xephyr window detection code
 	-- fix incorrect value for x264 API
