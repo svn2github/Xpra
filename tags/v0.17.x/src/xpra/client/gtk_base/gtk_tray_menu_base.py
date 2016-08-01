@@ -890,6 +890,11 @@ class GTKTrayMenuBase(object):
                     finally:
                         menu.ignore_events = False
             c.connect("toggled", activate_cb, menu)
+        webcam = self.menuitem("Webcam", "webcam.png", "Forward webcam pictures to the server", None)
+        if not self.client.webcam_forwarding:
+            webcam.set_tooltip_text("Webcam forwarding is disabled")
+            set_sensitive(webcam, False)
+            return webcam
             return c
         def start_webcam(*args):
             webcamlog("start_webcam%s", args)
@@ -902,7 +907,6 @@ class GTKTrayMenuBase(object):
         menu.append(on)
         menu.append(off)
 
-        webcam = self.menuitem("Webcam", "webcam.png", "Forward webcam pictures to the server", None)
         webcam.set_submenu(menu)
         def webcam_changed(*args):
             webcamlog("webcam_changed%s webcam_device=%s", args, self.client.webcam_device)
