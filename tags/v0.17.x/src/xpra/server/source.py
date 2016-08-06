@@ -1557,8 +1557,9 @@ class ServerSource(object):
             return
         def do_send_cursor():
             self.send_cursor_pending = False
-            cursor_data, cursor_sizes = self.get_cursor_data_cb()
-            if cursor_data:
+            cd = self.get_cursor_data_cb()
+            if cd and cd[0]:
+                cursor_data, cursor_sizes = cd
                 if self.last_cursor_sent and self.last_cursor_sent==cursor_data[:8]:
                     cursorlog("do_send_cursor(..) cursor identical to the last one we sent, nothing to do")
                     return
