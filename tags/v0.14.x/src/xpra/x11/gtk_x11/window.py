@@ -1039,9 +1039,9 @@ class WindowModel(BaseWindowModel):
                     f = float(v)
                 except:
                     f = None
-                if f is None or f>=MAX_ASPECT:
+                if f is None or f<0 or f>=MAX_ASPECT:
                     log.warn("clearing invalid aspect hint value for %s: %s", attr, v)
-                    setattr(size_hints, attr, -1.0)
+                    setattr(size_hints, attr, None)
         for attr in ["max_size", "min_size", "base_size", "resize_inc",
                      "min_aspect_ratio", "max_aspect_ratio"]:
             v = getattr(size_hints, attr)
