@@ -251,7 +251,19 @@ fi
 
 
 %changelog
-* Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Sat Aug 07 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+- fix sanitization of invalid aspect ratio size hints
+- fix error handling in X11 keyboard detection code
+- fix MS Windows shadow servers picture corruption
+- fix size calculations for the 1 pixel bottom edge of video areas
+- fix dbus crash on exit which prevented Xvfb from being killed
+- fix run-xpra script accumulating duplicate paths
+- fix libx264 API value for infinite key interval
+- fix minor client logging error causing disconnection from proxy
+- fix spurious "Connection lost" warning on disconnection
+- fix compilation against ffmpeg 3.1 onwards
+- fix video encoder context leak
+- fix actual exception reported in GTK X11 errors
 - fix / workaround bug in Xorg server 1.18.1 and later
 - fix support for broken system tray proxies (ie: KDE)
 - fix transparency with webp encoding

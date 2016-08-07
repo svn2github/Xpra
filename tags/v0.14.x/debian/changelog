@@ -1,4 +1,16 @@
 xpra (0.14.35-1) UNRELEASED; urgency=low
+  * fix sanitization of invalid aspect ratio size hints
+  * fix error handling in X11 keyboard detection code
+  * fix MS Windows shadow servers picture corruption
+  * fix size calculations for the 1 pixel bottom edge of video areas
+  * fix dbus crash on exit which prevented Xvfb from being killed
+  * fix run-xpra script accumulating duplicate paths
+  * fix libx264 API value for infinite key interval
+  * fix minor client logging error causing disconnection from proxy
+  * fix spurious "Connection lost" warning on disconnection
+  * fix compilation against ffmpeg 3.1 onwards
+  * fix video encoder context leak
+  * fix actual exception reported in GTK X11 errors
   * fix / workaround bug in Xorg server 1.18.1 and later
   * fix support for broken system tray proxies (ie: KDE)
   * fix transparency with webp encoding
@@ -21,7 +33,7 @@ xpra (0.14.35-1) UNRELEASED; urgency=low
   * more user friendly missing Xvfb error message
   * fix MS Windows shadow server key mapping
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 02 May 2016 16:37:44 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 07 Aug 2016 19:30:42 +0700
 
 xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
