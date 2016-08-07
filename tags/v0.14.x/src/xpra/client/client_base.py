@@ -385,7 +385,8 @@ class XpraClientBase(object):
             e = props.get("encoder", "unknown")
             log.warn("disconnected without receiving a single packet, not an xpra server?")
             log.warn("(maybe it does not support '%s' compression or '%s' packet encoding)", c, e)
-        self.warn_and_quit(EXIT_CONNECTION_LOST, "Connection lost")
+        if self.exit_code!=0:
+            self.warn_and_quit(EXIT_CONNECTION_LOST, "Connection lost")
 
     def _process_challenge(self, packet):
         log("processing challenge: %s", packet[1:])
