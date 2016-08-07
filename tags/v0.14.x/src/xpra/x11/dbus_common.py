@@ -8,7 +8,8 @@ def loop_init():
     global _loop_init_done
     if _loop_init_done:
         return
-    from dbus.mainloop.glib import DBusGMainLoop
+    from dbus.mainloop.glib import DBusGMainLoop, threads_init
+    threads_init()
     DBusGMainLoop(set_as_default=True)
     _loop_init_done = True
 
