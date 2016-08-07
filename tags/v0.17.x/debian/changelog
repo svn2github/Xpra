@@ -1,4 +1,6 @@
 xpra (0.17.5-1) UNRELEASED; urgency=low
+  * fix xvid encoder debug overlay (now only enabled with debugging)
+  * fix cursor errors with no data to send
   * fix v4l2 module build on older platforms, add missing build switch
   * fix CentOS 7.1 cryptography packaging dependency
   * fix misleading cryptography import error message
@@ -15,7 +17,7 @@ xpra (0.17.5-1) UNRELEASED; urgency=low
   * fix log dir in commented out Xvfb example
   * fix build on some non US locales
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Aug 2016 00:05:51 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 07 Aug 2016 19:34:5 +0700
 
 xpra (0.17.4-1) UNRELEASED; urgency=low
   * fix severe regression in damage handling

@@ -419,7 +419,9 @@ fi
 
 
 %changelog
-* Tue Aug 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Sat Aug 07 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix xvid encoder debug overlay (now only enabled with debugging)
+- fix cursor errors with no data to send
 - fix v4l2 module build on older platforms, add missing build switch
 - fix CentOS 7.1 cryptography packaging dependency
 - fix misleading cryptography import error message
