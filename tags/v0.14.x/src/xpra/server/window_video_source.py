@@ -598,7 +598,7 @@ class WindowVideoSource(WindowSource):
         if dw>0:
             WindowSource.process_damage_region(self, damage_time, window, x+w-dw, y, dw, h, self.edge_encoding, options)
         if dh>0:
-            WindowSource.process_damage_region(self, damage_time, window, x, y+h-dh, x+w, dh, self.edge_encoding, options)
+            WindowSource.process_damage_region(self, damage_time, window, x, y+h-dh, w-dw, dh, self.edge_encoding, options)
 
 
     def must_encode_full_frame(self, window, encoding):
