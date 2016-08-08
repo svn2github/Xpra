@@ -1,5 +1,6 @@
-v0.17.5 (2016-08-07)
+v0.17.5 (2016-08-08)
 ======================
+	-- fix unnecessary delay in network layer of MS Windows clients
 	-- fix xvid encoder debug overlay (now only enabled with debugging)
 	-- fix cursor errors with no data to send
 	-- fix v4l2 module build on older platforms, add missing build switch

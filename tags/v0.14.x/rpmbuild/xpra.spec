@@ -251,7 +251,8 @@ fi
 
 
 %changelog
-* Sat Aug 07 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+- fix unnecessary delay in network layer of MS Windows clients
 - fix sanitization of invalid aspect ratio size hints
 - fix error handling in X11 keyboard detection code
 - fix MS Windows shadow servers picture corruption

@@ -419,7 +419,8 @@ fi
 
 
 %changelog
-* Sat Aug 07 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix unnecessary delay in network layer of MS Windows clients
 - fix xvid encoder debug overlay (now only enabled with debugging)
 - fix cursor errors with no data to send
 - fix v4l2 module build on older platforms, add missing build switch

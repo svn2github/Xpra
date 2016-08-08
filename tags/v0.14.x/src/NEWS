@@ -1,5 +1,6 @@
-v0.14.35 (2016-08-07)
+v0.14.35 (2016-08-08)
 ======================
+	-- fix unnecessary delay in network layer of MS Windows clients
 	-- fix sanitization of invalid aspect ratio size hints
 	-- fix error handling in X11 keyboard detection code
 	-- fix MS Windows shadow servers picture corruption

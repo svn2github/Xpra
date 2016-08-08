@@ -1,4 +1,5 @@
 xpra (0.14.35-1) UNRELEASED; urgency=low
+  * fix unnecessary delay in network layer of MS Windows clients
   * fix sanitization of invalid aspect ratio size hints
   * fix error handling in X11 keyboard detection code
   * fix MS Windows shadow servers picture corruption
@@ -33,7 +34,7 @@ xpra (0.14.35-1) UNRELEASED; urgency=low
   * more user friendly missing Xvfb error message
   * fix MS Windows shadow server key mapping
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 07 Aug 2016 19:30:42 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 08 Aug 2016 13:56:16 +0700
 
 xpra (0.14.34-1) UNRELEASED; urgency=low
   * fix OSX crashes with python optimizations enable via env var
