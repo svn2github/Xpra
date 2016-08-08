@@ -1,4 +1,4 @@
-v0.14.35 (2016-08-08)
+v0.14.36 (2016-08-08)
 ======================
 	-- fix unnecessary delay in network layer of MS Windows clients
 	-- fix sanitization of invalid aspect ratio size hints
@@ -13,6 +13,10 @@ v0.14.35 (2016-08-08)
 	-- fix compilation against ffmpeg 3.1 onwards
 	-- fix video encoder context leak
 	-- fix actual exception reported in GTK X11 errors
+
+
+v0.14.35 (2016-05-02)
+======================
 	-- fix / workaround bug in Xorg server 1.18.1 and later
 	-- fix support for broken system tray proxies (ie: KDE)
 	-- fix transparency with webp encoding

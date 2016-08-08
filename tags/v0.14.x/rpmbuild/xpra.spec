@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.35
+%define version 0.14.36
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -251,7 +251,7 @@ fi
 
 
 %changelog
-* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
+* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.36-2
 - fix unnecessary delay in network layer of MS Windows clients
 - fix sanitization of invalid aspect ratio size hints
 - fix error handling in X11 keyboard detection code
@@ -265,6 +265,8 @@ fi
 - fix compilation against ffmpeg 3.1 onwards
 - fix video encoder context leak
 - fix actual exception reported in GTK X11 errors
+
+* Mon May 02 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.35-2
 - fix / workaround bug in Xorg server 1.18.1 and later
 - fix support for broken system tray proxies (ie: KDE)
 - fix transparency with webp encoding
@@ -494,7 +496,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.35-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.36-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures
