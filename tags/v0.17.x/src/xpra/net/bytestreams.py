@@ -78,9 +78,6 @@ if sys.platform.startswith("win"):
         WSAEDISCON          : "WSAEDISCON",
         winerror.ERROR_BROKEN_PIPE : "BROKENPIPE",
         })
-    #on win32, we want to wait just a little while,
-    #to prevent servers spinning wildly on non-blocking sockets:
-    continue_wait = 5
     if sys.version[0]<"3":
         #win32 has problems writing more than 32767 characters to stdout!
         #see: http://bugs.python.org/issue11395
@@ -91,6 +88,10 @@ if sys.platform.startswith("win"):
                 buf = buf[:32767]
             return os.write(fd, buf)
         TTY_WRITE = win32ttywrite
+
+def set_continue_wait(v):
+    global continue_wait
+    continue_wait = v
 
 
 def untilConcludes(is_active_cb, f, *a, **kw):

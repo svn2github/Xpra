@@ -48,9 +48,6 @@ if sys.platform.startswith("win"):
         WSAEHOSTUNREACH     : "WSAEHOSTUNREACH",
         WSAEDISCON          : "WSAEDISCON",
         })
-    #on win32, we want to wait just a little while,
-    #to prevent servers spinning wildly on non-blocking sockets:
-    continue_wait = 5
 
 
 def untilConcludes(is_active_cb, f, *a, **kw):
@@ -61,6 +58,10 @@ def untilConcludes(is_active_cb, f, *a, **kw):
         except socket.timeout, e:
             log("untilConcludes(%s, %s, %s, %s) %s", is_active_cb, f, a, kw, e)
             continue
+
+def set_continue_wait(v):
+    global continue_wait
+    continue_wait = v
         except (IOError, OSError), e:
             code = e.args[0]
             can_continue = CONTINUE.get(code)

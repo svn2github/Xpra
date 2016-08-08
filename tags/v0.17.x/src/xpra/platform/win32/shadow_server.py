@@ -229,6 +229,10 @@ class ShadowServer(GTKShadowServerBase):
     def __init__(self):
         GTKShadowServerBase.__init__(self)
         self.keycodes = {}
+        from xpra.net.bytestreams import set_continue_wait
+        #on win32, we want to wait just a little while,
+        #to prevent servers spinning wildly on non-blocking sockets:
+        set_continue_wait(5)
 
 
     def add_listen_socket(self, socktype, sock):
