@@ -49,6 +49,9 @@ if sys.platform.startswith("win"):
         WSAEDISCON          : "WSAEDISCON",
         })
 
+def set_continue_wait(v):
+    global continue_wait
+    continue_wait = v
 
 def untilConcludes(is_active_cb, f, *a, **kw):
     wait = 0
@@ -58,10 +61,6 @@ def untilConcludes(is_active_cb, f, *a, **kw):
         except socket.timeout, e:
             log("untilConcludes(%s, %s, %s, %s) %s", is_active_cb, f, a, kw, e)
             continue
-
-def set_continue_wait(v):
-    global continue_wait
-    continue_wait = v
         except (IOError, OSError), e:
             code = e.args[0]
             can_continue = CONTINUE.get(code)

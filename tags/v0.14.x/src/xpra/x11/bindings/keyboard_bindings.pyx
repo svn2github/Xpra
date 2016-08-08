@@ -9,6 +9,7 @@ import time
 
 from xpra.log import Logger
 log = Logger("x11", "bindings", "keyboard")
+from xpra.util import bytestostr
 
 try:
     from xpra.codecs.argb.argb import make_byte_buffer, byte_buffer_to_buffer
