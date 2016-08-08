@@ -890,6 +890,7 @@ class GTKTrayMenuBase(object):
                     finally:
                         menu.ignore_events = False
             c.connect("toggled", activate_cb, menu)
+            return c
         webcam = self.menuitem("Webcam", "webcam.png", "Forward webcam pictures to the server", None)
         if not self.client.webcam_forwarding:
             webcam.set_tooltip_text("Webcam forwarding is disabled")
