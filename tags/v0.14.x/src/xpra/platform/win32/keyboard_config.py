@@ -265,7 +265,6 @@ KEYCODES = {}
 for vk, name in VIRTUAL_KEYS.items():
     vk_name = "VK_%s" % vk
 for name, val in DEFS.items():
-    VK_NAMES[val] = name
     if hasattr(win32con, vk_name):
         val = getattr(win32con, vk_name)
         KEYCODES[name] = val
