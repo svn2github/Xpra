@@ -1279,7 +1279,7 @@ class WindowSource(object):
         if not self._damage_delayed:
             self.soft_expired = 0
 
-    def client_decode_error(self, error):
+    def client_decode_error(self, window, error):
         log.warn("client_decode_error: %s", error)
         #something failed client-side, so we can't rely on the delta being available
         self.last_pixmap_data = None
