@@ -753,10 +753,10 @@ def fixup_video_all_or_none(options):
     options.csc_modules     = getlist(cscstr,   "csc modules",      acsco)
     options.video_decoders  = getlist(vdstr,    "video decoders",   avedo)
 
-def fixup_socketdirs(options):
+def fixup_socketdirs(options, defaults):
     if not options.socket_dirs:
         from xpra.platform.paths import get_socket_dirs
-        options.socket_dirs = get_socket_dirs()
+        options.socket_dirs = getattr(defaults, "socket_dirs", get_socket_dirs())
     elif type(options.socket_dirs)==str:
         options.socket_dirs = options.socket_dirs.split(os.path.pathsep)
     else:
@@ -809,12 +809,12 @@ def fixup_packetencoding(options):
             warn("warning: invalid packet encoder(s) specified: %s" % (", ".join(unknown)))
     options.packet_encoders = packet_encoders
 
-def fixup_options(options):
+def fixup_options(options, defaults={}):
     fixup_encodings(options)
     fixup_compression(options)
     fixup_packetencoding(options)
     fixup_video_all_or_none(options)
-    fixup_socketdirs(options)
+    fixup_socketdirs(options, defaults)
 
 
 def main():
