@@ -83,6 +83,7 @@ def do_set_keymap(xkbmap_layout, xkbmap_variant,
                 return
             except:
                 log.warn("failed to set exact keymap using %s", settings)
+            if options:
                 #try again with no options:
                 try:
                     X11Keyboard.setxkbmap(rules, model, layout, variant, "")
