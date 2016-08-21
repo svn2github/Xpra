@@ -419,9 +419,16 @@ fi
 
 
 %changelog
-* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Sun Aug 21 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix OSX PKG installation errors on El Capitan and later
+- fix OSX installation warnings
+- fix X11 keyboard layout setup code corner case handling
+- fix VP9 speed setting to prevent excruciatingly slow compression
+- fix honour socket-dirs value found in configuration files
+- fix Fedora 25+ builds hanging during printer probing
 - fix unnecessary delay in network layer of MS Windows clients
 - fix xvid encoder debug overlay (now only enabled with debugging)
+- fix x265 compilation with python3
 - fix cursor errors with no data to send
 - fix v4l2 module build on older platforms, add missing build switch
 - fix CentOS 7.1 cryptography packaging dependency
