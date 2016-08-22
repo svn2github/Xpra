@@ -156,7 +156,7 @@ pillow_ENABLED          = DEFAULT
 webp_ENABLED            = False
 vpx_ENABLED             = DEFAULT and pkg_config_ok("--atleast-version=1.3", "vpx", fallback=WIN32)
 webcam_ENABLED          = DEFAULT and not OSX
-v4l2_ENABLED            = DEFAULT and (not WIN32 and not OSX)
+v4l2_ENABLED            = DEFAULT and (not WIN32 and not OSX and not sys.platform.startswith("freebsd"))
 #ffmpeg 2 onwards:
 dec_avcodec2_ENABLED    = DEFAULT and pkg_config_ok("--atleast-version=56", "libavcodec", fallback=WIN32)
 # some version strings I found:
