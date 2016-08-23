@@ -188,7 +188,7 @@ class VideoSubregion(object):
 
         if damage_events_count < self.set_at:
             #stats got reset
-            self.video_subregion_set_at = 0
+            self.set_at = 0
         #validate against window dimensions:
         rect = self.rectangle
         if rect and (rect.width>ww or rect.height>wh):
