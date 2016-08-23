@@ -1,4 +1,8 @@
 xpra (0.17.5-1) UNRELEASED; urgency=low
+  * fix internal error with some values for the window title option
+  * fix crash on FreeBSD caused by buggy netifaces package
+  * fix strict build on FreeBSD, use correct Xvfb command
+  * fix video region statistics not correctly reset
   * fix OSX PKG installation errors on El Capitan and later
   * fix OSX installation warnings
   * fix X11 keyboard layout setup code corner case handling
@@ -25,7 +29,7 @@ xpra (0.17.5-1) UNRELEASED; urgency=low
   * fix log dir in commented out Xvfb example
   * fix build on some non US locales
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 21 Aug 2016 14:22:28 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 23 Aug 2016 20:25:15 +0700
 
 xpra (0.17.4-1) UNRELEASED; urgency=low
   * fix severe regression in damage handling

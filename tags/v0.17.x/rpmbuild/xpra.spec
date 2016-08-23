@@ -419,7 +419,11 @@ fi
 
 
 %changelog
-* Sun Aug 21 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Tue Aug 23 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix internal error with some values for the window title option
+- fix crash on FreeBSD caused by buggy netifaces package
+- fix strict build on FreeBSD, use correct Xvfb command
+- fix video region statistics not correctly reset
 - fix OSX PKG installation errors on El Capitan and later
 - fix OSX installation warnings
 - fix X11 keyboard layout setup code corner case handling
