@@ -419,7 +419,8 @@ fi
 
 
 %changelog
-* Tue Aug 23 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Wed Aug 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+- fix sound codec order: prevent incompatibilities with gdp payloader
 - fix internal error with some values for the window title option
 - fix crash on FreeBSD caused by buggy netifaces package
 - fix strict build on FreeBSD, use correct Xvfb command
