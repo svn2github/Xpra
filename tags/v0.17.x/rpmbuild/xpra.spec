@@ -419,6 +419,9 @@ fi
 
 
 %changelog
+* Thu Aug 25 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-2
+- force rebuild
+
 * Wed Aug 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
 - fix sound codec order: prevent incompatibilities with gdp payloader
 - fix internal error with some values for the window title option

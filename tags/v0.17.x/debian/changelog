@@ -1,3 +1,8 @@
+xpra (0.17.5-2) UNRELEASED; urgency=low
+  * force rebuild
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 25 Aug 2016 12:48:04 +0700
+
 xpra (0.17.5-1) UNRELEASED; urgency=low
   * fix sound codec order: prevent incompatibilities with gdp payloader
   * fix internal error with some values for the window title option
