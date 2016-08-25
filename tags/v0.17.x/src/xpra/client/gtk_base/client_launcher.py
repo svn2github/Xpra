@@ -818,13 +818,13 @@ def main():
                     #wait a little bit for the "openFile" signal
                     app.__osx_open_file = False
                     def do_open_file(filename):
-                        app.__osx_open_file = True
                         app.update_options_from_file(filename)
                         #the compressors and packet encoders cannot be changed from the UI
                         #so apply them now:
                         configure_network(app.config)
                         app.update_gui_from_config()
                         if app.config.autoconnect:
+                            app.__osx_open_file = True
                             glib.idle_add(app.do_connect)
                     def open_file(_, filename):
                         log("open_file(%s)", filename)
