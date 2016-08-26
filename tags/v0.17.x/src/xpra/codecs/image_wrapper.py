@@ -52,7 +52,7 @@ class ImageWrapper(object):
         return self.x
 
     def get_y(self):
-        return self.x
+        return self.y
 
     def get_width(self):
         return self.width
