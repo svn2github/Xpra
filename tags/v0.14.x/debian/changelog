@@ -7,13 +7,14 @@ xpra (0.14.36-1) UNRELEASED; urgency=low
   * fix dbus crash on exit which prevented Xvfb from being killed
   * fix run-xpra script accumulating duplicate paths
   * fix libx264 API value for infinite key interval
+  * fix x265 encoder compilation with Python 3.x
   * fix minor client logging error causing disconnection from proxy
   * fix spurious "Connection lost" warning on disconnection
   * fix compilation against ffmpeg 3.1 onwards
   * fix video encoder context leak
   * fix actual exception reported in GTK X11 errors
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 08 Aug 2016 14:49:03 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 30 Aug 2016 18:42:31 +0700
 
 xpra (0.14.35-1) UNRELEASED; urgency=low
   * fix / workaround bug in Xorg server 1.18.1 and later

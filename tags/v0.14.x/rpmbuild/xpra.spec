@@ -251,7 +251,7 @@ fi
 
 
 %changelog
-* Mon Aug 08 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.36-2
+* Tue Aug 30 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.36-1
 - fix unnecessary delay in network layer of MS Windows clients
 - fix sanitization of invalid aspect ratio size hints
 - fix error handling in X11 keyboard detection code
@@ -260,6 +260,7 @@ fi
 - fix dbus crash on exit which prevented Xvfb from being killed
 - fix run-xpra script accumulating duplicate paths
 - fix libx264 API value for infinite key interval
+- fix x265 encoder compilation with Python 3.x
 - fix minor client logging error causing disconnection from proxy
 - fix spurious "Connection lost" warning on disconnection
 - fix compilation against ffmpeg 3.1 onwards
