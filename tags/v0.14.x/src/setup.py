@@ -1685,7 +1685,7 @@ if dec_avcodec2_ENABLED:
     avcodec2_pkgconfig = pkgconfig("avcodec", "avutil", static=avcodec2_static_ENABLED)
     if is_msvc():
         add_to_keywords(avcodec2_pkgconfig, 'extra_compile_args', "/wd4996")
-    else:
+    elif get_gcc_version()>=[4, 2]:
         add_to_keywords(avcodec2_pkgconfig, 'extra_compile_args', "-Wno-error=deprecated-declarations")
     cython_add(Extension("xpra.codecs.dec_avcodec2.decoder",
                 ["xpra/codecs/dec_avcodec2/decoder.pyx"]+membuffers_c,

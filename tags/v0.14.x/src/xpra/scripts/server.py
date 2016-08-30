@@ -646,7 +646,7 @@ def start_Xvfb(xvfb_str, display_name):
             if f0 != f1:
                 try:
                     os.rename(f0, f1)
-                except Exception as e:
+                except Exception, e:
                     sys.stderr.write("failed to rename Xorg log file from '%s' to '%s'\n" % (f0, f1))
                     sys.stderr.write(" %s\n" % e)
         display_name = new_display_name
