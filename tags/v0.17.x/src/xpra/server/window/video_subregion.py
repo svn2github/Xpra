@@ -182,6 +182,7 @@ class VideoSubregion(object):
             if not self.enabled:
                 #could have been disabled since we started this method!
                 self.novideoregion("disabled")
+                return
             if not self.detection:
                 return
             self.rectangle = rect
