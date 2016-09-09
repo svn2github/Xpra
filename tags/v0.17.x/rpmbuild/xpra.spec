@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.17.5
+%define version 0.17.6
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -419,10 +419,28 @@ fi
 
 
 %changelog
+* Fri Sep 09 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-2
+- fix hidden launcher bug on OSX with connection files
+- fix non-X11 servers image corruption
+- fix MS Windows and OSX build compatibility with OpenSSL 1.1
+- fix video region detection dbus API
+- fix compilation with older versions of Cython
+- fix avoid crash with older versions of python-netifaces
+- fix stuck sound processes, use force exit if needed
+- fix disabled video region flag not honoured
+- fix stuck key modifiers when window loses focus
+- fix proxy hello data format
+- fix proxy authentication errors, add missing xpra info
+- fix display not honoured when connecting to a proxy
+- fix proxy failures with a single display detected more than once
+- fix proxy IO thread timeouts
+- fix authentication salt and hash handling (size and sanity checks)
+- fix some system authentication modules
+
 * Thu Aug 25 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-2
 - force rebuild
 
-* Wed Aug 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.5-1
+* Wed Aug 24 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-1
 - fix sound codec order: prevent incompatibilities with gdp payloader
 - fix internal error with some values for the window title option
 - fix crash on FreeBSD caused by buggy netifaces package
