@@ -1564,6 +1564,7 @@ def run_client(error_cb, opts, extra_args, mode):
             #UGLY warning: connect will parse the display string,
             #which may change the username..
             app.username = opts.username
+            app.display = opts.display
             app.setup_connection(conn)
         except Exception as e:
             app.cleanup()
