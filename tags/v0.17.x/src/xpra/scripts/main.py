@@ -472,6 +472,7 @@ def do_parse_cmdline(cmdline, defaults):
                       dest="mmap", default=defaults.mmap,
                       help="Use memory mapped transfers for local connections. Default: %s." % enabled_str(defaults.mmap))
     replace_option("--readwrite", "--readonly=no")
+    replace_option("--readonly", "--readonly=yes")
     group.add_option("--readonly", action="store", metavar="yes|no",
                       dest="readonly", default=defaults.readonly,
                       help="Disable keyboard input and mouse events from the clients. Default: %s." % enabled_str(defaults.readonly))
