@@ -1,5 +1,11 @@
-v0.17.6 (2016-09-09)
+v0.17.6 (2016-09-27)
 ======================
+	-- fix pulseaudio process tagging
+	-- fix proxy server when running on Python 2.6 and older glib versions
+	-- fix proxy packet re-compression, server type exported
+	-- fix minor debug logging error, avoid a spurious refresh warning
+	-- fix read-only mode command line parsing and tray menu errors
+	-- fix video encoding failures when video automatic scaling changes
 	-- fix hidden launcher bug on OSX with connection files
 	-- fix non-X11 servers image corruption
 	-- fix MS Windows and OSX build compatibility with OpenSSL 1.1

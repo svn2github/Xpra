@@ -1,4 +1,10 @@
 xpra (0.17.6-1) UNRELEASED; urgency=low
+  * fix pulseaudio process tagging
+  * fix proxy server when running on Python 2.6 and older glib versions
+  * fix proxy packet re-compression, server type exported
+  * fix minor debug logging error, avoid a spurious refresh warning
+  * fix read-only mode command line parsing and tray menu errors
+  * fix video encoding failures when video automatic scaling changes
   * fix hidden launcher bug on OSX with connection files
   * fix non-X11 servers image corruption
   * fix MS Windows and OSX build compatibility with OpenSSL 1.1
@@ -16,7 +22,7 @@ xpra (0.17.6-1) UNRELEASED; urgency=low
   * fix authentication salt and hash handling (size and sanity checks)
   * fix some system authentication modules
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 09 Sep 2016 19:49:54 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 27 Sep 2016 19:03:23 +0700
 
 xpra (0.17.5-2) UNRELEASED; urgency=low
   * force rebuild
