@@ -1451,8 +1451,8 @@ class ServerBase(ServerCore, FileTransferHandler):
                 options[argp[0]] = argp[1]
         data = load_binary_file(actual_filename)
         file_size_MB = len(data)//1024//1024
-        if file_size_MB>self.file_size_limit:
-            raise ControlError("file '%s' is too large: %iMB (limit is %iMB)" % (filename, file_size_MB, self.file_size_limit))
+        if file_size_MB>self.file_transfer.file_size_limit:
+            raise ControlError("file '%s' is too large: %iMB (limit is %iMB)" % (filename, file_size_MB, self.file_transfer.file_size_limit))
         for ss in sources:
             if ss.printing:
                 ss.send_file(filename, "", data, True, True, options)
