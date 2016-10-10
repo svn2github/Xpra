@@ -2139,7 +2139,7 @@ if nvenc4_ENABLED or nvenc5_ENABLED or nvenc6_ENABLED:
                          ] + path_options
     else:
         nvcc_exe = "nvcc"
-        for v in ("-5.5", "-6.0", "-6.5", "-7.0", "-7.5", "8.0", ""):
+        for v in ("-5.5", "-6.0", "-6.5", "-7.0", "-7.5", "-8.0", ""):
             path_options += ["/usr/local/cuda%s/bin" % v, "/opt/cuda%s/bin" % v]
     options = [os.path.join(x, nvcc_exe) for x in path_options]
     if not WIN32:
@@ -2147,7 +2147,7 @@ if nvenc4_ENABLED or nvenc5_ENABLED or nvenc6_ENABLED:
         try:
             code, out, err = get_status_output(["which", nvcc_exe])
             if code==0:
-                options.append(0, out)
+                options.insert(0, out)
         except:
             pass
     nvcc_versions = {}
