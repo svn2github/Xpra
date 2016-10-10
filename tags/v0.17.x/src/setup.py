@@ -903,6 +903,7 @@ def build_xpra_conf(install_dir):
                 return v[1]     #ie: /usr/share/ppd/cupsfilters/Generic-PDF_Printer-PDF.ppd
             pdf = get_printer_def("pdf")
             postscript = get_printer_def("postscript")
+            print("pdf=%s, postscript=%s" % (pdf, postscript))
         except Exception as e:
             print("could not probe for pdf/postscript printers: %s" % e)
     def pretty_cmd(cmd):
