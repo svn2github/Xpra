@@ -144,19 +144,6 @@ for x in "*.c" "*.pyx" "*.pxd" "constants.pxi" "constants.txt"; do
 	find $LIBDIR/python/xpra/ -name "$x" -print -exec rm "{}" \; | sed "s+$LIBDIR/python/xpra/++g" | xargs -L 1 echo "* "
 done
 
-if [ "$STRIP_SOURCE" == "1" ]; then
-	echo "removing py if we have the pyc:"
-	#only remove ".py" source if we have a binary ".pyc" for it:
-	for x in `find $LIBDIR/python/xpra -name "*.py" -type f`; do
-		d="`dirname $x`"
-		f="`basename $x`"
-		if [ -r "$d/${f}c" ]; then
-			echo "* $x"
-			rm "$x"
-		fi
-	done
-fi
-
 
 echo
 echo "*******************************************************************************"
@@ -214,6 +201,21 @@ if [ "$STRIP_NUMPY" == "1" ]; then
 	done
 	popd
 fi
+
+
+if [ "$STRIP_SOURCE" == "1" ]; then
+	echo "removing py if we have the pyc:"
+	#only remove ".py" source if we have a binary ".pyc" for it:
+	for x in `find $LIBDIR -name "*.py" -type f`; do
+		d="`dirname $x`"
+		f="`basename $x`"
+		if [ -r "$d/${f}c" ]; then
+			#echo "* $x"
+			rm "${x}"
+		fi
+	done
+fi
+
 
 #gst bits expect to find dylibs in Frameworks!?
 pushd ${CONTENTS_DIR}
