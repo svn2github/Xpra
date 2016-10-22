@@ -3,7 +3,6 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-import os
 
 from xpra.server.auth.sys_auth_base import SysAuthenticator, init
 import win32security            #@UnresolvedImport
@@ -13,15 +12,14 @@ assert init
 class Authenticator(SysAuthenticator):
 
     def get_uid(self):
-        #uid is left unchanged:
-        return os.getuid()
+        return 0
 
     def get_gid(self):
-        #gid is left unchanged:
-        return os.getgid()
+        return 0
 
     def check(self, password):
         win32security.LogonUser(self.username, '', password, win32security.LOGON32_LOGON_NETWORK, win32security.LOGON32_PROVIDER_DEFAULT)
+        return True
 
     def __repr__(self):
         return "win32"
