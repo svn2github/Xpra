@@ -100,9 +100,9 @@ def do_get_user_conf_dirs():
 def do_get_default_log_dir():
     try:
         from Foundation import  NSSearchPathForDirectoriesInDomains, NSLibraryDirectory, NSUserDomainMask    #@UnresolvedImport
-        dirs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, False)
+        udirs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, False)
         #ie: ~/Library/
-        library_dir = dirs[0]
+        library_dir = udirs[0]
         return os.path.join(library_dir, "Xpra")
     except:
         pass
