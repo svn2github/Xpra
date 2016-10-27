@@ -2113,8 +2113,8 @@ cdef class Encoder:
                 picParams.pictureType = NV_ENC_PIC_TYPE_P
             picParams.codecPicParams.h264PicParams.displayPOCSyntax = 2*self.frames
             picParams.codecPicParams.h264PicParams.refPicFlag = self.frames==0
-            picParams.codecPicParams.h264PicParams.sliceMode = 3            #sliceModeData specifies the number of slices
-            picParams.codecPicParams.h264PicParams.sliceModeData = 1        #1 slice!
+            #picParams.codecPicParams.h264PicParams.sliceMode = 3            #sliceModeData specifies the number of slices
+            #picParams.codecPicParams.h264PicParams.sliceModeData = 1        #1 slice!
             picParams.codecPicParams.h264PicParams.colourPlaneId = 0
             picParams.frameIdx = self.frames
             picParams.inputTimeStamp = image.get_timestamp()-self.first_frame_timestamp
