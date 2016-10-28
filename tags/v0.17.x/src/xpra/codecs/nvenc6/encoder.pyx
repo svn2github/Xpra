@@ -1360,8 +1360,8 @@ cdef class Encoder:
         #add all presets ranked by how far they are from the target speed and quality:
         log("presets for %s: %s", guidstr(codec), csv(presets.keys()))
         for name, x in presets.items():
-            preset_speed = PRESET_SPEED.get(x, 50)
-            preset_quality = PRESET_QUALITY.get(x, 50)
+            preset_speed = PRESET_SPEED.get(name, 50)
+            preset_quality = PRESET_QUALITY.get(name, 50)
             log("preset %s: speed=%s, quality=%s", name, preset_speed, preset_quality)
             #log("%s speed=%s, quality=%s, lossless=%s", x, preset_speed, preset_quality, x in LOSSLESS_PRESETS)
             if x in LOSSLESS_PRESETS and self.pixel_format!="YUV444P":
