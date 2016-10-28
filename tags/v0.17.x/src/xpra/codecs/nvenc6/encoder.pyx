@@ -1364,11 +1364,11 @@ cdef class Encoder:
             preset_quality = PRESET_QUALITY.get(name, 50)
             log("preset %s: speed=%s, quality=%s", name, preset_speed, preset_quality)
             #log("%s speed=%s, quality=%s, lossless=%s", x, preset_speed, preset_quality, x in LOSSLESS_PRESETS)
-            if x in LOSSLESS_PRESETS and self.pixel_format!="YUV444P":
+            if name in LOSSLESS_PRESETS and self.pixel_format!="YUV444P":
                 continue
-            if self.lossless and (x not in LOSSLESS_PRESETS):
+            if self.lossless and (name not in LOSSLESS_PRESETS):
                 continue
-            if not self.lossless and (x in LOSSLESS_PRESETS):
+            if not self.lossless and (name in LOSSLESS_PRESETS):
                 continue
             if preset_speed>=0 and preset_quality>=0:
                 #quality (3) weighs more than speed (2):
