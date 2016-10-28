@@ -1,4 +1,21 @@
 xpra (0.17.6-1) UNRELEASED; urgency=low
+  * fix server-side av-sync queue level accounting
+  * fix system lockups with Nvidia Pascal GPUs
+  * fix osx log directory lookup for shadow servers
+  * fix win32 system authentication for shadow servers
+  * fix pycups errors with non string options
+  * fix for GTK3: force X11 backend
+  * fix yaml missing version
+  * fix missing lzo with OSX builds
+  * fix osx bug report tool command
+  * fix osx build stripping
+  * fix clang builds (ignore warning from cython generated code)
+  * fix build failures when nvcc is on the PATH
+  * fix race condition in authentication handling (mostly harmless)
+  * fix logging error in fakexinerama error handler
+  * fix desktop scaling reset (was rounding)
+  * fix file transfer via control channel command
+  * fix handling of fatal errors when there are no socket directories
   * fix pulseaudio process tagging
   * fix proxy server when running on Python 2.6 and older glib versions
   * fix proxy packet re-compression, server type exported
@@ -22,7 +39,7 @@ xpra (0.17.6-1) UNRELEASED; urgency=low
   * fix authentication salt and hash handling (size and sanity checks)
   * fix some system authentication modules
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 27 Sep 2016 19:03:23 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 28 Oct 2016 12:23:44 +0700
 
 xpra (0.17.5-2) UNRELEASED; urgency=low
   * force rebuild

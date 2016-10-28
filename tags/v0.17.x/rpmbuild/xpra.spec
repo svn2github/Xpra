@@ -419,7 +419,24 @@ fi
 
 
 %changelog
-* Tue Sep 27 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-2
+* Fri Oct 28 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-1
+- fix server-side av-sync queue level accounting
+- fix system lockups with Nvidia Pascal GPUs
+- fix osx log directory lookup for shadow servers
+- fix win32 system authentication for shadow servers
+- fix pycups errors with non string options
+- fix for GTK3: force X11 backend
+- fix yaml missing version
+- fix missing lzo with OSX builds
+- fix osx bug report tool command
+- fix osx build stripping
+- fix clang builds (ignore warning from cython generated code)
+- fix build failures when nvcc is on the PATH
+- fix race condition in authentication handling (mostly harmless)
+- fix logging error in fakexinerama error handler
+- fix desktop scaling reset (was rounding)
+- fix file transfer via control channel command
+- fix handling of fatal errors when there are no socket directories
 - fix pulseaudio process tagging
 - fix proxy server when running on Python 2.6 and older glib versions
 - fix proxy packet re-compression, server type exported
