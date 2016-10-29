@@ -40,7 +40,8 @@
 %define requires_printing , python-cups, cups-filters, cups-pdf
 %define py3requires_printing %{nil}
 #Anything extra (distro specific):
-%define gstreamer1 , gstreamer1, gstreamer1-plugins-base, gstreamer1-plugins-good, gstreamer1-plugins-ugly, gstreamer1-plugins-bad-free
+#this requires rpmfusion: gstreamer1-plugins-ugly
+%define gstreamer1 , gstreamer1, gstreamer1-plugins-base, gstreamer1-plugins-good, gstreamer1-plugins-bad-free
 %define requires_sound %{gstreamer1}, python-gstreamer1, pulseaudio, pulseaudio-utils
 %define py3requires_sound %{gstreamer1}, python3-gstreamer1, pulseaudio, pulseaudio-utils
 #This would add support for mp3, but is not in the default repositories:
@@ -419,6 +420,9 @@ fi
 
 
 %changelog
+* Sat Oct 29 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-2
+- don't require rpmfusion repository to install this rpm
+
 * Fri Oct 28 2016 Antoine Martin <antoine@devloop.org.uk> 0.17.6-1
 - fix server-side av-sync queue level accounting
 - fix system lockups with Nvidia Pascal GPUs
