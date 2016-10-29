@@ -844,7 +844,7 @@ def detect_xorg_setup(install_dir=None):
         if r==0:
             dist = out.split(":")[-1].strip()
         print("found OS release: %s %s" % (dist, release))
-        if release in ("raring", "saucy", "trusty", "vivid", "wily"):
+        if release in ("raring", "saucy", "trusty", "vivid", "wily", "xenial"):
             #yet another instance of Ubuntu breaking something
             print("Warning: Ubuntu '%s' breaks Xorg/Xdummy usage - using Xvfb fallback" % release)
             return  Xvfb()
