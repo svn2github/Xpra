@@ -33,6 +33,7 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 #trusty:        ,xvfb
 #wily:        ,xvfb
 #xenial:        ,xvfb
+#yakkety:        ,xvfb
 # for opengl support:
         ,python-gtkglext1
         ,python-opengl
@@ -48,10 +49,12 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 #trusty:        ,python-lzo
 #wily:        ,python-lz4
 #xenial:        ,python-lz4
+#yakkety:        ,python-lz4
 #if you use Ubuntu, you will "want" this mess:
 #trusty:        ,python-appindicator
 #wily:        ,python-appindicator
 #xenial:        ,python-appindicator
+#yakkety:        ,python-appindicator
 Recommends:
 #version specific values (sigh), uncomment the one you need:
 #jessie:        ,libswscale3
@@ -64,18 +67,21 @@ Recommends:
 #stretch:        ,libx264-146
 #trusty:        ,libx264-142
 #wily:        ,libx264-148
+#yakkety:        ,libx264-148
         ,libxvidcore4
 #webp
 #jessie:        ,libwebp5
 #stretch:        ,libwebp5
 #trusty:        ,libwebp5
 #wily:        ,libwebp5
+#yakkety:        ,libwebp5
 #AES encryption:
 #jessie:        ,python-cryptography
 #stretch:        ,python-cryptography
 #trusty:        ,python-crypto
 #wily:        ,python-cryptography
 #xenial:        ,python-cryptography
+#yakkety:        ,python-cryptography
 # audio-related:
         ,gstreamer1.0-plugins-base
 #                 ^^ vorbis ^^
@@ -95,6 +101,7 @@ Recommends:
 #trusty:        ,python-lz4
 #wily:        ,python-lzo
 #xenial:        ,python-lzo
+#yakkety:        ,python-lzo
 #for html5 support:
 #jessie:        ,websockify
 #stretch:        ,websockify
