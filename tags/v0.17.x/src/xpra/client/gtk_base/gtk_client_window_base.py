@@ -892,7 +892,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
             props["workspace"] = workspace
         if self._client.server_window_frame_extents and "frame" not in state:
             wfs = self.get_window_frame_size()
-            if wfs:
+            if wfs and len(wfs)==4:
                 state["frame"] = self._client.crect(*wfs)
                 self._current_frame_extents = wfs
         geomlog("map-window for wid=%s with client props=%s, state=%s", self._id, props, state)
