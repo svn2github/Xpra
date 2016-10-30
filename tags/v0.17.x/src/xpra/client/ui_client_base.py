@@ -2157,6 +2157,7 @@ class UIXpraClient(XpraClientBase):
             if self.webcam_device:
                 frame_no = packet[2]
                 self.webcam_last_ack = frame_no
+                self.cancel_webcam_send_timer()
                 self.send_webcam_frame()
 
     def send_webcam_frame(self):
@@ -2223,6 +2224,7 @@ class UIXpraClient(XpraClientBase):
             if enabled!=self.microphone_enabled:
                 self.microphone_enabled = enabled
                 self.emit("microphone-changed")
+        self.webcam_send_timer = None
             soundlog("start_sending_sound(%s) done, microphone_enabled=%s", device, enabled)
 
     def start_sound_source(self, device=None):
