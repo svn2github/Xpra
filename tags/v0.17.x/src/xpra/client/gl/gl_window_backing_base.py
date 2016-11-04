@@ -206,13 +206,13 @@ class GLWindowBackingBase(GTKWindowBacking):
         self.border = None
         self.paint_screen = False
         self.paint_spinner = False
-        self.draw_needs_refresh = False
         self.offscreen_fbo = None
         self.pending_fbo_paint = []
         self.default_paint_box_line_width = OPENGL_PAINT_BOX or 1
         self.paint_box_line_width = OPENGL_PAINT_BOX
 
         GTKWindowBacking.__init__(self, wid, window_alpha)
+        self.draw_needs_refresh = False
         self.init_gl_config(window_alpha)
         self.init_backing()
         #this is how many bpp we keep in the texture
