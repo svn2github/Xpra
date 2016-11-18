@@ -259,7 +259,8 @@
 				}
 
 			    // and connect
-			    client.connect(server, port, false);
+			    var ssl = document.location.protocol=="https:";
+			    client.connect(server, port, ssl);
 
 			    // attach a callback for paste on the screen
 				$('#pasteboard').on('paste', function (e) {
