@@ -477,9 +477,15 @@ class XpraClient(GTKXpraClient):
         if transient_for>0:
             client_window = self._id_to_window.get(transient_for)
             if client_window:
-                gdk_window = client_window.get_window()
-                if gdk_window:
-                    return gdk_window
+                try:
+                    if hasattr(gtkwindow, "get_window"):
+                        gdk_window = gtkwindow.get_window()
+                    else:
+                        gdk_window = gtkwindow.window
+                    if gdk_window:
+                        return gdk_window
+                except:
+                    pass
         pid = metadata.intget("pid", -1)
         leader_xid = metadata.intget("group-leader-xid", -1)
         leader_wid = metadata.intget("group-leader-wid", -1)
