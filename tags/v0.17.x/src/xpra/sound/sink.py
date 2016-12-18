@@ -124,7 +124,7 @@ class SoundSink(SoundPipeline):
         if get_options_cb:
             v = get_options_cb()
             log("%s()=%s", get_options_cb, v)
-            sink_attributes.update(v)
+            sink_attributes.update(v or {})
         sink_attributes.update(sink_options)
         sink_str = plugin_str(sink_type, sink_attributes)
         pipeline_els.append(sink_str)
