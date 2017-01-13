@@ -35,7 +35,7 @@ TCP_NODELAY = int(os.environ.get("XPRA_TCP_NODELAY", "1"))
 NO_ROOT_WARNING = int(os.environ.get("XPRA_NO_ROOT_WARNING", "0"))
 INITENV_COMMAND = os.environ.get("XPRA_INITENV_COMMAND", "xpra initenv")
 CLIPBOARD_CLASS = os.environ.get("XPRA_CLIPBOARD_CLASS")
-SSH_DEBUG = envbool("XPRA_SSH_DEBUG", False)
+SSH_DEBUG = os.environ.get("XPRA_SSH_DEBUG", "0")=="1"
 
 
 def enabled_str(v, true_str="yes", false_str="no"):
