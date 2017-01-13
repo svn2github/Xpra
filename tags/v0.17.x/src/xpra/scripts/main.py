@@ -35,6 +35,7 @@ TCP_NODELAY = int(os.environ.get("XPRA_TCP_NODELAY", "1"))
 NO_ROOT_WARNING = int(os.environ.get("XPRA_NO_ROOT_WARNING", "0"))
 INITENV_COMMAND = os.environ.get("XPRA_INITENV_COMMAND", "xpra initenv")
 CLIPBOARD_CLASS = os.environ.get("XPRA_CLIPBOARD_CLASS")
+SSH_DEBUG = envbool("XPRA_SSH_DEBUG", False)
 
 
 def enabled_str(v, true_str="yes", false_str="no"):
@@ -1367,6 +1368,8 @@ def connect_to(display_desc, debug_cb=None, ssh_fail_cb=ssh_connect_failed):
             for x in cmd:
                 if type(x)!=str:
                     raise InitException("argument is not a string: %s (%s), found in command: %s" % (x, type(x), cmd))
+            if SSH_DEBUG:
+                sys.stdout.write("executing ssh command: %s\n" % (" ".join("\"%s\"" % x for x in cmd)))
             child = Popen(cmd, stdin=PIPE, stdout=PIPE, **kwargs)
         except OSError as e:
             raise InitException("Error running ssh program '%s': %s" % (cmd, e))
