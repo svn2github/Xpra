@@ -548,7 +548,7 @@ def pkgconfig(*pkgs_options, **ekw):
         del kw["static"]
         if static:
             return get_static_pkgconfig(*pkgs_options)
-    if kw.get("optimize"):
+    if "optimize" in kw:
         optimize = kw["optimize"]
         del kw["optimize"]
         if type(optimize)==bool:
