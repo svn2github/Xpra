@@ -124,7 +124,7 @@
 		To start an application (a simple <code>xterm</code> in this example) on a remote system
 		and display it on your local machine, simply run:
 		<div class="codebox">
-		<pre><code>xpra start ssh:SERVERHOSTNAME:100 --start-child=xterm
+		<pre><code>xpra start ssh:SERVERHOSTNAME --start=xterm
 </code></pre></div>
 		This is similar to <code>ssh -X</code>, except that performance will be noticeably better and you can disconnect and re-connect to this session as many times as you like. (obviously xpra must be installed on your server host)
 
@@ -132,7 +132,7 @@
 
 		To re-connect or to connect to this session from another machine, use the <code>attach</code> command (you can also use the <code>xpra_launcher</code> GUI):
 		<div class="codebox">
-		<pre><code>xpra attach ssh:serverhostname:100
+		<pre><code>xpra attach ssh:serverhostname
 </code></pre></div>
 		You can find many more usage examples <a href="/trac/wiki/Usage">here</a>, ssh is not required but it does make things easier.
 	</div>
