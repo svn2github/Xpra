@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 0.14.36
+%define version 0.14.37
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 %if ! %{defined build_no}
 %define build_no 0
@@ -251,6 +251,15 @@ fi
 
 
 %changelog
+* Wed Feb 01 2017 Antoine Martin <antoine@devloop.org.uk> 0.14.37-1
+- build fix for gcc 4.1 and older
+- build fix for python 2.4
+- build fix for optimize flag
+- fix compatibility with ancient pygtk versions (ie: CentOS 5.x)
+- fix access to window from the wrong thread (can crash)
+- fix unvalidated malloc in decoder
+- remove unsafe 24-bit modes in x264 encoder
+
 * Tue Aug 30 2016 Antoine Martin <antoine@devloop.org.uk> 0.14.36-1
 - fix unnecessary delay in network layer of MS Windows clients
 - fix sanitization of invalid aspect ratio size hints
@@ -497,7 +506,7 @@ fi
 * Sun Apr 12 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.22-2
 - rebuild with python2.4 syntax fix
 
-* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.36-1
+* Wed Apr 08 2015 Antoine Martin <antoine@devloop.org.uk> 0.14.37-1
 - fix window state synchronization bugs
 - fix format of modifiers list we send to the server
 - fix double free on vpx encoder initialization failures

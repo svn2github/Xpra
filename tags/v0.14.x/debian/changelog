@@ -1,3 +1,14 @@
+xpra (0.14.37-1) UNRELEASED; urgency=low
+  * build fix for gcc 4.1 and older
+  * build fix for python 2.4
+  * build fix for optimize flag
+  * fix compatibility with ancient pygtk versions (ie: CentOS 5.x)
+  * fix access to window from the wrong thread (can crash)
+  * fix unvalidated malloc in decoder
+  * remove unsafe 24-bit modes in x264 encoder
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 01 Feb 2017 12:44:03 +0700
+
 xpra (0.14.36-1) UNRELEASED; urgency=low
   * fix unnecessary delay in network layer of MS Windows clients
   * fix sanitization of invalid aspect ratio size hints
