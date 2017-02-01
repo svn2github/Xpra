@@ -497,6 +497,7 @@ cdef class Decoder:
         #copy the whole input buffer into a padded C buffer:
         assert object_as_buffer(input, <const void**> &buf, &buf_len)==0
         padded_buf = <unsigned char *> xmemalign(buf_len+128)
+        assert padded_buf!=NULL, "failed to allocate %i bytes of memory" % (buf_len+128)
         memcpy(padded_buf, buf, buf_len)
         memset(padded_buf+buf_len, 0, 128)
 
