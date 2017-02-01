@@ -90,6 +90,19 @@ unzip -nq site-packages.zip
 rm site-packages.zip
 popd
 
+
+echo
+echo "*******************************************************************************"
+echo "moving pixbuf loaders to a place that will *always* work"
+mv ${RSCDIR}/lib/gdk-pixbuf-2.0/*/loaders/* ${RSCDIR}/lib/
+echo "remove now empty loaders dir"
+rmdir ${RSCDIR}/lib/gdk-pixbuf-2.0/2.10.0/loaders
+rmdir ${RSCDIR}/lib/gdk-pixbuf-2.0/2.10.0
+rmdir ${RSCDIR}/lib/gdk-pixbuf-2.0
+echo "fix gdk-pixbuf.loaders"
+LOADERS="${RSCDIR}/etc/gtk-2.0/gdk-pixbuf.loaders"
+sed -i -e 's+@executable_path/../Resources/lib/gdk-pixbuf-2.0/.*/loaders/++g' "${LOADERS}"
+
 echo
 echo "*******************************************************************************"
 echo "Add xpra/server/python scripts"
@@ -178,8 +191,9 @@ echo "removing extra gstreamer plugins:"
 GST_PLUGIN_DIR=./gstreamer-0.10
 KEEP=./gstreamer-0.10.keep
 mkdir ${KEEP}
-for x in "libgstapp.*" "libgstaudio*" "libgstcoreelements*" \
-	"libgstfaac*" "libgstfaad*" \
+for x in "libgstapp.*" "libgstcoreelements*" \
+    "libgstaudioconvert*" "libgstaudioparsers*" "libgstaudiorate*" "libgstaudioresample*" "libgstaudiotestsrc*" \
+    "libgstfaac*" "libgstfaad*" \
     "libgstflac*" "libgstlame*" "libgstmad*" "libgstmpegaudioparse*" \
     "libgstpython*" \
     "libgstogg*" "libgstoss*" "libgstosxaudio*" "libgstspeex*" \
