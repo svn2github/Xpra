@@ -21,6 +21,7 @@ from libc.stdint cimport int64_t, uint64_t, uint8_t
 
 cdef extern from *:
     ctypedef unsigned long size_t
+SUPPORT_24BPP = envbool("XPRA_X264_SUPPORT_24BPP")
 
 cdef extern from "stdint.h":
     pass
@@ -209,20 +210,27 @@ COLORSPACE_FORMATS = {
     "YUV420P"   : (X264_CSP_I420,    PROFILE_HIGH,                  I420_PROFILES),
     "YUV422P"   : (X264_CSP_I422,    PROFILE_HIGH422,               I422_PROFILES),
     "YUV444P"   : (X264_CSP_I444,    PROFILE_HIGH444_PREDICTIVE,    I444_PROFILES),
-    "BGR"       : (X264_CSP_BGR,     PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
     "BGRA"      : (X264_CSP_BGRA,    PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
     "BGRX"      : (X264_CSP_BGRA,    PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
-    "RGB"       : (X264_CSP_RGB,     PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
     }
+if SUPPORT_24BPP:
+    COLORSPACE_FORMATS.update({
+        "BGR"       : (X264_CSP_BGR,     PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
+        "RGB"       : (X264_CSP_RGB,     PROFILE_HIGH444_PREDICTIVE,    RGB_PROFILES),
+        })
+
 COLORSPACES = {
     "YUV420P"   : ("YUV420P",),
     "YUV422P"   : ("YUV422P",),
     "YUV444P"   : ("YUV444P",),
-    "BGR"       : ("BGR",),
     "BGRA"      : ("BGRA",),
     "BGRX"      : ("BGRX",),
-    "RGB"       : ("RGB",),
     }
+if SUPPORT_24BPP:
+    COLORSPACES.update({
+        "BGR"       : ("BGR",),
+        "RGB"       : ("RGB",),
+        })
 
 
 def init_module():
