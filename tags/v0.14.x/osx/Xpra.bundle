@@ -27,7 +27,7 @@
 	</data>
 
 	<binary>
-		${prefix}/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.so
+		${prefix}/lib/gdk-pixbuf-2.0/${pkg:${gtk}:gtk_binary_version}/loaders/*.so
 	</binary>
 	<!-- Copy in libpyglib, which will pull in other dependencies we need -->
 	<binary>
@@ -77,9 +77,6 @@
 	</binary>
 	<binary>
 		${prefix}/lib/libz*.dylib
-	</binary>
-	<binary>
-		${prefix}/lib/pango/${pkg:pango:pango_module_version}/modules/*.so
 	</binary>
 
 	<binary>
