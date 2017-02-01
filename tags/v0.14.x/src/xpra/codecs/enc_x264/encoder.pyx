@@ -21,7 +21,7 @@ from libc.stdint cimport int64_t, uint64_t, uint8_t
 
 cdef extern from *:
     ctypedef unsigned long size_t
-SUPPORT_24BPP = envbool("XPRA_X264_SUPPORT_24BPP")
+SUPPORT_24BPP = os.environ.get("XPRA_X264_SUPPORT_24BPP", "0")=="1"
 
 cdef extern from "stdint.h":
     pass
