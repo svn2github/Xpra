@@ -372,6 +372,9 @@ li.a {
 	width: auto;
 	min-width: 58em;
 }
+blockquote.citation {
+	margin: 0;
+}
 div.trac-content {
 	border: 0px solid black;
 }
