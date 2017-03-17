@@ -1,0 +1,35 @@
+ffmpeg-xpra (3.2.4-1) UNRELEASED; urgency=low
+
+  * new upstream release
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Wed, 15 Feb 2017 14:59:54 +0700
+
+ffmpeg-xpra (3.2.1-1) UNRELEASED; urgency=low
+
+  * new upstream release
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Sun, 27 Nov 2016 11:37:20 +0700
+
+ffmpeg-xpra (3.2-1) UNRELEASED; urgency=low
+
+  * new upstream release
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Sun, 30 Oct 2016 21:20:36 +0700
+
+ffmpeg-xpra (3.1.3-1) UNRELEASED; urgency=low
+
+  * new upstream release
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Sat, 17 Sep 2016 11:28:47 +0200
+
+ffmpeg-xpra (3.1.1-2) UNRELEASED; urgency=low
+
+  * Add swscale support
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Tue, 02 Aug 2016 23:01:53 +0200
+
+ffmpeg-xpra (3.1.1-1) UNRELEASED; urgency=low
+
+  * Initial release
+
+ -- Antoine Martin <antoine@devloop.org.uk>  Wed, 13 Jul 2016 12:13:39 +0200

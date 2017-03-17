@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+
+		<!--
+			Copyright (c) 2013-2017 Antoine Martin <antoine@devloop.org.uk>
+			Copyright (c) 2014 Joshua Higgins <josh@kxes.net>
+			Licensed under MPL 2.0
+ 		-->
+
+		<title>xpra websockets client</title>
+		<meta charset="utf-8">
+		<meta name="description" content="xpra websockets client">
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="icon" type="image/png" href="/favicon.png">
+
+		<link rel="stylesheet" href="css/client.css">
+		<link rel="stylesheet" href="css/spinner.css">
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script type="text/javascript" src="js/lib/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.ba-throttle-debounce.js"></script>
+
+		<script type="text/javascript" src="js/lib/bencode.js"></script>
+		<script type="text/javascript" src="js/lib/zlib.js"></script>
+		<script type="text/javascript" src="js/lib/lz4.js"></script>
+		<script type="text/javascript" src="js/lib/forge.js"></script>
+
+		<script type="text/javascript" src="js/lib/broadway/Decoder.js"></script>
+		<script type="text/javascript" src="js/lib/aurora/aurora.js"></script>
+		<script type="text/javascript" src="js/lib/aurora/mp3.js"></script>
+		<!--
+		<script type="text/javascript" src="js/lib/aurora/flac.js"></script>
+		-->
+		<script type="text/javascript" src="js/lib/aurora/aurora-xpra.js"></script>
+
+		<script type="text/javascript" src="js/Keycodes.js"></script>
+		<script type="text/javascript" src="js/Protocol.js"></script>
+		<script type="text/javascript" src="js/Window.js"></script>
+		<script type="text/javascript" src="js/Notifications.js"></script>
+		<script type="text/javascript" src="js/Utilities.js"></script>
+		<script type="text/javascript" src="js/MediaSourceUtil.js"></script>
+		<script type="text/javascript" src="js/Client.js"></script>
+	</head>
+
+	<body>
+		<div id="dpi" style="width: 1in; height: 1in; left: -100%; top: -100%; position: absolute;">
+		</div>
+
+		<div id="screen" style="width: 100%; height:100%;">
+		</div>
+
+		<div class="notifications">
+		</div>
+
+	    <div>
+		    <textarea id="pasteboard" onblur="this.focus()" autofocus style="display: block; position: absolute; left: -99em;"></textarea>
+	    </div>
+
+		<script>
+
+			if (!window.location.getParameter) {
+				window.location.getParameter = function(key) {
+					function parseParams() {
+							var params = {},
+									e,
+									a = /\+/g,	// Regex for replacing addition symbol with a space
+									r = /([^&=]+)=?([^&]*)/g,
+									d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+									q = window.location.search.substring(1);
+
+							while (e = r.exec(q))
+									params[d(e[1])] = d(e[2]);
+
+							return params;
+					}
+
+					if (!this.queryStringParams)
+							this.queryStringParams = parseParams();
+
+					return this.queryStringParams[key];
+				};
+			}
+
+			// disable right click menu:
+			window.oncontextmenu = function(e) {
+				//showCustomMenu();
+				return false;
+			}
+
+			function getparam(name) {
+				return window.location.getParameter(name);
+			}
+			function getboolparam(name, default_value) {
+				var v = window.location.getParameter(name);
+				if(v==null) {
+					return default_value;
+				}
+				return ["true", "on", "1"].indexOf(String(v).toLowerCase())>=0;
+			}
+
+			function encodeData(s) {
+				return encodeURIComponent(s);
+			}
+
+			$(document).ready(function() {
+				// look at url parameters
+				var username = getparam("username") || null;
+				var password = getparam("password") || null;
+				var sound = getparam("sound") || null;
+				var audio_codec = getparam("audio_codec") || null;
+				var encoding = getparam("encoding") || null;
+				var action = getparam("action") || "connect";
+				var submit = getparam("submit") || null;
+				var server = getparam("server") || window.location.hostname;
+				var port = getparam("port") || window.location.port;
+				var encryption = getparam("encryption") || null;
+				var key = getparam("key") || null;
+				var keyboard_layout = getparam("keyboard_layout") || null;
+				var start = getparam("start");
+				var exit_with_children = getparam("exit_with_children") || "";
+				var exit_with_client = getparam("exit_with_client") || "";
+				var sharing = getboolparam("sharing", false);
+				var video = getboolparam("video", false);
+				var mediasource_video = getboolparam("mediasource_video", false);
+				var normal_fullscreen = getboolparam("normal_fullscreen", false);
+				var remote_logging = getboolparam("remote_logging", true);
+				var debug = getboolparam("debug", false);
+				var insecure = getboolparam("insecure", false);
+				var ignore_audio_blacklist = getboolparam("ignore_audio_blacklist", false);
+				var clipboard = getboolparam("clipboard", true);
+
+				// create the client
+				var client = new XpraClient('screen');
+				client.debug = debug;
+				client.remote_logging = remote_logging;
+				client.sharing = sharing;
+		    	client.insecure = insecure;
+		    	client.clipboard_enabled = clipboard;
+
+			    // mediasource video
+			    if(video) {
+			    	client.supported_encodings.push("h264");
+				    if(mediasource_video) {
+				    	client.supported_encodings.push("vp8+webm", "h264+mp4", "mpeg4+mp4");
+				    }
+			    }
+			    else if(encoding && (encoding !== "auto")) {
+					// the primary encoding can be set
+					client.enable_encoding(encoding);
+				}
+			    // encodings can be disabled like so
+			    // client.disable_encoding("h264");
+			    if(action && (action!="connect")) {
+			    	sns = {
+			    			"mode" 	: action,
+			    	};
+	    			if(start) {
+	    				sns["start"] = [start];
+	    			}
+    				if (exit_with_children) {
+    					sns["exit-with-children"] = true;
+    				}
+    				if (exit_with_client) {
+    					sns["exit-with-client"] = true;
+    				}
+			    	client.start_new_session = sns
+			    }
+
+			    // see if we should undecorate and maximise normal windows
+			    if(normal_fullscreen) {
+			    	client.normal_fullscreen_mode = true;
+			    }
+
+			    // sound support
+			    if(sound) {
+			    	client.audio_enabled = true;
+			    	console.log("sound enabled, audio codec string: "+audio_codec);
+			    	if(audio_codec && audio_codec.indexOf(":")>0) {
+				    	var acparts = audio_codec.split(":");
+				    	client.audio_framework = acparts[0];
+				    	client.audio_codec = acparts[1];
+			    	}
+			    	client.audio_mediasource_enabled = getboolparam("mediasource", true);
+			    	client.audio_aurora_enabled = getboolparam("aurora", true);
+			    }
+
+			    if(keyboard_layout) {
+			    	client.keyboard_layout = keyboard_layout;
+			    }
+
+			    // check for username and password
+			    if(username) {
+			    	client.username = username;
+			    }
+			    if(password) {
+			    	client.authentication_key = password;
+			    }
+
+			    // check for encryption parameters
+			    if(encryption) {
+			    	client.encryption = encryption;
+			    	if(key) {
+			    		client.encryption_key = key;
+			    	}
+			    }
+
+			    // attach a callback for when client closes
+			    if(!debug) {
+				    client.callback_close = function(reason) {
+				    	if(submit) {
+				    		var message = "Connection closed (socket closed)";
+				    		if(reason) {
+				    			message = reason;
+				    		}
+				    		var url = "/connect.html?disconnect="+message;
+				    		var props = {
+				    				"username"			: username,
+				    				"password"			: password,
+				    				"encoding"			: encoding,
+				    				"keyboard_layout"	: keyboard_layout,
+				    				"action"			: action,
+				    				"sound"				: sound,
+				    				"audio_codec"		: audio_codec,
+				    				"clipboard"			: clipboard,
+				    				"exit_with_children": exit_with_children,
+				    				"exit_with_client"	: exit_with_client,
+				    				"sharing"			: sharing,
+				    				"normal_fullscreen"	: normal_fullscreen,
+				    				"video"				: video,
+				    				"mediasource_video"	: mediasource_video,
+				    				"debug"				: debug,
+				    				"remote_logging"	: remote_logging,
+				    				"insecure"			: insecure,
+				    				"ignore_audio_blacklist" : ignore_audio_blacklist,
+				    				}
+				    		for (var name in props) {
+				    			var value = props[name];
+				    			if(value) {
+					    			url += "&"+name+"="+encodeData(value);
+				    			}
+				    		}
+				    		window.location=url;
+				    	} else {
+					    	// if we didn't submit through the form, silently redirect to the connect gui
+					    	window.location="connect.html";
+					    }
+				    }
+				}
+			    client.init(ignore_audio_blacklist);
+
+			    // and connect
+				var ssl = document.location.protocol=="https:";
+			    client.connect(server, port, ssl);
+
+			   	if (clipboard) {
+				    //clipboard hooks:
+				    var pasteboard = $('#pasteboard');
+					pasteboard.on('paste', function (e) {
+						var paste_data = (e.originalEvent || e).clipboardData.getData('text/plain');
+				        client.send_clipboard_token(paste_data);
+				        return false;
+					});
+					pasteboard.on('copy', function (e) {
+				        var clipboard_buffer = client.get_clipboard_buffer();
+						$('#pasteboard').text(clipboard_buffer);
+				        $('#pasteboard').select();
+				        client.clipboard_pending = false;
+				        return true;
+					});
+					pasteboard.on('cut', function (e) {
+				        var clipboard_buffer = client.get_clipboard_buffer();
+				        $('#pasteboard').text(clipboard_buffer);
+				        $('#pasteboard').select();
+				        client.clipboard_pending = false;
+				        return true;
+					});
+					$('#screen').on('click', function (e) {
+						//console.log("click pending=", client.clipboard_pending, "buffer=", client.clipboard_buffer);
+						if (client.clipboard_pending) {
+					        var clipboard_buffer = client.get_clipboard_buffer();
+					        $('#pasteboard').text(client.clipboard_buffer);
+					        $('#pasteboard').select();
+							//for IE:
+							var success = true;
+							if (window.clipboardData && window.clipboardData.setData) {
+						        clipboardData.setData("Text", this.clipboard_buffer);
+							}
+						    else {
+								success = document.execCommand('copy');
+								//console.log("copy success=", success);
+							}
+							if (success) {
+						        client.clipboard_pending = false;
+							}
+						}
+					});
+			   	}
+			});
+		</script>
+	</body>
+</html>
