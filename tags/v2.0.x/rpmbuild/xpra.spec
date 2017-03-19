@@ -166,12 +166,13 @@ Requires: %{requires_xorg}
 Requires: %{libvpx}
 %if 0%{?fedora}
 Requires: python-avahi
-Requires: libwebp
 Requires: libyuv
 %endif
 Requires: x264-xpra
 Requires: ffmpeg-xpra
+%ifarch x86_64
 Requires: python2-pynvml
+%endif
 Requires: %{numpy}
 Requires: xpra-common = %{version}-%{build_no}%{dist}
 %if 0%{?el7}
@@ -214,7 +215,6 @@ Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
 BuildRequires: uglify-js
-BuildRequires: libwebp-devel
 BuildRequires: libyuv-devel
 %endif
 BuildRequires: x264-xpra-devel
@@ -279,9 +279,7 @@ Requires: xorg-x11-drv-dummy
 Requires: %{requires_xorg}
 Requires: %{libvpx}
 %if 0%{?fedora}
-BuildRequires: libwebp-devel
 BuildRequires: libyuv-devel
-Requires: libwebp
 Requires: libyuv
 %endif
 Requires: x264-xpra
