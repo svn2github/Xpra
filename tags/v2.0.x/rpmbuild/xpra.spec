@@ -261,7 +261,7 @@ s#optional python3 package:
 %package -n python3-xpra
 Summary: Xpra gives you "persistent remote applications" for X.
 Group: Networking
-Requires: python %{py3requires_opengl} %{py3requires_sound} %{py3requires_lzo} %{py3requires_printing}
+Requires: python3 %{py3requires_opengl} %{py3requires_sound} %{py3requires_lzo} %{py3requires_printing}
 Requires: python3-lz4
 Requires: python3-gobject
 Requires: python3-pillow
