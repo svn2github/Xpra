@@ -561,7 +561,21 @@ fi
 
 
 %changelog
-* Fri Mar 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+* Sat Mar 25 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+- fix 64-bit MSYS2 build system setup script
+- fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
+- fix RPM dependencies of python3 package
+- fix absolute bind paths handled as relative locations
+- fix running the Javascript / CSS minifier for MS Windows builds
+- fix missing screen bit depth with Mac OS clients
+- try to ensure the tmpfiles.d directory is created on package installation
+- improve error message when the client or server components aren't installed
+- enable ZIP and MSI by default for MS Windows builds
+- add missing indentation in man page, help page
+- MacOS library updates: libepoxy
+
+
+* Fri Mar 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.0-1
 - dropped support for outdated OS and libraries (long list)
 - 64-bit builds for MS Windows and MacOSX
 - MS Windows MSYS2 based build system with fully up to date libraries
