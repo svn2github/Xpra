@@ -8,6 +8,12 @@
 %global tkinter tkinter
 %global PyQt4 PyQt4
 # none of these RHEL versions have python 3
+%if 0%{?el6}
+        %global with_python3 0
+        %global with_filter 0
+        %global with_webp 0
+        %global lcms %{nil}
+%endif
 %if 0%{?el7}
 	%global with_python3 0
 	%global with_filter 1
