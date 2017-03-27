@@ -5,13 +5,18 @@ xpra (2.0.1-1) UNRELEASED; urgency=low
   * fix absolute bind paths handled as relative locations
   * fix running the Javascript / CSS minifier for MS Windows builds
   * fix missing screen bit depth with Mac OS clients
+  * fix resource leak in HTML5 client
+  * fix error in OpenGL feature detection failure code path
   * try to ensure the tmpfiles.d directory is created on package installation
+  * support more CUDA architectures for NVENC
+  * log details of CUDA kernel loading errors
+  * RPM packaging of tmpfiles.d config
   * improve error message when the client or server components aren't installed
   * enable ZIP and MSI by default for MS Windows builds
   * add missing indentation in man page, help page
   * MacOS library updates: libepoxy
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 18 Mar 2017 01:55:55 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 27 Mar 2017 15:28:21 +0700
 
 xpra (2.0-1) UNRELEASED; urgency=low
   * dropped support for outdated OS and libraries (long list)

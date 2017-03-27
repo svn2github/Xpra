@@ -561,19 +561,23 @@ fi
 
 
 %changelog
-* Sat Mar 25 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+* Mon Mar 27 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
 - fix 64-bit MSYS2 build system setup script
 - fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
 - fix RPM dependencies of python3 package
 - fix absolute bind paths handled as relative locations
 - fix running the Javascript / CSS minifier for MS Windows builds
 - fix missing screen bit depth with Mac OS clients
+- fix resource leak in HTML5 client
+- fix error in OpenGL feature detection failure code path
 - try to ensure the tmpfiles.d directory is created on package installation
+- support more CUDA architectures for NVENC
+- log details of CUDA kernel loading errors
+- RPM packaging of tmpfiles.d config
 - improve error message when the client or server components aren't installed
 - enable ZIP and MSI by default for MS Windows builds
 - add missing indentation in man page, help page
 - MacOS library updates: libepoxy
-
 
 * Fri Mar 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.0-1
 - dropped support for outdated OS and libraries (long list)
