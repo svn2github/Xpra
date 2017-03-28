@@ -1,5 +1,6 @@
-v2.0.1 (2017-03-27)
+v2.0.1 (2017-03-28)
 ======================
+	-- fix X11 server crashes with very short-lived OR windows
 	-- fix 64-bit MSYS2 build system setup script
 	-- fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
 	-- fix RPM dependencies of python3 package

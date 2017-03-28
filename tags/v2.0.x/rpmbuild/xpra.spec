@@ -561,7 +561,8 @@ fi
 
 
 %changelog
-* Mon Mar 27 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+* Tue Mar 28 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+- fix X11 server crashes with very short-lived OR windows
 - fix 64-bit MSYS2 build system setup script
 - fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
 - fix RPM dependencies of python3 package
