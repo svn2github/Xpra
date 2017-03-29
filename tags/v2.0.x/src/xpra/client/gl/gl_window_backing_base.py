@@ -261,7 +261,8 @@ class GLWindowBackingBase(GTKWindowBacking):
             else:
                 self.internal_format = GL_RGB
                 self.texture_pixel_format = GL_RGB
-        self.draw_needs_refresh = False
+        #see #1469
+        #self.draw_needs_refresh = False
         self._backing.show()
 
     def init_gl_config(self, window_alpha):
