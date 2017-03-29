@@ -561,7 +561,7 @@ fi
 
 
 %changelog
-* Tue Mar 28 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+* Wed Mar 29 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
 - fix X11 server crashes with very short-lived OR windows
 - fix 64-bit MSYS2 build system setup script
 - fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
@@ -571,6 +571,10 @@ fi
 - fix missing screen bit depth with Mac OS clients
 - fix resource leak in HTML5 client
 - fix error in OpenGL feature detection failure code path
+- fix socket group permissions failures more gracefully
+- fix proxy server control socket path issues
+- fix exit-with-client and server shutdown race conditions
+- fix missing window paint refresh with some posix window managers
 - try to ensure the tmpfiles.d directory is created on package installation
 - support more CUDA architectures for NVENC
 - log details of CUDA kernel loading errors
