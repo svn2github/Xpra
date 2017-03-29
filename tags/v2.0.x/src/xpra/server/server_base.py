@@ -982,7 +982,7 @@ class ServerBase(ServerCore):
         #must run from the UI thread (modifies focus and keys)
         if self.exit_with_client:
             netlog.info("Last client has disconnected, terminating")
-            self.quit(False)
+            self.clean_quit(False)
         else:
             self.reset_server_timeout(True)
             #so it is now safe to clear them:
@@ -1081,6 +1081,11 @@ class ServerBase(ServerCore):
                 else:
                     share_count += 1
 
+        #don't accept this connection if we're going to exit-with-client:
+        if disconnected>0 and share_count==0 and self.exit_with_client:
+            self.disconnect_client(proto, SERVER_EXIT, "last client has exited")
+            return
+
         if detach_request:
             self.disconnect_client(proto, DONE, "%i other clients have been disconnected" % disconnected)
             return
@@ -1166,7 +1171,11 @@ class ServerBase(ServerCore):
     def parse_hello_ui(self, ss, c, auth_caps, send_ui, share_count):
         #adds try:except around parse hello ui code:
         try:
+            if self._closing:
+                raise Exception("server is shutting down")
             self.do_parse_hello_ui(ss, c, auth_caps, send_ui, share_count)
+            if self._closing:
+                raise Exception("server is shutting down")
         except Exception as e:
             #log exception but don't disclose internal details to the client
             p = ss.protocol
