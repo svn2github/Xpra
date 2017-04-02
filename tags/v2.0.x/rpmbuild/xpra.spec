@@ -561,8 +561,9 @@ fi
 
 
 %changelog
-* Wed Mar 29 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
+* Sun Apr 02 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
 - fix X11 server crashes with very short-lived OR windows
+- fix SSL connection failures
 - fix 64-bit MSYS2 build system setup script
 - fix RPM dependencies: remove libwebp, pynvml is only used on 64-bit, common package is always required
 - fix RPM dependencies of python3 package
@@ -570,12 +571,18 @@ fi
 - fix running the Javascript / CSS minifier for MS Windows builds
 - fix missing screen bit depth with Mac OS clients
 - fix resource leak in HTML5 client
+- fix missed characters in HTML5 client disconnection message
+- fix HTML5 password field wrongly greyed out
+- fix HTML5 window title bar wrapping
+- fix backwards compatibility for hmac authentication
 - fix error in OpenGL feature detection failure code path
 - fix socket group permissions failures more gracefully
 - fix proxy server control socket path issues
 - fix exit-with-client and server shutdown race conditions
 - fix missing window paint refresh with some posix window managers
 - try to ensure the tmpfiles.d directory is created on package installation
+- add support for Ubuntu Zesty packaging
+- support relative file paths in authentication modules
 - support more CUDA architectures for NVENC
 - log details of CUDA kernel loading errors
 - RPM packaging of tmpfiles.d config
