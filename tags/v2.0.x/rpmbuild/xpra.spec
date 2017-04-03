@@ -403,7 +403,12 @@ rm -rf $RPM_BUILD_ROOT
 %files common
 %defattr(-,root,root)
 %{_bindir}/xpra*
-%{_datadir}/xpra
+%{_datadir}/xpra/README
+%{_datadir}/xpra/COPYING
+%{_datadir}/xpra/icons
+%ifarch x86_64
+%{_datadir}/xpra/cuda
+%endif
 %{_datadir}/man/man1/xpra*
 %{_datadir}/applications/xpra_launcher.desktop
 %{_datadir}/applications/xpra.desktop
