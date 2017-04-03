@@ -566,6 +566,11 @@ fi
 
 
 %changelog
+* Mon Apr 03 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-2
+- fix ICC version number parsing
+- fix UTF8 window titles
+- fix double-bundling of HTML5 client in RPM packages
+
 * Sun Apr 02 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-1
 - fix X11 server crashes with very short-lived OR windows
 - fix SSL connection failures
