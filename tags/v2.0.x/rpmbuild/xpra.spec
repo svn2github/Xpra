@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.0.1
+%define version 2.0.2
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -148,7 +148,7 @@ So basically it's screen for remote X apps.
 %package -n python2-xpra
 Summary: python2 build of xpra
 Group: Networking
-Conflicts: xpra < 2.0.1
+Conflicts: xpra < 2.0.2
 Requires: xpra-common = %{version}-%{build_no}%{dist}
 
 Requires: python %{requires_opengl} %{requires_sound} %{requires_lzo} %{requires_websockify} %{requires_printing} %{requires_webcam} %{requires_jpeg}
@@ -251,7 +251,7 @@ getent group xpra > /dev/null || groupadd -r xpra
 Summary: Xpra HTML5 client
 Group: Networking
 BuildArch: noarch
-Conflicts: xpra < 2.0.1
+Conflicts: xpra < 2.0.2
 
 %description html5
 This package contains Xpra's HTML5 client.
@@ -566,6 +566,15 @@ fi
 
 
 %changelog
+* Sun Apr 09 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
+- fix SSL servers on MS Windows
+- fix HTML5 handling of Unicode in clipboard
+- fix window opacity forwarding
+- fix missing system tray with Ubuntu Zesty
+- fix nvenc codec name shown in config file example
+- workaround broken MSYS2 dependencies
+- more helpful warning message when dbus bindings are missing
+
 * Mon Apr 03 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-2
 - fix ICC version number parsing
 - fix UTF8 window titles
@@ -945,7 +954,7 @@ fi
 - fix 32-bit server timestamps
 - fix client PNG handling on installations without PIL / Pillow
 
-* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.0.1-1
+* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.0-1
 - NVENC support for YUV444 mode, support for automatic bitrate tuning
 - NVENC and CUDA load balancing for multiple cards
 - proxy encoding: ability to encode on proxy server
@@ -1552,7 +1561,7 @@ fi
 - automated regression and performance tests
 - remove compatibility code for versions older than 0.1
 
-* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.0.1-1
+* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.0-1
 - x264 and vpx video encoding support
 - gtk3 and python 3 partial support (client only - no keyboard support)
 - detect missing X11 server extensions and exit with error

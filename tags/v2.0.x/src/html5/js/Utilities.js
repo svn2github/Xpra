@@ -2,15 +2,15 @@
  * This file is part of Xpra.
  * Copyright (C) 2016 Antoine Martin <antoine@devloop.org.uk>
  * Copyright (c) 2016 Spikes, Inc.
- * Licensed under MPL 2.0.1, see:
- * http://www.mozilla.org/MPL/2.0.1/
+ * Licensed under MPL 2.0.2, see:
+ * http://www.mozilla.org/MPL/2.0.2/
  *
  */
 
 'use strict';
 
 var Utilities = {
-	VERSION	: "2.0.1",
+	VERSION	: "2.0.2",
 
 	error : function() {
 		console.error.apply(console, arguments);
