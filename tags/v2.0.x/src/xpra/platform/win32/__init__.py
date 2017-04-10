@@ -30,10 +30,11 @@ STDOUT_FILENO = 1
 STDERR_FILENO = 2
 WriteConsoleW = WINFUNCTYPE(BOOL, HANDLE, LPWSTR, DWORD, POINTER(DWORD), LPVOID)(("WriteConsoleW", kernel32))
 
+GetConsoleCP = kernel32.GetConsoleCP
 
-#redirect output if we are launched from py2exe's gui mode:
+#redirect output if we're not running from a console:
 frozen = getattr(sys, 'frozen', False)
-REDIRECT_OUTPUT = frozen=="windows_exe"
+REDIRECT_OUTPUT = frozen is True and GetConsoleCP()==0
 if frozen:
     #cx_freeze paths:
     def jedir(relpathname):
