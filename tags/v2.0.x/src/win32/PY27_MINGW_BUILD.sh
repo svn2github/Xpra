@@ -175,7 +175,7 @@ if [ "${DO_INSTALLER}" == "1" ]; then
 	rm -f "Xpra_Setup.exe" "${INSTALLER_FILENAME}" "${INNOSETUP_LOG}"
 	cp "win32/xpra.iss" "xpra.iss"
 	if [ "${MSYSTEM_CARCH}" == "x86_64" ]; then
-		cat "win32/xpra.iss" | sed '/\(ArchitecturesInstallIn64BitMode\|ArchitecturesInstallIn64BitMode\)/ s/=.*/=x64/g' | sed '/\(AppName=\|AppVerName=\|DefaultGroupName=\)/ s/\r$/ (64-bit)\r/g' > "xpra.iss"
+		cat "win32/xpra.iss" | sed '/\(ArchitecturesInstallIn64BitMode\|ArchitecturesInstallIn64BitMode\)/ s/=.*/=x64/g' | sed '/\(AppName=\|AppVerName=\|DefaultGroupName=\)/ s/\r$/ (64-bit)\r/g' | sed 's/ArchitecturesAllowed=.*/ArchitecturesAllowed=x64/g' > "xpra.iss"
 	fi
 	"${INNOSETUP}" "xpra.iss" >& "${INNOSETUP_LOG}"
 	if [ "$?" != "0" ]; then
