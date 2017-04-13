@@ -1,14 +1,18 @@
 xpra (2.0.2-1) UNRELEASED; urgency=low
   * fix SSL servers on MS Windows
+  * fix redirection to log file on MS Windows
+  * fix 64-bit MS Windows installer platform compatibility check
   * fix HTML5 handling of Unicode in window titles and clipboard
   * fix X11 ICC profile version format
+  * fix server errors with locked batch delays
+  * fix pixel depth command option error handler
   * fix window opacity forwarding
   * fix missing system tray with Ubuntu Zesty
   * fix nvenc codec name shown in config file example
   * workaround broken MSYS2 dependencies
   * more helpful warning message when dbus bindings are missing
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 09 Apr 2017 12:58:26 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 13 Apr 2017 19:25:00 +0700
 
 xpra (2.0.1-1) UNRELEASED; urgency=low
   * fix X11 server crashes with very short-lived OR windows

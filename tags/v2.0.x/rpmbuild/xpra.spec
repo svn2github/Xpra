@@ -566,9 +566,14 @@ fi
 
 
 %changelog
-* Sun Apr 09 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
+* Thu Apr 13 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
 - fix SSL servers on MS Windows
-- fix HTML5 handling of Unicode in clipboard
+- fix redirection to log file on MS Windows
+- fix 64-bit MS Windows installer platform compatibility check
+- fix HTML5 handling of Unicode in window titles and clipboard
+- fix X11 ICC profile version format
+- fix server errors with locked batch delays
+- fix pixel depth command option error handler
 - fix window opacity forwarding
 - fix missing system tray with Ubuntu Zesty
 - fix nvenc codec name shown in config file example
