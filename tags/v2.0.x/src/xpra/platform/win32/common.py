@@ -6,9 +6,10 @@
 
 import ctypes
 
-from ctypes import WinDLL, Structure, c_ulong, c_ushort, c_ubyte, c_int, c_uint, c_double
+from ctypes import WinDLL, Structure, c_ulong, c_ushort, c_ubyte, c_int, c_uint, c_double, c_long
 from ctypes.wintypes import HWND, DWORD, WPARAM, LPARAM, HDC, HMONITOR, HMODULE, SHORT, ATOM, POINTER, RECT
 from ctypes.wintypes import HANDLE, LPCWSTR, UINT, INT, WINFUNCTYPE, BOOL, HGDIOBJ, LONG, LPVOID, HBITMAP
+LRESULT = c_long
 
 kernel32 = WinDLL("kernel32", use_last_error=True)
 SetConsoleTitleA = kernel32.SetConsoleTitleA
@@ -57,7 +58,7 @@ GetKeyState = user32.GetKeyState
 GetKeyState.restype = SHORT
 GetKeyboardLayout = user32.GetKeyboardLayout
 GetKeyboardLayoutList = user32.GetKeyboardLayoutList
-GetKeyboardLayoutList.argtypes = [INT, POINTER(HANDLE*32)]
+GetKeyboardLayoutList.argtypes = [c_int, POINTER(HANDLE*32)]
 SystemParametersInfoA = user32.SystemParametersInfoA
 EnumWindows = user32.EnumWindows
 EnumWindowsProc = ctypes.WINFUNCTYPE(BOOL, HWND, LPARAM)
@@ -84,7 +85,6 @@ ReleaseDC = user32.ReleaseDC
 PostQuitMessage = user32.PostQuitMessage
 
 gdi32 = WinDLL("gdi32", use_last_error=True)
-GetDeviceCaps = gdi32.GetDeviceCaps
 CreateCompatibleDC = gdi32.CreateCompatibleDC
 CreateCompatibleDC.restype = HDC
 CreateCompatibleBitmap = gdi32.CreateCompatibleBitmap
@@ -99,6 +99,8 @@ SelectObject.argtypes = [HDC, HGDIOBJ]
 SelectObject.restype = HGDIOBJ
 BitBlt = gdi32.BitBlt
 GetDeviceCaps = gdi32.GetDeviceCaps
+GetDeviceCaps.argtypes = [HDC, c_int]
+GetDeviceCaps.restype = c_int
 GetSystemPaletteEntries = gdi32.GetSystemPaletteEntries
 GetSystemPaletteEntries.restype = UINT
 GetStockObject = gdi32.GetStockObject
@@ -110,7 +112,7 @@ DeleteObject = gdi32.DeleteObject
 
 
 #wrap EnumDisplayMonitors to hide the callback function:
-MonitorEnumProc = ctypes.WINFUNCTYPE(c_int, c_ulong, c_ulong, POINTER(RECT), c_double)
+MonitorEnumProc = ctypes.WINFUNCTYPE(BOOL, HMONITOR, HDC, POINTER(RECT), LPARAM)
 _EnumDisplayMonitors = EnumDisplayMonitors
 def EnumDisplayMonitors():
     results = []
@@ -122,7 +124,7 @@ def EnumDisplayMonitors():
     return results
 
 
-WNDPROC = WINFUNCTYPE(c_int, HANDLE, c_uint, WPARAM, LPARAM)
+WNDPROC = WINFUNCTYPE(LRESULT, HWND, UINT, WPARAM, LPARAM)
 
 class WNDCLASSEX(Structure):
     _fields_ = [
