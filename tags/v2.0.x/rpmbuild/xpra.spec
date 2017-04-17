@@ -566,19 +566,30 @@ fi
 
 
 %changelog
-* Thu Apr 13 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
+* Tue Apr 18 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
+- fix clipboard synchronization with Mac OS clients
+- fix raising of windows when connecting from Mac OS
+- fix exit code of helper commands on Mac OS
+- fix video fallback encoding when running at high bit depths
 - fix SSL servers on MS Windows
 - fix redirection to log file on MS Windows
+- fix native API calls causing spurious errors on MS Windows
+- fix inconsistent desktop state after using the screenshot feature on MS Windows
 - fix 64-bit MS Windows installer platform compatibility check
 - fix HTML5 handling of Unicode in window titles and clipboard
+- fix SSL-upgradable sockets not exposed via mDNS
+- fix connection to IPv6 addresses
 - fix X11 ICC profile version format
 - fix server errors with locked batch delays
 - fix pixel depth command option error handler
 - fix window opacity forwarding
 - fix missing system tray with Ubuntu Zesty
 - fix nvenc codec name shown in config file example
+- fix error handling of screenshot feature from the bug report tool
+- improve error handling when native Mac OS bindings are missing
 - workaround broken MSYS2 dependencies
 - more helpful warning message when dbus bindings are missing
+- Mac OS library updates: Pillow 4.1, ffmpeg 3.3
 
 * Mon Apr 03 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.1-2
 - fix ICC version number parsing
