@@ -108,7 +108,7 @@ if PKG_CONFIG and (PYTHON3 or MINGW_PREFIX or not WIN32):
 for arg in list(sys.argv):
     if arg.startswith("--pkg-config-path="):
         pcp = arg[len("--pkg-config-path="):]
-        pcps = os.environ.get("PKG_CONFIG_PATH", "").split(os.path.pathsep) + [pcp]
+        pcps = [pcp] + os.environ.get("PKG_CONFIG_PATH", "").split(os.path.pathsep)
         os.environ["PKG_CONFIG_PATH"] = os.path.pathsep.join([x for x in pcps if x])
         print("using PKG_CONFIG_PATH=%s" % (os.environ["PKG_CONFIG_PATH"], ))
         sys.argv.remove(arg)
@@ -737,7 +737,7 @@ def exec_pkgconfig(*pkgs_options, **ekw):
                 add_to_keywords(kw, 'extra_compile_args', '-fsanitize=address')
                 add_to_keywords(kw, 'extra_link_args', '-fsanitize=address')
     if rpath:
-        #insert_into_keywords(kw, "library_dirs", rpath)
+        insert_into_keywords(kw, "library_dirs", rpath)
         insert_into_keywords(kw, "extra_link_args", "-Wl,-rpath=%s" % rpath)
     #add_to_keywords(kw, 'include_dirs', '.')
     if verbose_ENABLED:
