@@ -239,4 +239,12 @@ var Utilities = {
 			deltaMode : (event.deltaMode || 0),
 			};
 	},
+
+	StringToUint8 : function(str) {
+		var u8a = new Uint8Array(str.length);
+		for(var i=0,j=str.length;i<j;++i){
+			u8a[i] = str.charCodeAt(i);
+		}
+		return u8a;
+	},
 };
