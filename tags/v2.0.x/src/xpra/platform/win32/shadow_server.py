@@ -36,10 +36,10 @@ from xpra.platform.win32.common import (EnumWindows, EnumWindowsProc, FindWindow
                                         GetWindowRect,
                                         GetWindowThreadProcessId,
                                         GetDesktopWindow, GetSystemMetrics,
-                                        GetWindowDC, SetCursorPos,
+                                        GetWindowDC, ReleaseDC, SetCursorPos,
                                         mouse_event)
 #gdi32:
-from xpra.platform.win32.common import (CreateCompatibleDC,
+from xpra.platform.win32.common import (CreateCompatibleDC, DeleteDC,
                                         CreateCompatibleBitmap,
                                         GetBitmapBits, SelectObject,
                                         BitBlt, GetDeviceCaps,
@@ -106,7 +106,6 @@ class Win32RootWindowModel(RootWindowModel):
 
     def __init__(self, root):
         RootWindowModel.__init__(self, root)
-        self.metrics = None
         self.dc, self.memdc, self.bitmap = None, None, None
         self.bit_depth = 32
         self.bitblt_err_time = 0
@@ -120,6 +119,14 @@ class Win32RootWindowModel(RootWindowModel):
     def cleanup(self):
         if self.disabled_dwm_composition:
             set_dwm_composition(DWM_EC_ENABLECOMPOSITION)
+        dc = self.dc
+        if dc:
+            self.dc = None
+            ReleaseDC(dc)
+        memdc = self.memdc
+        if memdc:
+            self.memdc = None
+            DeleteDC(memdc)
 
     def refresh_shape(self):
         rectangles = self.get_shape_rectangles()
