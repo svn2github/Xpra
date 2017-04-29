@@ -288,7 +288,7 @@ cdef const vpx_codec_iface_t  *make_codec_cx(encoding):
 
 #educated guess:
 MAX_SIZE = {
-    "vp8"   : (4096, 4096),
+    "vp8"   : (8192, 4096),
     "vp9"   : (8192, 4096),
     }
 #no idea why, but this is the default on win32:
