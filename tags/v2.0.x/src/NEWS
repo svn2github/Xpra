@@ -1,3 +1,29 @@
+v2.0.3 (2017-05-13)
+======================
+	-- fix server startup failures when running without stdout or stderr
+	-- fix library versions used when multiple versions are installed
+	-- fix loss of clipboard synchronization with direction restrictions
+	-- fix audio stream duplicated header
+	-- fix vp8 codec maximum picture size (8kx4k on posix platforms)
+	-- fix shadow servers picture corruption when using non-standard pixel-depth
+	-- fix HTML5 exception in audio error handler
+	-- fix HTML5 using the wrong audio codec
+	-- fix HTML5 audio codec fallback
+	-- fix HTML5 audio not closed on end-of-stream
+	-- fix HTML5 MediaSource API availability detection
+	-- fix HTML5 spurious paint error messages
+	-- fix X11 ICC profile version handling: continue if missing
+	-- fix X11 extensions checks, prevent event code mismatch
+	-- fix window model leak when we fail to manage a window
+	-- fix nvenc encoding reported (wrongly hardcoded to H264)
+	-- fix handling of unsupported connection types
+	-- fix handling of desktop window resizing, prevent it from moving off-screen
+	-- fix missing error exit code from test-connect and remote-start subcommands
+	-- disable "legacy mp3" audio decoding in the HTML5 client
+	-- avoid warnings when running with newer versions of the config files
+	-- blacklist Mesa Intel Ivybridge GPU
+
+
 v2.0.2 (2017-04-18)
 ======================
 	-- fix clipboard synchronization with Mac OS clients

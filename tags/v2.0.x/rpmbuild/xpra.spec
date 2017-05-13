@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.0.2
+%define version 2.0.3
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -148,7 +148,7 @@ So basically it's screen for remote X apps.
 %package -n python2-xpra
 Summary: python2 build of xpra
 Group: Networking
-Conflicts: xpra < 2.0.2
+Conflicts: xpra < 2.0.3
 Requires: xpra-common = %{version}-%{build_no}%{dist}
 
 Requires: python %{requires_opengl} %{requires_sound} %{requires_lzo} %{requires_websockify} %{requires_printing} %{requires_webcam} %{requires_jpeg}
@@ -251,7 +251,7 @@ getent group xpra > /dev/null || groupadd -r xpra
 Summary: Xpra HTML5 client
 Group: Networking
 BuildArch: noarch
-Conflicts: xpra < 2.0.2
+Conflicts: xpra < 2.0.3
 
 %description html5
 This package contains Xpra's HTML5 client.
@@ -566,6 +566,30 @@ fi
 
 
 %changelog
+* Sat May 13 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
+- fix server startup failures when running without stdout or stderr
+- fix library versions used when multiple versions are installed
+- fix loss of clipboard synchronization with direction restrictions
+- fix audio stream duplicated header
+- fix vp8 codec maximum picture size (8kx4k on posix platforms)
+- fix shadow servers picture corruption when using non-standard pixel-depth
+- fix HTML5 exception in audio error handler
+- fix HTML5 using the wrong audio codec
+- fix HTML5 audio codec fallback
+- fix HTML5 audio not closed on end-of-stream
+- fix HTML5 MediaSource API availability detection
+- fix HTML5 spurious paint error messages
+- fix X11 ICC profile version handling: continue if missing
+- fix X11 extensions checks, prevent event code mismatch
+- fix window model leak when we fail to manage a window
+- fix nvenc encoding reported (wrongly hardcoded to H264)
+- fix handling of unsupported connection types
+- fix handling of desktop window resizing, prevent it from moving off-screen
+- fix missing error exit code from test-connect and remote-start subcommands
+- disable "legacy mp3" audio decoding in the HTML5 client
+- avoid warnings when running with newer versions of the config files
+- blacklist Mesa Intel Ivybridge GPU
+
 * Tue Apr 18 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.2-1
 - fix clipboard synchronization with Mac OS clients
 - fix raising of windows when connecting from Mac OS
