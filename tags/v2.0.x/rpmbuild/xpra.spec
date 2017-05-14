@@ -566,7 +566,7 @@ fi
 
 
 %changelog
-* Sat May 13 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
+* Sun May 14 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
 - fix server startup failures when running without stdout or stderr
 - fix library versions used when multiple versions are installed
 - fix loss of clipboard synchronization with direction restrictions
@@ -586,6 +586,9 @@ fi
 - fix handling of unsupported connection types
 - fix handling of desktop window resizing, prevent it from moving off-screen
 - fix missing error exit code from test-connect and remote-start subcommands
+- fix lost window icons with some window managers
+- fix python-lz4 library version detection
+- fix audio forwarding with MS Windows clients in GUI mode
 - disable "legacy mp3" audio decoding in the HTML5 client
 - avoid warnings when running with newer versions of the config files
 - blacklist Mesa Intel Ivybridge GPU

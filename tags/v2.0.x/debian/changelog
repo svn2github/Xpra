@@ -18,11 +18,14 @@ xpra (2.0.3-1) UNRELEASED; urgency=low
   * fix handling of unsupported connection types
   * fix handling of desktop window resizing, prevent it from moving off-screen
   * fix missing error exit code from test-connect and remote-start subcommands
+  * fix lost window icons with some window managers
+  * fix python-lz4 library version detection
+  * fix audio forwarding with MS Windows clients in GUI mode
   * disable "legacy mp3" audio decoding in the HTML5 client
   * avoid warnings when running with newer versions of the config files
   * blacklist Mesa Intel Ivybridge GPU
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 13 May 2017 10:48:12 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 14 May 2017 13:35:18 +0700
 
 xpra (2.0.2-1) UNRELEASED; urgency=low
   * fix clipboard synchronization with Mac OS clients
