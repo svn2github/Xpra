@@ -566,7 +566,7 @@ fi
 
 
 %changelog
-* Sun May 14 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
+* Mon May 22 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
 - fix server startup failures when running without stdout or stderr
 - fix library versions used when multiple versions are installed
 - fix loss of clipboard synchronization with direction restrictions
@@ -589,6 +589,12 @@ fi
 - fix lost window icons with some window managers
 - fix python-lz4 library version detection
 - fix audio forwarding with MS Windows clients in GUI mode
+- fix errors during launcher cleanup
+- fix proxy server errors with scroll encoded packets
+- fix Mac OS corrupted build patch
+- fix command name used for audio forwarding on MS Windows
+- fix crashes accessing some xsettings
+- fix systray logging on posix OS
 - disable "legacy mp3" audio decoding in the HTML5 client
 - avoid warnings when running with newer versions of the config files
 - blacklist Mesa Intel Ivybridge GPU

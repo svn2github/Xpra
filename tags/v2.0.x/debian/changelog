@@ -21,11 +21,17 @@ xpra (2.0.3-1) UNRELEASED; urgency=low
   * fix lost window icons with some window managers
   * fix python-lz4 library version detection
   * fix audio forwarding with MS Windows clients in GUI mode
+  * fix errors during launcher cleanup
+  * fix proxy server errors with scroll encoded packets
+  * fix Mac OS corrupted build patch
+  * fix command name used for audio forwarding on MS Windows
+  * fix crashes accessing some xsettings
+  * fix systray logging on posix OS
   * disable "legacy mp3" audio decoding in the HTML5 client
   * avoid warnings when running with newer versions of the config files
   * blacklist Mesa Intel Ivybridge GPU
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 14 May 2017 13:35:18 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 22 May 2017 23:00:15 +0700
 
 xpra (2.0.2-1) UNRELEASED; urgency=low
   * fix clipboard synchronization with Mac OS clients
