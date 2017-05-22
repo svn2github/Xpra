@@ -14,7 +14,7 @@ log = Logger("posix")
 eventlog = Logger("posix", "events")
 screenlog = Logger("posix", "screen")
 dbuslog = Logger("posix", "dbus")
-traylog = Logger("posix", "menu")
+traylog = Logger("posix", "tray")
 menulog = Logger("posix", "menu")
 
 from xpra.os_util import strtobytes, bytestostr
