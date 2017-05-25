@@ -49,7 +49,7 @@ class Authenticator(SysAuthenticator):
             return True
         log.error("Error: win32 authentication failed:")
         log.error(" %s", FormatError(error))
-        return True
+        return False
 
     def __repr__(self):
         return "win32"
