@@ -28,6 +28,7 @@ from xpra.platform.dotxpra import DotXpra, norm_makepath, osexpand
 WAIT_FOR_UNKNOWN = envint("XPRA_WAIT_FOR_UNKNOWN_SOCKETS", 5)
 
 DEFAULT_VFB_RESOLUTION = tuple(int(x) for x in os.environ.get("XPRA_DEFAULT_VFB_RESOLUTION", "8192x4096").replace(",", "x").split("x", 1))
+DEFAULT_DESKTOP_VFB_RESOLUTION = tuple(int(x) for x in os.environ.get("XPRA_DEFAULT_DESKTOP_VFB_RESOLUTION", "1280x1024").replace(",", "x").split("x", 1))
 
 
 _cleanups = []
@@ -1456,9 +1457,13 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args, desktop_display=None
                         sizes = randr.get_screen_sizes()
                         size = randr.get_screen_size()
                         log("RandR available, current size=%s, sizes available=%s", size, sizes)
-                        if DEFAULT_VFB_RESOLUTION in sizes:
-                            log("RandR setting new screen size to %s", DEFAULT_VFB_RESOLUTION)
-                            randr.set_screen_size(*DEFAULT_VFB_RESOLUTION)
+                        if starting:
+                            res = DEFAULT_VFB_RESOLUTION
+                        else:
+                            res = DEFAULT_DESKTOP_VFB_RESOLUTION
+                        if res in sizes:
+                            log("RandR setting new screen size to %s", res)
+                            randr.set_screen_size(*res)
                 except Exception as e:
                     log.warn("Warning: failed to set the default screen size:")
                     log.warn(" %s", e)
