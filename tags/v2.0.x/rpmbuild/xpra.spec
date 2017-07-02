@@ -567,7 +567,18 @@ fi
 
 
 %changelog
-* Mon May 22 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
+* Sun Jul 02 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
+- fix security issue in the win32 authentication module
+- fix potential symlink attacks when running the proxy server as root
+- fix authentication with unencrypted xor mode
+- fix packet handling errors with AES encryption enabled
+- fix compatibility with Fedora 26: disable broken systemd-run
+- fix RPM build errors due to incompatible build and install switches
+- fix RPM build dependency: the test phase needs rencode
+- fix build prefix stripping with newer Debian versions
+- fix Debian Stretch x264 package dependency
+- fix Debian deprecated package name for Python Pillow
+- fix window aspect ratio handling in client
 - fix server startup failures when running without stdout or stderr
 - fix library versions used when multiple versions are installed
 - fix loss of clipboard synchronization with direction restrictions
@@ -596,6 +607,8 @@ fi
 - fix command name used for audio forwarding on MS Windows
 - fix crashes accessing some xsettings
 - fix systray logging on posix OS
+- use a smaller initial display size with desktop mode
+- launcher now shows the more secure transports first
 - disable "legacy mp3" audio decoding in the HTML5 client
 - avoid warnings when running with newer versions of the config files
 - blacklist Mesa Intel Ivybridge GPU
