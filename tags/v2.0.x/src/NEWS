@@ -1,3 +1,9 @@
+v2.0.4 (2017-07-05)
+======================
+	-- fix Cython runtime warnings in keyboard definition parsing
+	-- fix compilation with Cython 0.26b0
+
+
 v2.0.3 (2017-07-02)
 ======================
 	-- fix security issue in the win32 authentication module

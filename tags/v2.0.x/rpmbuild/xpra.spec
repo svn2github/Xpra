@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.0.3
+%define version 2.0.4
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -148,7 +148,7 @@ So basically it's screen for remote X apps.
 %package -n python2-xpra
 Summary: python2 build of xpra
 Group: Networking
-Conflicts: xpra < 2.0.3
+Conflicts: xpra < 2.0.4
 Requires: xpra-common = %{version}-%{build_no}%{dist}
 
 Requires: python %{requires_opengl} %{requires_sound} %{requires_lzo} %{requires_websockify} %{requires_printing} %{requires_webcam} %{requires_jpeg}
@@ -252,7 +252,7 @@ getent group xpra > /dev/null || groupadd -r xpra
 Summary: Xpra HTML5 client
 Group: Networking
 BuildArch: noarch
-Conflicts: xpra < 2.0.3
+Conflicts: xpra < 2.0.4
 
 %description html5
 This package contains Xpra's HTML5 client.
@@ -567,6 +567,10 @@ fi
 
 
 %changelog
+* Wed Jul 05 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.4-1
+- fix Cython runtime warnings in keyboard definition parsing
+- fix compilation with Cython 0.26b0
+
 * Sun Jul 02 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
 - fix security issue in the win32 authentication module
 - fix potential symlink attacks when running the proxy server as root

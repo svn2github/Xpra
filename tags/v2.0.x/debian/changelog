@@ -1,3 +1,9 @@
+xpra (2.0.4-1) UNRELEASED; urgency=low
+  * fix Cython runtime warnings in keyboard definition parsing
+  * fix compilation with Cython 0.26b0
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 05 Jul 2017 20:00:17 +0700
+
 xpra (2.0.3-1) UNRELEASED; urgency=low
   * fix security issue in the win32 authentication module
   * fix potential symlink attacks when running the proxy server as root
