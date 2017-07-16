@@ -85,6 +85,8 @@ GetDC = user32.GetDC
 GetDC.argtypes = [HWND]
 GetDC.restype = HDC
 ReleaseDC = user32.ReleaseDC
+ReleaseDC.argtypes = [HWND, HDC]
+ReleaseDC.restype = int
 PostQuitMessage = user32.PostQuitMessage
 
 gdi32 = WinDLL("gdi32", use_last_error=True)
