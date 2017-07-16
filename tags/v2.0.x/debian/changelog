@@ -1,8 +1,25 @@
 xpra (2.0.4-1) UNRELEASED; urgency=low
   * fix Cython runtime warnings in keyboard definition parsing
   * fix compilation with Cython 0.26b0
+  * fix sample configuration file line endings on MS Windows
+  * fix Mac OS build failures with python3 installed
+  * fix Mac OS errors with clipboard disabled on server
+  * fix Mac OS keyboard layout detection
+  * fix missing man page entry for pixel-depth, etc
+  * fix resource leaks on 64-bit MS Windows builds
+  * fix XSettings error preventing server from starting
+  * fix XSettings command line tool crash
+  * fix window rendering pixel depth ignored
+  * fix server startup error in the window icon capture code
+  * fix window repaint after change in border paint status
+  * fix icon error on resume from suspended state
+  * fix error message for missing shadow X11 display
+  * fix DPI miscalculation in case of platform API error
+  * fix scroll encoding errors during window resizing
+  * fix handling of shadow server screen resizing
+  * fix window geometry feature flag wrongly removed
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 05 Jul 2017 20:00:17 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 16 Jul 2017 22:27:14 +0700
 
 xpra (2.0.3-1) UNRELEASED; urgency=low
   * fix security issue in the win32 authentication module
