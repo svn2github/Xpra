@@ -61,6 +61,14 @@ DISCARD_TARGETS = [re.compile(x) for x in DISCARD_TARGETS]
 TEXT_TARGETS = ("UTF8_STRING", "TEXT", "STRING", "text/plain")
 
 
+#may get overriden
+def nosanitize_gtkselectiondata(selectiondata):
+    return selectiondata
+sanitize_gtkselectiondata = nosanitize_gtkselectiondata
+                    log.error("invalid regular expression '%s' in clipboard filter")
+        self._clipboard_request_counter = 0
+
+
 class ClipboardProtocolHelperBase(object):
     def __init__(self, send_packet_cb, progress_cb=None, **kwargs):
         self.send = send_packet_cb
@@ -75,14 +83,6 @@ class ClipboardProtocolHelperBase(object):
                 try:
                     self.filter_res.append(re.compile(x))
                 except:
-
-
-#may get overriden
-def nosanitize_gtkselectiondata(selectiondata):
-    return selectiondata
-sanitize_gtkselectiondata = nosanitize_gtkselectiondata
-                    log.error("invalid regular expression '%s' in clipboard filter")
-        self._clipboard_request_counter = 0
         self._clipboard_outstanding_requests = {}
         self._want_targets = False
         self.init_packet_handlers()
