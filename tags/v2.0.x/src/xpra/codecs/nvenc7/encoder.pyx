@@ -29,7 +29,7 @@ import ctypes
 from ctypes import cdll as loader, POINTER
 from libc.stdint cimport uintptr_t, uint8_t, uint16_t, uint32_t, int32_t, uint64_t
 
-CLIENT_KEYS_STR = get_nvenc_license_keys(7) + get_nvenc_license_keys()
+CLIENT_KEYS_STR = get_nvenc_license_keys(NVENCAPI_MAJOR_VERSION) + get_nvenc_license_keys()
 DESIRED_PRESET = os.environ.get("XPRA_NVENC_PRESET", "")
 #NVENC requires compute capability value 0x30 or above:
 cdef int MIN_COMPUTE = 0x30
@@ -1238,13 +1238,10 @@ def get_spec(encoding, colorspace):
     assert encoding in get_encodings(), "invalid format: %s (must be one of %s" % (encoding, get_encodings())
     assert colorspace in get_COLORSPACES(encoding), "invalid colorspace: %s (must be one of %s)" % (colorspace, get_COLORSPACES(encoding))
     #ratings: quality, speed, setup cost, cpu cost, gpu cost, latency, max_w, max_h
-    min_w, min_h = 32, 32
+    min_w, min_h = 128, 128
     #FIXME: we should probe this using WIDTH_MAX, HEIGHT_MAX!
     global MAX_SIZE
     max_w, max_h = MAX_SIZE.get(encoding, (4096, 4096))
-    if encoding=="h265":
-        #undocumented and found the hard way!
-        min_w, min_h = 72, 72
     has_lossless_mode = colorspace in ("BGRX", ) and encoding=="h264"
     cs = video_spec(encoding=encoding, output_colorspaces=get_COLORSPACES(encoding)[colorspace], has_lossless_mode=LOSSLESS_ENABLED,
                       codec_class=Encoder, codec_type=get_type(),
@@ -1664,8 +1661,8 @@ cdef class Encoder:
             params.reportSliceOffsets = 0
             params.enableSubFrameWrite = 0
 
-            params.frameRateNum = 1
-            params.frameRateDen = 30
+            params.frameRateNum = 30
+            params.frameRateDen = 1
             params.encodeConfig = config
 
             #config.rcParams.rateControlMode = NV_ENC_PARAMS_RC_VBR     #FIXME: check NV_ENC_CAPS_SUPPORTED_RATECONTROL_MODES caps
@@ -1976,28 +1973,6 @@ cdef class Encoder:
             target_quality = 100
         self.quality = quality
         log("set_encoding_quality(%s) target quality=%s", quality, target_quality)
-        new_pixel_format = self.get_target_pixel_format(target_quality)
-        new_lossless = self.get_target_lossless(new_pixel_format, target_quality)
-        if new_pixel_format==self.pixel_format and new_lossless==self.lossless:
-            log("set_encoding_quality(%s) keeping current: %s / %s", quality, self.pixel_format, self.lossless)
-            return
-        start = time.time()
-        memset(&reconfigure_params, 0, sizeof(NV_ENC_RECONFIGURE_PARAMS))
-        reconfigure_params.version = NV_ENC_RECONFIGURE_PARAMS_VER
-        try:
-            self.init_params(self.codec, &reconfigure_params.reInitEncodeParams)
-            reconfigure_params.resetEncoder = 1
-            reconfigure_params.forceIDR = 1
-            with nogil:
-                r =self.functionList.nvEncReconfigureEncoder(self.context, &reconfigure_params)
-            raiseNVENC(r, "reconfiguring encoder")
-        finally:
-            if reconfigure_params.reInitEncodeParams.encodeConfig!=NULL:
-                free(reconfigure_params.reInitEncodeParams.encodeConfig)
-        end = time.time()
-        log("set_encoding_quality(%s) reconfigured from %s / %s to: %s / %s (took %ims)", quality, self.pixel_format, bool(self.lossless), new_pixel_format, new_lossless, int(1000*(end-start)))
-        self.pixel_format = new_pixel_format
-        self.lossless = new_lossless
 
 
     def update_bitrate(self):
@@ -2142,6 +2117,7 @@ cdef class Encoder:
                numpy.int32(w), numpy.int32(h))
         log("calling %s%s with block=%s, grid=%s", self.kernel, args, (blockw,blockh,1), (gridw, gridh))
         self.kernel(*args, block=(blockw,blockh,1), grid=(gridw, gridh))
+        self.cuda_context.synchronize()
         csc_end = time.time()
         log("compress_image(..) kernel %s took %.1f ms", self.kernel_name, (csc_end - csc_start)*1000.0)
 
@@ -2160,7 +2136,6 @@ cdef class Encoder:
             log("compress_image(..) device buffer mapped to %#x", <uintptr_t> mappedResource)
         assert mappedResource!=NULL
 
-        memset(&lockOutputBuffer, 0, sizeof(NV_ENC_LOCK_BITSTREAM))
         try:
             memset(&picParams, 0, sizeof(NV_ENC_PIC_PARAMS))
             picParams.version = NV_ENC_PIC_PARAMS_VER
@@ -2209,6 +2184,7 @@ cdef class Encoder:
             encode_end = time.time()
             log("compress_image(..) encoded in %.1f ms", (encode_end-csc_end)*1000.0)
 
+            memset(&lockOutputBuffer, 0, sizeof(NV_ENC_LOCK_BITSTREAM))
             #lock output buffer:
             lockOutputBuffer.version = NV_ENC_LOCK_BITSTREAM_VER
             lockOutputBuffer.doNotWait = 0
@@ -2224,13 +2200,13 @@ cdef class Encoder:
             size = lockOutputBuffer.bitstreamSizeInBytes
             self.bytes_out += size
             data = (<char *> lockOutputBuffer.bitstreamBufferPtr)[:size]
-        finally:
             if DEBUG_API:
                 log("nvEncUnlockBitstream(%#x)", <uintptr_t> self.bitstreamBuffer)
             if lockOutputBuffer.bitstreamBufferPtr!=NULL:
                 with nogil:
                     r = self.functionList.nvEncUnlockBitstream(self.context, self.bitstreamBuffer)
             raiseNVENC(r, "unlocking output buffer")
+        finally:
             if DEBUG_API:
                 log("nvEncUnmapInputResource(%#x)", <uintptr_t> self.bitstreamBuffer)
             with nogil:
@@ -2470,6 +2446,9 @@ cdef class Encoder:
                                   "profiles"        : profiles,
                                   "input-formats"   : input_formats,
                                   })
+                if codec_name=="HEVC":
+                    log("HEVC skipped - use a newer xpra version")
+                    continue
                 codecs[codec_name] = codec
         finally:
             free(encode_GUIDs)
@@ -2533,7 +2512,7 @@ cdef class Encoder:
 def init_module():
     log("nvenc.init_module()")
     #TODO: this should be a build time check:
-    if NVENCAPI_MAJOR_VERSION!=0x7:
+    if NVENCAPI_MAJOR_VERSION<0x7:
         raise Exception("unsupported version of NVENC: %#x" % NVENCAPI_VERSION)
     log("NVENC encoder API version %s", ".".join([str(x) for x in PRETTY_VERSION]))
 
@@ -2677,7 +2656,7 @@ def init_module():
         else:
             raise Exception("you may need to provide a license key")
     if ENCODINGS:
-        log("NVENC v7 successfully initialized: %s", csv(ENCODINGS))
+        log("NVENC v%i successfully initialized: %s", NVENCAPI_MAJOR_VERSION, csv(ENCODINGS))
         nvenc_loaded()
 
 def cleanup_module():
@@ -2686,7 +2665,7 @@ def cleanup_module():
 
 def selftest(full=False):
     v = get_nvidia_module_version(True)
-    assert NVENCAPI_MAJOR_VERSION==7, "unsupported NVENC version %i" % NVENCAPI_MAJOR_VERSION
+    assert NVENCAPI_MAJOR_VERSION>=7, "unsupported NVENC version %i" % NVENCAPI_MAJOR_VERSION
     if v:
         NVENC_UNSUPPORTED_DRIVER_VERSION = envbool("XPRA_NVENC_UNSUPPORTED_DRIVER_VERSION", False)
         #SDK 7.0 requires version 367 or later
