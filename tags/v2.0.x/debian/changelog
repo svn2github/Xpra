@@ -18,8 +18,14 @@ xpra (2.0.4-1) UNRELEASED; urgency=low
   * fix scroll encoding errors during window resizing
   * fix handling of shadow server screen resizing
   * fix window geometry feature flag wrongly removed
+  * fix Google Chrome browser detection
+  * fix missing window filter for raise packets
+  * fix command error when stopping a local server via TCP or SSL
+  * fix crashes due to a GTK clipboard bug
+  * fix NVENC complete system lockups
+  * add runtime warning: the GTK3 client should not be used
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 16 Jul 2017 22:27:14 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 20 Jul 2017 22:03:09 +0700
 
 xpra (2.0.3-1) UNRELEASED; urgency=low
   * fix security issue in the win32 authentication module

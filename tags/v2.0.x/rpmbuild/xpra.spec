@@ -567,7 +567,7 @@ fi
 
 
 %changelog
-* Sun Jul 16 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.4-1
+* Thu Jul 20 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.4-1
 - fix Cython runtime warnings in keyboard definition parsing
 - fix compilation with Cython 0.26b0
 - fix sample configuration file line endings on MS Windows
@@ -589,6 +589,12 @@ fi
 - fix window geometry feature flag wrongly removed
 - fix Cython runtime warnings in keyboard definition parsing
 - fix compilation with Cython 0.26b0
+- fix Google Chrome browser detection
+- fix missing window filter for raise packets
+- fix command error when stopping a local server via TCP or SSL
+- fix crashes due to a GTK clipboard bug
+- fix NVENC complete system lockups
+- add runtime warning: the GTK3 client should not be used
 
 * Sun Jul 02 2017 Antoine Martin <antoine@devloop.org.uk> 2.0.3-1
 - fix security issue in the win32 authentication module
