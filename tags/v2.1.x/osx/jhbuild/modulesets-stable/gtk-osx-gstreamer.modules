@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+  <repository type="tarball" name="ftp.gnome.org" default="yes"
+              href="http://ftp.gnome.org/pub/GNOME/sources/"/>
+  <repository type="tarball" name="gstreamer"
+              href="http://gstreamer.freedesktop.org/src/"/>
+  <repository type="tarball" name="liboil"
+              href="http://liboil.freedesktop.org/download/"/>
+  <repository type="tarball" name="sourceforge"
+              href="http://iweb.dl.sf.net/project/"/>
+
+  <autotools id="liboil" autogen-template="autoreconf -fis &amp;&amp; %(srcdir)s/configure --prefix %(prefix)s  %(autogenargs)s"
+	     makeargs=' CFLAGS="$CFLAGS -DHAVE_SYMBOL_UNDERSCORE"'>
+    <branch repo="liboil" module="liboil-0.3.17.tar.gz" version="0.3.17">
+      <patch file="https://git.gnome.org/browse/gtk-osx/plain/patches/liboil-use-ac-config-headers-macro.patch" strip="1"/>
+    </branch>
+  </autotools>
+
+  <autotools id="liborc" autogen-sh="configure">
+    <branch repo="gstreamer" module="orc/orc-0.4.26.tar.xz" version="0.4.26" hash="sha1:8a735b48051facb35b2b2cc57e8e2014a1e25c8a"/>
+  </autotools>
+
+  <autotools id="faad2" autogen-sh="autoreconf"
+             autogenargs="-without-bmp --without-xmms --without-drm --without-mpeg4ip">
+    <branch repo="sourceforge" version="2.7"
+            module="faac/faad2-src/faad2-2.7/faad2-2.7.tar.bz2">
+      <patch file="https://git.gnome.org/browse/gtk-osx/plain/patches/faad2-2.7-ac-config-headers.patch" strip="1"/>
+    </branch>
+  </autotools>
+
+  <autotools id="gstreamer-1.0" autogenargs="--disable-tests" supports-non-srcdir-builds="no"
+    makeargs="ERROR_CFLAGS=" autogen-sh="configure">
+    <branch module="gstreamer/gstreamer-1.10.5.tar.xz" version="1.10.5" repo="gstreamer"
+            hash="sha256:bc06243600817f637029da29d089d5908d1d266542f68bf6626a10c5f05f1f1d">
+    </branch>
+    <after>
+      <dep package="glib"/>
+    </after>
+  </autotools>
+
+  <autotools id="gst-plugins-base-1.0" autogenargs="--disable-tests --disable-x --disable-xvideo" supports-non-srcdir-builds="no"
+    makeargs="ERROR_CFLAGS=" autogen-sh="configure">
+    <branch module="gst-plugins-base/gst-plugins-base-1.10.5.tar.xz" version="1.10.5" repo="gstreamer"
+            hash="sha256:1c401a79bd1e4521c6ef1b66579bddedd9136e164e54792aab4bfcf3485bf9a7"/>
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="liborc"/>
+    </dependencies>
+    <after>
+    </after>
+  </autotools>
+
+  <autotools id="gst-plugins-good-1.0" autogenargs="--disable-tests --disable-x --disable-xvideo --disable-osx-video" supports-non-srcdir-builds="no"
+    makeargs="ERROR_CFLAGS=" autogen-sh="configure">
+    <branch module="gst-plugins-good/gst-plugins-good-1.10.5.tar.xz" version="1.10.5" repo="gstreamer"
+            hash="sha256:be053f6ed716eeb517cec148cec637cdce571c6e04d5c21409e2876fb76c7639">
+    <!-- <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/gst-plugins-good-1.6.4-osx-10.5-fixdefs.patch" strip="1"/> -->
+    </branch>
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="gst-plugins-base-1.0"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gst-plugins-ugly-1.0" autogenargs="--disable-tests"
+             supports-non-srcdir-builds="no" makeargs="ERROR_CFLAGS="
+             autogen-sh="configure">
+    <branch module="gst-plugins-ugly/gst-plugins-ugly-1.10.5.tar.xz" version="1.10.5" repo="gstreamer"
+            hash="sha256:d6edc046350809c967f5b058c5c2e534d99d1d69fe1b26acd849e87781a7d7fc"/>
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="gst-plugins-base-1.0"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gst-plugins-bad-1.0" supports-non-srcdir-builds="no"
+             autogenargs="--disable-xvid --disable-gl --disable-cocoa --disable-libde265 --disable-mpegdemux --disable-mpegtsdemux --disable-mpegtsmux --disable-mpegpsmux --disable-mpeg2enc --disable-gtk3 --disable-smoothstreaming --disable-hls --disable-dtls --disable-apple_media"
+             makeargs="ERROR_CFLAGS=" autogen-sh="configure">
+    <branch module="gst-plugins-bad/gst-plugins-bad-1.10.5.tar.xz" version="1.10.5" repo="gstreamer"
+            hash="sha256:c5806040bb83b43be86ce592e6a19c5d83d7776f7d9f434eb4b911c4efff3573"/>
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="gst-plugins-base-1.0"/>
+      <dep package="faad2"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gst-libav" supports-non-srcdir-builds="no"
+             autogen-sh="configure"
+             autogenargs="--disable-tests">
+    <branch repo="gstreamer" version="1.10.5"
+            module="gst-libav/gst-libav-1.10.5.tar.xz"
+            hash="sha256:e4d2f315f478d47281fbfdfbd590a63d23704ca37911d7142d5992616f4b28d3"/>
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="gst-plugins-base-1.0"/>
+    </dependencies>
+  </autotools>
+
+  <metamodule id="meta-gstreamer-1.0">
+    <dependencies>
+      <dep package="gstreamer-1.0"/>
+      <dep package="gst-plugins-base-1.0"/>
+      <dep package="gst-plugins-good-1.0"/>
+      <dep package="gst-plugins-ugly-1.0"/>
+      <dep package="gst-plugins-bad-1.0"/>
+      <dep package="gst-libav"/>
+    </dependencies>
+  </metamodule>
+
+</moduleset>

@@ -1,0 +1,1021 @@
+<?xml version="1.0"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+
+  <repository type="tarball" name="www.tortall.net" href="http://www.tortall.net"/>
+  <repository type="tarball" name="www.nasm.us" href="http://www.nasm.us"/>
+  <repository type="tarball" name="code.entropywave.com" href="http://code.entropywave.com"/>
+  <repository type="tarball" name="downloads.xiph.org" href="http://downloads.xiph.org"/>
+  <repository type="tarball" name="winswitch.org" href="http://winswitch.org"/>
+  <repository type="tarball" name="webm.googlecode.com" href="https://webm.googlecode.com"/>
+  <repository type="tarball" name="download.videolan.org" href="http://download.videolan.org"/>
+  <repository type="tarball" name="downloads.webmproject.org" href="http://downloads.webmproject.org"/>
+  <repository type="tarball" name="ffmpeg.org" href="http://ffmpeg.org"/>
+  <repository type="tarball" name="www.libsdl.org" href="http://www.libsdl.org"/>
+  <repository type="tarball" name="gstreamer.freedesktop.org" href="http://gstreamer.freedesktop.org"/>
+  <repository type="tarball" name="gmplib.org" href="http://gmplib.org/"/>
+  <repository type="tarball" name="www.mpfr.org" href="http://www.mpfr.org"/>
+  <repository type="tarball" name="pypi.python.org" href="http://pypi.python.org"/>
+  <repository type="tarball" name="pypi.douban.com" href="http://pypi.douban.com/"/>
+  <repository type="tarball" name="download.oracle.com" href="http://download.oracle.com"/>
+  <repository type="tarball" name="www.eu.apache.org" href="http://www.eu.apache.org"/>
+  <repository type="tarball" name="serf.googlecode.com" href="http://serf.googlecode.com"/>
+  <repository type="tarball" name="sqlite.org" href="http://sqlite.org"/>
+  <repository type="tarball" name="sourceforge.net" href="http://downloads.sourceforge.net"/>
+  <repository type="tarball" name="osgeo.org" href="http://download.osgeo.org"/>
+  <repository type="tarball" name="xpra.org" href="http://xpra.org"/>
+  <repository type="tarball" name="sourceforge" href="http://downloads.sourceforge.net/sourceforge/"/>
+  <repository type="tarball" name="storage.googleapis.com" href="http://storage.googleapis.com/"/>
+  <repository type="tarball" name="ftp.gnome.org" default="yes" href="ftp://ftp.gnome.org/pub/gnome/sources/"/>
+  <repository type="tarball" name="oberhumer.com" default="yes" href="http://www.oberhumer.com/"/>
+  <repository type="tarball" name="github.com" default="yes" href="https://github.com/"/>
+  <repository type="tarball" name="ftp.gnu.org" href="ftp://ftp.gnu.org"/>
+  <repository type="tarball" name="codeload.github.com" href="https://codeload.github.com/"/>
+  <repository type="tarball" name="curl.haxx.se" href="https://curl.haxx.se"/>
+  <repository type="tarball" name="cpan.org" href="http://www.cpan.org/"/>
+  <repository type="tarball" name="apache.org" href="http://www.apache.org/"/>
+  <repository type="tarball" name="pyyaml.org" href="http://pyyaml.org"/>
+  <repository type="tarball" name="ftp.pcre.org" href="https://ftp.pcre.org"/>
+  <repository type="tarball" name="archive.mozilla.org" href="https://archive.mozilla.org"/>
+  <repository type="git" name="chromium.googlesource.com" href="https://chromium.googlesource.com/"/>
+
+
+  <cmake id="brotli" autogen-sh="configure">
+	<branch module="/google/brotli/archive/v0.6.0.tar.gz"
+		version="0.6.0" checkoutdir="brotli-0.6.0"
+		hash="sha256:69cdbdf5709051dd086a2f020f5abf9e32519eafe0ad6be820c667c3a9c9ee0f"
+		repo="github.com"/>
+  </cmake>
+
+  <autotools id="yasm" autogen-sh="configure">
+	<branch module="/projects/yasm/releases/yasm-1.3.0.tar.gz"
+		version="1.3.0"
+		hash="md5:fc9e586751ff789b34b1f21d572d96af"
+		repo="www.tortall.net"/>
+  </autotools>
+
+  <autotools id="nasm" autogenargs="" autogen-sh="configure">
+	<branch module="/pub/nasm/releasebuilds/2.12/nasm-2.12.tar.bz2"
+		version="2.12"
+		hash="md5:ff2a1d31444049ccdc1deeec1d868585"
+		repo="www.nasm.us">
+    	<patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/nasm-makefile-destdir.patch" strip="0" />
+        </branch>
+  </autotools>
+
+  <autotools id="perl"
+        autogen-sh="Configure"
+        autogen-template="%(srcdir)s/%(autogen-sh)s -Dprefix=%(prefix)s %(autogenargs)s"
+        autogenargs="-des">
+	<branch module="/src/5.0/perl-5.24.0.tar.gz"
+		version="5.24.0"
+		hash="md5:c5bf7f3285439a2d3b6a488e14503701"
+		repo="cpan.org"/>
+  </autotools>
+
+  <autotools id="sshpass" autogen-sh="configure">
+	<branch module="/project/sshpass/sshpass/1.06/sshpass-1.06.tar.gz"
+		version="1.06"
+		hash="sha256:c6324fcee608b99a58f9870157dfa754837f8c48be3df0f5e2f3accf145dee60"
+		repo="sourceforge.net"/>
+  </autotools>
+
+
+  <autotools id="cpio" autogen-sh="configure">
+	<branch module="/gnu/cpio/cpio-2.12.tar.bz2"
+		version="2.12"
+		hash="md5:93eea9f07c0058c097891c73e4955456"
+		repo="ftp.gnu.org"/>
+  </autotools>
+
+  <autotools id="pcre" autogenargs="--enable-utf8" autogen-sh="configure">
+	<branch module="/pub/pcre/pcre-8.40.tar.gz"
+		version="8.40"
+		hash="sha256:1d75ce90ea3f81ee080cdc04e68c9c25a9fb984861a0618be7bbf676b18eda3e"
+		repo="ftp.pcre.org"/>
+  </autotools>
+
+  <autotools id="grep" autogen-sh="configure">
+	<branch module="/gnu/grep/grep-3.0.tar.xz"
+		version="3.0"
+		hash="sha256:e2c81db5056e3e8c5995f0bb5d0d0e1cad1f6f45c3b2fc77b6e81435aed48ab5"
+		repo="ftp.gnu.org"/>
+        <dependencies>
+                <dep package="pcre"/>
+        </dependencies>
+  </autotools>
+
+  <autotools id="bomutils" autogen-sh="" skip-autogen="true">
+	<branch module="/hogliux/bomutils/archive/debian/0.2-1.tar.gz"
+		version="0.2-1"
+                checkoutdir="bomutils-debian-0.2-1"
+		repo="github.com">
+        <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/bomutils-jhbuild-changeprefix.patch" strip="0" />
+        </branch>
+  </autotools>
+
+  <autotools id="xar" autogen-sh="configure">
+	<branch module="/downloads/mackyle/xar/xar-1.6.1.tar.gz"
+		version="1.6.1"
+		hash="md5:a624535d6a1e8fdf420b36a6b334047b"
+		repo="github.com"/>
+  </autotools>
+
+  <autotools id="libogg" autogenargs="" autogen-sh="configure">
+    <branch module="/releases/ogg/libogg-1.3.2.tar.xz"
+		version="1.3.2"
+		hash="md5:5c3a34309d8b98640827e5d0991a4015"
+		repo="downloads.xiph.org"/>
+  </autotools>
+
+  <autotools id="libvorbis" autogenargs="" autogen-sh="configure">
+	<branch module="/releases/vorbis/libvorbis-1.3.5.tar.xz"
+		version="1.3.5"
+		hash="md5:28cb28097c07a735d6af56e598e1c90f"
+		repo="downloads.xiph.org"/>
+  </autotools>
+
+  <autotools id="libtheora" autogenargs="--disable-examples" autogen-sh="configure">
+    <branch module="/releases/theora/libtheora-1.1.1.tar.bz2"
+		version="1.1.1"
+		hash="md5:292ab65cedd5021d6b7ddd117e07cd8e"
+		repo="downloads.xiph.org"/>
+    <dependencies>
+                <dep package="libogg"/>
+                <dep package="libvorbis"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="speex" autogen-sh="configure">
+    <branch module="/releases/speex/speex-1.2.0.tar.gz"
+		version="1.2.0"
+		hash="sha256:eaae8af0ac742dc7d542c9439ac72f1f385ce838392dc849cae4536af9210094"
+		repo="downloads.xiph.org"/>
+  </autotools>
+
+  <autotools id="lame" autogenargs="" autogen-sh="configure">
+    <branch module="/src/lame-3.99.5.tar.gz"
+		version="3.99.5"
+		hash="md5:84835b313d4a8b68f5349816d33e07ce"
+		repo="winswitch.org">
+        <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/lame-channels.patch" strip="0" />
+	</branch>
+    <dependencies>
+                <dep package="nasm"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="twolame" autogenargs="" autogen-sh="configure">
+    <branch module="/src/twolame-0.3.13.tar.gz"
+		version="0.3.13"
+		hash="md5:4113d8aa80194459b45b83d4dbde8ddb"
+		repo="winswitch.org"/>
+  </autotools>
+
+  <autotools id="libmad" autogen-sh="configure">
+    <branch module="/src/libmad-0.15.1b.tar.gz"
+		version="0.15.1b"
+		hash="md5:1be543bc30c56fb6bea1d7bf6a64e66c"
+		repo="winswitch.org"/>
+  </autotools>
+
+  <autotools id="faac" autogenargs="" autogen-sh="configure">
+    <branch module="/src/faac-1.28.tar.bz2"
+		version="1.28"
+		hash="md5:c5dde68840cefe46532089c9392d1df0"
+		repo="winswitch.org"/>
+  </autotools>
+
+  <autotools id="faad2" autogenargs="" autogen-sh="configure">
+	<branch module="/src/faad2-2.7.tar.bz2"
+		version="2.7"
+		hash="md5:4c332fa23febc0e4648064685a3d4332"
+		repo="winswitch.org"/>
+  </autotools>
+
+  <autotools id="flac" autogenargs="--disable-asm-optimizations" autogen-sh="configure">
+	<branch module="/releases/flac/flac-1.3.2.tar.xz"
+		version="1.3.2"
+		hash="sha256:91cfc3ed61dc40f47f050a109b08610667d73477af6ef36dcad31c31a4a8d53f"
+		repo="downloads.xiph.org"/>
+    <dependencies>
+                <dep package="nasm"/>
+                <dep package="libogg"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="opus" autogenargs="" autogen-sh="configure">
+	<branch module="/pub/opus/opus-1.2.1.tar.gz"
+		version="1.2.1"
+		hash="sha256:cfafd339ccd9c5ef8d6ab15d7e1a412c054bf4cb4ecbbbcc78c12ef2def70732"
+		repo="archive.mozilla.org"/>
+  </autotools>
+
+  <autotools id="libvpx"
+             autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s"
+             autogenargs="--enable-vp8 --enable-vp9 --enable-pic --enable-static --disable-install-docs --enable-realtime-only --enable-runtime-cpu-detect --disable-libyuv"
+             autogen-sh="configure">
+    <branch module="/downloads.webmproject.org/releases/webm/libvpx-1.6.1.tar.bz2"
+		version="1.6.1"
+		hash="sha256:1c2c0c2a97fba9474943be34ee39337dee756780fc12870ba1dc68372586a819"
+		repo="storage.googleapis.com"/>
+    <dependencies>
+                <dep package="yasm"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="x264" autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s" autogenargs="--enable-pic --enable-shared --enable-static" autogen-sh="configure">
+	<branch module="/pub/x264/snapshots/x264-snapshot-20170704-2245-stable.tar.bz2"
+		version="20170704-2245-stable"
+		hash="sha256:3c33c917b6d574fc23220fa05b2ab83f68446d59ec06b016664ee2a73b642121"
+		repo="download.videolan.org"/>
+	<dependencies>
+		<dep package="yasm"/>
+	</dependencies>
+	<after>
+		<dep package="yasm"/>
+	</after>
+  </autotools>
+
+  <autotools id="ffmpeg"
+		autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s"
+		autogenargs="--enable-runtime-cpudetect --enable-pic
+					--enable-static --enable-shared --enable-gpl
+					--disable-everything
+					--enable-swscale --enable-decoder=h264 --enable-decoder=mpeg4
+					--enable-libvpx --enable-decoder=vp8 --enable-decoder=vp9 --enable-decoder=hevc --enable-decoder=mpeg4
+					--enable-encoder=libvpx_vp8 --enable-encoder=libvpx_vp9 --enable-encoder=mpeg4
+					--enable-muxer=mp4 --enable-muxer=webm --enable-muxer=matroska --enable-muxer=ogg
+					--disable-protocol=tcp --disable-protocol=rtp
+					--disable-filter=aformat --disable-filter=crop --disable-filter=setpts
+					--disable-filter=anull --disable-filter=format --disable-filter=trim
+					--disable-filter=atrim --disable-filter=null
+					--disable-programs --disable-avfilter --disable-doc"
+		autogen-sh="configure">
+	<branch module="/releases/ffmpeg-3.3.2.tar.xz"
+		version="3.3.2"
+		hash="sha256:1998de1ab32616cbf2ff86efc3f1f26e76805ec5dc51e24c041c79edd8262785"
+		repo="ffmpeg.org"/>
+	<dependencies>
+		<dep package="x264"/>
+		<dep package="libvpx"/>
+	</dependencies>
+	<after>
+		<dep package="x264"/>
+		<dep package="libvpx"/>
+	</after>
+  </autotools>
+
+  <autotools id="sdl" autogenargs="" autogen-sh="configure">
+	<branch module="/release/SDL-1.2.15.tar.gz"
+		version="1.2.15"
+		hash="md5:9d96df8417572a2afb781a7c4c811a85"
+		repo="www.libsdl.org"/>
+  </autotools>
+
+  <!-- Replace with autotools id and snapshot of source from xpra.org
+  <cmake id="libyuv">
+    <branch repo="chromium.googlesource.com" module="libyuv/libyuv"/>
+    <dependencies>
+    </dependencies>
+  </cmake>
+  -->
+
+  <cmake id="libyuv">
+	<branch module="/src/libyuv-cb9a58f25fbdf8382d68680f022959022f746ef2.tar.xz"
+		version="cb9a58f"
+		hash="sha256:eb76578955cfd005fc4964b06374cee0f125472bf433ebf038a377c5b82906d6"
+		repo="xpra.org">
+        <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/libyuv-nojpeg.patch" strip="1" />
+        </branch>
+  </cmake>
+
+  <!-- HACK: patch after autoreconf is run -->
+  <autotools id="gtkglext" autogenargs="--with-gdktarget=quartz" autogen-template="autoreconf -fiv &amp;&amp; curl -O -k http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/gtkglext-osx-quartztagfix.patch &amp;&amp; patch -p1 &lt; gtkglext-osx-quartztagfix.patch &amp;&amp; %(srcdir)s/configure --prefix %(prefix)s %(autogenargs)s">
+	<branch module="/src/gtkglext-1.2.0.tar.bz2"
+		version="1.2.0"
+		checkoutdir="gtkglext-1.2.0"
+		repo="xpra.org">
+    <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/xpra-gtkglext.patch" strip="1"/>
+    <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/gtkglext-depth.patch" strip="1"/>
+    </branch>
+  </autotools>
+
+  <autotools id="pygtkglext" autogenargs="" autogen-sh="autogen.sh">
+	<branch module="/src/pygtkglext-896582f-20100112.tar.bz2"
+		version="896582f-20100112"
+		hash="md5:e831e0b84ece7180985b11032bc3706d"
+		checkoutdir="pygtkglext"
+		repo="xpra.org">
+	<patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/pygtkglext-osx-v4.patch" strip="1"/>
+	<patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/pygtkglext-fix-gl-osx.patch" strip="0"/>
+	</branch>
+	<dependencies>
+		<dep package="gtkglext"/>
+	</dependencies>
+  </autotools>
+
+  <autotools id="gmplib" autogen-sh="configure">
+	<branch module="/download/gmp/gmp-6.1.2.tar.xz"
+		version="6.1.2"
+		hash="sha256:87b565e89a9a684fe4ebeeddb8399dce2599f9c9049854ca8c0dfbdea0e21912"
+		checkoutdir="gmp-6.1.2"
+		repo="gmplib.org"/>
+  </autotools>
+
+  <autotools id="mpfr" autogen-sh="configure">
+	<branch module="/mpfr-3.1.5/mpfr-3.1.5.tar.xz"
+		hash="sha256:015fde82b3979fbe5f83501986d328331ba8ddf008c1ff3da3c238f49ca062bc"
+		version="3.1.5"
+		repo="www.mpfr.org">
+	</branch>
+	<dependencies>
+		<dep package="gmplib"/>
+	</dependencies>
+	<after>
+		<dep package="gmplib"/>
+	</after>
+  </autotools>
+
+  <!--HACK: skip-install but do make install during autogen phase instead this allows us to bypass the error with DESTDIR since it doesn't actually install anywhere -->
+  <autotools id="gtk-mac-bundler"
+   skip-install="True"
+   autogen-template="make install">
+    <branch module="/pub/gnome/sources/gtk-mac-bundler/0.7/gtk-mac-bundler-0.7.4.tar.xz"
+            version="0.7.4"
+            repo="ftp.gnome.org">
+    <patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/gtk-mac-bundler-pangofix.patch" strip="1"/>
+    </branch>
+  </autotools>
+
+  <autotools id="lzo" autogen-sh="configure">
+	<branch module="/opensource/lzo/download/lzo-2.10.tar.gz"
+		version="2.10"
+		hash="sha256:c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072"
+		checkoutdir="lzo-2.10"
+		repo="oberhumer.com"/>
+  </autotools>
+
+  <!-- versions newer than this have problems packaging pyobjc -->
+  <distutils id="setuptools">
+	<branch repo="pypi.python.org"
+		module="/packages/source/s/setuptools/setuptools-19.2.tar.gz"
+		hash="md5:78353b1f80375ca5e088f4b4627ffe03"
+		version="19.2"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-enum34">
+	<branch repo="pypi.python.org"
+		module="/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz"
+		hash="sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1"
+		version="1.1.6"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-enum-compat">
+	<branch repo="pypi.python.org"
+		module="/packages/95/6e/26bdcba28b66126f66cf3e4cd03bcd63f7ae330d29ee68b1f6b623550bfa/enum-compat-0.0.2.tar.gz"
+		hash="sha256:939ceff18186a5762ae4db9fa7bfe017edbd03b66526b798dd8245394c8a4192"
+		version="0.0.2"/>
+        <dependencies>
+                <dep package="python-enum34"/>
+        </dependencies>
+        <after>
+                <dep package="python-enum34"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-zeroconf">
+	<branch repo="pypi.python.org"
+		module="/packages/31/a3/cb195bd6f7f052e8ad48b1c04be2ca60012ecb3e6ed7104bf1e7a67d5ca4/zeroconf-0.19.0.tar.gz"
+		hash="sha256:8c58d649fb4fa2a850f93b2a2af2e44db9c6c4a41081c614e1040aec4a6d1177"
+		version="0.19.0"/>
+        <dependencies>
+                <dep package="python-enum-compat"/>
+        </dependencies>
+        <after>
+                <dep package="python-enum-compat"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-netifaces">
+	<branch repo="pypi.python.org"
+		module="/packages/72/01/ba076082628901bca750bf53b322a8ff10c1d757dc29196a8e6082711c9d/netifaces-0.10.6.tar.gz"
+		hash="sha256:0c4da523f36d36f1ef92ee183f2512f3ceb9a9d2a45f7d19cda5a42c6689ebe0"
+		version="0.10.6"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="pycparser">
+	<branch repo="pypi.python.org"
+		module="/packages/be/64/1bb257ffb17d01f4a38d7ce686809a736837ad4371bcc5c42ba7a715c3ac/pycparser-2.17.tar.gz"
+		hash="sha256:0aac31e917c24cb3357f5a4d5566f2cc91a19ca41862f6c3c22dc60a629673b6"
+		version="2.17"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <!-- newer versions of cffi create problems when packaging python-cryptography, see #1404 -->
+  <distutils id="cffi">
+	<branch repo="pypi.python.org"
+		module="/packages/c7/bb/2e1ba0ef25477929b44040800a880f02b42efb757e06a9d8899591582ba4/cffi-1.5.2.tar.gz"
+		hash="sha256:da9bde99872e46f7bb5cff40a9b1cc08406765efafb583c704de108b6cb821dd"
+		version="1.5.2"/>
+	<dependencies>
+		<dep package="pycparser"/>
+	</dependencies>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="six">
+	<branch repo="pypi.python.org"
+		module="/packages/source/s/six/six-1.10.0.tar.gz"
+		hash="md5:34eed507548117b2ab523ab14b2f8b55"
+		version="1.10.0"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="pyparsing">
+	<branch repo="pypi.python.org"
+		module="/packages/6f/2c/47457771c02a8ff0f302b695e094ec309e30452232bd79198ee94fda689f/pyparsing-1.5.7.tar.gz"
+		hash="sha256:646e14f90b3689b005c19ac9b6b390c9a39bf976481849993e277d7380e6e79f"
+		version="1.5.7"/>
+	<dependencies>
+		<dep package="python"/>
+	</dependencies>
+    <after>
+		<dep package="python"/>
+    </after>
+  </distutils>
+
+  <distutils id="packaging">
+	<branch repo="pypi.python.org"
+		module="/packages/c6/70/bb32913de251017e266c5114d0a645f262fb10ebc9bf6de894966d124e35/packaging-16.8.tar.gz"
+		hash="sha256:5d50835fdf0a7edf0b55e311b7c887786504efea1177abd7e69329a8e5ea619e"
+		version="16.8"/>
+	<dependencies>
+		<dep package="python"/>
+	</dependencies>
+    <after>
+		<dep package="python"/>
+    </after>
+  </distutils>
+
+  <distutils id="python-cryptography">
+	<branch repo="pypi.python.org"
+		module="/packages/81/fb/97d649657687d483753880cf663cf78015e1b8fb495d565feb49f1d56a24/cryptography-1.8.2.tar.gz"
+		hash="sha256:8e88ebac371a388024dab3ccf393bf3c1790d21bc3c299d5a6f9f83fb823beda"
+		version="1.8.2"/>
+	<dependencies>
+		<dep package="python"/>
+		<dep package="openssl"/>
+		<dep package="cffi"/>
+		<dep package="six"/>
+		<dep package="python-enum34"/>
+		<dep package="pyparsing"/>
+		<dep package="packaging"/>
+	</dependencies>
+    <after>
+        <dep package="python"/>
+    </after>
+  </distutils>
+
+  <autotools id="curl" autogen-sh="configure">
+	<branch module="/download/curl-7.53.0.tar.bz2"
+		version="7.53.0"
+		hash="sha256:b2345a8bef87b4c229dedf637cb203b5e21db05e20277c8e1094f0d4da180801"
+		repo="curl.haxx.se"/>
+        <dependencies>
+                <dep package="openssl"/>
+        </dependencies>
+  </autotools>
+
+  <distutils id="python-pyasn1">
+	<branch repo="pypi.python.org"
+		module="/packages/57/f7/c18a86169bb9995a69195177b23e736776b347fd92592da0c3cac9f1a724/pyasn1-0.2.2.tar.gz"
+		hash="sha256:6b42f96b942406712e0be5ea2bbbc57d8f30c7835a4904c9c195cc669736d435"
+		version="0.2.2"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+ </distutils>
+
+  <distutils id="python-pillow">
+        <branch repo="pypi.python.org"
+	     module="/packages/55/aa/f7f983fb72710a9daa4b3374b7c160091d3f94f5c09221f9336ade9027f3/Pillow-4.2.1.tar.gz"
+         hash="sha256:c724f65870e545316f9e82e4c6d608ab5aa9dd82d5185e5b2e72119378740073"
+	     version="4.2.1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <!-- py2app versions newer than this have regressions, see #1404 -->
+  <distutils id="python-py2app">
+	<branch repo="pypi.python.org"
+		module="/packages/d0/07/a290a6323d684fd2b9271ec72e6a80bc7dc97e41eb1213b4414928e8dbf1/py2app-0.10.tar.gz"
+		hash="sha256:82b1dd75cfb6b917ad60b9937e800dc80229b61819ff459b7ed46ed177eeaa5e"
+		version="0.10"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-cython">
+	<branch repo="pypi.python.org"
+		module="/packages/10/d5/753d2cb5073a9f4329d1ffed1de30b0458821780af8fdd8ba1ad5adb6f62/Cython-0.26.tar.gz"
+		hash="sha256:4c24e2c22ddaed624d35229dc5db25049e9e225c6f64f3364326836cad8f2c66"
+		version="0.26"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-numpy">
+        <branch repo="pypi.python.org"
+	        module="/packages/b7/9d/8209e555ea5eb8209855b6c9e60ea80119dab5eff5564330b35aa5dc4b2c/numpy-1.12.0.zip"
+                checkoutdir="numpy-1.12"
+	        version="1.12"
+	        hash="sha256:ff320ecfe41c6581c8981dce892fe6d7e69806459a899e294e4bf8229737b154"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+
+  </distutils>
+
+  <distutils id="python-twisted">
+	<branch repo="pypi.python.org"
+		module="/packages/source/T/Twisted/Twisted-15.5.0.tar.bz2"
+		hash="md5:0831d7c90d0020062de0f7287530a285"
+		version="12.3.0"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+
+  <distutils id="python-websockify">
+	<branch repo="pypi.python.org"
+		module="/packages/source/w/websockify/websockify-0.8.0.tar.gz"
+		hash="md5:8fa547ca4de84a96aa3472d55fbcdd59"
+		version="0.8.0"/>
+        <dependencies>
+                <dep package="python-numpy"/>
+        </dependencies>
+        <after>
+                <dep package="python-numpy"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-websocket-client">
+	<branch repo="pypi.python.org"
+		module="/packages/06/19/f00725a8aee30163a7f257092e356388443034877c101757c1466e591bf8/websocket_client-0.44.0.tar.gz"
+		hash="sha256:15f585566e2ea7459136a632b9785aa081093064391878a448c382415e948d72"
+		version="0.44.0"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-nose">
+	<branch repo="pypi.python.org"
+		module="/packages/source/n/nose/nose-1.3.7.tar.gz"
+		hash="md5:4d3ad0ff07b61373d2cefc89c5d0b20b"
+		version="1.3.7"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-setuptools-scm">
+	<branch repo="pypi.python.org"
+	        module="/packages/80/b7/31b6ae5fcb188e37f7e31abe75f9be90490a5456a72860fa6e643f8a3cbc/setuptools_scm-1.15.0.tar.gz"
+	        hash="sha256:daf12d05aa2155a46aa357453757ffdc47d87f839e62114f042bceac6a619e2f"
+	        version="1.15.0"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+
+  <distutils id="python-lz4">
+	<branch repo="pypi.python.org"
+	        module="/packages/f5/c6/ef2890b5e287735576e15c1389aa0b9032c9d78ed72385fbd1149af593cd/lz4-0.10.1.tar.gz"
+	        hash="sha256:a0423290a6e89c1789525a7e9d344d877c7a97102cf5c0f99b2319ac560f1b3e"
+	        version="0.10.1"/>
+        <dependencies>
+                <dep package="python"/>
+                <dep package="python-setuptools-scm"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+                <dep package="python-setuptools-scm"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-lzo">
+	<branch repo="pypi.python.org"
+	        module="/packages/source/p/python-lzo/python-lzo-1.11.tar.gz"
+	        hash="sha256:38a0ea4ceb27cdd8e3526509fe1b7a936e5dfa57c64608fd32085c129e8be386"
+	        version="1.11">
+    	<patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/python-lzo-jhbuild.patch" strip="0" />
+	</branch>
+	<dependencies>
+                <dep package="python"/>
+		<dep package="lzo"/>
+	</dependencies>
+	<after>
+                <dep package="python"/>
+		<dep package="lzo"/>
+	</after>
+  </distutils>
+
+  <distutils id="python-macholib">
+	<branch repo="pypi.python.org"
+		module="/packages/a0/de/831116fb6cbbe27eadd66ab87a22af74fe445d3b73d6042e12eaf3fdb964/macholib-1.8.tar.gz"
+		hash="sha256:323c9c8b85768244554b3c040808ed6393c783aa6eb1122e04dc8905f442e559"
+		version="1.8"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-modulegraph">
+	<branch repo="pypi.python.org"
+		module="/packages/a4/cf/b44dbc2aaa0e507fe1b518c95bf71aeb15830337010dd15cc15f6a1a8282/modulegraph-0.14.tar.gz"
+		hash="sha256:84998c1b6d1f0ebd2908dbfe5d2d76066b1e67480e98d925710b213fb002aea3"
+		version="0.14"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-altgraph">
+	<branch repo="pypi.python.org"
+		module="/packages/e1/c7/46556db016104f2c7c195c26dd0a04fffa31ec14edc53fb31cef578d1db8/altgraph-0.13.tar.gz"
+		hash="sha256:8510e9d85598d718d1f94afa7a64696565d6c3cb139d72603d6f64339377be68"
+		version="0.13"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pyopengl">
+	<branch repo="pypi.python.org"
+		module="/packages/source/P/PyOpenGL/PyOpenGL-3.1.1a1.tar.gz"
+		hash="md5:77ee6044ceb2cf952aca89a9b2d3d585"
+		version="3.1.1a1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pyopengl-accelerate">
+	<branch repo="pypi.python.org"
+		module="/packages/source/P/PyOpenGL-accelerate/PyOpenGL-accelerate-3.1.1a1.tar.gz"
+		hash="md5:04e52af352dd078275a2d5720c4afea2"
+		version="3.1.1a1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pyobjc-core">
+	<branch repo="pypi.python.org"
+		module="/packages/7e/03/303a5c7f7c3d3af811eba44b32ef957e570be4d5c5b656c0b44ece6191e0/pyobjc-core-3.2.1.tar.gz"
+		hash="sha256:848163845921e5a61e069ea42bab06ac73278f5a09b4e9cedd6a3eac6712ff2c"
+		version="3.2.1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pyobjc-framework-cocoa">
+	<branch repo="pypi.python.org"
+		module="/packages/f2/91/9a1847a442a8cd9f7e7ed183561c57b8644fd582f7ede0c5c3dc81407533/pyobjc-framework-Cocoa-3.2.1.tar.gz"
+		hash="sha256:8215a528b552588f0024df03ef1c5f8edfa245301888c384f5b8c231f4c89431"
+		version="3.2.1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pyobjc-framework-quartz">
+	<branch repo="pypi.python.org"
+		module="/packages/dd/07/aff85c2987faa9ad16ce1761a053c8c7815b679cd7482e3fd6af07ae749f/pyobjc-framework-Quartz-3.2.1.tar.gz"
+		hash="sha256:328f6c3f2431be139fa54c166190d3cd4e1bae78243c7d0ace9a7be3fa3088ad"
+		version="3.2.1"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-rencode">
+	<branch repo="github.com"
+		module="/aresch/rencode/archive/v1.0.5.tar.gz"
+		checkoutdir="rencode-1.0.5"
+		hash="md5:3bdbec5c50d845e5367ba53c5b85d1a4"
+		version="1.0.5"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-yaml">
+	<branch repo="pyyaml.org"
+		module="/download/pyyaml/PyYAML-3.12.tar.gz"
+		checkoutdir="PyYAML-3.12"
+		hash="sha256:592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+		version="3.12"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-pycups">
+	<branch repo="pypi.python.org"
+		module="/packages/source/p/pycups/pycups-1.9.73.tar.bz2"
+		hash="md5:ee0e7204d7a2ae942e2f4c4508afdbfb"
+		version="1.9.73"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-ipaddress">
+	<branch repo="pypi.python.org"
+		module="/packages/4e/13/774faf38b445d0b3a844b65747175b2e0500164b7c28d78e34987a5bfe06/ipaddress-1.0.18.tar.gz"
+		hash="sha256:5d8534c8e185f2d8a1fda1ef73f2c8f4b23264e8e30063feeb9511d492a413e1"
+		version="1.0.18"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <distutils id="python-idna">
+	<branch repo="pypi.python.org"
+		module="/packages/94/fe/efb1cb6f505e1a560b3d080ae6b9fddc11e7c542d694ce4635c49b1ccdcb/idna-2.2.tar.gz"
+		hash="sha256:0ac27740937d86850010e035c6a10a564158a5accddf1aa24df89b0309252426"
+		version="2.2"/>
+        <dependencies>
+                <dep package="python"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+        </after>
+  </distutils>
+
+  <autotools id="sqlite" autogenargs="" autogen-sh="configure">
+	<branch module="/2015/sqlite-autoconf-3080803.tar.gz"
+		hash="md5:51272e875879ee893e51070b07c33888"
+		version="3080803"
+		repo="sqlite.org"/>
+  </autotools>
+
+  <autotools id="db" autogenargs="" autogen-sh="dist/configure">
+	<branch module="/berkeley-db/db-6.0.30.tar.gz"
+		hash="md5:ad28eb86ad3203b5422844db179c585b"
+		version="6.0.30"
+		repo="download.oracle.com"/>
+  </autotools>
+
+  <autotools id="apr" autogenargs="" autogen-sh="configure">
+	<branch module="/dist/apr/apr-1.5.2.tar.bz2"
+		hash="md5:4e9769f3349fe11fc0a5e1b224c236aa"
+		version="1.5.2"
+		repo="www.eu.apache.org"/>
+  </autotools>
+
+  <autotools id="apr-util" autogenargs="--with-berkeley-db --with-apr=${JHBUILD_PREFIX}/bin/apr-1-config" autogen-sh="configure">
+	<branch module="/dist/apr/apr-util-1.5.4.tar.bz2"
+		hash="md5:2202b18f269ad606d70e1864857ed93c"
+		version="1.5.4"
+		repo="www.eu.apache.org"/>
+        <dependencies>
+                <dep package="apr"/>
+                <dep package="openssl"/>
+                <dep package="db"/>
+                <dep package="sqlite"/>
+        </dependencies>
+  </autotools>
+
+  <distutils id="scons">
+	<branch repo="sourceforge.net" module="/project/scons/scons/2.5.1/scons-2.5.1.tar.gz"
+		hash="sha256:0b25218ae7b46a967db42f2a53721645b3d42874a65f9552ad16ce26d30f51f2"
+		version="2.5.1"/>
+        <dependencies>
+                <dep package="python"/>
+                <dep package="apr"/>
+                <dep package="libxml2"/>
+        </dependencies>
+        <after>
+                <dep package="python"/>
+                <dep package="apr"/>
+        </after>
+  </distutils>
+
+  <autotools id="serf"
+        autogen-sh="scons"
+        autogen-template="%(autogen-sh)s APR=%(prefix)s APU=%(prefix)s OPENSSL=%(prefix)s PREFIX=%(prefix)s %(autogenargs)s"
+        autogenargs="install"
+        makeargs="-v"
+        skip-install="true"
+        check-target="false">
+	<branch module="/dist/serf/serf-1.3.9.tar.bz2"
+		version="1.3.9"
+		hash="md5:370a6340ff20366ab088012cd13f2b57"
+		repo="apache.org"/>
+        <dependencies>
+                <dep package="apr-util"/>
+                <dep package="openssl"/>
+                <dep package="scons"/>
+        </dependencies>
+  </autotools>
+
+  <autotools id="xpra-svn" autogenargs="--disable-keychain --disable-nls --enable-bdb6 --without-apxs --with-apr=${JHBUILD_PREFIX}/bin/apr-1-config --with-apr-util=${JHBUILD_PREFIX}/bin/apu-1-config --with-serf=${JHBUILD_PREFIX}" autogen-sh="configure">
+    <branch module="/dist/subversion/subversion-1.9.5.tar.bz2"
+		hash="sha256:8a4fc68aff1d18dcb4dd9e460648d24d9e98657fbed496c582929c6b3ce555e5"
+		version="1.9.5"
+		repo="www.eu.apache.org"/>
+     <dependencies>
+      <dep package="apr-util"/>
+      <dep package="serf"/>
+    </dependencies>
+  </autotools>
+
+  <metamodule id="meta-osx-xpra-deps">
+    <dependencies>
+      <dep package="yasm"/>
+      <dep package="nasm"/>
+      <dep package="sshpass"/>
+      <dep package="liborc"/>
+      <dep package="libogg"/>
+      <dep package="libtheora"/>
+      <dep package="libvorbis"/>
+      <dep package="speex"/>
+      <dep package="lame"/>
+      <dep package="twolame"/>
+      <dep package="libmad"/>
+      <dep package="faac"/>
+      <dep package="faad2"/>
+      <dep package="flac"/>
+      <dep package="opus"/>
+      <dep package="lzo"/>
+      <dep package="libyuv"/>
+      <dep package="libvpx"/>
+      <dep package="x264"/>
+      <dep package="ffmpeg"/>
+      <!--
+      sdl doesn't build with newer versions of osx because of missing X header files
+      <dep package="sdl"/>
+      -->
+      <dep package="pygobject3"/>
+      <dep package="meta-gstreamer-1.0"/>
+      <dep package="gst-python"/>
+      <dep package="gmplib"/>
+      <dep package="openssl"/>
+      <dep package="mpfr"/>
+      <dep package="setuptools"/>
+      <dep package="python-zeroconf"/>
+      <dep package="python-netifaces"/>
+      <dep package="python-pyasn1"/>
+      <dep package="python-pillow"/>
+      <dep package="python-py2app"/>
+      <dep package="python-cython"/>
+      <dep package="python-numpy"/>
+      <dep package="python-pycups"/>
+      <dep package="python-websockify"/>
+      <dep package="python-websocket-client"/>
+      <dep package="python-twisted"/>
+      <dep package="python-nose"/>
+      <dep package="python-lz4"/>
+      <dep package="python-lzo"/>
+      <dep package="python-ipaddress"/>
+      <dep package="python-idna"/>
+      <dep package="python-enum34"/>
+      <dep package="python-cryptography"/>
+      <dep package="python-rencode"/>
+      <dep package="python-yaml"/>
+      <dep package="python-macholib"/>
+      <dep package="python-modulegraph"/>
+      <dep package="python-altgraph"/>
+      <dep package="python-pyopengl"/>
+      <dep package="python-pyopengl-accelerate"/>
+      <dep package="python-pyobjc-core"/>
+      <dep package="python-pyobjc-framework-cocoa"/>
+      <dep package="python-pyobjc-framework-quartz"/>
+      <dep package="gtkglext"/>
+      <dep package="pygtkglext"/>
+      <dep package="gtk-mac-bundler"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-subversion-xpra">
+    <dependencies>
+      <dep package="xpra-svn"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-osx-xpra-pkgtools">
+    <dependencies>
+      <!-- dep package="xar"/ doesn't work with openssl 1.1-->
+      <dep package="cpio"/>
+      <dep package="bomutils"/>
+    </dependencies>
+  </metamodule>
+
+</moduleset>
