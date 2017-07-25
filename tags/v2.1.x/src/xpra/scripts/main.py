@@ -24,7 +24,7 @@ from xpra.platform.features import LOCAL_SERVERS_SUPPORTED, SHADOW_SUPPORTED, CA
 from xpra.util import csv, envbool, envint, DEFAULT_PORT
 from xpra.exit_codes import EXIT_SSL_FAILURE, EXIT_SSH_FAILURE, EXIT_STR
 from xpra.os_util import getuid, getgid, monotonic_time, setsid, get_username_for_uid, WIN32, OSX, POSIX
-from xpra.scripts.config import OPTION_TYPES, CLIENT_OPTIONS, NON_COMMAND_LINE_OPTIONS, START_COMMAND_OPTIONS, BIND_OPTIONS, PROXY_START_OVERRIDABLE_OPTIONS, OPTIONS_ADDED_SINCE_V1, \
+from xpra.scripts.config import OPTION_TYPES, CLIENT_OPTIONS, NON_COMMAND_LINE_OPTIONS, CLIENT_ONLY_OPTIONS, START_COMMAND_OPTIONS, BIND_OPTIONS, PROXY_START_OVERRIDABLE_OPTIONS, OPTIONS_ADDED_SINCE_V1, \
     InitException, InitInfo, InitExit, \
     fixup_debug_option, fixup_options, dict_to_validated_config, \
     make_defaults_struct, parse_bool, print_bool, print_number, validate_config, has_sound_support, name_to_field
@@ -1244,7 +1244,13 @@ def parse_env(env):
 
 def configure_env(options):
     if options.env:
-        os.environ.update(parse_env(options.env))
+        env = parse_env(options.env)
+        if POSIX and os.getuid()==0:
+            #running as root!
+            #sanitize: only allow "safe" environment variables
+            #as these may have been specified by a non-root user
+            env = dict((k,v) for k,v in env.items() if k.startswith("XPRA_"))
+        os.environ.update(env)
 
 
 def systemd_run_command(mode, systemd_run_args, user=True):
@@ -1324,7 +1330,10 @@ def run_mode(script_file, error_cb, options, args, mode, defaults):
             return run_remote_server(error_cb, options, args, mode, defaults)
         elif (mode in ("start", "start-desktop", "upgrade") and supports_server) or \
             (mode=="shadow" and supports_shadow) or (mode=="proxy" and supports_proxy):
-            cwd = os.getcwd()
+            try:
+                cwd = os.getcwd()
+            except:
+                cwd = "/"
             env = os.environ.copy()
             start_via_proxy = parse_bool("start-via-proxy", options.start_via_proxy)
             if start_via_proxy is not False and (not POSIX or getuid()!=0) and options.daemon:
@@ -1833,16 +1842,25 @@ def connect_to(display_desc, opts=None, debug_cb=None, ssh_fail_cb=ssh_connect_f
                 kwargs["stderr"] = PIPE
             remote_xpra = display_desc["remote_xpra"]
             assert len(remote_xpra)>0
-            remote_commands = []
             socket_dir = display_desc.get("socket_dir")
+            proxy_command = display_desc["proxy_command"]       #ie: "_proxy_start"
+            display_as_args = display_desc["display_as_args"]   #ie: "--start=xterm :10"
+            remote_cmd = ""
             for x in remote_xpra:
-                #ie: ["~/.xpra/run-xpra"] + ["_proxy"] + [":10"]
-                pc = [x] + display_desc["proxy_command"] + display_desc["display_as_args"]
+                if not remote_cmd:
+                    check = "if"
+                else:
+                    check = "elif"
+                if x=="xpra":
+                    #no absolute path, so use "type" to check that the command exists:
+                    pc = ['%s type "%s" > /dev/null 2>&1; then' % (check, x)]
+                else:
+                    pc = ['%s [ -x %s ]; then' % (check, x)]
+                pc += [x] + proxy_command + display_as_args
                 if socket_dir:
                     pc.append("--socket-dir=%s" % socket_dir)
-                remote_commands.append((" ".join(pc)))
-            #ie: ~/.xpra/run-xpra _proxy || $XDG_RUNTIME_DIR/run-xpra _proxy
-            remote_cmd = " || ".join(remote_commands)
+                remote_cmd += " ".join(pc)+";"
+            remote_cmd += "else echo \"no run-xpra command found\"; exit 1; fi"
             if INITENV_COMMAND:
                 remote_cmd = INITENV_COMMAND + ";" + remote_cmd
             #putty gets confused if we wrap things in shell command:
@@ -2608,10 +2626,15 @@ def start_server_subprocess(script_file, args, mode, opts, uid=getuid(), gid=get
 
     cmd = [script_file, mode] + args        #ie: ["/usr/bin/xpra", "start-desktop", ":100"]
     cmd += get_start_server_args(opts)      #ie: ["--exit-with-children", "--start-child=xterm"]
-    #add a unique uuid to the server env:
-    from xpra.os_util import get_hex_uuid
-    new_server_uuid = get_hex_uuid()
-    cmd.append("--env=XPRA_PROXY_START_UUID=%s" % new_server_uuid)
+    #when starting via the system proxy server,
+    #we may already have a XPRA_PROXY_START_UUID,
+    #specified by the proxy-start command:
+    new_server_uuid = parse_env(opts.env or []).get("XPRA_PROXY_START_UUID")
+    if not new_server_uuid:
+        #generate one now:
+        from xpra.os_util import get_hex_uuid
+        new_server_uuid = get_hex_uuid()
+        cmd.append("--env=XPRA_PROXY_START_UUID=%s" % new_server_uuid)
     if mode=="shadow" and OSX:
         #launch the shadow server via launchctl so it will have GUI access:
         LAUNCH_AGENT = "org.xpra.Agent"
@@ -2659,7 +2682,7 @@ def get_start_server_args(opts, compat=False):
     fixup_options(defaults)
     args = []
     for x, ftype in OPTION_TYPES.items():
-        if x in NON_COMMAND_LINE_OPTIONS:
+        if x in NON_COMMAND_LINE_OPTIONS or x in CLIENT_ONLY_OPTIONS:
             continue
         if compat and x in OPTIONS_ADDED_SINCE_V1:
             continue
@@ -2674,7 +2697,7 @@ def get_start_server_args(opts, compat=False):
             if x in START_COMMAND_OPTIONS+BIND_OPTIONS+[
                      "pulseaudio-configure-commands",
                      "speaker-codec", "microphone-codec",
-                     "key-shortcut", "env",
+                     "key-shortcut", "start-env", "env",
                      "socket-dirs",
                      ]:
                 #individual arguments (ie: "--start=xterm" "--start=gedit" ..)
