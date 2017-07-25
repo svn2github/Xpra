@@ -36,7 +36,7 @@ from xpra.platform.win32.common import (EnumWindows, EnumWindowsProc, FindWindow
                                         GetWindowRect,
                                         GetWindowThreadProcessId,
                                         GetDesktopWindow, GetSystemMetrics,
-                                        GetWindowDC, ReleaseDC, SetCursorPos,
+                                        GetWindowDC, ReleaseDC, SetPhysicalCursorPos,
                                         mouse_event)
 #gdi32:
 from xpra.platform.win32.common import (CreateCompatibleDC, DeleteDC,
@@ -428,9 +428,10 @@ class ShadowServer(GTKShadowServerBase):
     def do_process_mouse_common(self, proto, wid, pointer):
         #adjust pointer position for offset in client:
         try:
-            SetCursorPos(*pointer)
+            x, y = pointer
+            SetPhysicalCursorPos(x, y)
         except Exception as e:
-            log("SetCursorPos%s failed", pointer, exc_info=True)
+            log("SetPhysicalCursorPos%s failed", pointer, exc_info=True)
             log.error("Error: failed to move the cursor:")
             log.error(" %s", e)
 
