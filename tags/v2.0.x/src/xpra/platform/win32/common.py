@@ -7,7 +7,7 @@
 import ctypes
 
 from ctypes import WinDLL, Structure, c_ulong, c_ushort, c_ubyte, c_int, c_uint, c_double, c_long
-from ctypes.wintypes import HWND, DWORD, WPARAM, LPARAM, HDC, HMONITOR, HMODULE, SHORT, ATOM, POINTER, RECT
+from ctypes.wintypes import HWND, DWORD, WPARAM, LPARAM, HDC, HMONITOR, HMODULE, SHORT, ATOM, POINTER, RECT, POINT
 from ctypes.wintypes import HANDLE, LPCWSTR, UINT, INT, WINFUNCTYPE, BOOL, HGDIOBJ, LONG, LPVOID, HBITMAP
 LRESULT = c_long
 
@@ -34,6 +34,15 @@ GetWindowLongW = user32.GetWindowLongW
 ClipCursor = user32.ClipCursor
 GetCursorPos = user32.GetCursorPos
 SetCursorPos = user32.SetCursorPos
+GetPhysicalCursorPos = user32.GetPhysicalCursorPos
+GetPhysicalCursorPos.argtypes = [POINTER(POINT)]
+GetPhysicalCursorPos.restype = BOOL
+SetPhysicalCursorPos = user32.SetPhysicalCursorPos
+SetPhysicalCursorPos.argtypes = [INT, INT]
+SetPhysicalCursorPos.restype = BOOL
+LogicalToPhysicalPoint = user32.LogicalToPhysicalPoint
+LogicalToPhysicalPoint.argtypes = [HWND, POINTER(POINT)]
+LogicalToPhysicalPoint.restype = BOOL
 SendMessageA = user32.SendMessageA
 PostMessageA = user32.PostMessageA
 FindWindowA = user32.FindWindowA
