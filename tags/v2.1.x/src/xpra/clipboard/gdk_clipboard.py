@@ -14,7 +14,7 @@ from xpra.gtk_common.gdk_atoms import (
 from xpra.clipboard.clipboard_base import ClipboardProtocolHelperBase, log
 
 from xpra.os_util import WIN32, OSX
-if not WIN32 and not OSX:
+if False:
     try:
         from xpra.x11.gtk2.gdk_bindings import sanitize_gtkselectiondata
         from xpra.clipboard import clipboard_base
