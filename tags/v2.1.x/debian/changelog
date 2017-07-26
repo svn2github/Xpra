@@ -1,3 +1,8 @@
+xpra (2.1-2) UNRELEASED; urgency=low
+  * fix clipboard: disable clipboard sanitization workaround
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 26 Jul 2017 23:55:51 +0700
+
 xpra (2.1-1) UNRELEASED; urgency=low
   * improve system wide proxy server, logind support on, socket activation
   * new authentication modules: peercred, sqlite

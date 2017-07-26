@@ -776,6 +776,9 @@ fi
 
 
 %changelog
+* Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-2
+- fix clipboard: disable clipboard sanitization workaround
+
 * Mon Jul 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-1
 - improve system wide proxy server, logind support on, socket activation
 - new authentication modules: peercred, sqlite
