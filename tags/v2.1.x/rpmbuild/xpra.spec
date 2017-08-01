@@ -778,9 +778,20 @@ fi
 
 %changelog
 * Tue Aug 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-2
+- fix SSH connections from the launcher on MS Windows
+- fix remote session start via SSH
+- fix full quality refresh control command
 - fix clipboard sanitization workaround (clipboard stopped)
 - fix regression introduced by previous DPI fix
 - fix Mac OS vertical wheel value accumulator
+- fix misleading log error message (confusing uid with gid)
+- fix invalid packet error message logging
+- fix MS Windows client exit on signal (control-C)
+- fix invalid mmap path warnings on MS Windows servers
+- fix OpenGL context creation failure message
+- fix duplicate button click events (causing triple clicks with MS Windows servers)
+- add missing mdns tool icon
+- add missing "meta" modifier to keyboard tools
 
 * Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-2
 - fix clipboard: disable clipboard sanitization workaround

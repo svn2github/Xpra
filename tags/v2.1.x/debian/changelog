@@ -1,7 +1,18 @@
 xpra (2.1.1-1) UNRELEASED; urgency=low
+  * fix SSH connections from the launcher on MS Windows
+  * fix remote session start via SSH
+  * fix full quality refresh control command
   * fix clipboard sanitization workaround (clipboard stopped)
   * fix regression introduced by previous DPI fix
   * fix Mac OS vertical wheel value accumulator
+  * fix misleading log error message (confusing uid with gid)
+  * fix invalid packet error message logging
+  * fix MS Windows client exit on signal (control-C)
+  * fix invalid mmap path warnings on MS Windows servers
+  * fix OpenGL context creation failure message
+  * fix duplicate button click events (causing triple clicks with MS Windows servers)
+  * add missing mdns tool icon
+  * add missing "meta" modifier to keyboard tools
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 01 Aug 2017 12:58:58 +0700
 
