@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.1
+%define version 2.1.1
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -776,6 +776,11 @@ fi
 
 
 %changelog
+* Tue Aug 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-2
+- fix clipboard sanitization workaround (clipboard stopped)
+- fix regression introduced by previous DPI fix
+- fix Mac OS vertical wheel value accumulator
+
 * Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-2
 - fix clipboard: disable clipboard sanitization workaround
 
