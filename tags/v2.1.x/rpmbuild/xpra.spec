@@ -777,10 +777,12 @@ fi
 
 
 %changelog
-* Tue Aug 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-2
+* Mon Aug 08 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-1
 - fix SSH connections from the launcher on MS Windows
 - fix remote session start via SSH
 - fix full quality refresh control command
+- fix HTML5 client clipboard access
+- fix client SHELL when starting via system wide proxy (some distros only)
 - fix clipboard sanitization workaround (clipboard stopped)
 - fix regression introduced by previous DPI fix
 - fix Mac OS vertical wheel value accumulator
@@ -790,6 +792,9 @@ fi
 - fix invalid mmap path warnings on MS Windows servers
 - fix OpenGL context creation failure message
 - fix duplicate button click events (causing triple clicks with MS Windows servers)
+- fix missing attribute error if shadow server is shut down without being used
+- honour window ids when using the control channel to ajust speed and quality
+- ignore dead sockets when enumerating possible X11 displays
 - add missing mdns tool icon
 - add missing "meta" modifier to keyboard tools
 
