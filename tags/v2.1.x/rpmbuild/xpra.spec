@@ -777,7 +777,7 @@ fi
 
 
 %changelog
-* Mon Aug 08 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-1
+* Mon Aug 07 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-1
 - fix SSH connections from the launcher on MS Windows
 - fix remote session start via SSH
 - fix full quality refresh control command

@@ -19,7 +19,7 @@ xpra (2.1.1-1) UNRELEASED; urgency=low
   * add missing mdns tool icon
   * add missing "meta" modifier to keyboard tools
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 08 Aug 2017 23:45:23 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 07 Aug 2017 23:45:23 +0700
 
 xpra (2.1-2) UNRELEASED; urgency=low
   * fix clipboard: disable clipboard sanitization workaround
