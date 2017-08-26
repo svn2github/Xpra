@@ -11,6 +11,9 @@ body{
 	background:#DADCE0;
 }
 
+img {
+	max-width: 100%; height: auto;
+}
 
 a{
 	color:#3874EE;
