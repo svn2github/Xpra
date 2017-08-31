@@ -63,7 +63,7 @@ TEXT_TARGETS = ("UTF8_STRING", "TEXT", "STRING", "text/plain")
 
 #may get overriden
 def nosanitize_gtkselectiondata(selectiondata):
-    return selectiondata
+    return False
 sanitize_gtkselectiondata = nosanitize_gtkselectiondata
 
 
@@ -743,8 +743,7 @@ class ClipboardProxy(gtk.Invisible):
         def unpack(clipboard, selection_data, user_data):
             log("unpack %s: %s", clipboard, type(selection_data))
             global sanitize_gtkselectiondata
-            selection_data = sanitize_gtkselectiondata(selection_data)
-            if selection_data is None:
+            if sanitize_gtkselectiondata(selection_data):
                 cb(None, None, None)
                 return
             log("unpack: %s", selection_data)
