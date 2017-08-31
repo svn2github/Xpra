@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.1.1
+%define version 2.1.2
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -777,6 +777,19 @@ fi
 
 
 %changelog
+* Thu Aug 31 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+- fix socket check for printer forwarding support
+- fix bashism in service init file
+- fix SetDPI dbus handler
+- fix iconification loop with some window managers (ie: ratpoison)
+- fix handling of unusual HTTP configurations
+- fix DoS with invalid connections
+- fix spurious clipboard warning on MS Windows and Mac OS
+- preserve settings so reloading the page works (HTML5 client)
+- allow a longer server startup timeout delay (HTML5 client)
+- more helpful error message if jQuery is missing (HTML5 client)
+- add missing entries to man page
+
 * Mon Aug 07 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-1
 - fix SSH connections from the launcher on MS Windows
 - fix remote session start via SSH
@@ -801,7 +814,7 @@ fi
 * Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-2
 - fix clipboard: disable clipboard sanitization workaround
 
-* Mon Jul 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-1
+* Mon Jul 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2
 - improve system wide proxy server, logind support on, socket activation
 - new authentication modules: peercred, sqlite
 - split packages for RPM, MS Windows and Mac OS
@@ -1168,11 +1181,11 @@ fi
 - fix remote server start via SSH
 - fix workspace change detection causing slow screen updates
 
-* Thu Mar 27 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1-1
+* Thu Mar 27 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.2
 - fix 32-bit server timestamps
 - fix client PNG handling on installations without PIL / Pillow
 
-* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1-1
+* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.2
 - NVENC support for YUV444 mode, support for automatic bitrate tuning
 - NVENC and CUDA load balancing for multiple cards
 - proxy encoding: ability to encode on proxy server
@@ -1779,7 +1792,7 @@ fi
 - automated regression and performance tests
 - remove compatibility code for versions older than 0.1
 
-* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.1-1
+* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.1.2
 - x264 and vpx video encoding support
 - gtk3 and python 3 partial support (client only - no keyboard support)
 - detect missing X11 server extensions and exit with error
