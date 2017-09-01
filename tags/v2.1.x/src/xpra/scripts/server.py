@@ -561,8 +561,11 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args, desktop_display=None
             raise InitException("cannot create SSL socket, check your certificate paths (%s): %s" % (cpaths, e))
 
     from xpra.server.socket_util import setup_tcp_socket, setup_vsock_socket, setup_local_sockets
+    min_port = int(opts.min_port)
     netlog("setting up SSL sockets: %s", bind_ssl)
     for host, iport in bind_ssl:
+        if iport<min_port:
+            error_cb("invalid %s port number %i (minimum value is %i)" % (socktype, iport, min_port))
         _, tcp_socket, host_port = setup_tcp_socket(host, iport, "SSL")
         socket = ("SSL", wrap_socket_fn(tcp_socket), host_port)
         sockets.append(socket)
@@ -585,6 +588,8 @@ def run_server(error_cb, opts, mode, xpra_file, extra_args, desktop_display=None
             mdns_recs.append(rec)
     netlog("setting up TCP sockets: %s", bind_tcp)
     for host, iport in bind_tcp:
+        if iport<min_port:
+            error_cb("invalid %s port number %i (minimum value is %i)" % (socktype, iport, min_port))
         socket = setup_tcp_socket(host, iport)
         sockets.append(socket)
         add_tcp_mdns_rec(host, iport)
