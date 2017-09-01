@@ -1,4 +1,5 @@
 xpra (2.1.2-1) UNRELEASED; urgency=low
+  * fix unprivileged users able to bind to privileged ports
   * fix socket check for printer forwarding support
   * fix bashism in service init file
   * fix SetDPI dbus handler
@@ -11,7 +12,7 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * more helpful error message if jQuery is missing (HTML5 client)
   * add missing entries to man page
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 31 Aug 2017 23:39:33 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 01 Sep 2017 16:23:46 +0700
 
 xpra (2.1.1-1) UNRELEASED; urgency=low
   * fix SSH connections from the launcher on MS Windows

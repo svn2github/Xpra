@@ -1,5 +1,6 @@
-v2.1.2 (2017-08-31)
+v2.1.2 (2017-09-01)
 ======================
+	-- fix unprivileged users able to bind to privileged ports
 	-- fix socket check for printer forwarding support
 	-- fix bashism in service init file
 	-- fix SetDPI dbus handler

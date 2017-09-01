@@ -777,7 +777,8 @@ fi
 
 
 %changelog
-* Thu Aug 31 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+* Fri Sep 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+- fix unprivileged users able to bind to privileged ports
 - fix socket check for printer forwarding support
 - fix bashism in service init file
 - fix SetDPI dbus handler
