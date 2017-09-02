@@ -7,12 +7,13 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * fix handling of unusual HTTP configurations
   * fix DoS with invalid connections
   * fix spurious clipboard warning on MS Windows and Mac OS
+  * fix server start failures on pulseaudio permissions errors
   * preserve settings so reloading the page works (HTML5 client)
   * allow a longer server startup timeout delay (HTML5 client)
   * more helpful error message if jQuery is missing (HTML5 client)
   * add missing entries to man page
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 01 Sep 2017 16:23:46 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 03 Sep 2017 00:44:31 +0700
 
 xpra (2.1.1-1) UNRELEASED; urgency=low
   * fix SSH connections from the launcher on MS Windows

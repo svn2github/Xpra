@@ -777,7 +777,7 @@ fi
 
 
 %changelog
-* Fri Sep 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+* Sun Sep 03 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
 - fix unprivileged users able to bind to privileged ports
 - fix socket check for printer forwarding support
 - fix bashism in service init file
@@ -786,6 +786,7 @@ fi
 - fix handling of unusual HTTP configurations
 - fix DoS with invalid connections
 - fix spurious clipboard warning on MS Windows and Mac OS
+- fix server start failures on pulseaudio permissions errors
 - preserve settings so reloading the page works (HTML5 client)
 - allow a longer server startup timeout delay (HTML5 client)
 - more helpful error message if jQuery is missing (HTML5 client)
