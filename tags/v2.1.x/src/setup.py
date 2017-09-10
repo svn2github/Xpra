@@ -95,7 +95,7 @@ print("Xpra version %s" % XPRA_VERSION)
 # using --with-OPTION or --without-OPTION
 # only the default values are specified here:
 #*******************************************************************************
-from xpra.os_util import get_status_output
+from xpra.os_util import get_status_output, is_Ubuntu, is_Debian, is_Raspbian, getUbuntuVersion
 
 PKG_CONFIG = os.environ.get("PKG_CONFIG", "pkg-config")
 has_pkg_config = False
@@ -146,7 +146,7 @@ from xpra.platform.features import LOCAL_SERVERS_SUPPORTED, SHADOW_SUPPORTED
 shadow_ENABLED = SHADOW_SUPPORTED and not (PYTHON3 and LINUX) and DEFAULT       #shadow servers use some GTK2 code..
 server_ENABLED = (LOCAL_SERVERS_SUPPORTED or shadow_ENABLED) and not (PYTHON3 and LINUX) and DEFAULT
 service_ENABLED = LINUX and server_ENABLED
-sd_listen_ENABLED = pkg_config_ok("--exists", "libsystemd")
+sd_listen_ENABLED = pkg_config_ok("--exists", "libsystemd") and (not is_Ubuntu() or getUbuntuVersion()>[16, 4])
 proxy_ENABLED  = DEFAULT
 client_ENABLED = DEFAULT
 
@@ -703,7 +703,6 @@ def exec_pkgconfig(*pkgs_options, **ekw):
                     ]
         elif get_gcc_version()>=[4, 4]:
             eifd = ["-Werror"]
-            from xpra.os_util import is_Ubuntu, is_Debian, is_Raspbian
             if is_Debian() or is_Ubuntu() or is_Raspbian():
                 #needed on Debian and Ubuntu to avoid this error:
                 #/usr/include/gtk-2.0/gtk/gtkitemfactory.h:47:1: error: function declaration isn't a prototype [-Werror=strict-prototypes]
@@ -840,7 +839,6 @@ def build_xpra_conf(install_dir):
         return " ".join(cmd)
     #OSX doesn't have webcam support yet (no opencv builds on 10.5.x)
     #Ubuntu 16.10 has opencv builds that conflict with our private ffmpeg
-    from xpra.os_util import getUbuntuVersion
     webcam = webcam_ENABLED and not (OSX or getUbuntuVersion()==[16, 10])
     #no python-avahi on RH / CentOS, need dbus module on *nix:
     mdns = mdns_ENABLED and (OSX or WIN32 or (not is_RH() and dbus_ENABLED))
@@ -1556,7 +1554,7 @@ else:
                 root_prefix = root_prefix[:-4]    #ie: "/" or "/usr/src/rpmbuild/BUILDROOT/xpra-0.18.0-0.20160513r12573.fc23.x86_64/"
             build_xpra_conf(root_prefix)
 
-            def copytodir(src, dst_dir, chmod=0o644):
+            def copytodir(src, dst_dir, dst_name=None, chmod=0o644):
                 #convert absolute paths:
                 if dst_dir.startswith("/"):
                     dst_dir = root_prefix+dst_dir
@@ -1566,7 +1564,7 @@ else:
                 self.mkpath(dst_dir)
                 #generate the target filename:
                 filename = os.path.basename(src)
-                dst_file = os.path.join(dst_dir, filename)
+                dst_file = os.path.join(dst_dir, dst_name or filename)
                 #copy it
                 print("copying %s -> %s (%s)" % (src, dst_dir, oct(chmod)))
                 shutil.copyfile(src, dst_file)
@@ -1598,7 +1596,10 @@ else:
             if service_ENABLED:
                 #Linux init service:
                 if os.path.exists("/bin/systemctl"):
-                    copytodir("service/xpra.service", systemd_dir)
+                    if sd_listen_ENABLED:
+                        copytodir("service/xpra.service", systemd_dir)
+                    else:
+                        copytodir("service/xpra-nosocketactivation.service", systemd_dir, dst_name="xpra.service")
                 else:
                     copytodir("service/xpra", "/etc/init.d")
                 if os.path.exists("/etc/sysconfig"):
