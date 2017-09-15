@@ -1381,7 +1381,7 @@ if WIN32:
                                "audioparsers", "audiorate", "audioconvert", "audioresample", "audiotestsrc",
                                "coreelements", "directsoundsink", "directsoundsrc",
                                #codecs:
-                               "opus", "flac", "lame", "mad", "mpg123", "speex", "faac", "faad",
+                               "opus", "opusparse", "flac", "lame", "mad", "mpg123", "speex", "faac", "faad",
                                "volume", "vorbis", "wavenc", "wavpack", "wavparse",
                                #untested: a52dec, voaacenc
                                )
