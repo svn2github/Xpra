@@ -18,6 +18,8 @@
 %define CFLAGS -O2 -fno-strict-aliasing
 %endif
 
+%define update_firewall 1
+
 #some of these dependencies may get turned off (empty) on some platforms:
 %define build_args --with-Xdummy --without-enc_x265
 %define requires_xorg xorg-x11-server-utils, xorg-x11-drv-dummy, xorg-x11-xauth
@@ -494,6 +496,7 @@ if [ ! -e "/etc/xpra/ssl-cert.pem" ]; then
 		-keyout "/etc/xpra/ssl-cert.pem" -out "/etc/xpra/ssl-cert.pem" 2> /dev/null
 	umask $umask
 fi
+%if 0%{update_firewall}
 ZONE=`firewall-offline-cmd --get-default-zone 2> /dev/null`
 if [ ! -z "${ZONE}" ]; then
 	set +e
@@ -505,6 +508,7 @@ if [ ! -z "${ZONE}" ]; then
 	fi
 	set -e
 fi
+%endif
 /usr/bin/update-mime-database &> /dev/null || :
 /usr/bin/update-desktop-database &> /dev/null || :
 /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
@@ -534,6 +538,7 @@ fi
 if [ $1 -ge 1 ] ; then
         /bin/systemctl try-restart xpra.service >/dev/null 2>&1 || :
 fi
+%if 0%{update_firewall}
 ZONE=`firewall-offline-cmd --get-default-zone 2> /dev/null`
 if [ ! -z "${ZONE}" ]; then
 	set +e
@@ -545,6 +550,7 @@ if [ ! -z "${ZONE}" ]; then
 	fi
 	set -e
 fi
+%endif
 /usr/bin/update-mime-database &> /dev/null || :
 /usr/bin/update-desktop-database &> /dev/null || :
 if [ $1 -eq 0 ] ; then
@@ -560,10 +566,10 @@ if [ $1 -eq 0 ] ; then
 		/usr/sbin/semodule -s ${selinuxvariant} -r cups_xpra &> /dev/null || :
 	done
 fi
-%endif
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+%endif
 
 
 %changelog
