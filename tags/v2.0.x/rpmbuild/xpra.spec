@@ -166,6 +166,9 @@ Requires: python2-pillow
 Requires: libfakeXinerama
 Requires: gtk2-immodule-xim
 Requires: %{requires_xorg}
+%if ! 0%{?suse_version}
+Requires: mesa-dri-drivers
+%endif
 Requires: %{libvpx}
 %if 0%{?fedora}
 Requires: python-avahi
