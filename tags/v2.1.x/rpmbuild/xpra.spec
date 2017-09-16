@@ -806,6 +806,7 @@ fi
 - fix SSL upgrades of sockets obtained through socket activation
 - fix Debian packaging of socket activated service
 - disable socket activation on Ubuntu 16.04 (too buggy)
+- add mesa-dri-drivers dependency to RPM packages for OpenGL support
 - add support for Volta GPUs with NVENC
 - preserve settings so reloading the page works (HTML5 client)
 - allow a longer server startup timeout delay (HTML5 client)

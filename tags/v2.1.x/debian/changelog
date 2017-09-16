@@ -18,6 +18,7 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * fix SSL upgrades of sockets obtained through socket activation
   * fix Debian packaging of socket activated service
   * disable socket activation on Ubuntu 16.04 (too buggy)
+  * add mesa-dri-drivers dependency to RPM packages for OpenGL support
   * add support for Volta GPUs with NVENC
   * preserve settings so reloading the page works (HTML5 client)
   * allow a longer server startup timeout delay (HTML5 client)
@@ -25,7 +26,7 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * add missing entries to man page
   * make it easier to disable firewall scripts in RPM builds
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 16 Sep 2017 15:29:32 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 16 Sep 2017 17:22:53 +0700
 
 xpra (2.1.1-1) UNRELEASED; urgency=low
   * fix SSH connections from the launcher on MS Windows

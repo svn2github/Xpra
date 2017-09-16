@@ -24,6 +24,7 @@ v2.1.2 (2017-09-16)
 	-- allow a longer server startup timeout delay (HTML5 client)
 	-- more helpful error message if jQuery is missing (HTML5 client)
 	-- add missing entries to man page
+	-- add mesa-dri-drivers dependency to RPM packages for OpenGL support
 	-- make it easier to disable firewall scripts in RPM builds
 
 
