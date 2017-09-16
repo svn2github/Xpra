@@ -783,7 +783,7 @@ fi
 
 
 %changelog
-* Sun Sep 03 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+* Sat Sep 16 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
 - fix unprivileged users able to bind to privileged ports
 - fix socket check for printer forwarding support
 - fix bashism in service init file
@@ -793,10 +793,22 @@ fi
 - fix DoS with invalid connections
 - fix spurious clipboard warning on MS Windows and Mac OS
 - fix server start failures on pulseaudio permissions errors
+- fix window icons going back to default on window re-initialization
+- fix sound subprocess exit warnings on MS Windows
+- fix packaging of opus libraries on MS Windows
+- fix stop command on MS Windows servers via named-pipe connections
+- fix SSL error handler
+- fix spurious key events for numlock on Mac OS
+- fix Mac OS shadow servers
+- fix SSL upgrades of sockets obtained through socket activation
+- fix Debian packaging of socket activated service
+- disable socket activation on Ubuntu 16.04 (too buggy)
+- add support for Volta GPUs with NVENC
 - preserve settings so reloading the page works (HTML5 client)
 - allow a longer server startup timeout delay (HTML5 client)
 - more helpful error message if jQuery is missing (HTML5 client)
 - add missing entries to man page
+- make it easier to disable firewall scripts in RPM builds
 
 * Mon Aug 07 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.1-1
 - fix SSH connections from the launcher on MS Windows
