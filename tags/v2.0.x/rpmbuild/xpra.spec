@@ -566,10 +566,10 @@ if [ $1 -eq 0 ] ; then
 		/usr/sbin/semodule -s ${selinuxvariant} -r cups_xpra &> /dev/null || :
 	done
 fi
+%endif
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-%endif
 
 
 %changelog
