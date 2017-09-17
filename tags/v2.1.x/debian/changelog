@@ -15,9 +15,13 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * fix SSL error handler
   * fix spurious key events for numlock on Mac OS
   * fix Mac OS shadow servers
+  * fix mDNS and IPv6 platform bugs (MS Windows and Mac OS)
+  * fix unicode warnings on MS Windows
+  * fix typo hiding pretty debug logging
   * fix SSL upgrades of sockets obtained through socket activation
   * fix Debian packaging of socket activated service
   * disable socket activation on Ubuntu 16.04 (too buggy)
+  * choose the strongest digest first
   * add mesa-dri-drivers dependency to RPM packages for OpenGL support
   * add support for Volta GPUs with NVENC
   * preserve settings so reloading the page works (HTML5 client)
@@ -26,7 +30,7 @@ xpra (2.1.2-1) UNRELEASED; urgency=low
   * add missing entries to man page
   * make it easier to disable firewall scripts in RPM builds
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 16 Sep 2017 17:22:53 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 17 Sep 2017 22:25:36 +0700
 
 xpra (2.1.1-1) UNRELEASED; urgency=low
   * fix SSH connections from the launcher on MS Windows

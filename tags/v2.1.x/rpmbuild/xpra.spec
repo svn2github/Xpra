@@ -786,7 +786,7 @@ fi
 
 
 %changelog
-* Sat Sep 16 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
+* Sun Sep 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
 - fix unprivileged users able to bind to privileged ports
 - fix socket check for printer forwarding support
 - fix bashism in service init file
@@ -803,9 +803,13 @@ fi
 - fix SSL error handler
 - fix spurious key events for numlock on Mac OS
 - fix Mac OS shadow servers
+- fix mDNS and IPv6 platform bugs (MS Windows and Mac OS)
+- fix unicode warnings on MS Windows
+- fix typo hiding pretty debug logging
 - fix SSL upgrades of sockets obtained through socket activation
 - fix Debian packaging of socket activated service
 - disable socket activation on Ubuntu 16.04 (too buggy)
+- choose the strongest digest first
 - add mesa-dri-drivers dependency to RPM packages for OpenGL support
 - add support for Volta GPUs with NVENC
 - preserve settings so reloading the page works (HTML5 client)
