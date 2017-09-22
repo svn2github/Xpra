@@ -439,6 +439,10 @@ div#modify fieldset {
         clear: both;
 }
 
+pre.wiki, pre.literal-block {
+        margin: 0.25em 0em;
+}
+
 tt {
 	color: #5E2612;
 	border: 1px solid #953;
