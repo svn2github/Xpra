@@ -7,7 +7,8 @@ import hmac, binascii
 
 from xpra.platform.dotxpra import DotXpra
 from xpra.util import xor
-from xpra.net.crypto import get_salt, choose_digest, get_digest_module
+from collections import deque
+from xpra.net.crypto import get_salt, choose_digest, get_digest_module, gendigest
 from xpra.os_util import strtobytes
 from xpra.log import Logger
 log = Logger("auth")
@@ -20,12 +21,18 @@ def init(opts):
     socket_dir = opts.socket_dir
     socket_dirs = opts.socket_dirs
 
+def hexstr(v):
+    return binascii.hexlify(strtobytes(v))
+
 
 class SysAuthenticator(object):
+    USED_SALT = deque(maxlen=1024*1024)
+
     def __init__(self, username, **kwargs):
         self.username = username
         self.salt = None
         self.digest = None
+        self.salt_digest = None
         try:
             import pwd
             self.pw = pwd.getpwnam(username)
@@ -69,6 +76,24 @@ class SysAuthenticator(object):
         #this will call check(password)
         return self.authenticate_check(challenge_response, client_salt)
 
+    def choose_salt_digest(self, digest_modes):
+        self.salt_digest = choose_digest(digest_modes)
+        return self.salt_digest
+    def get_response_salt(self, client_salt=None):
+        server_salt = self.salt
+        log("get_response_salt(%s) server_salt=%s, salt digest=%s", client_salt, server_salt, self.salt_digest)
+        #make sure it does not get re-used:
+        self.salt = None
+        if client_salt is None:
+            return server_salt
+        salt = gendigest(self.salt_digest, client_salt, server_salt)
+        log("gendigest%s=%s", (self.salt_digest, client_salt, server_salt), salt)
+        if salt in SysAuthenticator.USED_SALT:
+            raise Exception("danger: an attempt was made to re-use the same computed salt")
+        log("combined salt(%s, %s)=%s", hexstr(server_salt), hexstr(client_salt), hexstr(salt))
+        SysAuthenticator.USED_SALT.append(salt)
+        return salt
+
     def authenticate_check(self, challenge_response, client_salt):
         if self.salt is None:
             log.error("Error: illegal challenge response received - salt cleared or unset")
@@ -92,16 +117,12 @@ class SysAuthenticator(object):
         return ret
 
     def authenticate_hmac(self, challenge_response, client_salt):
+        log("authenticate_hmac%s", (challenge_response, client_salt))
         if not self.salt:
             log.error("Error: illegal challenge response received - salt cleared or unset")
             return None
-        #ensure this salt does not get re-used:
-        if client_salt is None:
-            salt = self.salt
-        else:
-            salt = xor(self.salt, client_salt)
-            log("xoring salt: xor(%s, %s)=%s", self.salt, client_salt, binascii.hexlify(strtobytes(salt)))
-        self.salt = None
+        salt = self.get_response_salt(client_salt)
+        log("response salt=%s", salt)
         password = self.get_password()
         if not password:
             log.error("Error: %s authentication failed", self)

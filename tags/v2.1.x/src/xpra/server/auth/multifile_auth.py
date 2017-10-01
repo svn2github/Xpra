@@ -12,7 +12,7 @@ import hmac
 
 from xpra.server.auth.file_auth_base import log, FileAuthenticatorBase, init as file_init
 from xpra.os_util import strtobytes, POSIX
-from xpra.util import xor, parse_simple_dict
+from xpra.util import parse_simple_dict
 from xpra.net.crypto import get_digest_module
 
 
@@ -133,11 +133,7 @@ class Authenticator(FileAuthenticatorBase):
             log.error("Error: illegal challenge response received - salt cleared or unset")
             return None
         #ensure this salt does not get re-used:
-        if client_salt is None:
-            salt = self.salt
-        else:
-            salt = xor(self.salt, client_salt)
-        self.salt = None
+        salt = self.get_response_salt(client_salt)
         entry = self.get_auth_info()
         if entry is None:
             log.error("Error: authentication failed")

@@ -62,8 +62,12 @@ def get_network_caps():
         from xpra.platform.features import MMAP_SUPPORTED
     except:
         MMAP_SUPPORTED = False
+    digests = get_digests()
+    #"hmac" is the legacy name, "xor" and "des" should not be used for salt:
+    salt_digests = [x for x in digests if x not in ("hmac", "xor", "des")]
     caps = {
-                "digest"                : get_digests(),
+                "digest"                : digests,
+                "salt-digest"           : salt_digests,
                 "compressors"           : compression.get_enabled_compressors(),
                 "encoders"              : packet_encoding.get_enabled_encoders(),
                 "mmap"                  : MMAP_SUPPORTED,

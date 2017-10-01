@@ -52,6 +52,7 @@ DELETE_PRINTER_FILE = envbool("XPRA_DELETE_PRINTER_FILE", True)
 SKIP_STOPPED_PRINTERS = envbool("XPRA_SKIP_STOPPED_PRINTERS", True)
 
 
+LEGACY_SALT_DIGEST = envbool("XPRA_LEGACY_SALT_DIGEST", True)
 class XpraClientBase(FileTransferHandler):
     """ Base class for Xpra clients.
         Provides the glue code for:
@@ -552,8 +553,11 @@ class XpraClientBase(FileTransferHandler):
         #they also tell us which digest to use:
         digest = packet[3]
         client_salt = get_salt(len(server_salt))
-        #TODO: use some key stretching algorigthm? (meh)
-        salt = xor(server_salt, client_salt)
+        salt_digest = "xor"
+        if len(packet)>=5:
+            salt_digest = packet[4]
+        salt = gendigest(salt_digest, client_salt, server_salt)
+        authlog("combined %s salt(%s, %s)=%s", salt_digest, binascii.hexlify(server_salt), binascii.hexlify(client_salt), binascii.hexlify(salt))
         if digest.startswith(b"hmac"):
             import hmac
             digestmod = get_digest_module(digest)
@@ -839,6 +843,14 @@ class XpraClientBase(FileTransferHandler):
             assert key, "encryption key is missing"
             if not self.set_server_encryption(c, key):
                 return False
+        salt_digest = "xor"
+        if len(packet)>=5:
+            salt_digest = packet[4]
+        if salt_digest in ("xor", "des"):
+            if not LEGACY_SALT_DIGEST:
+                self.auth_error(EXIT_INCOMPATIBLE_VERSION, "server uses legacy salt digest '%s'" % salt_digest)
+                return False
+            log.warn("Warning: server using legacy support for '%s' salt digest", salt_digest)
         return True
 
     def _process_set_deflate(self, packet):
