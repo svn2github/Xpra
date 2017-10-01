@@ -1,3 +1,10 @@
+xpra (2.1.3-1) UNRELEASED; urgency=low
+  * fix authentication weakness in client salt handling
+  * fix application name shown in notifications (X11)
+  * support CUDA 9
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 01 Oct 2017 16:27:59 +0700
+
 xpra (2.1.2-1) UNRELEASED; urgency=low
   * fix unprivileged users able to bind to privileged ports
   * fix socket check for printer forwarding support

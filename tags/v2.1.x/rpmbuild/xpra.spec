@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.1.2
+%define version 2.1.3
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -786,6 +786,11 @@ fi
 
 
 %changelog
+* Sun Oct 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+- fix authentication weakness in client salt handling
+- fix application name shown in notifications (X11)
+- support CUDA 9
+
 * Sun Sep 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
 - fix unprivileged users able to bind to privileged ports
 - fix socket check for printer forwarding support
@@ -839,10 +844,10 @@ fi
 - add missing mdns tool icon
 - add missing "meta" modifier to keyboard tools
 
-* Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1-2
+* Wed Jul 26 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3
 - fix clipboard: disable clipboard sanitization workaround
 
-* Mon Jul 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2
+* Mon Jul 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3
 - improve system wide proxy server, logind support on, socket activation
 - new authentication modules: peercred, sqlite
 - split packages for RPM, MS Windows and Mac OS
@@ -1209,11 +1214,11 @@ fi
 - fix remote server start via SSH
 - fix workspace change detection causing slow screen updates
 
-* Thu Mar 27 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.2
+* Thu Mar 27 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.3
 - fix 32-bit server timestamps
 - fix client PNG handling on installations without PIL / Pillow
 
-* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.2
+* Sun Mar 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.1.3
 - NVENC support for YUV444 mode, support for automatic bitrate tuning
 - NVENC and CUDA load balancing for multiple cards
 - proxy encoding: ability to encode on proxy server
@@ -1820,7 +1825,7 @@ fi
 - automated regression and performance tests
 - remove compatibility code for versions older than 0.1
 
-* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.1.2
+* Fri Apr 20 2012 Antoine Martin <antoine@devloop.org.uk> 0.2.1.3
 - x264 and vpx video encoding support
 - gtk3 and python 3 partial support (client only - no keyboard support)
 - detect missing X11 server extensions and exit with error
