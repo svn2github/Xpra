@@ -143,6 +143,18 @@ class ImageWrapper(object):
 
     def clone_pixel_data(self):
         assert not self.freed
+        if self.height>0 and oldstride<rowstride:
+            #the last few lines may need padding if the new rowstride is bigger
+            #(usually just the last line)
+            #we do this here to avoid slowing down the main loop above
+            #as this should be a rarer case
+            for h in range(self.height):
+                i = -(1+h)
+                line = lines[i]
+                if len(line)<rowstride:
+                    lines[i] = line + b"\0"*(rowstride-len(line))
+                else:
+                    break
         pixels = self.pixels
         planes = self.planes
         assert pixels, "no pixel data to clone"
