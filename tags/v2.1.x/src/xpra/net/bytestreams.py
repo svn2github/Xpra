@@ -47,17 +47,18 @@ TTY_WRITE = os.write
 
 
 PROTOCOL_STR = {}
-for x in ("UNIX", "INET", "INET6"):
-    try:
-        PROTOCOL_STR[getattr(socket, "AF_%s" % x)] = x
-    except:
-        pass
 FAMILY_STR = {}
-for x in ("STREAM", "DGRAM", "RAW", "RDM", "SEQPACKET"):
-    try:
-        FAMILY_STR[getattr(socket, "SOCK_%s" % x)] = x
-    except:
-        pass
+for x in dir(socket):
+    if x.startswith("AF_"):
+        try:
+            PROTOCOL_STR[getattr(socket, "AF_%s" % x)] = x
+        except:
+            pass
+    if x.startswith("SOCK_"):
+        try:
+            FAMILY_STR[getattr(socket, "SOCK_%s" % x)] = x
+        except:
+            pass
 
 
 if WIN32:
@@ -339,9 +340,9 @@ class SocketConnection(Connection):
                 #"class"         : str(type(s)),
                 "fileno"        : s.fileno(),
                 "timeout"       : int(1000*(s.gettimeout() or 0)),
-                "family"        : FAMILY_STR.get(s.family, s.family),
+                "family"        : FAMILY_STR.get(s.family, int(s.family)),
                 "proto"         : s.proto,
-                "type"          : PROTOCOL_STR.get(s.type, s.type),
+                "type"          : PROTOCOL_STR.get(s.type, int(s.type)),
                 }
 
 
