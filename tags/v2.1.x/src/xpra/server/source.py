@@ -1031,7 +1031,7 @@ class ServerSource(FileTransferHandler):
                     loop_warning("speaker", self.uuid)
                     return None
             from xpra.sound.wrapper import start_sending_sound
-            plugins = self.sound_properties.get("plugins")
+            plugins = self.sound_properties.strlistget("plugins", [])
             ss = start_sending_sound(plugins, self.sound_source_plugin, None, codec, volume, True, [codec], self.pulseaudio_server, self.pulseaudio_id)
             self.sound_source = ss
             soundlog("start_sending_sound() sound source=%s", ss)
@@ -1257,7 +1257,7 @@ class ServerSource(FileTransferHandler):
                 soundlog.error("failed to setup sound", exc_info=True)
                 return
         if packet_metadata:
-            if not self.sound_properties.get("bundle-metadata"):
+            if not self.sound_properties.boolget("bundle-metadata"):
                 for x in packet_metadata:
                     self.sound_sink.add_data(x)
                 packet_metadata = ()
