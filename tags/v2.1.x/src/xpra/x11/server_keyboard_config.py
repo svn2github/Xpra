@@ -164,11 +164,14 @@ class KeyboardConfig(KeyboardConfigBase):
         self.keycodes_for_modifier_keynames = {}
         keymap = gtk.gdk.keymap_get_default()
         if self.keynames_for_mod:
+        self.xkbmap_mod_nuisance = set(DEFAULT_MODIFIER_NUISANCE)
             for modifier, keynames in self.keynames_for_mod.items():
                 for keyname in keynames:
                     keyval = gtk.gdk.keyval_from_name(keyname)
                     if keyval==0:
                         log.error("no keyval found for keyname %s (modifier %s)", keyname, modifier)
+                    if keyname in DEFAULT_MODIFIER_NUISANCE_KEYNAMES:
+                        self.xkbmap_mod_nuisance.add(modifier)
                         return  []
                     entries = keymap.get_entries_for_keyval(keyval)
                     if entries:
@@ -188,7 +191,7 @@ class KeyboardConfig(KeyboardConfigBase):
             for k,v in self.keycode_translation.items():
                 reverse_trans[v] = k
             self.modifier_client_keycodes = {}
-            self.xkbmap_mod_nuisance = set()
+            self.xkbmap_mod_nuisance = set(DEFAULT_MODIFIER_NUISANCE)
             for modifier, keys in server_mappings.items():
                 client_keycodes = []
                 for keycode,keyname in keys:
@@ -201,7 +204,7 @@ class KeyboardConfig(KeyboardConfigBase):
             log("compute_client_modifier_keycodes() mappings=%s", self.modifier_client_keycodes)
             log("compute_client_modifier_keycodes() mod nuisance=%s", self.xkbmap_mod_nuisance)
         except Exception as e:
-            log.error("do_set_keymap: %s" % e, exc_info=True)
+            log.error("Error: compute_client_modifier_keycodes: %s" % e, exc_info=True)
 
     def compute_modifier_map(self):
         self.modifier_map = grok_modifier_map(gtk.gdk.display_get_default(), self.xkbmap_mod_meanings)
@@ -450,7 +453,7 @@ class KeyboardConfig(KeyboardConfigBase):
                 #nuisance keys (lock, num, scroll) are toggled by a
                 #full key press + key release (so act accordingly in the loop below)
                 nuisance = modifier in self.xkbmap_mod_nuisance
-                log("keynames(%s)=%s, keycodes=%s, nuisance=%s", modifier, keynames, keycodes, nuisance)
+                log("keynames(%s)=%s, keycodes=%s, nuisance=%s, nuisance keys=%s", modifier, keynames, keycodes, nuisance, self.xkbmap_mod_nuisance)
                 modkeycode = None
                 if not press:
                     #since we want to unpress something,
