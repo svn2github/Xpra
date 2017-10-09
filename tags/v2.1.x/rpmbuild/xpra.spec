@@ -786,9 +786,17 @@ fi
 
 
 %changelog
-* Sun Oct 01 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+* Mon Oct 09 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+- fix shadow servers connected to X11 servers without XShm
+- fix handling of gstreamer plugin failures
+- fix network constants causing packet failures with Python3
 - fix authentication weakness in client salt handling
+- fix delayed screen updates with the HTML5 client
+- fix modifier handling, especially with shadow servers or native keymaps
 - fix application name shown in notifications (X11)
+- fix webcam library issues causing client to fail to start
+- validate window dimensions early to prevent DoS
+- support newer versions of brotli
 - support CUDA 9
 
 * Sun Sep 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
