@@ -1103,10 +1103,12 @@ def install_html5(install_dir="www"):
                     br_dst = "%s.br" % dst
                     if os.path.exists(br_dst):
                         os.unlink(br_dst)
-                    cmd = ["bro", "--input", dst, "--output", br_dst]
+                    cmd = ["brotli", "-k", dst]
                     get_status_output(cmd)
                     if os.path.exists(br_dst):
                         os.chmod(br_dst, 0o644)
+                    else:
+                        print("Warning: brotli did not create '%s'" % br_dst)
 
 
 #*******************************************************************************
