@@ -343,7 +343,6 @@ CFLAGS="%{CFLAGS}" LDFLAGS="%{?LDFLAGS}" %{__python3} setup.py build \
 	--pkg-config-path=%{_libdir}/xpra/pkgconfig \
 	--rpath=%{_libdir}/xpra \
 	--without-html5 --without-printing
-%{__python3} setup.py build %{build_args}
 popd
 %endif
 
