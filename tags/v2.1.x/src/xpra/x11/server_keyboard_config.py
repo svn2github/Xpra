@@ -162,16 +162,16 @@ class KeyboardConfig(KeyboardConfigBase):
 
     def compute_modifier_keynames(self):
         self.keycodes_for_modifier_keynames = {}
+        self.xkbmap_mod_nuisance = set(DEFAULT_MODIFIER_NUISANCE)
         keymap = gtk.gdk.keymap_get_default()
         if self.keynames_for_mod:
-        self.xkbmap_mod_nuisance = set(DEFAULT_MODIFIER_NUISANCE)
             for modifier, keynames in self.keynames_for_mod.items():
                 for keyname in keynames:
+                    if keyname in DEFAULT_MODIFIER_NUISANCE_KEYNAMES:
+                        self.xkbmap_mod_nuisance.add(modifier)
                     keyval = gtk.gdk.keyval_from_name(keyname)
                     if keyval==0:
                         log.error("no keyval found for keyname %s (modifier %s)", keyname, modifier)
-                    if keyname in DEFAULT_MODIFIER_NUISANCE_KEYNAMES:
-                        self.xkbmap_mod_nuisance.add(modifier)
                         return  []
                     entries = keymap.get_entries_for_keyval(keyval)
                     if entries:
