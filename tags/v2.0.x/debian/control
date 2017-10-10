@@ -33,6 +33,7 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 #xenial:        ,xvfb
 #yakkety:        ,xserver-xorg-video-dummy
 #zesty:        ,xserver-xorg-video-dummy
+#artful:        ,xserver-xorg-video-dummy
 # for opengl support:
         ,python-gtkglext1
         ,python-opengl
@@ -44,6 +45,7 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 #xenial:         ,libturbojpeg
 #yakkety:         ,libturbojpeg
 #zesty:         ,libturbojpeg
+#artful:        ,libturbojpeg
 #sid:         ,libturbojpeg0
 #stretch:         ,libturbojpeg0
 # ffmpeg based codecs:
@@ -63,6 +65,7 @@ Recommends:
 #xenial:        ,libx264-148
 #yakkety:        ,libx264-148
 #zesty:        ,libx264-148
+#artful:        ,libx264-148
 # AES encryption:
         ,python-cryptography
 # audio-related:
