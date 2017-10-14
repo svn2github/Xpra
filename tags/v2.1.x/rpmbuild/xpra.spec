@@ -785,18 +785,25 @@ fi
 
 
 %changelog
-* Mon Oct 09 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+* Sat Oct 14 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
 - fix shadow servers connected to X11 servers without XShm
 - fix handling of gstreamer plugin failures
 - fix network constants causing packet failures with Python3
-- fix authentication weakness in client salt handling
+- fix authentication weaknesses in client salt handling
 - fix delayed screen updates with the HTML5 client
 - fix modifier handling, especially with shadow servers or native keymaps
 - fix application name shown in notifications (X11)
 - fix webcam library issues causing client to fail to start
+- fix handling of client connection failures
+- fix paint issues with padded windows (ie: desktop servers maximized)
+- fix out-of-bounds array access in RandR cython glue
+- fix RPM building python3 modules twice (and with wrong arguments)
+- don't show start command dialog if the server does not support it
 - validate window dimensions early to prevent DoS
 - support newer versions of brotli
-- support CUDA 9
+- support CUDA 9, prefer newer SDK versions
+- support Ubuntu Artful
+- logging typos
 
 * Sun Sep 17 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.2-1
 - fix unprivileged users able to bind to privileged ports
