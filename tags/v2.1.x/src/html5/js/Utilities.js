@@ -340,9 +340,9 @@ var Utilities = {
 
 	monotonicTime : function() {
 		if (performance) {
-			return performance.now()*1000.0;
+			return performance.now();
 		}
-		return Date().now();
+		return Date.now();
 	},
 
 	StringToUint8 : function(str) {
