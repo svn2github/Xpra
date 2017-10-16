@@ -785,7 +785,7 @@ fi
 
 
 %changelog
-* Sat Oct 14 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+* Mon Oct 16 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
 - fix shadow servers connected to X11 servers without XShm
 - fix handling of gstreamer plugin failures
 - fix network constants causing packet failures with Python3
@@ -798,6 +798,10 @@ fi
 - fix paint issues with padded windows (ie: desktop servers maximized)
 - fix out-of-bounds array access in RandR cython glue
 - fix RPM building python3 modules twice (and with wrong arguments)
+- fix rare scrolling detection error on first pass
+- fix HTML5 time values and scroll paint order
+- fix X11 crashes with the OpenGL client and some buggy drivers
+- more reliable scaling value rounding
 - don't show start command dialog if the server does not support it
 - validate window dimensions early to prevent DoS
 - support newer versions of brotli
