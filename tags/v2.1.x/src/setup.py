@@ -1103,7 +1103,17 @@ def install_html5(install_dir="www"):
                     br_dst = "%s.br" % dst
                     if os.path.exists(br_dst):
                         os.unlink(br_dst)
-                    cmd = ["brotli", "-k", dst]
+                    #find brotli on $PATH
+                    paths = os.environ.get("PATH", "").split(os.pathsep)
+                    if os.name=="posix":
+                        #not always present,
+                        #but brotli is often installed there (install from source):
+                        paths.append("/usr/local/bin")
+                    for x in paths:
+                        br = os.path.join(x, "brotli")
+                        cmd = [br, "-k", dst]
+                        if os.path.exists(br):
+                            break
                     get_status_output(cmd)
                     if os.path.exists(br_dst):
                         os.chmod(br_dst, 0o644)
