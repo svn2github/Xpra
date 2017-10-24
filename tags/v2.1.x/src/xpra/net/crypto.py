@@ -5,7 +5,7 @@
 # later version. See the file COPYING for details.
 
 import os
-from xpra.util import envint, envbool, csv
+from xpra.util import envint, envbool, csv, xor
 from xpra.os_util import strtobytes, memoryview_to_bytes
 from xpra.log import Logger
 log = Logger("network", "crypto")
