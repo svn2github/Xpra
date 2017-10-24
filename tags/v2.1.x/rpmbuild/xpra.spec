@@ -785,7 +785,7 @@ fi
 
 
 %changelog
-* Sun Oct 22 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
+* Tue Oct 24 2017 Antoine Martin <antoine@devloop.org.uk> 2.1.3-1
 - fix shadow servers connected to X11 servers without XShm
 - fix handling of gstreamer plugin failures
 - fix network constants causing packet failures with Python3
@@ -803,6 +803,7 @@ fi
 - fix X11 crashes with the OpenGL client and some buggy drivers
 - fix parsing order of configuration files
 - fix compatibility with ffmpeg 3.4
+- fix timer warning race condition on window cleanup
 - more reliable scaling value rounding
 - don't show start command dialog if the server does not support it
 - validate window dimensions early to prevent DoS
