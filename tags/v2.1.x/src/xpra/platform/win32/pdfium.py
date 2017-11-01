@@ -116,7 +116,7 @@ def do_print_pdf(hdc, title="PDF Print Test", pdf_data=None):
 		doc = FPDF_LoadMemDocument(cast(buf, c_void_p), len(pdf_data), None)
 		if not doc:
 			log.error("Error: FPDF_LoadMemDocument failed, error: %s", get_error())
-			return 1
+			return -1
 		log("FPDF_LoadMemDocument(..)=%s", doc)
 		count = FPDF_GetPageCount(doc)
 		log("FPDF_GetPageCount(%s)=%s", doc, count)
@@ -132,7 +132,7 @@ def do_print_pdf(hdc, title="PDF Print Test", pdf_data=None):
 				page = FPDF_LoadPage(doc, i)
 				if not page:
 					log.error("Error: FPDF_LoadPage failed for page %i, error: %s", i, get_error())
-					return 1
+					return -2
 				log("FPDF_LoadPage()=%s page %i loaded", page, i)
 				FPDF_RenderPage(hdc, page, x, y, w, h, rotate, flags)
 				log("FPDF_RenderPage page %i rendered", i)
@@ -150,7 +150,7 @@ def print_pdf(printer_name, title, pdf_data):
 def main():
 	if len(sys.argv) not in (2, 3, 4):
 		print("usage: %s /path/to/document.pdf [printer-name] [document-title]" % sys.argv[0])
-		return 1
+		return -3
 	filename = sys.argv[1]
 	with open(filename, 'rb') as f:
 		pdf_data = f.read()
