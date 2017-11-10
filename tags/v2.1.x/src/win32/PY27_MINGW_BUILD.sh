@@ -240,7 +240,7 @@ if [ "${BUNDLE_OPENSSL}" == "1" ]; then
 fi
 
 if [ "${DO_VERPATCH}" == "1" ]; then
-	for exe in `ls dist/*exe`; do
+	for exe in `ls dist/*exe | grep -v Plink.exe`; do
 		tool_name=`echo $exe | sed 's+dist/++g;s+Xpra_++g;s+Xpra-++g;s+_+ +g;s+-+ +g;s+\.exe++g'`
 		verpatch $exe				//s desc "Xpra $tool_name"		//va "${ZERO_PADDED_VERSION}" //s company "xpra.org" //s copyright "(c) xpra.org 2017" //s product "xpra" //pv "${ZERO_PADDED_VERSION}"
 	done
