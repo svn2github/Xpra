@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2
+%define version 2.2.1
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -729,6 +729,19 @@ fi
 
 
 %changelog
+* Fri Dec 15 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
+- fix system proxy not starting due to missing SSL certificate (DEB postinstall)
+- fix typo in per-user config file location example
+- fix error in fakeXinerama error handler
+- fix non-systemd system service files
+- fix automatic bandwidth limit underestimated
+- fix application crash caused by KDE systray API
+- fix "delay-tray" command line option
+- fix systray command line test scripts
+- check for uinput permissions early (avoid using uinput configuration unnecessarily)
+- support older versions of python-lz4 (as used on Ubuntu and Debian)
+- add missing webp RPM dependencies
+
 * Mon Dec 11 2017 Antoine Martin <antoine@devloop.org.uk> 2.2-1
 - support RFB clients (ie: VNC) with bind-rfb or rfb-upgrade options
 - UDP transport (experimental) with bind-udp and udp://host:port URLs
