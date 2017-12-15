@@ -104,6 +104,8 @@ SEND_TIMESTAMPS = envbool("XPRA_SEND_TIMESTAMPS", False)
 
 RPC_TIMEOUT = envint("XPRA_RPC_TIMEOUT", 5000)
 
+TRAY_DELAY = envint("XPRA_TRAY_DELAY", 0)
+
 WEBCAM_ALLOW_VIRTUAL = envbool("XPRA_WEBCAM_ALLOW_VIRTUAL", False)
 WEBCAM_TARGET_FPS = max(1, min(50, envint("XPRA_WEBCAM_FPS", 20)))
 
@@ -440,7 +442,7 @@ class UIXpraClient(XpraClientBase):
                 self.connect("first-ui-received", setup_xpra_tray)
             else:
                 #show shortly after the main loop starts running:
-                self.timeout_add(1000, setup_xpra_tray)
+                self.timeout_add(TRAY_DELAY, setup_xpra_tray)
 
         notifylog("client_supports_notifications=%s", self.client_supports_notifications)
         if self.client_supports_notifications:
@@ -881,10 +883,11 @@ class UIXpraClient(XpraClientBase):
             menu = self.menu_helper.build()
         tray = self.make_tray(XPRA_APP_ID, menu, self.get_tray_title(), tray_icon_filename, xpra_tray_geometry, xpra_tray_click, xpra_tray_mouseover, xpra_tray_exit)
         traylog("setup_xpra_tray(%s)=%s", tray_icon_filename, tray)
-        def reset_tray_title():
-            if self.tray:
-                self.tray.set_tooltip(self.get_tray_title())
-        return self.after_handshake(reset_tray_title)
+        if tray:
+            def reset_tray_title():
+                tray.set_tooltip(self.get_tray_title())
+            self.after_handshake(reset_tray_title)
+        return tray
 
     def get_tray_title(self):
         t = []
