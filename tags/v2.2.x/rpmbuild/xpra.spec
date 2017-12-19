@@ -729,16 +729,20 @@ fi
 
 
 %changelog
-* Sat Dec 16 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
+* Tue Dec 19 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
+- fix MacOS keyboard detection crash
 - fix system proxy not starting due to missing SSL certificate (DEB postinstall)
 - fix typo in per-user config file location example
 - fix error in fakeXinerama error handler
 - fix non-systemd system service files
 - fix automatic bandwidth limit underestimated
 - fix application crash caused by KDE systray API
+- fix system tray forwarding, size miscalculation on MS Windows
 - fix "delay-tray" command line option
-- fix systray command line test scripts
+- fix system tray command line test scripts
 - fix key mapping regression with X11 clients and non-us layouts
+- fix auto-refresh handling error 
+- fix webp encoding with OpenGL rendering disabled
 - check for uinput permissions early (avoid using uinput configuration unnecessarily)
 - support older versions of python-lz4 (as used on Ubuntu and Debian)
 - add missing webp RPM dependencies
