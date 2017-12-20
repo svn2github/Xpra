@@ -729,7 +729,7 @@ fi
 
 
 %changelog
-* Tue Dec 19 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
+* Wed Dec 20 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
 - fix MacOS keyboard detection crash
 - fix system proxy not starting due to missing SSL certificate (DEB postinstall)
 - fix typo in per-user config file location example
@@ -743,6 +743,8 @@ fi
 - fix key mapping regression with X11 clients and non-us layouts
 - fix auto-refresh handling error 
 - fix webp encoding with OpenGL rendering disabled
+- don't enable webp on platforms with outdated libraries
+- handle rfb-upgrade parsing failures more gracefully
 - check for uinput permissions early (avoid using uinput configuration unnecessarily)
 - support older versions of python-lz4 (as used on Ubuntu and Debian)
 - add missing webp RPM dependencies
