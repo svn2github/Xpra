@@ -1,3 +1,10 @@
+v2.2.2 (2017-12-30)
+======================
+	-- fix client authentication failures with multiple challenges
+	-- fix keyboard layout change error with GTK3 builds
+	-- re-enable webcam forwarding support with MS Windows 32-bit clients
+
+
 v2.2.1 (2017-12-20)
 ======================
 	-- fix MacOS keyboard detection crash

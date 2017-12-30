@@ -1,3 +1,10 @@
+xpra (2.2.2-1) UNRELEASED; urgency=low
+  * fix client authentication failures with multiple challenges
+  * fix keyboard layout change error with GTK3 builds
+  * re-enable webcam forwarding support with MS Windows 32-bit clients
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 30 Dec 2017 15:09:52 +0700
+
 xpra (2.2.1-1) UNRELEASED; urgency=low
   * fix MacOS keyboard detection crash
   * fix system proxy not starting due to missing SSL certificate (DEB postinstall)

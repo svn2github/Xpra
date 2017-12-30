@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2.1
+%define version 2.2.2
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -729,6 +729,11 @@ fi
 
 
 %changelog
+* Sat Dec 30 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+- fix client authentication failures with multiple challenges
+- fix keyboard layout change error with GTK3 builds
+- re-enable webcam forwarding support with MS Windows 32-bit clients
+
 * Wed Dec 20 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
 - fix MacOS keyboard detection crash
 - fix system proxy not starting due to missing SSL certificate (DEB postinstall)
