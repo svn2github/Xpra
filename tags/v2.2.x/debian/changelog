@@ -6,6 +6,7 @@ xpra (2.2.2-1) UNRELEASED; urgency=low
   * fix error during window cleanup and OpenGL error handler
   * fix compatibility with newer versions of python-lz4
   * fix xauth file location causing proxy start failures
+  * fix server start failure if stderr is closed
   * don't expose icon absolute paths to clients
   * re-enable webcam forwarding support with MS Windows 32-bit clients
 
