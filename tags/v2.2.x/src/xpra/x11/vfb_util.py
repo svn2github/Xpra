@@ -221,7 +221,7 @@ def start_Xvfb(xvfb_str, pixel_depth, display_name, cwd, uid, gid, username, xau
         log("xvfb_cmd=%s", xvfb_cmd)
         xvfb = subprocess.Popen(xvfb_cmd, executable=xvfb_executable, close_fds=True,
                                 stdin=subprocess.PIPE, preexec_fn=preexec)
-    xauth_add(display_name, xauth_data)
+    xauth_add(xauthority, display_name, xauth_data)
     log("xvfb process=%s", xvfb)
     log("display_name=%s", display_name)
     return xvfb, display_name, cleanups
@@ -257,8 +257,8 @@ def set_initial_resolution(desktop=False):
         log.error(" %s", e)
 
 
-def xauth_add(display_name, xauth_data):
-    xauth_cmd = ["xauth", "add", display_name, "MIT-MAGIC-COOKIE-1", xauth_data]
+def xauth_add(filename, display_name, xauth_data):
+    xauth_cmd = ["xauth", "-f", filename, "add", display_name, "MIT-MAGIC-COOKIE-1", xauth_data]
     try:
         code = subprocess.call(xauth_cmd)
         if code != 0:
