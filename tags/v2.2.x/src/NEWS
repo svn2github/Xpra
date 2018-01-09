@@ -1,7 +1,13 @@
-v2.2.2 (2017-12-30)
+v2.2.2 (2018-01-09)
 ======================
+	-- fix compatibility with some browsers (ie: ChromeOS)
 	-- fix client authentication failures with multiple challenges
 	-- fix keyboard layout change error with GTK3 builds
+	-- fix X11 multi-screen display handling (X11 "screens")
+	-- fix error during window cleanup and OpenGL error handler
+	-- fix compatibility with newer versions of python-lz4
+	-- fix xauth file location causing proxy start failures
+	-- don't expose icon absolute paths to clients
 	-- re-enable webcam forwarding support with MS Windows 32-bit clients
 
 

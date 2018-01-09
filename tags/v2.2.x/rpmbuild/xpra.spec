@@ -729,9 +729,15 @@ fi
 
 
 %changelog
-* Sat Dec 30 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+* Tue Jan 09 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+- fix compatibility with some browsers (ie: ChromeOS)
 - fix client authentication failures with multiple challenges
 - fix keyboard layout change error with GTK3 builds
+- fix X11 multi-screen display handling (X11 "screens")
+- fix error during window cleanup and OpenGL error handler
+- fix compatibility with newer versions of python-lz4
+- fix xauth file location causing proxy start failures
+- don't expose icon absolute paths to clients
 - re-enable webcam forwarding support with MS Windows 32-bit clients
 
 * Wed Dec 20 2017 Antoine Martin <antoine@devloop.org.uk> 2.2.1-1
