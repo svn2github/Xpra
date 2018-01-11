@@ -130,6 +130,7 @@ class Connection(object):
         self.info = info
         self.input_bytecount = 0
         self.input_readcount = 0
+        self.socktype_wrapped = socktype
         self.output_bytecount = 0
         self.output_writecount = 0
         self.filename = None            #only used for unix domain sockets!
@@ -171,6 +172,8 @@ class Connection(object):
 
     def get_info(self):
         info = self.info.copy()
+        if self.socktype_wrapped!=self.socktype:
+            info["wrapped"] = self.socktype_wrapped
         info.update({
                 "type"              : self.socktype or "",
                 "endpoint"          : self.target or "",
