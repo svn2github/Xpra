@@ -8,13 +8,13 @@
 %define __requires_exclude ^libcuda.*$
 
 Name:           python-pycuda
-Version:        2016.1
+Version:        2016.1.1
 Release:        1
 Url:            http://mathema.tician.de/software/pycuda
 Summary:        Python wrapper CUDA
 License:        MIT
 Group:          Development/Libraries/Python
-Source:        	http://pypi.python.org/pypi/cuda/%{version}/pycuda-%{version}.tar.gz
+Source:        	https://pypi.python.org/packages/d6/98/ff0f751fd5c97c9d286b90ffe1ed8aa21faf1a640b74b662f02d8afcc87c/pycuda-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 Requires:       python-decorator
