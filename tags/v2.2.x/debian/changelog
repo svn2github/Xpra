@@ -1,4 +1,6 @@
 xpra (2.2.2-1) UNRELEASED; urgency=low
+  * consistent authentication modules used after socket upgrades
+  * fix crash with invalid tray docking requests
   * fix compatibility with some browsers (ie: ChromeOS)
   * fix client authentication failures with multiple challenges
   * fix keyboard layout change error with GTK3 builds
@@ -10,7 +12,7 @@ xpra (2.2.2-1) UNRELEASED; urgency=low
   * don't expose icon absolute paths to clients
   * re-enable webcam forwarding support with MS Windows 32-bit clients
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 09 Jan 2018 19:49:38 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 15 Jan 2018 23:45:21 +0700
 
 xpra (2.2.1-1) UNRELEASED; urgency=low
   * fix MacOS keyboard detection crash

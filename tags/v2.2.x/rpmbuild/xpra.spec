@@ -729,7 +729,9 @@ fi
 
 
 %changelog
-* Tue Jan 09 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+* Mon Jan 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+- consistent authentication modules used after socket upgrades
+- fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)
 - fix client authentication failures with multiple challenges
 - fix keyboard layout change error with GTK3 builds
