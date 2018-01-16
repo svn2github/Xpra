@@ -9,10 +9,11 @@ xpra (2.2.2-1) UNRELEASED; urgency=low
   * fix compatibility with newer versions of python-lz4
   * fix xauth file location causing proxy start failures
   * fix server start failure if stderr is closed
+  * fix occasional minor error in timer
   * don't expose icon absolute paths to clients
   * re-enable webcam forwarding support with MS Windows 32-bit clients
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 15 Jan 2018 23:45:21 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 16 Jan 2018 10:04:52 +0700
 
 xpra (2.2.1-1) UNRELEASED; urgency=low
   * fix MacOS keyboard detection crash

@@ -729,7 +729,7 @@ fi
 
 
 %changelog
-* Mon Jan 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)
@@ -740,6 +740,7 @@ fi
 - fix compatibility with newer versions of python-lz4
 - fix xauth file location causing proxy start failures
 - fix server start failure if stderr is closed
+- fix occasional minor error in timer
 - don't expose icon absolute paths to clients
 - re-enable webcam forwarding support with MS Windows 32-bit clients
 

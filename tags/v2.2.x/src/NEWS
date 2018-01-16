@@ -1,4 +1,4 @@
-v2.2.2 (2018-01-15)
+v2.2.2 (2018-01-16)
 ======================
 	-- consistent authentication modules used after socket upgrades
 	-- fix crash with invalid tray docking requests
@@ -10,6 +10,7 @@ v2.2.2 (2018-01-15)
 	-- fix compatibility with newer versions of python-lz4
 	-- fix xauth file location causing proxy start failures
 	-- fix server start failure if stderr is closed
+	-- fix occasional minor error in timer
 	-- don't expose icon absolute paths to clients
 	-- re-enable webcam forwarding support with MS Windows 32-bit clients
 
