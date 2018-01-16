@@ -102,7 +102,7 @@ echo
 echo
 
 INSTALLER_FILENAME="Xpra${EXTRA_VERSION}${BUILD_TYPE}_Setup_${FULL_VERSION}.exe"
-MSI_FILENAME="Xpra${EXTRA_VERSION}${BUILD_TYPE}_Setup_${FULL_VERSION}.msi"
+MSI_FILENAME="Xpra${EXTRA_VERSION}${BUILD_TYPE}_${FULL_VERSION}.msi"
 ZIP_DIR="Xpra${EXTRA_VERSION}${BUILD_TYPE}_${FULL_VERSION}"
 ZIP_FILENAME="${ZIP_DIR}.zip"
 
@@ -334,8 +334,12 @@ if [ "${DO_MSI}" == "1" ]; then
 			exit 1
 		fi
 	fi
-	cat "win32\msi.xml" | sed "s/INPUT/${INSTALLER_FILENAME}/g" | sed "s/OUTPUT/${MSI_FILENAME}/g" | sed "s/ZERO_PADDED_VERSION/${ZERO_PADDED_VERSION}/g" | sed "s/FULL_VERSION/${FULL_VERSION}/g" > msi.xml
-	"${MSIWRAPPER}" "msi.xml"
+	#we need to quadruple escape backslashes
+	#as they get interpreted by the shell and sed, multiple times:
+	CWD=`pwd | sed 's+/\([a-zA-Z]\)/+\1:\\\\\\\\+g; s+/+\\\\\\\\+g'`
+	echo "CWD=${CWD}"
+	cat "win32\msi.xml" | sed "s+\$CWD+${CWD}+g" | sed "s+\$INPUT+${INSTALLER_FILENAME}+g" | sed "s+\$OUTPUT+${MSI_FILENAME}+g" | sed "s+\$ZERO_PADDED_VERSION+${ZERO_PADDED_VERSION}+g" | sed "s+\$FULL_VERSION+${FULL_VERSION}+g" > msi.xml
+	"${MSIWRAPPER}"
 	if [ "${DO_SIGN}" == "1" ]; then
 		SIGNTOOL_LOG="win32/signtool.log"
 		echo "* Signing MSI"
