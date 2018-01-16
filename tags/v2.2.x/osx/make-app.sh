@@ -358,3 +358,6 @@ rsync --delete -rplogt "${APP_DIR}" ~/Desktop/
 echo "Done"
 echo "*******************************************************************************"
 echo
+
+svn revert Info.plist
+
