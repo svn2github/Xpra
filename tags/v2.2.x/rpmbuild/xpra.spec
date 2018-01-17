@@ -729,6 +729,9 @@ fi
 
 
 %changelog
+* Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-2
+- fixup incomplete authentication backport
+
 * Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
