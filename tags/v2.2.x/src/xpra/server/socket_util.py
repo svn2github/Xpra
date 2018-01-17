@@ -129,7 +129,6 @@ def create_tcp_socket(host, iport):
         sockaddr = res[0][-1]
     listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     listener.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, TCP_NODELAY)
-    log("%s.bind(%s)", listener, sockaddr)
     listener.bind(sockaddr)
     return listener
 
