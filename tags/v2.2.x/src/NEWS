@@ -2,6 +2,7 @@ v2.2.3 (2018-01-18)
 ======================
 	-- fix XAUTHORITY file ownership issue
 	-- fix missing systray due to buggy geometry values
+	-- remove outdated OpenCL dependency in DEB packages
 	-- support [::] IPv6 syntax
 
 

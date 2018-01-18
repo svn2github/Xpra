@@ -1,9 +1,10 @@
 xpra (2.2.3-1) UNRELEASED; urgency=low
   * fix XAUTHORITY file ownership issue
   * fix missing systray due to buggy geometry values
+  * remove outdated OpenCL dependency in DEB packages
   * support [::] IPv6 syntax
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 18 Jan 2018 17:18:51 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 18 Jan 2018 18:47:06 +0700
 
 xpra (2.2.2-2) UNRELEASED; urgency=low
   * fixup incomplete authentication backport
