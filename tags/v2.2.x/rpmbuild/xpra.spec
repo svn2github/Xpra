@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2.2
+%define version 2.2.3
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -729,10 +729,15 @@ fi
 
 
 %changelog
-* Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-2
+* Thu Jan 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-1
+- fix XAUTHORITY file ownership issue
+- fix missing systray due to buggy geometry values
+- support [::] IPv6 syntax
+
+* Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-2
 - fixup incomplete authentication backport
 
-* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.2-1
+* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)
