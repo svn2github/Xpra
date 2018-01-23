@@ -736,9 +736,10 @@ fi
 
 
 %changelog
-* Thu Jan 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-1
+* Tue Jan 23 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-1
 - fix XAUTHORITY file ownership issue
 - fix missing systray due to buggy geometry values
+- fix session info errors and missing values
 - remove outdated OpenCL dependency in DEB packages
 - support [::] IPv6 syntax
 
