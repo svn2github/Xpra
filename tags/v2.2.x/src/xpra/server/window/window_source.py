@@ -1841,7 +1841,7 @@ class WindowSource(object):
         bl = self.bandwidth_limit
         if bl>0:
             #estimate based on current bandwidth limit:
-            max_send_delay = 1+ldata*8//bl//1000
+            max_send_delay = 1+1000*ldata*8//max(200000, bl)
         else:
             max_send_delay = int(5*logp(ldata/1024.0))
         def start_send(bytecount):
