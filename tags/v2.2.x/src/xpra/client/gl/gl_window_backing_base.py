@@ -896,7 +896,7 @@ class GLWindowBackingBase(WindowBackingBase):
             log("%s._do_paint_rgb(..) no context!", self)
             fire_paint_callbacks(callbacks, False, "no opengl context")
             return
-        if not options.get("paint", True):
+        if not options.boolget("paint", True):
             fire_paint_callbacks(callbacks)
             return
         try:
@@ -940,10 +940,10 @@ class GLWindowBackingBase(WindowBackingBase):
 
                 glBindTexture(target, 0)
                 glDisable(target)
-                self.paint_box(options.get("encoding"), options.get("delta", -1)>=0, x, y, width, height)
+                self.paint_box(options.strget("encoding"), options.intget("delta", -1)>=0, x, y, width, height)
 
                 # Present update to screen
-                self.present_fbo(x, y, width, height, options.get("flush", 0))
+                self.present_fbo(x, y, width, height, options.intget("flush", 0))
                 # present_fbo has reset state already
             fire_paint_callbacks(callbacks)
             return
@@ -957,7 +957,7 @@ class GLWindowBackingBase(WindowBackingBase):
     def do_video_paint(self, img, x, y, enc_width, enc_height, width, height, options, callbacks):
         #copy so the data will be usable (usually a str)
         img.clone_pixel_data()
-        self.idle_add(self.gl_paint_planar, options.get("flush", 0), options.get("encoding"), img, x, y, enc_width, enc_height, width, height, callbacks)
+        self.idle_add(self.gl_paint_planar, options.intget("flush", 0), options.strget("encoding"), img, x, y, enc_width, enc_height, width, height, callbacks)
 
     def gl_paint_planar(self, flush, encoding, img, x, y, enc_width, enc_height, width, height, callbacks):
         #this function runs in the UI thread, no video_decoder lock held
