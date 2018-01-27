@@ -1,3 +1,12 @@
+xpra (2.2.4-1) UNRELEASED; urgency=low
+  * fix lost connection when using bandwidth system tray menu
+  * fix miscalculations in bandwidth congestion detection
+  * fix video encoder setup errors with invalid size requests
+  * fix x265 codec spurious logging
+  * fix python3 OpenGL client wrongly using default values (slower)
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 28 Jan 2018 00:09:25 +0700
+
 xpra (2.2.3-1) UNRELEASED; urgency=low
   * fix XAUTHORITY file ownership issue
   * fix missing systray due to buggy geometry values

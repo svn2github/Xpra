@@ -1,3 +1,12 @@
+v2.2.4 (2018-01-28)
+======================
+	-- fix lost connection when using bandwidth system tray menu
+	-- fix miscalculations in bandwidth congestion detection
+	-- fix video encoder setup errors with invalid size requests
+	-- fix x265 codec spurious logging
+	-- fix python3 OpenGL client wrongly using default values (slower)
+
+
 v2.2.3 (2018-01-23)
 ======================
 	-- fix XAUTHORITY file ownership issue
