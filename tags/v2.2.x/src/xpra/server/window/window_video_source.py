@@ -1641,6 +1641,9 @@ class WindowVideoSource(WindowSource):
             if not encoding:
                 return None
         encode_fn = self._encoders[encoding]
+        #switching to non-video encoding can use a lot more bandwidth,
+        #try to avoid this by lowering the quality:
+        options["quality"] = max(5, self._current_quality-50)
         return encode_fn(encoding, image, options)
 
     def video_encode(self, encoding, image, options):
