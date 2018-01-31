@@ -1,0 +1,8 @@
+[winswitch-beta]
+name=Winswitch Beta $releasever - $basearch
+enabled=1
+metadata_expire=1d
+gpgcheck=1
+gpgkey=https://winswitch.org/gpg.asc
+baseurl=https://winswitch.org/beta/CentOS/$releasever/$basearch/
+skip_if_unavailable = 1
