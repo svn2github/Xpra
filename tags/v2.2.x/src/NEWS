@@ -13,6 +13,8 @@ v2.2.4 (2018-02-05)
 	-- fix shadow server startup error with Python 3 builds
 	-- fix NVENC informational message contents
 	-- fix NVENC support for memoryview uploads
+	-- fix session browser link from the launcher
+	-- fix launcher color error with GTK3
 	-- disable webcam support in 32-bit MS Windows builds (broken library)
 	-- disable NVFBC zerocopy using CUDA buffers (pending further testing)
 	-- don't log exceptions that don't exist, re-use existing exception object

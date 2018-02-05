@@ -12,12 +12,14 @@ xpra (2.2.4-1) UNRELEASED; urgency=low
   * fix shadow server startup error with Python 3 builds
   * fix NVENC informational message contents
   * fix NVENC support for memoryview uploads
+  * fix session browser link from the launcher
+  * fix launcher color error with GTK3
   * disable webcam support in 32-bit MS Windows builds (broken library)
   * disable NVFBC zerocopy using CUDA buffers (pending further testing)
   * don't log exceptions that don't exist, re-use existing exception object
   * always clean builds by default (MS Windows)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 05 Jan 2018 12:38:26 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 05 Jan 2018 18:21:24 +0700
 
 xpra (2.2.3-1) UNRELEASED; urgency=low
   * fix XAUTHORITY file ownership issue
