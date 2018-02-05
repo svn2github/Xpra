@@ -1,10 +1,22 @@
-v2.2.4 (2018-01-28)
+v2.2.4 (2018-02-05)
 ======================
 	-- fix lost connection when using bandwidth system tray menu
 	-- fix miscalculations in bandwidth congestion detection
+	-- fix bandwidth spikes with non-video fallback
 	-- fix video encoder setup errors with invalid size requests
 	-- fix x265 codec spurious logging
 	-- fix python3 OpenGL client wrongly using default values (slower)
+	-- fix handling of geometry constraints on MS Windows
+	-- fix unreliable unit tests (use relative time in sample data)
+	-- fix webcam forwarding errors in encoding selection
+	-- fix error in mmap setup error handling
+	-- fix shadow server startup error with Python 3 builds
+	-- fix NVENC informational message contents
+	-- fix NVENC support for memoryview uploads
+	-- disable webcam support in 32-bit MS Windows builds (broken library)
+	-- disable NVFBC zerocopy using CUDA buffers (pending further testing)
+	-- don't log exceptions that don't exist, re-use existing exception object
+	-- always clean builds by default (MS Windows)
 
 
 v2.2.3 (2018-01-23)

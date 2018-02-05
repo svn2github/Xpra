@@ -736,12 +736,24 @@ fi
 
 
 %changelog
-* Tue Jan 23 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.4-1
-- fix XAUTHORITY file ownership issue
-- fix missing systray due to buggy geometry values
-- fix session info errors and missing values
-- remove outdated OpenCL dependency in DEB packages
-- support [::] IPv6 syntax
+* Mon Feb 05 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.4-1
+- fix lost connection when using bandwidth system tray menu
+- fix miscalculations in bandwidth congestion detection
+- fix bandwidth spikes with non-video fallback
+- fix video encoder setup errors with invalid size requests
+- fix x265 codec spurious logging
+- fix python3 OpenGL client wrongly using default values (slower)
+- fix handling of geometry constraints on MS Windows
+- fix unreliable unit tests (use relative time in sample data)
+- fix webcam forwarding errors in encoding selection
+- fix error in mmap setup error handling
+- fix shadow server startup error with Python 3 builds
+- fix NVENC informational message contents
+- fix NVENC support for memoryview uploads
+- disable webcam support in 32-bit MS Windows builds (broken library)
+- disable NVFBC zerocopy using CUDA buffers (pending further testing)
+- don't log exceptions that don't exist, re-use existing exception object
+- always clean builds by default (MS Windows)
 
 * Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-2
 - fixup incomplete authentication backport
