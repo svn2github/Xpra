@@ -2275,7 +2275,7 @@ class UIXpraClient(XpraClientBase):
         webcamlog("do_start_sending_webcam(%s)", device_str)
         if device_str in ("auto", "on", "yes", "off", "false", "true"):
             if len(non_virtual)>0:
-                device = non_virtual.keys()[0]
+                device = tuple(non_virtual.keys())[0]
         else:
             webcamlog("device_str: %s", device_str)
             try:
