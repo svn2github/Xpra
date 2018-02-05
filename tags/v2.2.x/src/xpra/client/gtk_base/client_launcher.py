@@ -199,7 +199,7 @@ class ApplicationWindow:
             def mdns(*_args):
                 if self.mdns_gui==None:
                     from xpra.client.gtk_base.mdns_gui import mdns_sessions
-                    self.mdns_gui = mdns_sessions()
+                    self.mdns_gui = mdns_sessions(self.config)
                     def close_mdns():
                         self.mdns_gui.destroy()
                         self.mdns_gui = None
