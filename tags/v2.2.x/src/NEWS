@@ -1,3 +1,10 @@
+v2.2.5 (2018-02-06)
+======================
+	-- fix SSL socket errors with Python3 servers
+	-- skip unhelpful message when connecting to older servers
+	-- skip scary warning if network device probing fails (Posix)
+
+
 v2.2.4 (2018-02-05)
 ======================
 	-- fix lost connection when using bandwidth system tray menu

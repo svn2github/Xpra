@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2.4
+%define version 2.2.5
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -736,6 +736,11 @@ fi
 
 
 %changelog
+* Tue Feb 06 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
+- fix SSL socket errors with Python3 servers
+- skip unhelpful message when connecting to older servers
+- skip scary warning if network device probing fails (Posix)
+
 * Mon Feb 05 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.4-1
 - fix lost connection when using bandwidth system tray menu
 - fix miscalculations in bandwidth congestion detection
@@ -760,7 +765,7 @@ fi
 * Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-2
 - fixup incomplete authentication backport
 
-* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.4-1
+* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)

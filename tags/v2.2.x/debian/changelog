@@ -1,3 +1,10 @@
+xpra (2.2.5-1) UNRELEASED; urgency=low
+  * fix SSL socket errors with Python3 servers
+  * skip unhelpful message when connecting to older servers
+  * skip scary warning if network device probing fails (Posix)
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 06 Feb 2018 11:24:57 +0700
+
 xpra (2.2.4-1) UNRELEASED; urgency=low
   * fix lost connection when using bandwidth system tray menu
   * fix miscalculations in bandwidth congestion detection
