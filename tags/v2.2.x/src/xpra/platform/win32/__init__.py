@@ -77,8 +77,9 @@ def set_prgname(name):
     prg_name = name
     try:
         SetConsoleTitleA(name)
-        import glib
-        glib.set_prgname(name)
+        if PYTHON2:
+            import glib
+            glib.set_prgname(name)
     except:
         pass
 
