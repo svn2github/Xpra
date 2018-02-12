@@ -965,6 +965,11 @@ def do_main():
             #so we end up duplicating some of the logic from just above
             #maybe we should always run this code from the main loop instead
             if OSX:
+                def force_show():
+                    from xpra.platform.darwin.gui import enable_focus_workaround, disable_focus_workaround
+                    enable_focus_workaround()
+                    app.show()
+                    glib.timeout_add(500, disable_focus_workaround)
                 #wait a little bit for the "openFile" signal
                 app.__osx_open_signal = False
                 def do_open_file(filename):
@@ -976,6 +981,8 @@ def do_main():
                     if app.config.autoconnect:
                         app.__osx_open_signal = True
                         glib.idle_add(app.do_connect)
+                    else:
+                        force_show()
                 def open_file(_, filename):
                     log("open_file(%s)", filename)
                     glib.idle_add(do_open_file, filename)
@@ -1000,7 +1007,7 @@ def do_main():
                 def may_show():
                     log("may_show() osx open signal=%s", app.__osx_open_signal)
                     if not app.__osx_open_signal:
-                        app.show()
+                        force_show()
                 glib.timeout_add(500, may_show)
             else:
                 app.show()
