@@ -939,7 +939,7 @@ class ServerCore(object):
             return True, conn, peek_data
         frominfo = pretty_socket(conn.remote)
         if self._ssl_wrap_socket and peek_data[0] in (chr(0x16), 0x16):
-            sock, sockname, address, target = conn._socket, conn.local, conn.remote, conn.target
+            sock, sockname, address, endpoint = conn._socket, conn.local, conn.remote, conn.endpoint
             sock = self._ssl_wrap_socket(sock)
             if sock is None:
                 #None means EOF! (we don't want to import ssl bits here)
