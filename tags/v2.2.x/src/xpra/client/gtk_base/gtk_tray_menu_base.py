@@ -722,7 +722,7 @@ class GTKTrayMenuBase(object):
         menuitems = {}
 
         def bwitem(bwlimit):
-            c = self.bwitem(bwlimit)
+            c = self.bwitem(menu, bwlimit)
             menuitems[bwlimit] = c
             return c
 
@@ -760,7 +760,7 @@ class GTKTrayMenuBase(object):
                         c.set_tooltip_text("server set the limit to %sbps" % std_unit_dec(self.client.server_bandwidth_limit))
         self.client.after_handshake(set_bwlimitmenu)
         return bandwidth_limit_menu_item
-    def bwitem(self, bwlimit=0):
+    def bwitem(self, menu, bwlimit=0):
         if bwlimit<=0:
             label = "None"
         elif bwlimit>=10*1000*1000:
@@ -772,6 +772,7 @@ class GTKTrayMenuBase(object):
         c.set_active(False)
         set_sensitive(c, False)
         def activate_cb(_item, *_args):
+            ensure_item_selected(menu, item)
             if self.client.bandwidth_limit!=bwlimit:
                 self.client.bandwidth_limit = bwlimit
                 self.client.send_bandwidth_limit()
