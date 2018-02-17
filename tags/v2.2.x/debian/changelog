@@ -1,9 +1,21 @@
 xpra (2.2.5-1) UNRELEASED; urgency=low
   * fix SSL socket errors with Python3 servers
+  * fix SSL socket upgrade errors
+  * fix parsing of opengl command line option
+  * fix logging of errors in opengl backend
+  * fix ghost windows on MS Windows with opengl and OR windows
+  * fix gi errors on startup with Python3 + MS Windows
+  * fix import warnings with Python3 builds
+  * fix packaging of crypto libraries with MS Windows builds
+  * fix errors in launcher and ssh mode
+  * fix encoding selection not preserved with Mac OS launcher
+  * fix multiple bandwidth limits shown as selected in menu
+  * fix HTML5 initial focus issue
+  * focus launcher on startup with Mac OS
   * skip unhelpful message when connecting to older servers
   * skip scary warning if network device probing fails (Posix)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 06 Feb 2018 11:24:57 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Feb 2018 23:26:09 +0700
 
 xpra (2.2.4-1) UNRELEASED; urgency=low
   * fix lost connection when using bandwidth system tray menu

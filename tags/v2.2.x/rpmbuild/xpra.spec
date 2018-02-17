@@ -736,8 +736,20 @@ fi
 
 
 %changelog
-* Tue Feb 06 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
+* Sat Feb 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
 - fix SSL socket errors with Python3 servers
+- fix SSL socket upgrade errors
+- fix parsing of opengl command line option
+- fix logging of errors in opengl backend
+- fix ghost windows on MS Windows with opengl and OR windows
+- fix gi errors on startup with Python3 + MS Windows
+- fix import warnings with Python3 builds
+- fix packaging of crypto libraries with MS Windows builds
+- fix errors in launcher and ssh mode
+- fix encoding selection not preserved with Mac OS launcher
+- fix multiple bandwidth limits shown as selected in menu
+- fix HTML5 initial focus issue
+- focus launcher on startup with Mac OS
 - skip unhelpful message when connecting to older servers
 - skip scary warning if network device probing fails (Posix)
 
