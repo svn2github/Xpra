@@ -147,6 +147,7 @@ function XpraWindow(client, canvas_state, wid, x, y, w, h, metadata, override_re
 		//}));
 		jQuery(this.div).on("resizestop",function(ev,ui){
 		  	me.handle_resized(ui);
+		  	set_focus_cb(me);
 		});
 		this.d_header = '#head' + String(wid);
 		this.d_closebtn = '#close' + String(wid);
@@ -648,6 +649,7 @@ XpraWindow.prototype.restore_geometry = function() {
 	this.saved_geometry = null;
 	// then call local resized callback
 	this.handle_resized();
+	this.set_focus_cb(this);
 };
 
 /**
@@ -660,6 +662,7 @@ XpraWindow.prototype.set_maximized = function(maximized) {
 	this.max_save_restore(maximized);
 	this.maximized = maximized;
 	this.handle_resized();
+	this.set_focus_cb(this);
 	// this will take care of disabling the "draggable" code:
 	this.apply_size_constraints();
 };
@@ -690,6 +693,7 @@ XpraWindow.prototype.set_fullscreen = function(fullscreen) {
 	this.fullscreen = fullscreen;
 	this.updateCSSGeometry();
 	this.handle_resized();
+	this.set_focus_cb(this);
 };
 
 
