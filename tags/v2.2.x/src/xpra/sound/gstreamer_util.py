@@ -12,7 +12,7 @@ from xpra.sound.common import FLAC_OGG, OPUS_OGG, OPUS_MKA, SPEEX_OGG, VORBIS_OG
                                 VORBIS, FLAC, MP3, MP3_MPEG4, OPUS, SPEEX, WAV, WAVPACK, \
                                 MPEG4, MKA, OGG
 
-from xpra.os_util import WIN32, OSX, POSIX, PYTHON3
+from xpra.os_util import WIN32, OSX, POSIX, PYTHON3, bytestostr
 from xpra.util import csv, engs, parse_simple_dict, envint, envbool
 from xpra.log import Logger
 log = Logger("sound", "gstreamer")
@@ -620,6 +620,7 @@ def get_pulse_defaults(device_name_match=None, want_monitor_device=True, input_o
     try:
         device = get_pulse_device(device_name_match, want_monitor_device, input_or_output, remote, env_device_name)
     except Exception as e:
+        log("get_pulse_defaults%s", (device_name_match, want_monitor_device, input_or_output, remote, env_device_name), exc_info=True)
         log.warn("Warning: failed to identify the pulseaudio default device to use")
         log.warn(" %s", e)
         return {}
@@ -695,10 +696,11 @@ def get_pulse_device(device_name_match=None, want_monitor_device=True, input_or_
             if match!=env_device:
                 filters.append(match)
             match = match.lower()
-            matches = dict((k,v) for k,v in devices.items() if k.lower().find(match)>=0 or v.lower().find(match)>=0)
+            log("trying to match '%s' in devices=%s", match, devices)
+            matches = dict((k,v) for k,v in devices.items() if bytestostr(k).lower().find(match)>=0 or bytestostr(v).lower().find(match)>=0)
             #log("matches(%s, %s)=%s", devices, match, matches)
             if len(matches)==1:
-                log("found name match for '%s': %s", match, matches.items()[0])
+                log("found name match for '%s': %s", match, tuple(matches.items())[0])
                 break
             elif len(matches)>1:
                 log.warn("Warning: Pulseaudio %s device name filter '%s'", device_type_str, match)
@@ -747,7 +749,7 @@ def get_pulse_device(device_name_match=None, want_monitor_device=True, input_or_
             log.info("using default pulseaudio device")
             return None
     #default to first one:
-    device, device_name = devices.items()[0]
+    device, device_name = tuple(devices.items())[0]
     log.info("using pulseaudio device:")
     log.info(" '%s'", device_name)
     return device
