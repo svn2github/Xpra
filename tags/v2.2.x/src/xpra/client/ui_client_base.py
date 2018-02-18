@@ -1647,7 +1647,7 @@ class UIXpraClient(XpraClientBase):
                 sound_caps.update(get_pa_info())
             except Exception:
                 pass
-            updict(capabilities, "sound", sound_caps)
+            updict(capabilities, "sound", sound_caps, flatten_dicts=True)
             soundlog("sound capabilities: %s", sound_caps)
         #batch options:
         for bprop in ("always", "min_delay", "max_delay", "delay", "max_events", "max_pixels", "time_unit"):
