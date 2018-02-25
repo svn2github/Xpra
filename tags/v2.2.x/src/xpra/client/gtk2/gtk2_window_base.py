@@ -9,6 +9,11 @@ import gtk
 from gtk import gdk
 import os.path
 
+try:
+    from urllib import unquote          #python2 @UnusedImport
+except:
+    from urllib.parse import unquote    #python3 @Reimport @UnresolvedImport
+
 from xpra.log import Logger
 log = Logger("window")
 statelog = Logger("state")
@@ -192,7 +197,7 @@ class GTK2WindowBase(GTKClientWindowBase):
             if not uri.startswith("file://"):
                 draglog.warn("Warning: cannot handle drag-n-drop URI '%s'", uri)
                 continue
-            filename = strtobytes(uri[len("file://"):].rstrip("\n\r"))
+            filename = unquote(strtobytes(uri[len("file://"):].rstrip("\n\r")))
             abspath = os.path.abspath(filename)
             if not os.path.isfile(abspath):
                 draglog.warn("Warning: '%s' is not a file", abspath)
