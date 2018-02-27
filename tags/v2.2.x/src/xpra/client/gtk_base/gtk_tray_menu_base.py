@@ -771,7 +771,7 @@ class GTKTrayMenuBase(object):
         c.set_draw_as_radio(True)
         c.set_active(False)
         set_sensitive(c, False)
-        def activate_cb(_item, *_args):
+        def activate_cb(item, *_args):
             ensure_item_selected(menu, item)
             if self.client.bandwidth_limit!=bwlimit:
                 self.client.bandwidth_limit = bwlimit
