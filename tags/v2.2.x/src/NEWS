@@ -1,4 +1,4 @@
-v2.2.5 (2018-02-17)
+v2.2.5 (2018-02-27)
 ======================
 	-- fix SSL socket errors with Python3 servers
 	-- fix SSL socket upgrade errors
@@ -12,6 +12,8 @@ v2.2.5 (2018-02-17)
 	-- fix encoding selection not preserved with Mac OS launcher
 	-- fix multiple bandwidth limits shown as selected in menu
 	-- fix HTML5 initial focus issue
+	-- fix Python 3.x compatibility issues
+	-- fix handling of special characters in filenames from drag and drop
 	-- focus launcher on startup with Mac OS
 	-- skip unhelpful message when connecting to older servers
 	-- skip scary warning if network device probing fails (Posix)

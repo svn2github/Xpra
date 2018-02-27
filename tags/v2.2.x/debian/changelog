@@ -11,11 +11,13 @@ xpra (2.2.5-1) UNRELEASED; urgency=low
   * fix encoding selection not preserved with Mac OS launcher
   * fix multiple bandwidth limits shown as selected in menu
   * fix HTML5 initial focus issue
+  * fix Python 3.x compatibility issues
+  * fix handling of special characters in filenames from drag and drop
   * focus launcher on startup with Mac OS
   * skip unhelpful message when connecting to older servers
   * skip scary warning if network device probing fails (Posix)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 17 Feb 2018 23:26:09 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 27 Feb 2018 11:35:43 +0700
 
 xpra (2.2.4-1) UNRELEASED; urgency=low
   * fix lost connection when using bandwidth system tray menu
