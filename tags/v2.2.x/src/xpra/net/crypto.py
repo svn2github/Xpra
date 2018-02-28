@@ -7,6 +7,7 @@
 import os
 import hmac
 import hashlib
+from struct import pack
 
 from xpra.util import envint, envbool, csv, xor
 from xpra.log import Logger
@@ -165,9 +166,9 @@ def verify_digest(digest, password, salt, challenge_response):
 
 def pad(padding, size):
     if padding==PADDING_LEGACY:
-        return " "*size
+        return b" "*size
     elif padding==PADDING_PKCS7:
-        return chr(size)*size
+        return pack("B", size)*size
     else:
         raise Exception("invalid padding: %s" % padding)
 
@@ -230,7 +231,7 @@ def get_crypto_caps():
 
 
 def get_encryptor(ciphername, iv, password, key_salt, iterations):
-    log("get_encryptor(%s, %s, %s, %s, %s)", ciphername, iv, password, key_salt, iterations)
+    log("get_encryptor(%s, %s, %s, %s, %s)", ciphername, iv, password, hexstr(key_salt), iterations)
     if not ciphername:
         return None, 0
     assert iterations>=100
@@ -241,7 +242,7 @@ def get_encryptor(ciphername, iv, password, key_salt, iterations):
     return backend.get_encryptor(key, iv), block_size
 
 def get_decryptor(ciphername, iv, password, key_salt, iterations):
-    log("get_decryptor(%s, %s, %s, %s, %s)", ciphername, iv, password, key_salt, iterations)
+    log("get_decryptor(%s, %s, %s, %s, %s)", ciphername, iv, password, hexstr(key_salt), iterations)
     if not ciphername:
         return None, 0
     assert iterations>=100
