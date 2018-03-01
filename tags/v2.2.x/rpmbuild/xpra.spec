@@ -736,7 +736,7 @@ fi
 
 
 %changelog
-* Tue Feb 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
+* Thu Mar 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
 - fix SSL socket errors with Python3 servers
 - fix SSL socket upgrade errors
 - fix parsing of opengl command line option
@@ -749,8 +749,13 @@ fi
 - fix encoding selection not preserved with Mac OS launcher
 - fix multiple bandwidth limits shown as selected in menu
 - fix HTML5 initial focus issue
+- fix HTML5 URL handling for non-standard deployments
+- fix HTML5 audio wrongly switched off on return to the connect page
 - fix Python 3.x compatibility issues
 - fix handling of special characters in filenames from drag and drop
+- fix stale xauth lock files
+- fix PAM login module names on Debian / Ubuntu
+- fix AES initial exchange issues (Python 3, race condition)
 - focus launcher on startup with Mac OS
 - skip unhelpful message when connecting to older servers
 - skip scary warning if network device probing fails (Posix)
