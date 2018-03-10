@@ -439,7 +439,7 @@ class WindowVideoSource(WindowSource):
         #if we're here, then the window has no alpha (or the client cannot handle alpha)
         #and we can ignore the current encoding
         options = options or self.non_video_encodings
-        if self.image_depth==8:
+        if self.image_depth==8 and "png/P" in options:
             return "png/P"
         if pixel_count<self._rgb_auto_threshold or self.is_tray:
             #high speed and high quality, rgb is still good
