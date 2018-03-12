@@ -143,7 +143,7 @@ def gendigest(digest, password, salt):
         v = generate_response(password, salt)
         return hexstr(v)
     elif digest=="xor":
-        salt = salt.ljust(16, b"\x00")[:len(password)]
+        salt = salt.ljust(len(password), b"\x00")[:len(password)]
         v = xor(password, salt)
         return memoryview_to_bytes(v)
     digestmod = get_digest_module(digest)

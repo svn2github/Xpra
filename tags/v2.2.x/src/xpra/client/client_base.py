@@ -347,7 +347,7 @@ class XpraClientBase(FileTransferHandler):
             hello["challenge_response"] = challenge_response
             #make it harder for a passive attacker to guess the password length
             #by observing packet sizes (only relevant for wss and ssl)
-            hello["challenge_padding"] = get_salt(max(0, 256-len(challenge_response)))
+            hello["challenge_padding"] = get_salt(max(32, 256-len(challenge_response)))
             if client_salt:
                 hello["challenge_client_salt"] = client_salt
         log("send_hello(%s) packet=%s", hexstr(challenge_response or ""), hello)
