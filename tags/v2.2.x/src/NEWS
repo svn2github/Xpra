@@ -1,3 +1,15 @@
+v2.2.6 (2018-03-15)
+======================
+	-- fix support for encryption key environment variable
+	-- fix refresh loop with video region
+	-- fix default printing information collection method
+	-- fix swapped colour channels in OpenGL client with transparent windows encoded as PNG
+	-- fix NVENC codec compatibility with Cython 0.28
+	-- fix png/P encoding wrongly used in some exceedingly rare cases
+	-- fix padding issues with very large passwords or challenge packets
+	-- disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
+
+
 v2.2.5 (2018-03-01)
 ======================
 	-- fix SSL socket errors with Python3 servers

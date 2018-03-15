@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2.5
+%define version 2.2.6
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -736,6 +736,16 @@ fi
 
 
 %changelog
+* Thu Mar 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
+- fix support for encryption key environment variable
+- fix refresh loop with video region
+- fix default printing information collection method
+- fix swapped colour channels in OpenGL client with transparent windows encoded as PNG
+- fix NVENC codec compatibility with Cython 0.28
+- fix png/P encoding wrongly used in some exceedingly rare cases
+- fix padding issues with very large passwords or challenge packets
+- disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
+
 * Thu Mar 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
 - fix SSL socket errors with Python3 servers
 - fix SSL socket upgrade errors
@@ -784,7 +794,7 @@ fi
 * Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-2
 - fixup incomplete authentication backport
 
-* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
+* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)
