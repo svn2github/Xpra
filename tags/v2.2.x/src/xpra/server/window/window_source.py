@@ -1132,7 +1132,7 @@ class WindowSource(object):
             rs = min(50, max(0, rs))
             rq = min(99, max(80, int(rq), self._current_quality+30))
         refreshlog("update_refresh_attributes() refresh quality=%i%%, refresh speed=%i%%, for cv=%.2f, bwl=%i", rq, rs, cv, bwl)
-        self.refresh_quality = 100  #rq, see #1781
+        self.refresh_quality = rq
         self.refresh_speed = rs
 
     def do_set_auto_refresh_delay(self, min_delay, delay):
