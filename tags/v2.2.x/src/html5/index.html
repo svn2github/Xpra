@@ -456,6 +456,18 @@
 			   	if (client.file_transfer) {
 			   		init_file_transfer(client);
 			   	}
+			    document.addEventListener("visibilitychange", function (e) {
+                                window_ids = Object.keys(client.id_to_window);
+                                clog("visibilitychange hidden=", document.hidden);
+                                if (document.hidden) {
+                                    client.send(["suspend", true, window_ids]);
+                                }
+                                else {
+                                    client.send(["resume", true, window_ids]);
+                                    client.redraw_windows();
+                                    client.request_refresh(-1);
+                                }
+                            });
 			});
 		</script>
 	</body>

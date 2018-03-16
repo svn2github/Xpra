@@ -137,7 +137,7 @@ XpraClient.prototype.init_state = function(container) {
 	// a list of our windows
 	this.id_to_window = {};
 	this.ui_events = 0;
-	this.redraw_windows = [];
+	this.pending_redraw = [];
 	this.draw_pending = 0;
 	// basic window management
 	this.topwindow = null;
@@ -430,6 +430,24 @@ XpraClient.prototype.close = function() {
 	this.clear_timers();
 	this.close_audio();
 	this.close_protocol();
+}
+
+XpraClient.prototype.request_refresh = function(wid) {
+	this.send([
+		"buffer-refresh", wid, 0, 100,
+		{
+			"refresh-now"    : true,
+			"batch"          : {"reset" : true},
+		},
+		{},	//no client_properties
+		])
+}
+
+XpraClient.prototype.redraw_windows = function() {
+	for (var i in this.id_to_window) {
+		var iwin = this.id_to_window[i];
+		this.request_redraw(iwin);
+	}
 }
 
 XpraClient.prototype.close_windows = function() {
@@ -2017,8 +2035,8 @@ XpraClient.prototype.request_redraw = function(win) {
 	this._debug("request_redraw for", win);
 	win.swap_buffers();
 	if(window.requestAnimationFrame) {
-		if (!this.redraw_windows.includes(win)) {
-			this.redraw_windows.push(win);
+		if (!this.pending_redraw.includes(win)) {
+			this.pending_redraw.push(win);
 		}
 		// schedule a screen refresh if one is not already due:
 		if (this.draw_pending==0) {
@@ -2026,11 +2044,11 @@ XpraClient.prototype.request_redraw = function(win) {
 			this.draw_pending = now;
 			var me = this;
 			window.requestAnimationFrame(function() {
-				me._debug("animation frame:", me.redraw_windows.length, "windows to paint");
+				me._debug("animation frame:", me.pending_redraw.length, "windows to paint");
 				me.draw_pending = 0;
 				// draw all the windows in the list:
-				while (me.redraw_windows.length>0) {
-					var w = me.redraw_windows.shift();
+				while (me.pending_redraw.length>0) {
+					var w = me.pending_redraw.shift();
 					w.draw();
 				}
 			});
