@@ -1,4 +1,4 @@
-v2.2.6 (2018-03-15)
+v2.2.6 (2018-03-18)
 ======================
 	-- fix support for encryption key environment variable
 	-- fix refresh loop with video region
@@ -7,6 +7,7 @@ v2.2.6 (2018-03-15)
 	-- fix NVENC codec compatibility with Cython 0.28
 	-- fix png/P encoding wrongly used in some exceedingly rare cases
 	-- fix padding issues with very large passwords or challenge packets
+	-- fix missing window contents when switching tabs (HTML5 client)
 	-- disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
 
 

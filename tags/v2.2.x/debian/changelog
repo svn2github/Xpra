@@ -6,9 +6,10 @@ xpra (2.2.6-1) UNRELEASED; urgency=low
   * fix NVENC codec compatibility with Cython 0.28
   * fix png/P encoding wrongly used in some exceedingly rare cases
   * fix padding issues with very large passwords or challenge packets
+  * fix missing window contents when switching tabs (HTML5 client)
   * disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 15 Mar 2018 16:54:44 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 18 Mar 2018 01:07:02 +0700
 
 xpra (2.2.5-1) UNRELEASED; urgency=low
   * fix SSL socket errors with Python3 servers
