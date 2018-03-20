@@ -754,7 +754,13 @@ class UIXpraClient(XpraClientBase):
         """
         #we always support rgb24:
         core_encodings = ["rgb24"]
-        for codec in ("dec_pillow", "dec_webp"):
+        codecs = ["dec_pillow"]
+        if self.opengl_enabled:
+            #only enable webp if opengl is also enabled,
+            #otherwise we may end up trying to decode it with pillow,
+            #and pillow may not have support for it (it doesn't on CentOS 7.x)
+            codecs.append("dec_webp")
+        for codec in codecs:
             if has_codec(codec):
                 c = get_codec(codec)
                 for e in c.get_encodings():
