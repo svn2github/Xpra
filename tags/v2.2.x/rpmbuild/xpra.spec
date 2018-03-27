@@ -736,15 +736,19 @@ fi
 
 
 %changelog
-* Sun Mar 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
+* Tue Mar 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
 - fix support for encryption key environment variable
 - fix refresh loop with video region
 - fix default printing information collection method
+- fix OpenGL backend validation not honoured
 - fix swapped colour channels in OpenGL client with transparent windows encoded as PNG
+- fix webp paint errors with OpenGL disabled
 - fix NVENC codec compatibility with Cython 0.28
 - fix png/P encoding wrongly used in some exceedingly rare cases
 - fix padding issues with very large passwords or challenge packets
 - fix missing window contents when switching tabs (HTML5 client)
+- fix MS Windows comtypes packaging: webcam device detection issues
+- fix unmanaged X11 calls causing GTK crashes
 - disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
 
 * Thu Mar 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
