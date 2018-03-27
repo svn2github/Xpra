@@ -93,7 +93,8 @@ class X11ServerCore(GTKServerBase):
         self.randr_exact_size = False
         self.fake_xinerama = opts.fake_xinerama
         self.current_xinerama_config = None
-        self.x11_init()
+        with xsync:
+            self.x11_init()
 
     def x11_init(self):
         if self.fake_xinerama:
@@ -267,7 +268,8 @@ class X11ServerCore(GTKServerBase):
         GTKServerBase.do_cleanup(self)
         if self.fake_xinerama:
             cleanup_fakeXinerama()
-        clean_keyboard_state()
+        with xswallow:
+            clean_keyboard_state()
 
 
     def get_uuid(self):
@@ -431,7 +433,8 @@ class X11ServerCore(GTKServerBase):
             self.keys_pressed = {}
         #this will take care of any remaining ones we are not aware of:
         #(there should not be any - but we want to be certain)
-        X11Keyboard.unpress_all_keys()
+        with xswallow:
+            X11Keyboard.unpress_all_keys()
 
 
     def get_cursor_sizes(self):
@@ -642,7 +645,8 @@ class X11ServerCore(GTKServerBase):
                 except Exception:
                     screenlog("XRRSetScreenSize failed", exc_info=True)
             screenlog("calling RandR.get_screen_size()")
-            root_w, root_h = RandR.get_screen_size()
+            with xsync:
+                root_w, root_h = RandR.get_screen_size()
             screenlog("RandR.get_screen_size()=%s,%s", root_w, root_h)
             screenlog("RandR.get_vrefresh()=%s", RandR.get_vrefresh())
             if root_w!=w or root_h!=h:
