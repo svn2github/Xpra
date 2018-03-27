@@ -555,6 +555,12 @@ class ServerSource(FileTransferHandler):
         if self.is_closed():
             return
         now = monotonic_time()
+        p = self.protocol
+        if not p:
+            return
+        conn = p._conn
+        if not conn:
+            return
         self.calculate_last_time = now
         self.statistics.bytes_sent.append((now, self.protocol._conn.output_bytecount))
         self.statistics.update_averages()
