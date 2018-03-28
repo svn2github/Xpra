@@ -760,15 +760,19 @@ class WindowSource(object):
         #auto-refresh:
         if self.client_refresh_encodings:
             #client supplied list, honour it:
-            are = tuple(x for x in self.client_refresh_encodings if x in self.common_encodings)
+            ropts = set(self.client_refresh_encodings)
         else:
             #sane defaults:
             ropts = set(("webp", "png", "rgb24", "rgb32", "jpeg2000"))  #default encodings for auto-refresh
-            if self.refresh_quality<100 and self.image_depth>16:
-                ropts.add("jpeg")
-            are = [x for x in PREFERED_ENCODING_ORDER if x in ropts and x in self.common_encodings]
-            if not are and "jpeg" in self.common_encodings:
-                are.append("jpeg")
+        if self.refresh_quality<100 and self.image_depth>16:
+            ropts.add("jpeg")
+        are = None
+        if self.supports_transparency:
+            are = tuple(x for x in PREFERED_ENCODING_ORDER if x in self.common_encodings and x in ropts and x in TRANSPARENCY_ENCODINGS)
+        if not are:
+            are = tuple(x for x in PREFERED_ENCODING_ORDER if x in self.common_encodings and x in ropts)
+        if not are:
+            are = tuple(x for x in PREFERED_ENCODING_ORDER if x in self.common_encodings)
         self.auto_refresh_encodings = are
         log("update_encoding_selection: client refresh encodings=%s, auto_refresh_encodings=%s", self.client_refresh_encodings, self.auto_refresh_encodings)
         self.update_quality()
@@ -1722,7 +1726,7 @@ class WindowSource(object):
         if not w or not w.is_managed():
             #window is gone
             return False
-        if self.auto_refresh_delay<=0 or self.is_cancelled() or len(self.auto_refresh_encodings)==0 or self._mmap:
+        if self.auto_refresh_delay<=0 or self.is_cancelled() or not self.auto_refresh_encodings or self._mmap:
             #can happen during cleanup
             return False
         return True
@@ -1773,7 +1777,7 @@ class WindowSource(object):
         encoding = refresh_encodings[0]
         if self.refresh_quality<100:
             for x in ("jpeg", "webp"):
-                if x in self.common_encodings:
+                if x in self.auto_refresh_encodings:
                     return x
         best_encoding = self.get_best_encoding(ww*wh, ww, wh, self.refresh_speed, self.refresh_quality, encoding)
         if best_encoding not in refresh_encodings:
