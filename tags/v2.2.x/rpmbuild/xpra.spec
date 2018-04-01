@@ -736,9 +736,12 @@ fi
 
 
 %changelog
-* Tue Mar 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
+* Sun Apr 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
 - fix support for encryption key environment variable
+- fix html-disabled option not honoured when ssl upgrades used
+- fix MS Windows SSL server timeouts
 - fix refresh loop with video region
+- fix auto-refresh of transparent windows (was losing transparency)
 - fix default printing information collection method
 - fix OpenGL backend validation not honoured
 - fix swapped colour channels in OpenGL client with transparent windows encoded as PNG
@@ -749,6 +752,9 @@ fi
 - fix missing window contents when switching tabs (HTML5 client)
 - fix MS Windows comtypes packaging: webcam device detection issues
 - fix unmanaged X11 calls causing GTK crashes
+- fix clipboard handler wrongly answering requests when disabled
+- fix unlikely errors during connection cleanup
+- remove outdated option from the man page, fix missing paragraphs 
 - disable VP9 decoding via ffmpeg on MS Windows (crashes with latest libraries)
 
 * Thu Mar 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.5-1
