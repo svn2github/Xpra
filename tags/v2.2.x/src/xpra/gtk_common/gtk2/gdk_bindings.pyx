@@ -100,10 +100,6 @@ cdef extern from "gtk-2.0/gdk/gdktypes.h":
     ctypedef struct cGdkWindow "GdkWindow":
         pass
 
-    ctypedef struct _GdkAtom:
-        pass
-    ctypedef _GdkAtom* GdkAtom
-
 
 cdef extern from "gtk-2.0/gtk/gtkselection.h":
     ctypedef int gint
