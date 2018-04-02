@@ -57,6 +57,8 @@ SAVE_WINDOW_ICONS = envbool("XPRA_SAVE_WINDOW_ICONS", False)
 
 HARDCODED_ENCODING = os.environ.get("XPRA_HARDCODED_ENCODING")
 
+TRANSPARENCY_ENCODINGS = ("webp", "png", "rgb32")
+
 from xpra.os_util import BytesIOClass, memoryview_to_bytes
 from xpra.server.window.window_stats import WindowPerformanceStatistics
 from xpra.server.window.batch_config import DamageBatchConfig
