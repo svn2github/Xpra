@@ -110,10 +110,6 @@ def is_pyopengl_memoryview_safe(pyopengl_version, accel_version):
     if micro=='0':
         return True     #3.1.0 is OK
     if micro>='1':
-        if not gl_props:
-            #if we fail the test rendering, don't return anything
-            #so the client will know this backend should not be used
-            return {}
         return True     #3.1.1 onwards should be too
     return False        #probably something like '0b2' which is broken
 
