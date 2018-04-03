@@ -36,7 +36,6 @@ cdef extern from "libavutil/pixfmt.h":
     AVPixelFormat AV_PIX_FMT_YUV420P
     AVPixelFormat AV_PIX_FMT_YUV422P
     AVPixelFormat AV_PIX_FMT_YUV444P
-    AVPixelFormat AV_PIX_FMT_RGB24
     AVPixelFormat AV_PIX_FMT_0RGB
     AVPixelFormat AV_PIX_FMT_BGR0
     AVPixelFormat AV_PIX_FMT_ARGB
