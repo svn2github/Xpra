@@ -44,6 +44,8 @@ def get_queue_time(default_value=450, prefix=""):
 
 ALLOW_SOUND_LOOP = envbool("XPRA_ALLOW_SOUND_LOOP", False)
 USE_DEFAULT_DEVICE = envbool("XPRA_USE_DEFAULT_DEVICE", True)
+IGNORED_INPUT_DEVICES = os.environ.get("XPRA_SOUND_IGNORED_INPUT_DEVICES", "bell.ogg,bell.wav").split(",")
+IGNORED_OUTPUT_DEVICES = os.environ.get("XPRA_SOUND_IGNORED_OUTPUT_DEVICES", "").split(",")
 def force_enabled(codec_name):
     return os.environ.get("XPRA_SOUND_CODEC_ENABLE_%s" % codec_name.upper().replace("+", "_"), "0")=="1"
 
@@ -678,6 +680,23 @@ def get_pulse_device(device_name_match=None, want_monitor_device=True, input_or_
     #def get_pa_device_options(monitors=False, input_or_output=None, ignored_devices=["bell-window-system"])
     devices = get_pa_device_options(want_monitor_device, input_or_output)
     log("found %i pulseaudio %s device%s: %s", len(devices), device_type_str, engs(devices), devices)
+    ignore = ()
+    if input_or_output is True:
+        ignore = IGNORED_INPUT_DEVICES
+    elif input_or_output is False:
+        ignore = IGNORED_OUTPUT_DEVICES
+    else:
+        ignore = IGNORED_INPUT_DEVICES+IGNORED_OUTPUT_DEVICES
+    if ignore and devices:
+        #filter out the ignore list:
+        filtered = []
+        for k,v in devices.items():
+            kl = bytestostr(k).strip().lower()
+            vl = bytestostr(v).strip().lower()
+            if kl not in ignore and vl not in ignore:
+                filtered[k] = v
+        devices = filtered
+
     if len(devices)==0:
         log.error("Error: sound forwarding is disabled")
         log.error(" could not detect any Pulseaudio %s devices", device_type_str)
@@ -697,7 +716,7 @@ def get_pulse_device(device_name_match=None, want_monitor_device=True, input_or_
                 filters.append(match)
             match = match.lower()
             log("trying to match '%s' in devices=%s", match, devices)
-            matches = dict((k,v) for k,v in devices.items() if bytestostr(k).lower().find(match)>=0 or bytestostr(v).lower().find(match)>=0)
+            matches = dict((k,v) for k,v in devices.items() if (bytestostr(k).strip().lower().find(match)>=0 or bytestostr(v).strip().lower().find(match)>=0))
             #log("matches(%s, %s)=%s", devices, match, matches)
             if len(matches)==1:
                 log("found name match for '%s': %s", match, tuple(matches.items())[0])
