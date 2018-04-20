@@ -164,7 +164,7 @@ class UIXpraClient(XpraClientBase):
         self.pixel_depth = 0
         self.initial_scaling = 1, 1
         self.xscale, self.yscale = self.initial_scaling
-        self.scale_change_embargo = 0
+        self.scale_change_embargo = float("inf")
         self.desktop_fullscreen = False
 
         #draw thread:
@@ -355,6 +355,8 @@ class UIXpraClient(XpraClientBase):
                 log.warn("Warning: invalid window max-size specified: %s", opts.max_size)
                 self.max_window_size = 0, 0
         self.desktop_scaling = opts.desktop_scaling
+        #now that we have the server's screen info, allow scale changes:
+        self.scale_change_embargo = 0
         self.can_scale = opts.desktop_scaling not in FALSE_OPTIONS
         if self.can_scale:
             self.initial_scaling = self.parse_scaling(opts.desktop_scaling)
