@@ -30,7 +30,7 @@ class Authenticator(SysAuthenticator):
         self.authenticate = self.authenticate_hmac
 
     def __repr__(self):
-        return "sql"
+        return "sqlite"
 
     def get_passwords(self):
         if not os.path.exists(self.filename):
@@ -55,6 +55,7 @@ class Authenticator(SysAuthenticator):
     def get_sessions(self):
         try:
             conn = sqlite3.connect(self.filename)
+            conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             cursor.execute(self.sessions_query, [self.username])
             data = cursor.fetchone()
