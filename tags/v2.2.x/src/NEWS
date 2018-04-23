@@ -1,3 +1,18 @@
+v2.2.7 (2018-04-23)
+======================
+	-- fix bell audio devices wrongly chosen as audio input devices
+	-- fix man page formatting
+	-- fix scaling changes wrongly applied during initialization
+	-- fix sqlite authentication module
+	-- fix duplicated encodings
+	-- fix potential X11 crashes triggered by "xpra info"
+	-- fix HTTP error response format
+	-- ffmpeg 4.0 compatibility
+	-- longer audio startup grace period (for slower systems)
+	-- RPM python3 packaging: netifaces is a weak dependency
+	-- add convenience win32 build script
+
+
 v2.2.6 (2018-04-01)
 ======================
 	-- fix support for encryption key environment variable

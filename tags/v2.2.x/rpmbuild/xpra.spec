@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.2.6
+%define version 2.2.7
 %if ! %{defined build_no}
 %define build_no 0
 %endif
@@ -736,6 +736,19 @@ fi
 
 
 %changelog
+* Sun Apr 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.7-1
+- fix bell audio devices wrongly chosen as audio input devices
+- fix man page formatting
+- fix scaling changes wrongly applied during initialization
+- fix sqlite authentication module
+- fix duplicated encodings
+- fix potential X11 crashes triggered by "xpra info"
+- fix HTTP error response format
+- ffmpeg 4.0 compatibility
+- longer audio startup grace period (for slower systems)
+- RPM python3 packaging: netifaces is a weak dependency
+- add convenience win32 build script
+
 * Sun Apr 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
 - fix support for encryption key environment variable
 - fix html-disabled option not honoured when ssl upgrades used
@@ -805,7 +818,7 @@ fi
 * Wed Jan 17 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.3-2
 - fixup incomplete authentication backport
 
-* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.6-1
+* Tue Jan 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.2.7-1
 - consistent authentication modules used after socket upgrades
 - fix crash with invalid tray docking requests
 - fix compatibility with some browsers (ie: ChromeOS)

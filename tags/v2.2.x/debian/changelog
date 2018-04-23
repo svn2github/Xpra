@@ -1,3 +1,18 @@
+xpra (2.2.7-1) UNRELEASED; urgency=low
+  * fix bell audio devices wrongly chosen as audio input devices
+  * fix man page formatting
+  * fix scaling changes wrongly applied during initialization
+  * fix sqlite authentication module
+  * fix duplicated encodings
+  * fix potential X11 crashes triggered by "xpra info"
+  * fix HTTP error response format
+  * ffmpeg 4.0 compatibility
+  * longer audio startup grace period (for slower systems)
+  * RPM python3 packaging: netifaces is a weak dependency
+  * add convenience win32 build script
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 23 Apr 2018 13:51:36 +0700
+
 xpra (2.2.6-1) UNRELEASED; urgency=low
   * fix support for encryption key environment variable
   * fix html-disabled option not honoured when ssl upgrades used
