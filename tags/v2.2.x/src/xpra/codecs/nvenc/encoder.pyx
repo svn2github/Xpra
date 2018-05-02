@@ -49,7 +49,10 @@ cdef int DEBUG_API = envbool("XPRA_NVENC_DEBUG_API", False)
 
 cdef int QP_MAX_VALUE = 51   #newer versions of ffmpeg can decode up to 63
 
-YUV444_CODEC_SUPPORT = {}
+YUV444_CODEC_SUPPORT = {
+    "h264"  : False,
+    "h265"  : False,
+    }
 LOSSLESS_CODEC_SUPPORT = {}
 
 
@@ -2804,7 +2807,7 @@ def init_module():
                             valid_keys.append(client_key)
                         #check for YUV444 support
                         yuv444_support = YUV444_ENABLED and test_encoder.query_encoder_caps(test_encoder.get_codec(), <NV_ENC_CAPS> NV_ENC_CAPS_SUPPORT_YUV444_ENCODE)
-                        YUV444_CODEC_SUPPORT[encoding] = yuv444_support
+                        YUV444_CODEC_SUPPORT[encoding] = bool(yuv444_support)
                         if YUV444_ENABLED and not yuv444_support:
                             log.warn("Warning: hardware or nvenc library version does not support YUV444 with %s", encoding)
                         log("%s YUV444 support: %s", encoding, YUV444_CODEC_SUPPORT.get(encoding, YUV444_ENABLED))
