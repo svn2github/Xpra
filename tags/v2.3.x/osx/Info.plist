@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Launcher</string>
+	<key>CFBundleDisplayName</key>
+	<string>Xpra</string>
+	<key>CFBundleName</key>
+	<string>Xpra</string>
+	<key>CFBundleGetInfoString</key>
+	<string>%VERSION%-r%REVISION% (c) 2012-2018 http://xpra.org/</string>
+	<key>CFBundleIconFile</key>
+	<string>xpra.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.xpra.xpra</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>%VERSION%</string>
+	<key>CFBundleVersion</key>
+	<string>%REVISION%.%BUILDNO%</string>
+	<key>CFBundleSignature</key>
+	<string>xpra</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2012-2018 Antoine Martin antoine@devloop.org.uk, GNU General Public License.</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.5</string>
+	<key>LSUIElement</key>
+	<string>0</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSHighResolutionCapable</key>
+	<string>True</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+
+	<key>CFBundleDocumentTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleTypeExtensions</key>
+		<array>
+			<string>xpra</string>
+		</array>
+		<key>CFBundleTypeIconFile</key>
+		<string>xpra.icns</string>
+		<key>CFBundleTypeMIMETypes</key>
+		<array>
+			<string>application/x-xpra</string>
+		</array>
+		<key>CFBundleTypeName</key>
+		<string>Xpra Session</string>
+		<key>CFBundleTypeOSTypes</key>
+		<array>
+			<string>xpra</string>
+		</array>
+		<key>CFBundleTypeRole</key>
+		<string>Viewer</string>
+		<key>LSTypeIsPackage</key>
+		<false/>
+	</dict>
+	</array>
+
+	<key>CFBundleURLTypes</key>
+	<array>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>xpra</string>
+            <string>xpras</string>
+        </array>
+        <key>CFBundleURLName</key>
+        <string>Xpra Session</string>
+    </dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,747 @@
+<?xml version="1.0"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+
+	<repository type="tarball" name="files.pythonhosted.org" href="https://files.pythonhosted.org"/>
+	<repository type="tarball" name="pypi.python.org" href="https://pypi.python.org"/>
+	<repository type="tarball" name="xpra.org" href="http://xpra.org"/>
+	<repository type="tarball" name="ftp.gnome.org" default="yes" href="ftp://ftp.gnome.org/pub/gnome/sources/"/>
+	<repository type="tarball" name="github.com" default="yes" href="https://github.com/"/>
+	<repository type="tarball" name="pyyaml.org" href="http://pyyaml.org"/>
+
+
+	<distutils id="python3-setuptools" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/e9/c3/5986db56819bd88e1a250cad2a97249211686b1b7b5d95f9ab64d403a2cb/setuptools-38.2.5.zip"
+			hash="sha256:b080f276cc868670540b2c03cee06cc14d2faf9da7bec0f15058d1b402c94507"
+			version="38.2.5"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-enum34" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/bf/3e/31d502c25302814a7c2f1d3959d2a3b3f78e509002ba91aea64993936876/enum34-1.1.6.tar.gz"
+			hash="sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1"
+			version="1.1.6"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-enum-compat" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/95/6e/26bdcba28b66126f66cf3e4cd03bcd63f7ae330d29ee68b1f6b623550bfa/enum-compat-0.0.2.tar.gz"
+			hash="sha256:939ceff18186a5762ae4db9fa7bfe017edbd03b66526b798dd8245394c8a4192"
+			version="0.0.2"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-zeroconf" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/bf/e3/acc6e2c2938428afa2450143fc4d3953ec60cb4d859db3a58f03d149ef04/zeroconf-0.19.1.tar.gz"
+			hash="sha256:434eab8da9525ae725d6842aae7e59d9ec6580bdc5ae84f3c225240bc6797f7a"
+			version="0.19.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-netifaces" python3="1">
+		<branch repo="files.pythonhosted.org"
+			module="/packages/81/39/4e9a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38/netifaces-0.10.7.tar.gz"
+			hash="sha256:0c4da523f36d36f1ef92ee183f2512f3ceb9a9d2a45f7d19cda5a42c6689ebe0"
+			version="0.10.7"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-cparser" python3="1">
+		<branch repo="github.com"
+			module="/eliben/pycparser/archive/release_v2.18.tar.gz"
+			checkoutdir="pycparser-release_v2.18"
+			hash="sha256:d5ead0f43ac5a8dd89e8475ada557037bbeb7ed709491861e84356ef17a3f8ac"
+			version="2.18"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-cffi" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/c9/70/89b68b6600d479034276fed316e14b9107d50a62f5627da37fafe083fde3/cffi-1.11.2.tar.gz"
+			hash="sha256:ab87dd91c0c4073758d07334c1e5f712ce8fe48f007b86f8238773963ee700a6"
+			version="1.11.2"/>
+		<dependencies>
+			<dep package="python3"/>
+			<dep package="python3-cparser"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+			<dep package="python3-cparser"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-six" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz"
+			hash="sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+			version="1.11.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-parsing" python3="1">
+		<branch repo="pypi.python.org"
+			module="https://pypi.python.org/packages/3c/ec/a94f8cf7274ea60b5413df054f82a8980523efd712ec55a59e7c3357cf7c/pyparsing-2.2.0.tar.gz"
+			hash="sha256:0832bcf47acd283788593e7a0f542407bd9550a55a8a8435214a1960e04bcb04"
+			version="2.2.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-packaging" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/c6/70/bb32913de251017e266c5114d0a645f262fb10ebc9bf6de894966d124e35/packaging-16.8.tar.gz"
+			hash="sha256:5d50835fdf0a7edf0b55e311b7c887786504efea1177abd7e69329a8e5ea619e"
+			version="16.8"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-asn1crypto" python3="1">
+		<branch repo="github.com"
+			module="/wbond/asn1crypto/archive/0.24.0.tar.gz"
+			hash="sha256:d2a82bb3c29e1abcb376b59679510b58dd796c813f8983f2db9b45e9ab228190"
+			checkoutdir="asn1crypto-0.24.0"
+			version="0.24.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-cryptography" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/ec/b2/faa78c1ab928d2b2c634c8b41ff1181f0abdd9adf9193211bd606ffa57e2/cryptography-2.2.2.tar.gz"
+			hash="sha256:9fc295bf69130a342e7a19a39d7bbeb15c0bcaabc7382ec33ef3b2b7d18d2f63"
+			version="2.2.2"/>
+		<dependencies>
+			<dep package="python3"/>
+			<dep package="openssl"/>
+			<dep package="python3-cparser"/>
+			<dep package="python3-cffi"/>
+			<dep package="python3-six"/>
+			<dep package="python3-asn1crypto"/>
+			<dep package="python3-enum34"/>
+			<dep package="python3-parsing"/>
+			<dep package="python3-packaging"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python-pyasn1" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/eb/3d/b7d0fdf4a882e26674c68c20f40682491377c4db1439870f5b6f862f76ed/pyasn1-0.4.2.tar.gz"
+			hash="sha256:d258b0a71994f7770599835249cece1caef3c70def868c4915e6e5ca49b67d15"
+			version="0.4.2">
+		</branch>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pillow" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/89/b8/2f49bf71cbd0e9485bb36f72d438421b69b7356180695ae10bd4fd3066f5/Pillow-5.1.0.tar.gz"
+			hash="sha256:cee9bc75bff455d317b6947081df0824a8f118de2786dc3d74a3503fd631f4ef"
+			version="5.1.0"/>
+		<dependencies>
+			<dep package="python3"/>
+			<dep package="libwebp"/>
+			<dep package="libpng"/>
+			<dep package="libjpeg"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+			<dep package="libwebp"/>
+			<dep package="libpng"/>
+			<dep package="libjpeg"/>
+		</after>
+	</distutils>
+
+	<!-- py2app versions newer than this have regressions, see #1404 -->
+	<distutils id="python3-py2app" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/65/ea/b8e5a4f41fd65e35c10b41ff68e776baeb07143983f484f1d9005a7ab36a/py2app-0.14.tar.gz"
+			hash="sha256:4dadf15d078a1748acba483c1abbb69a144a059e0c335a5e2a17b070d4cc938a"
+			version="0.14"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-cython" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/be/08/bb5ffd1c32a951cbc26011ecb8557e59dc7a0a4975f0ad98b2cd7446f7dd/Cython-0.28.1.tar.gz"
+			hash="sha256:152ee5f345012ca3bb7cc71da2d3736ee20f52cd8476e4d49e5e25c5a4102b12"
+			version="0.28.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-numpy" python3="1">
+		<branch repo="files.pythonhosted.org"
+			module="/packages/b0/2b/497c2bb7c660b2606d4a96e2035e92554429e139c6c71cdff67af66b58d2/numpy-1.14.3.zip"
+			checkoutdir="numpy-1.14.3"
+			version="1.14.3"
+			hash="sha256:9016692c7d390f9d378fc88b7a799dc9caa7eb938163dda5276d3f3d6f75debf"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-twisted" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/T/Twisted/Twisted-15.5.0.tar.bz2"
+			hash="md5:0831d7c90d0020062de0f7287530a285"
+			version="12.3.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+
+	<distutils id="python3-websockify" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/w/websockify/websockify-0.8.0.tar.gz"
+			hash="md5:8fa547ca4de84a96aa3472d55fbcdd59"
+			version="0.8.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-websocket-client" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/c9/bb/8d3dd9063cfe0cd5d03fe6a1f74ddd948f384e9c1eff0eb978f3976a7d27/websocket_client-0.47.0.tar.gz"
+			hash="sha256:a453dc4dfa6e0db3d8fd7738a308a88effe6240c59f3226eb93e8f020c216149"
+			version="0.47.0"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-nose" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/n/nose/nose-1.3.7.tar.gz"
+			hash="md5:4d3ad0ff07b61373d2cefc89c5d0b20b"
+			version="1.3.7"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-setuptools-scm" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/03/6d/aafdd01edd227ee879b691455bf19895091872af7e48192bea1758c82032/setuptools_scm-1.15.6.tar.gz"
+			hash="sha256:49ab4685589986a42da85706b3311a2f74f1af567d39fee6cb1e088d7a75fb5f"
+			version="1.15.6"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pkgconfig" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/9d/ba/80910bbed2b4e646a6adab4474d2e506744c260c7002a0e6b41ef8750d8d/pkgconfig-1.2.2.tar.gz"
+			hash="sha256:3685ba02a9b72654a764b728b559f327e1dbd7dc6ebc310a1bd429666ee202aa"
+			version="1.2.2"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-deprecation" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/8c/e3/e5c66eba8fa2fd567065fa70ada98b990f449f74fb812b408fa7aafe82c9/deprecation-1.0.1.tar.gz"
+			hash="sha256:b9bff5cc91f601ef2a8a0200bc6cde3f18a48c2ed3d1ecbfc16076b14b3ad935"
+			version="1.0.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-test-runner" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/65/b4/ae89338cd2d81e2cc54bd6db2e962bfe948f612303610d68ab24539ac2d1/pytest-runner-3.0.tar.gz"
+			hash="sha256:0f7c3a3cf5aead13f54baaa01ceb49e5ae92aba5d3ff1928e81e189c40bc6703"
+			version="3.0"/>
+		<dependencies>
+			<dep package="python3"/>
+			<dep package="python3-setuptools-scm"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+			<dep package="python3-setuptools-scm"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-lz4" python3="1">
+		<branch repo="files.pythonhosted.org"
+			module="/packages/e7/b9/12bd58967c5df38e22e9db0c17d732fc456fd09d4b89b147ff1c73e59c5b/lz4-1.1.0.tar.gz"
+			hash="sha256:9ede632d668995d6148942022c025c0f7ea0d97c275c099f9ad156e02cc1711e"
+			version="1.1.0"/>
+		<dependencies>
+			<dep package="lz4"/>
+			<dep package="python3"/>
+			<dep package="python3-pkgconfig"/>
+			<dep package="python3-deprecation"/>
+			<dep package="python3-test-runner"/>
+			<dep package="python3-setuptools-scm"/>
+		</dependencies>
+		<after>
+			<dep package="lz4"/>
+			<dep package="python3"/>
+			<dep package="python3-pkgconfig"/>
+			<dep package="python3-deprecation"/>
+			<dep package="python3-test-runner"/>
+			<dep package="python3-setuptools-scm"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-lzo" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/p/python-lzo/python-lzo-1.11.tar.gz"
+			hash="sha256:38a0ea4ceb27cdd8e3526509fe1b7a936e5dfa57c64608fd32085c129e8be386"
+			version="1.11">
+			<patch file="http://xpra.org/svn/Xpra/trunk/osx/jhbuild/patches/python-lzo-jhbuild.patch" strip="0" />
+		</branch>
+		<dependencies>
+			<dep package="python3"/>
+			<dep package="lzo"/>
+		</dependencies>
+		<after>
+			<dep package="lzo"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyasn1-modules" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/ab/76/36ab0e099e6bd27ed95b70c2c86c326d3affa59b9b535c63a2f892ac9f45/pyasn1-modules-0.2.1.tar.gz"
+			hash="sha256:af00ea8f2022b6287dc375b2c70f31ab5af83989fc6fe9eacd4976ce26cd7ccc"
+			version="0.2.1">
+		</branch>
+		<dependencies>
+			<dep package="python3-pyasn1"/>
+		</dependencies>
+		<after>
+			<dep package="python3-pyasn1"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-ldap3" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/24/36/89162b1b2245031b17d52a2100758c32bf1ac0b1cf0b51014ad2d10bb01c/ldap3-2.4.1.tar.gz"
+			hash="sha256:e8fe0d55a8cecb725748c831ffac2873df94c05b2d7eb867ea167c0500bbc6a8"
+			version="2.4.1">
+		</branch>
+		<dependencies>
+			<dep package="python-pyasn1"/>
+		</dependencies>
+		<after>
+			<dep package="python-pyasn1"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-ldap" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/c1/52/dfb508364bce92bb2a6ccbe718b69c8857b5d6fcd6af259ab0c36ee68730/python-ldap-3.0.0.tar.gz"
+			hash="sha256:86746b912a2cd37a54b06c694f021b0c8556d4caeab75ef50435ada152e2fbe1"
+			version="3.0.0">
+		</branch>
+		<dependencies>
+			<dep package="python3-pyasn1"/>
+		</dependencies>
+		<after>
+			<dep package="python3-pyasn1"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-future" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/00/2b/8d082ddfed935f3608cc61140df6dcbf0edea1bc3ab52fb6c29ae3e81e85/future-0.16.0.tar.gz"
+			hash="sha256:e39ced1ab767b5936646cedba8bcce582398233d6a627067d4c6a454c90cfedb"
+			version="0.16.0">
+		</branch>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-u2f" python3="1">
+		<branch repo="files.pythonhosted.org"
+			module="/packages/b0/6d/0fd9107b92c792e62cdeaeca2dfe40928898509aba82d81656d53e610c64/pyu2f-0.1.4.tar.gz"
+			hash="sha256:12d1260ccd7cfd7a987fc1ad84667770efd6b422cec47fe8eda18d5d52ff6bd3"
+			version="0.1.4">
+		</branch>
+		<dependencies>
+			<dep package="python3-future"/>
+		</dependencies>
+		<after>
+			<dep package="python3-future"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-kerberos" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/34/18/9c86fdfdb27e0f7437b7d5a9e22975dcc382637b2a68baac07843be512fc/kerberos-1.3.0.tar.gz"
+			hash="sha256:f039b7dd4746df56f6102097b3dc250fe0078be75130b9dc4211a85a3b1ec6a4"
+			version="1.3.0">
+		</branch>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-decorator" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/70/f1/cb9373195639db13063f55eb06116310ad691e1fd125e6af057734dc44ea/decorator-4.2.1.tar.gz"
+			hash="sha256:7d46dd9f3ea1cf5f06ee0e4e1277ae618cf48dfb10ada7c8427cd46c42702a0e"
+			version="4.2.1">
+		</branch>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-gssapi" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/c9/88/8306f545a9c2425f18678fa8f3ff369df2615168b2aaf3495f32dd609225/gssapi-1.4.1.tar.gz"
+			hash="sha256:be8f37dd9da726db375b9c693e0a63b391d381d903516e79ecc2a2cc965580e4"
+			version="1.4.1">
+		</branch>
+		<dependencies>
+			<dep package="python3-decorator"/>
+		</dependencies>
+		<after>
+			<dep package="python3-decorator"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-macholib" python3="1">
+		<branch repo="pypi.python.org"
+			module="https://pypi.python.org/packages/70/54/12d547ebb73de8412120a293ab013e61caef36bf712d76c9a574020d2796/macholib-1.9.tar.gz"
+			hash="sha256:9aeec52d7da59912b15445d08b08d95cee48414f01dd035be06f04a825973c08"
+			version="1.9"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-modulegraph" python3="1">
+		<branch repo="pypi.python.org"
+			module="https://pypi.python.org/packages/de/4e/91327287864f179be193e9d1fcb957b0e3d4d5f2ef38f6ac95897f4e4a4e/modulegraph-0.16.tar.gz"
+			hash="sha256:0ba04a67b65c936f707c76ffd819a52f370ff2bd36664338d53a9b271f23d1e4"
+			version="0.16"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-altgraph" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/ff/e5/c4d83ca50043951eec43449aa74f4aa4fde1695f901dcf9d213efea3abb1/altgraph-0.15.tar.gz"
+			hash="sha256:fc28b986a68fde8d3ff0e6d6ba3fbdd2cd562d11d45ef7c7735fbd826c9eec2e"
+			version="0.15"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyopengl" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/P/PyOpenGL/PyOpenGL-3.1.1a1.tar.gz"
+			hash="md5:77ee6044ceb2cf952aca89a9b2d3d585"
+			version="3.1.1a1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyopengl-accelerate" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/P/PyOpenGL-accelerate/PyOpenGL-accelerate-3.1.1a1.tar.gz"
+			hash="md5:04e52af352dd078275a2d5720c4afea2"
+			version="3.1.1a1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyobjc-core" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/a6/af/bde88e81e5428f7561911da2207f5efd3b4b2aa2bd0263b63302b840e23c/pyobjc-core-4.1.tar.gz"
+			hash="sha256:e42d3558b65485f896e272e48e108d4df8ccd7f130f552dddb4a47732dd0ee65"
+			version="4.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyobjc-framework-cocoa" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/8e/39/ef763cbc0825baec366171c4552c53adb38a866bd94922594946869ccb0e/pyobjc-framework-Cocoa-4.1.tar.gz"
+			hash="sha256:9a221f0549067b402b85a9c3425cd962870f94b404e2e3a543fc0029d124fddf"
+			version="4.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pyobjc-framework-quartz" python3="1">
+		<branch repo="pypi.python.org"
+			module="https://pypi.python.org/packages/26/95/77a6c495d46b18aa5995ed8215d2ad6fc840e426abfcb2ad9bf07c17cba9/pyobjc-framework-Quartz-4.1.tar.gz"
+			hash="sha256:a0e1e3a3ff2422372c961c1d9384c4734dec715da32b1d9be76a5c237cde1709"
+			version="4.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+
+	<distutils id="python3-pyobjc-framework-avfoundation">
+		<branch repo="pypi.python.org"
+			module="https://pypi.python.org/packages/53/59/191f0195309b28701e00ade44db07d882cebaf3dcab9609ff10aff1ef04e/pyobjc-framework-AVFoundation-4.1.tar.gz"
+			hash="sha256:5b41d0e5943a9ad12ebf144e6e117ae768b80245ccc92be97c00153c5c34ac15"
+			version="4.1"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+
+	<distutils id="python3-rencode" python3="1">
+		<branch repo="github.com"
+			module="/aresch/rencode/archive/v1.0.5.tar.gz"
+			checkoutdir="rencode-1.0.5"
+			hash="md5:3bdbec5c50d845e5367ba53c5b85d1a4"
+			version="1.0.5"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-yaml" python3="1">
+		<branch repo="pyyaml.org"
+			module="/download/pyyaml/PyYAML-3.12.tar.gz"
+			checkoutdir="PyYAML-3.12"
+			hash="sha256:592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+			version="3.12"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-pycups" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/source/p/pycups/pycups-1.9.73.tar.bz2"
+			hash="md5:ee0e7204d7a2ae942e2f4c4508afdbfb"
+			version="1.9.73"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-ipaddress" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/4e/13/774faf38b445d0b3a844b65747175b2e0500164b7c28d78e34987a5bfe06/ipaddress-1.0.18.tar.gz"
+			hash="sha256:5d8534c8e185f2d8a1fda1ef73f2c8f4b23264e8e30063feeb9511d492a413e1"
+			version="1.0.18"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<distutils id="python3-idna" python3="1">
+		<branch repo="pypi.python.org"
+			module="/packages/f4/bd/0467d62790828c23c47fc1dfa1b1f052b24efdf5290f071c7a91d0d82fd3/idna-2.6.tar.gz"
+			hash="sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f"
+			version="2.6"/>
+		<dependencies>
+			<dep package="python3"/>
+		</dependencies>
+		<after>
+			<dep package="python3"/>
+		</after>
+	</distutils>
+
+	<metamodule id="meta-osx-xpra-python3-deps">
+		<dependencies>
+		  <dep package="gst-python"/>
+		  <dep package="python3-setuptools"/>
+		  <dep package="python3-zeroconf"/>
+		  <dep package="python3-netifaces"/>
+		  <dep package="python3-pyasn1"/>
+		  <dep package="python3-pillow"/>
+		  <dep package="python3-py2app"/>
+		  <dep package="python3-cython"/>
+		  <dep package="python3-numpy"/>
+		  <dep package="python3-pycups"/>
+		  <dep package="python3-websockify"/>
+		  <dep package="python3-websocket-client"/>
+		  <dep package="python3-twisted"/>
+		  <dep package="python3-nose"/>
+		  <dep package="python3-setuptools-scm"/>
+		  <dep package="python3-test-runner"/>
+		  <dep package="python3-pkgconfig"/>
+		  <dep package="python3-deprecation"/>
+		  <dep package="python3-lz4"/>
+		  <dep package="python3-lzo"/>
+		  <dep package="python3-pyasn1"/>
+		  <dep package="python3-pyasn1-modules"/>
+		  <dep package="python3-ldap3"/>
+		  <dep package="python3-ldap"/>
+		  <dep package="python3-future"/>
+		  <dep package="python3-u2f"/>
+		  <dep package="python3-kerberos"/>
+		  <dep package="python3-gssapi"/>
+		  <dep package="python3-ipaddress"/>
+		  <dep package="python3-idna"/>
+		  <dep package="python3-cryptography"/>
+		  <dep package="python3-rencode"/>
+		  <dep package="python3-yaml"/>
+		  <dep package="python3-macholib"/>
+		  <dep package="python3-modulegraph"/>
+		  <dep package="python3-altgraph"/>
+		  <dep package="python3-pyopengl"/>
+		  <dep package="python3-pyopengl-accelerate"/>
+		  <dep package="python3-pyobjc-core"/>
+		  <dep package="python3-pyobjc-framework-cocoa"/>
+		  <dep package="python3-pyobjc-framework-quartz"/>
+		  <dep package="python3-pyobjc-framework-avfoundation"/>
+		</dependencies>
+	</metamodule>
+
+</moduleset>

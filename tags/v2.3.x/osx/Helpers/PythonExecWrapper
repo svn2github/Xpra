@@ -1,0 +1,103 @@
+#!/bin/sh
+
+# This wrapper sets up all the environment variables
+# needed for running the Python interpreter that we ship,
+# including all the GTK specific magic.
+# The first argument must be the program name,
+# which is used on OSX as the default application name
+# as shown in the global menu.
+
+APPNAME=`echo "$1" | sed 's+_+ +g'`
+if [ -z "$APPNAME" ]; then
+	echo "usage $0 APPNAME [args ..]"
+	exit 1
+fi
+shift
+
+
+full_path=$(cd "$(dirname "$0")"; pwd)
+
+tmp="$full_path"
+while [ "`basename $tmp`" != "Contents" ]; do
+	tmp=`dirname "$tmp"`
+	if [ -z "$tmp" ]; then
+		echo "cannot find /Contents/ in \"$full_path\""
+		exit 1
+	fi
+done
+bundle_contents="$tmp"
+bundle_res="$bundle_contents"/Resources
+bundle_lib="$bundle_res"/lib
+bundle_bin="$bundle_res"/bin
+bundle_data="$bundle_res"/share
+bundle_etc="$bundle_res"/etc
+
+export DYLD_LIBRARY_PATH="$bundle_lib"
+export XDG_CONFIG_DIRS="$bundle_etc"/xdg
+export XDG_DATA_DIRS="$bundle_data"
+export GTK_DATA_PREFIX="$bundle_res"
+export GTK_EXE_PREFIX="$bundle_res"
+export GTK_PATH="$bundle_res"
+export GI_TYPELIB_PATH="$bundle_lib/girepository-1.0"
+
+export GTK2_RC_FILES="$bundle_etc/gtk-2.0/gtkrc"
+export GTK_IM_MODULE_FILE="$bundle_etc/gtk-2.0/gtk.immodules"
+export GDK_PIXBUF_MODULE_FILE="$bundle_lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+export PANGO_RC_FILE="$bundle_etc/pango/pangorc"
+export PANGO_LIBDIR="$bundle_lib"
+export PANGO_SYSCONFDIR="$bundle_etc"
+
+export GST_BUNDLE_CONTENTS="$bundle_contents"
+
+#Set $PYTHON to point inside the bundle
+#This is not the real "python" but a copy of it named "$APPNAME"
+#with underscores replaced by spaces
+#which is created by the build scripts because
+#some versions of Mac OSX (10.6 onwards?) do not seem to honour
+#the name we want to supply with "exec -a"
+#This is hacked together in make-app.sh
+export PYTHON="$bundle_bin/$APPNAME"
+export PYTHONHOME="$bundle_res"
+#Add the bundle's python modules
+PYTHONPATH="$bundle_lib:$PYTHONPATH"
+PYTHONPATH="$bundle_lib/python/lib-dynload/:$PYTHONPATH"
+PYTHONPATH="$bundle_lib/python/:$PYTHONPATH"
+PYTHONPATH="$bundle_lib/pygtk/2.0:$PYTHONPATH"
+export PYTHONPATH
+
+#override potential user settings to prevent crashes:
+unset PYTHONOPTIMIZE
+
+# We need a UTF-8 locale.
+lang=`defaults read .GlobalPreferences AppleLocale 2>/dev/null`
+if test "$?" != "0"; then
+	lang=`defaults read .GlobalPreferences AppleCollationOrder 2>/dev/null | sed 's/_.*//'`
+fi
+LANG=""
+if test "$lang" != ""; then
+	LANG="`grep \"\`echo $lang\`_\" /usr/share/locale/locale.alias | \
+		tail -n1 | sed 's/\./ /' | awk '{print $2}'`"
+fi
+if test "$LANG" == ""; then
+	export LANG="C"
+else
+	export LANG="$LANG.utf8"
+fi
+if test "$LANG" == "C"; then
+	if test "$LC_ALL" == ""; then
+		export LC_ALL="C"
+	fi
+fi
+
+if test -f "$bundle_lib/charset.alias"; then
+    export CHARSETALIASDIR="$bundle_lib"
+fi
+
+# Extra arguments can be added in environment.sh.
+EXTRA_ARGS=
+if test -f "$bundle_res/environment.sh"; then
+  source "$bundle_res/environment.sh"
+fi
+
+#'exec -a "$APPNAME" was used here before - see note above'
+exec "$PYTHON" "$@"

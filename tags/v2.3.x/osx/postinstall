@@ -1,0 +1,48 @@
+#!/bin/bash
+# this script will:
+# * fix cups backend permissions which are not preserved:
+# * add scripts in /usr/local/bin to launch the xpra commands
+
+chown root:wheel /usr/libexec/cups/backend/xpraforwarder
+chmod 700 /usr/libexec/cups/backend/xpraforwarder
+
+#FIXME: figure out where we were installed if using a custom location..
+APP_ROOT="/Applications/Xpra.app"
+if [ -d "$APP_ROOT" ]; then
+	if [ ! -e "/usr/local/bin" ]; then
+		mkdir /usr/local/bin
+	fi
+
+	if [ -e "$APP_ROOT/Contents/Resources/LaunchAgents/org.xpra.Agent.plist" ]; then
+		csrutil status 2> /dev/null | grep "enabled"
+		if [ $? != "0" ]; then
+			cp $APP_ROOT/Contents/Resources/LaunchAgents/org.xpra.Agent.plist /System/Library/LaunchAgents/
+		fi
+	fi
+
+	if [ ! -e "/Library/Application Support/Xpra/ssl-cert.pem" ]; then
+		mkdir "/Library/Application Support/Xpra" 2> /dev/null
+		chmod 755 "/Library/Application Support/Xpra"
+		umask=`umask`
+		umask 077
+		openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+			-subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=localhost" \
+			-keyout "/Library/Application Support/Xpra/ssl-cert.pem" -out "/Library/Application Support/Xpra/ssl-cert.pem" 2> /dev/null
+		umask $umask
+	fi
+
+	for x in Xpra; do
+		echo '#!/bin/sh' > /usr/local/bin/$x
+		echo exec $APP_ROOT/Contents/MacOS/$x \"\$@\" >> /usr/local/bin/$x
+		chown root:wheel /usr/local/bin/$x
+		chmod 755 /usr/local/bin/$x
+	done
+	for x in Auth_Dialog Browser Bug_Report Config_info Encoding_info GStreamer_info GTK_info Keyboard_Tool Keymap_info Keyboard_info Launcher Network_info OpenGL_check Path_info PowerMonitor Print Python Shadow Version_info Webcam_Test;do
+		if [ -e "$APP_ROOT/Contents/Helpers/$x" ]; then
+			echo '#!/bin/sh' > /usr/local/bin/Xpra_$x
+			echo exec $APP_ROOT/Contents/Helpers/$x \"\$@\" >> /usr/local/bin/Xpra_$x
+			chown root:wheel /usr/local/bin/Xpra_$x
+			chmod 755 /usr/local/bin/Xpra_$x
+		fi
+	done
+fi
