@@ -5,7 +5,7 @@
 
 %define version 2.3
 %if ! %{defined build_no}
-%define build_no 0
+%define build_no 2
 %endif
 
 %{!?__python2: %global __python2 python2}
@@ -774,6 +774,10 @@ fi
 
 
 %changelog
+* Wed May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-2
+- fix CentOS 7 ldap dependencies
+- fix notifications warning when temporary directory does not exist
+
 * Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-1
 - stackable authentication modules
 - tcp wrappers authentication module
