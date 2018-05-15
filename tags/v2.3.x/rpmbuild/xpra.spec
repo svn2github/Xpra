@@ -774,7 +774,7 @@ fi
 
 
 %changelog
-* Wed May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-2
+* Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-2
 - fix CentOS 7 ldap dependencies
 - fix notifications warning when temporary directory does not exist
 - fix unmanaged X11 context warning
