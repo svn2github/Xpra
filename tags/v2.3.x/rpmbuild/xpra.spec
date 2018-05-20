@@ -3,9 +3,9 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.3
+%define version 2.3.1
 %if ! %{defined build_no}
-%define build_no 2
+%define build_no 1
 %endif
 
 %{!?__python2: %global __python2 python2}
@@ -774,6 +774,23 @@ fi
 
 
 %changelog
+* Sun May 20 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
+- fix compilation warning in ffmpeg compatibility shim
+- fix filename extension check in launcher
+- fix h264 decoding in html5 client
+- fix menu stacking level in html5 client
+- fix focus issues with html5 client
+- fix socket error race condition during shutdown
+- fix scroll encoding errors on images with modified rowstride
+- fix desktop and shadow servers xinerama sizing issues
+- fix pixel encoding errors at low pixel depths
+- fix pixel-depth 8 wrongly rejected for start-desktop mode
+- fix colour encoding at pixel-depth 8
+- honour CFLAGS and LDFLAGS env vars
+- remove duplicated encoding from vpx encoder
+- add workaround for distributions shipping unpatched distutils
+- increase unit test failure timeout
+
 * Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-2
 - fix CentOS 7 ldap dependencies
 - fix notifications warning when temporary directory does not exist
@@ -1178,7 +1195,7 @@ fi
 - fix xpra shadow keyboard mapping support for non-posix clients
 - avoid Xorg dummy warning in log
 
-* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3-1
+* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3.1-1
 - fix mispostioned windows
 - fix quickly disappearing windows (often menus)
 - fix server errors when closing windows
