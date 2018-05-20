@@ -200,6 +200,7 @@ class XpraServer(gobject.GObject, X11ServerBase):
         self.global_menus = int(opts.global_menus)
         self.system_tray = opts.system_tray
         X11ServerBase.init(self, opts)
+        self.fake_xinerama = opts.fake_xinerama
         if self.global_menus:
             self.rpc_handlers["menu"] = self._handle_menu_rpc
         def log_server_event(_, event):
