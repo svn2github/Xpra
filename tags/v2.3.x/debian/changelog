@@ -10,12 +10,18 @@ xpra (2.3.1-1) UNRELEASED; urgency=low
   * fix pixel encoding errors at low pixel depths
   * fix pixel-depth 8 wrongly rejected for start-desktop mode
   * fix colour encoding at pixel-depth 8
+  * fix systemd warnings and packaging on Ubuntu 16.04
+  * fix html5 client errors with audio debugging enabled
+  * fix readonly mode pointer motion bypass
+  * fix client failure on servers without a valid desktop size
+  * fix VNC connection handling of authentication
+  * fix scary X11 desktop server warning with VNC clients
   * honour CFLAGS and LDFLAGS env vars
   * remove duplicated encoding from vpx encoder
   * add workaround for distributions shipping unpatched distutils
   * increase unit test failure timeout
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 20 May 2018 13:50:54 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 24 May 2018 12:55:20 +0700
 
 xpra (2.3-2) UNRELEASED; urgency=low
   * fix notifications warning when temporary directory does not exist
