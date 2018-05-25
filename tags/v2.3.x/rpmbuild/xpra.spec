@@ -1,5 +1,5 @@
 # This file is part of Xpra.
-# Copyright (C) 2010-2017 Antoine Martin <antoine@devloop.org.uk>
+# Copyright (C) 2010-2018 Antoine Martin <antoine@devloop.org.uk>
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
@@ -774,7 +774,7 @@ fi
 
 
 %changelog
-* Thu May 24 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
+* Fri May 25 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
 - fix compilation warning in ffmpeg compatibility shim
 - fix filename extension check in launcher
 - fix h264 decoding in html5 client
@@ -792,6 +792,10 @@ fi
 - fix client failure on servers without a valid desktop size
 - fix VNC connection handling of authentication
 - fix scary X11 desktop server warning with VNC clients
+- fix error in video debug logging
+- fix nvfbc errors during cleanup after initialization failures
+- fix client launcher not exiting on close
+- don't prompt for the ssh password if we already have it
 - honour CFLAGS and LDFLAGS env vars
 - remove duplicated encoding from vpx encoder
 - add workaround for distributions shipping unpatched distutils

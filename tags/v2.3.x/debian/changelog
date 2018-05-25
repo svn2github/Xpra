@@ -16,12 +16,16 @@ xpra (2.3.1-1) UNRELEASED; urgency=low
   * fix client failure on servers without a valid desktop size
   * fix VNC connection handling of authentication
   * fix scary X11 desktop server warning with VNC clients
+  * fix error in video debug logging
+  * fix nvfbc errors during cleanup after initialization failures
+  * fix client launcher not exiting on close
+  * don't prompt for the ssh password if we already have it
   * honour CFLAGS and LDFLAGS env vars
   * remove duplicated encoding from vpx encoder
   * add workaround for distributions shipping unpatched distutils
   * increase unit test failure timeout
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 24 May 2018 12:55:20 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 25 May 2018 13:43:35 +0700
 
 xpra (2.3-2) UNRELEASED; urgency=low
   * fix notifications warning when temporary directory does not exist
