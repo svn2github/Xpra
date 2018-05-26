@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # This file is part of Xpra.
-# Copyright (C) 2017 Antoine Martin <antoine@devloop.org.uk>
+# Copyright (C) 2017-2018 Antoine Martin <antoine@devloop.org.uk>
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
@@ -21,6 +21,7 @@ log = Logger("rfb")
 class RFBServer(object):
 
     def init(self):
+        self.readonly = False
         self.rfb_buttons = 0
         self.x11_keycodes_for_keysym = {}
         if POSIX and not OSX:
@@ -102,6 +103,8 @@ class RFBServer(object):
             start_refresh()
 
     def _process_rfb_PointerEvent(self, _proto, packet):
+        if self.readonly:
+            return
         buttons, x, y = packet[1:4]
         wid = self._get_rfb_desktop_wid()
         self._move_pointer(wid, (x, y))
@@ -115,6 +118,8 @@ class RFBServer(object):
             self.rfb_buttons = buttons
 
     def _process_rfb_KeyEvent(self, proto, packet):
+        if self.readonly:
+            return
         source = self._server_sources.get(proto)
         if not source:
             return
