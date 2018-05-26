@@ -914,6 +914,7 @@ class ClientExtras(object):
         self._console_handler_added = False
         self._screensaver_state = False
         self._screensaver_timer = 0
+        self._exit = False
         if SCREENSAVER_LISTENER_POLL_DELAY>0:
             def log_screensaver():
                 v = bool(GetIntSystemParametersInfo(win32con.SPI_GETSCREENSAVERRUNNING))
@@ -952,6 +953,7 @@ class ClientExtras(object):
 
     def cleanup(self):
         log("ClientExtras.cleanup()")
+        self._exit = True
         cha = self._console_handler_added
         if cha:
             self._console_handler_added = False
@@ -1061,7 +1063,7 @@ class ClientExtras(object):
         keylog("init_keyboard_listener() hook_id=%#x", keyboard_hook_id)
         msg = MSG()
         lpmsg = byref(msg)
-        while True:
+        while not self._exit:
             ret = GetMessageA(lpmsg, None, 0, 0)
             keylog("init_keyboard_listener: GetMessage()=%s", ret)
             if ret==-1:
