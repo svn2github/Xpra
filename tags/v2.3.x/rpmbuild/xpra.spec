@@ -774,7 +774,7 @@ fi
 
 
 %changelog
-* Fri May 25 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
+* Sat May 26 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
 - fix compilation warning in ffmpeg compatibility shim
 - fix filename extension check in launcher
 - fix h264 decoding in html5 client
@@ -788,13 +788,14 @@ fi
 - fix colour encoding at pixel-depth 8
 - fix systemd warnings and packaging on Ubuntu 16.04
 - fix html5 client errors with audio debugging enabled
-- fix readonly mode pointer motion bypass
+- fix readonly mode bypass
 - fix client failure on servers without a valid desktop size
 - fix VNC connection handling of authentication
 - fix scary X11 desktop server warning with VNC clients
 - fix error in video debug logging
 - fix nvfbc errors during cleanup after initialization failures
 - fix client launcher not exiting on close
+- fix rare deadlocks in exception handler
 - don't prompt for the ssh password if we already have it
 - honour CFLAGS and LDFLAGS env vars
 - remove duplicated encoding from vpx encoder
