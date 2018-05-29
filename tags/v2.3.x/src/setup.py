@@ -626,6 +626,7 @@ def exec_pkgconfig(*pkgs_options, **ekw):
 
     #for distros that don't patch distutils,
     #we have to add the python cflags:
+    from xpra.os_util import is_Fedora, is_CentOS, is_Debian
     if not (is_Fedora() or is_Debian() or is_CentOS()):
         import shlex
         import sysconfig
