@@ -774,7 +774,10 @@ fi
 
 
 %changelog
-* Sat May 26 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
+* Tue May 29 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
+- fix CentOS / RHEL rpm dependencies for ldap authentication
+- fix spurious notifications warning
+- fix unsynced X11 context access to DPI (potential crash or warnings)
 - fix compilation warning in ffmpeg compatibility shim
 - fix filename extension check in launcher
 - fix h264 decoding in html5 client
@@ -795,7 +798,19 @@ fi
 - fix error in video debug logging
 - fix nvfbc errors during cleanup after initialization failures
 - fix client launcher not exiting on close
+- fix RFB clients causing sessions to be locked
 - fix rare deadlocks in exception handler
+- fix MacOS deprecation warnings
+- fix screen capture test script
+- fix CUDA DLL packaging
+- fix named-pipe errors with MS Windows Python3 and 64-bit builds
+- fix MinGW path detection issues
+- fix potential mmap leak with Python3 builds
+- fix screen update errors when XShm is disabled
+- silence GCC warnings when compiling NvFBC on MS Windows
+- increase default bandwidth congestion tolerance
+- remove duplicated DLLs from MS Windows Python3 builds
+- allow debugging via environment variables for all categories
 - don't prompt for the ssh password if we already have it
 - honour CFLAGS and LDFLAGS env vars
 - remove duplicated encoding from vpx encoder

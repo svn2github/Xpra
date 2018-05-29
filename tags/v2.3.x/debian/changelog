@@ -1,4 +1,7 @@
 xpra (2.3.1-1) UNRELEASED; urgency=low
+  * fix CentOS / RHEL rpm dependencies for ldap authentication
+  * fix spurious notifications warning
+  * fix unsynced X11 context access to DPI (potential crash or warnings)
   * fix compilation warning in ffmpeg compatibility shim
   * fix filename extension check in launcher
   * fix h264 decoding in html5 client
@@ -19,14 +22,26 @@ xpra (2.3.1-1) UNRELEASED; urgency=low
   * fix error in video debug logging
   * fix nvfbc errors during cleanup after initialization failures
   * fix client launcher not exiting on close
+  * fix RFB clients causing sessions to be locked
   * fix rare deadlocks in exception handler
+  * fix MacOS deprecation warnings
+  * fix screen capture test script
+  * fix CUDA DLL packaging
+  * fix named-pipe errors with MS Windows Python3 and 64-bit builds
+  * fix MinGW path detection issues
+  * fix potential mmap leak with Python3 builds
+  * fix screen update errors when XShm is disabled
+  * silence GCC warnings when compiling NvFBC on MS Windows
+  * increase default bandwidth congestion tolerance
+  * remove duplicated DLLs from MS Windows Python3 builds
+  * allow debugging via environment variables for all categories
   * don't prompt for the ssh password if we already have it
   * honour CFLAGS and LDFLAGS env vars
   * remove duplicated encoding from vpx encoder
   * add workaround for distributions shipping unpatched distutils
   * increase unit test failure timeout
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 26 May 2018 16:02:59 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 29 May 2018 23:55:03 +0700
 
 xpra (2.3-2) UNRELEASED; urgency=low
   * fix notifications warning when temporary directory does not exist

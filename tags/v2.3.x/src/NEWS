@@ -1,4 +1,4 @@
-v2.3.1 (2018-05-26)
+v2.3.1 (2018-05-29)
 ======================
 	-- fix CentOS / RHEL rpm dependencies for ldap authentication
 	-- fix spurious notifications warning
@@ -25,6 +25,17 @@ v2.3.1 (2018-05-26)
 	-- fix client launcher not exiting on close
 	-- fix RFB clients causing sessions to be locked
 	-- fix rare deadlocks in exception handler
+	-- fix MacOS deprecation warnings
+	-- fix screen capture test script
+	-- fix CUDA DLL packaging
+	-- fix named-pipe errors with MS Windows Python3 and 64-bit builds
+	-- fix MinGW path detection issues
+	-- fix potential mmap leak with Python3 builds
+	-- fix screen update errors when XShm is disabled
+	-- silence GCC warnings when compiling NvFBC on MS Windows
+	-- increase default bandwidth congestion tolerance
+	-- remove duplicated DLLs from MS Windows Python3 builds
+	-- allow debugging via environment variables for all categories
 	-- don't prompt for the ssh password if we already have it
 	-- honour CFLAGS and LDFLAGS env vars
 	-- remove duplicated encoding from vpx encoder
