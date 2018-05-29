@@ -2001,7 +2001,8 @@ toggle_packages(enc_proxy_ENABLED, "xpra.codecs.enc_proxy")
 toggle_packages(nvfbc_ENABLED, "xpra.codecs.nvfbc")
 if nvfbc_ENABLED:
     nvfbc_pkgconfig = pkgconfig("nvfbc")
-    #add_to_keywords(nvfbc_pkgconfig, 'extra_compile_args', "-Wno-endif-labels")
+    if WIN32:
+        add_to_keywords(nvfbc_pkgconfig, 'extra_compile_args', "-Wno-endif-labels")
     platform = sys.platform.rstrip("0123456789")
     cython_add(Extension("xpra.codecs.nvfbc.fbc_capture_%s" % platform,
                          ["xpra/codecs/nvfbc/fbc_capture_%s.pyx" % platform],
