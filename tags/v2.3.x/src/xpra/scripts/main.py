@@ -336,7 +336,7 @@ def run_mode(script_file, error_cb, options, args, mode, defaults):
                 from xpra import server
                 assert server
                 from xpra.scripts.server import run_server, add_when_ready
-                from xpra.scripts import socket_util
+                from xpra.server import socket_util
             except ImportError as e:
                 error_cb("Xpra server is not installed")
             if options.attach is True:
