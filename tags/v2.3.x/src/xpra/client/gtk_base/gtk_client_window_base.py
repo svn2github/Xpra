@@ -201,7 +201,6 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
         self.show_pointer_overlay_timer = None
         self.moveresize_timer = None
         self.moveresize_event = None
-        self.window_offset = None   #actual vs reported coordinates
         #add platform hooks
         self.connect_after("realize", self.on_realize)
         self.connect('unrealize', self.on_unrealize)
@@ -1297,10 +1296,15 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
         b = self._backing
         if not b:
             return
+        def abs_coords(x, y, size):
+            if self.window_offset:
+                x += self.window_offset[0]
+                y += self.window_offset[1]
+            return x, y, size
         value = b.pointer_overlay
         if value:
             #repaint the scale value (in window coordinates):
-            x, y, size = value[2:5]
+            x, y, size = abs_coords(*value[2:5])
             self.queue_draw(x-size, y-size, size*2, size*2)
             #clear it shortly after:
             self.cancel_remove_pointer_overlay_timer()
@@ -1309,7 +1313,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
                 self.show_pointer_overlay(None)
             self.remove_pointer_overlay_timer = self.timeout_add(CURSOR_IDLE_TIMEOUT*1000, remove_pointer_overlay)
         if prev:
-            px, py, psize = prev[2:5]
+            px, py, psize = abs_coords(prev[2:5])
             self.queue_draw(px-psize, py-psize, psize*2, psize*2)
 
 
@@ -1653,7 +1657,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
 
     def resize(self, w, h, resize_counter=0):
         ww, wh = self.get_size()
-        geomlog("resize(%s, %s, %s) current size=%s, fullscreen=%s", w, h, resize_counter, (ww, wh), self._fullscreen)
+        geomlog("resize(%s, %s, %s) current size=%s, fullscreen=%s, maximized=%s", w, h, resize_counter, (ww, wh), self._fullscreen, self._maximized)
         self._resize_counter = resize_counter
         if (w, h)==(ww, wh):
             self._backing.offsets = 0, 0, 0, 0
@@ -1661,6 +1665,7 @@ class GTKClientWindowBase(ClientWindowBase, gtk.Window):
             return
         if not self._fullscreen and not self._maximized:
             gtk.Window.resize(self, w, h)
+            ww, wh = w, h
             self._backing.offsets = 0, 0, 0, 0
         else:
             self.center_backing(w, h)
