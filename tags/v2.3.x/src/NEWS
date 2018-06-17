@@ -1,3 +1,23 @@
+v2.3.2 (2018-06-17)
+======================
+	-- fix notification actions support with shadow servers
+	-- fix paint errors with reformatted images using outdated stride value
+	-- fix control commands that call window refresh
+	-- fix broken pipe error when the browser cancels downloading the noicon placeholder
+	-- fix spurious refresh events
+	-- fix missing bug report data due to path errors
+	-- fix XAUTHORITY environment variable getting clobbered
+	-- fix html5 window refresh not throttled when the document is not visible
+	-- fix non-opengl painting of windows with a padding area
+	-- fix rgb paint of mmap data with the python2 cairo backend
+	-- prevent authenticated users from shutting down proxy servers
+	-- don't turn off notifications when we don't have a forwarder instance
+	-- don't try to log an exception that does not exist
+	-- allow the user to disable all video encoders and csc modules
+	-- send missing exception details to server with remote-logging
+	-- avoid further errors when shadow capture fails
+
+
 v2.3.1 (2018-05-29)
 ======================
 	-- fix CentOS / RHEL rpm dependencies for ldap authentication

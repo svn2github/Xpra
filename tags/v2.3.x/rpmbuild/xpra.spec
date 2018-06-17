@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.3.1
+%define version 2.3.2
 %if ! %{defined build_no}
 %define build_no 1
 %endif
@@ -774,6 +774,24 @@ fi
 
 
 %changelog
+* Tue May 29 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-2
+- fix notification actions support with shadow servers
+- fix paint errors with reformatted images using outdated stride value
+- fix control commands that call window refresh
+- fix broken pipe error when the browser cancels downloading the noicon placeholder
+- fix spurious refresh events
+- fix missing bug report data due to path errors
+- fix XAUTHORITY environment variable getting clobbered
+- fix html5 window refresh not throttled when the document is not visible
+- fix non-opengl painting of windows with a padding area
+- fix rgb paint of mmap data with the python2 cairo backend
+- prevent authenticated users from shutting down proxy servers
+- don't turn off notifications when we don't have a forwarder instance
+- don't try to log an exception that does not exist
+- allow the user to disable all video encoders and csc modules
+- send missing exception details to server with remote-logging
+- avoid further errors when shadow capture fails
+
 * Tue May 29 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.1-2
 - fix CentOS / RHEL rpm dependencies for ldap authentication
 - fix spurious notifications warning
@@ -822,7 +840,7 @@ fi
 - fix notifications warning when temporary directory does not exist
 - fix unmanaged X11 context warning
 
-* Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-1
+* Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2
 - stackable authentication modules
 - tcp wrappers authentication module
 - gss, kerberos, ldap and u2f authentication modules
@@ -1221,7 +1239,7 @@ fi
 - fix xpra shadow keyboard mapping support for non-posix clients
 - avoid Xorg dummy warning in log
 
-* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3.1-1
+* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3.2-1
 - fix mispostioned windows
 - fix quickly disappearing windows (often menus)
 - fix server errors when closing windows
