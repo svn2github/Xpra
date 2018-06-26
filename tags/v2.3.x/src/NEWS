@@ -1,4 +1,4 @@
-v2.3.2 (2018-06-17)
+v2.3.2 (2018-06-26)
 ======================
 	-- fix notification actions support with shadow servers
 	-- fix paint errors with reformatted images using outdated stride value
@@ -10,12 +10,27 @@ v2.3.2 (2018-06-17)
 	-- fix html5 window refresh not throttled when the document is not visible
 	-- fix non-opengl painting of windows with a padding area
 	-- fix rgb paint of mmap data with the python2 cairo backend
+	-- fix invalid clipboard toggle requests not ignored
+	-- fix missing context handler for keymap setup (crash possible)
+	-- fix proxy server test to use a signal to stop the test instance
+	-- fix invalid exception value in X11 atom bindings
+	-- fix bandwidth limit client bypass and connection errors
+	-- fix building CUDA kernels with GCC 8.1
+	-- fix tray menu setup error when the clipboard is disabled
+	-- fix GTK3 buffer overflow with non-opengl backend
+	-- fix startup errors with pulseaudio if XDG_RUNTIME_DIR is missing
+	-- fix clipboard token send error when there are no targets
+	-- don't overwrite the dynamic system tray icon with the default one on startup
+	-- correctly disable desktop-scaling when mmap is enabled
+	-- skip repainting pointer overlay when the position is unchanged
 	-- prevent authenticated users from shutting down proxy servers
 	-- don't turn off notifications when we don't have a forwarder instance
 	-- don't try to log an exception that does not exist
 	-- allow the user to disable all video encoders and csc modules
 	-- send missing exception details to server with remote-logging
+	-- avoid RFB errors if screen capture fails
 	-- avoid further errors when shadow capture fails
+	-- recommend the dbus-x11 with the DEB package
 
 
 v2.3.1 (2018-05-29)
