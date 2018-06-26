@@ -5,7 +5,7 @@
 
 %define version 2.3.2
 %if ! %{defined build_no}
-%define build_no 1
+%define build_no 3
 %endif
 
 %{!?__python2: %global __python2 python2}
@@ -69,6 +69,10 @@ BuildRoot:			%{_tmppath}/%{name}-%{version}-root
 Patch0:				centos7-oldsystemd.patch
 %if 0%{?fedora}<27
 Patch1:				selinux-nomap.patch
+%endif
+%if 0%{?fedora}<28
+#fedora 27 xpra packages declared an epoch value - breaking our packaging and updates, sigh
+Epoch:              1
 %endif
 Requires:			xpra-common = %{version}-%{build_no}%{dist}
 Requires:			xpra-html5
@@ -770,6 +774,9 @@ fi
 
 
 %changelog
+* Wed Jun 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-3
+- force rebuild with epoch fix for Fedora 27
+
 * Tue Jun 26 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-2
 - fix notification actions support with shadow servers
 - fix paint errors with reformatted images using outdated stride value
