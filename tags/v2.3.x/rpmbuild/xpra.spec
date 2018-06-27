@@ -5,7 +5,7 @@
 
 %define version 2.3.2
 %if ! %{defined build_no}
-%define build_no 3
+%define build_no 4
 %endif
 
 %{!?__python2: %global __python2 python2}
@@ -775,6 +775,9 @@ fi
 
 
 %changelog
+* Wed Jun 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-4
+- force rebuild with epoch fix for Fedora 27 - again
+
 * Wed Jun 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-3
 - force rebuild with epoch fix for Fedora 27
 
