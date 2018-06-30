@@ -1,3 +1,13 @@
+v2.3.3 (2018-06-30)
+======================
+	-- fix putty plink PATH lookup issue
+	-- fix python3 compatibility for printer forwarding script
+	-- add missing RPM dependencies for running unit tests
+	-- don't show spurious import errors during printing subsystem cleanup
+	-- show another possible reason for connection failures
+	-- abort tests if build fails
+
+
 v2.3.2 (2018-06-26)
 ======================
 	-- fix notification actions support with shadow servers

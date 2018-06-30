@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.3.2
+%define version 2.3.3
 %if ! %{defined build_no}
 %define build_no 4
 %endif
@@ -777,6 +777,14 @@ fi
 
 
 %changelog
+* Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-4
+- fix putty plink PATH lookup issue
+- fix python3 compatibility for printer forwarding script
+- add missing RPM dependencies for running unit tests
+- don't show spurious import errors during printing subsystem cleanup
+- show another possible reason for connection failures
+- abort tests if build fails
+
 * Wed Jun 27 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-4
 - force rebuild with epoch fix for Fedora 27 - again
 
@@ -864,7 +872,7 @@ fi
 - fix notifications warning when temporary directory does not exist
 - fix unmanaged X11 context warning
 
-* Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2
+* Tue May 08 2018 Antoine Martin <antoine@devloop.org.uk> 2.3-1
 - stackable authentication modules
 - tcp wrappers authentication module
 - gss, kerberos, ldap and u2f authentication modules
@@ -1263,7 +1271,7 @@ fi
 - fix xpra shadow keyboard mapping support for non-posix clients
 - avoid Xorg dummy warning in log
 
-* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3.2-1
+* Wed Apr 09 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.3-1
 - fix mispostioned windows
 - fix quickly disappearing windows (often menus)
 - fix server errors when closing windows

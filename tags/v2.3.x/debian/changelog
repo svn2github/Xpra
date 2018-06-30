@@ -1,3 +1,13 @@
+xpra (2.3.3-1) UNRELEASED; urgency=low
+  * fix putty plink PATH lookup issue
+  * fix python3 compatibility for printer forwarding script
+  * add missing RPM dependencies for running unit tests
+  * don't show spurious import errors during printing subsystem cleanup
+  * show another possible reason for connection failures
+  * abort tests if build fails
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 30 Jun 2018 16:09:21 +0700
+
 xpra (2.3.2-1) UNRELEASED; urgency=low
   * fix notification actions support with shadow servers
   * fix paint errors with reformatted images using outdated stride value
