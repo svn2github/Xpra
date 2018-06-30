@@ -1,5 +1,6 @@
 v2.3.3 (2018-06-30)
 ======================
+	-- fix tray setup errors on early client exit
 	-- fix putty plink PATH lookup issue
 	-- fix python3 compatibility for printer forwarding script
 	-- add missing RPM dependencies for running unit tests

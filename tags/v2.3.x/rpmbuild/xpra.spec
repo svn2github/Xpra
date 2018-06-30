@@ -778,6 +778,7 @@ fi
 
 %changelog
 * Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-4
+- fix tray setup errors on early client exit
 - fix putty plink PATH lookup issue
 - fix python3 compatibility for printer forwarding script
 - add missing RPM dependencies for running unit tests

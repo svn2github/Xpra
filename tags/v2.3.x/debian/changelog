@@ -1,4 +1,5 @@
 xpra (2.3.3-1) UNRELEASED; urgency=low
+  * fix tray setup errors on early client exit
   * fix putty plink PATH lookup issue
   * fix python3 compatibility for printer forwarding script
   * add missing RPM dependencies for running unit tests
