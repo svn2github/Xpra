@@ -777,7 +777,10 @@ fi
 
 
 %changelog
-* Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-4
+* Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-1
+- fix value show for frame extents warning
+
+* Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-4
 - fix tray setup errors on early client exit
 - fix putty plink PATH lookup issue
 - fix python3 compatibility for printer forwarding script
