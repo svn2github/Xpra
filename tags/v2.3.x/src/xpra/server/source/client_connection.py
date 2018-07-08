@@ -343,9 +343,11 @@ class ClientConnection(AudioMixin, ClipboardConnection, FilePrintMixin, NetworkS
                     "actual"        : self.soft_bandwidth_limit or 0,
                     }
                 }
-        info.update({
-                     "connection"       : self.protocol.get_info(),
-                     })
+        p = self.protocol
+        if p:
+            info.update({
+                         "connection"       : p.get_info(),
+                         })
         info.update(self.get_features_info())
         merge_dicts(info, FilePrintMixin.get_info(self))
         merge_dicts(info, AudioMixin.get_info(self))
