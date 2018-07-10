@@ -53,7 +53,7 @@ class CairoBacking(CairoBackingBase):
                 set_image_surface_data(img_surface, rgb_format, img_data, width, height, rowstride)
                 self.cairo_paint_surface(img_surface, x, y, options)
                 return True
-            if cairo_format==cairo.FORMAT_ARGB32 and rgb_format in ("RGBX", "BGRX"):
+            if cairo_format==cairo.FORMAT_ARGB32 and rgb_format in ("BGRA", "BGRX"):
                 img_surface = cairo.ImageSurface(cairo_format, width, height)
                 set_image_surface_data(img_surface, rgb_format, img_data, width, height, rowstride)
                 self.cairo_paint_surface(img_surface, x, y, options)
