@@ -189,6 +189,8 @@ EnumDisplayMonitors = user32.EnumDisplayMonitors
 MonitorFromWindow = user32.MonitorFromWindow
 MonitorFromWindow.restype = HMONITOR
 GetMonitorInfoW = user32.GetMonitorInfoW
+GetMonitorInfoW.argtypes = [HMONITOR, POINTER(MONITORINFOEX)]
+GetMonitorInfoW.restype = BOOL
 UnhookWindowsHookEx = user32.UnhookWindowsHookEx
 CallNextHookEx = user32.CallNextHookEx
 SetWindowsHookExA = user32.SetWindowsHookExA
@@ -362,6 +364,8 @@ GetObjectA.restype = INT
 
 #wrap EnumDisplayMonitors to hide the callback function:
 MonitorEnumProc = WINFUNCTYPE(BOOL, HMONITOR, HDC, POINTER(RECT), LPARAM)
+EnumDisplayMonitors.argtypes = [HDC, POINTER(RECT), MonitorEnumProc, LPARAM]
+EnumDisplayMonitors.restype = BOOL
 _EnumDisplayMonitors = EnumDisplayMonitors
 def EnumDisplayMonitors():
     results = []
