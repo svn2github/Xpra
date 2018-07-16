@@ -1,17 +1,34 @@
-v2.3.3 (2018-07-01)
+v2.3.3 (2018-07-16)
 ======================
-	-- fix value show for frame extents warning
-
-
-v2.3.3 (2018-06-30)
-======================
+	-- fix value shown in frame extents warning
+	-- fix HTML5 relative URLs for window control icons
+	-- fix HTML5 pointer events missing modifier keys
+	-- fix URL parsing with Python 3
 	-- fix tray setup errors on early client exit
 	-- fix putty plink PATH lookup issue
 	-- fix python3 compatibility for printer forwarding script
+	-- fix python3 alert box on MS Windows
+	-- fix python3 packaging on MS Windows
+	-- fix python3 client rendering of transparency with opengl disabled
+	-- fix file descriptor warnings on process exit with MS Windows builds
+	-- fix MS Windows monitor API overflow on 64-bit systems
+	-- fix compilation error with latest MSYS2 installations
+	-- fix desktop servers exit code
+	-- fix network congestion calculations when records expire
+	-- fix bandwidth warnings caused by slow client picture decoding
+	-- fix xpra info race condition error during cleanup
+	-- fix clipboard warnings: don't enable it unless the client requests it
+	-- fix spurious stacktraces caused by focus events on OR windows
+	-- support building with Python 3.7 (some features made optional until ported over)
+	-- disable webcam forwarding with MS Windows client (broken upstream)
 	-- add missing RPM dependencies for running unit tests
+	-- prevent Python Pillow debug log spam
 	-- don't show spurious import errors during printing subsystem cleanup
 	-- show another possible reason for connection failures
 	-- abort tests if build fails
+	-- use free colour profiles in all icon files
+	-- add missing man page entry for 'forward-xdg-open'
+	-- add missing files to manifest
 
 
 v2.3.2 (2018-06-26)
