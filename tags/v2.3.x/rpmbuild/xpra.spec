@@ -785,7 +785,7 @@ fi
 
 
 %changelog
-* Mon Jul 16 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-2
+* Thu Aug 02 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-2
 - fix value shown in frame extents warning
 - fix HTML5 relative URLs for window control icons
 - fix HTML5 pointer events missing modifier keys
@@ -805,16 +805,22 @@ fi
 - fix xpra info race condition error during cleanup
 - fix clipboard warnings: don't enable it unless the client requests it
 - fix spurious stacktraces caused by focus events on OR windows
+- fix painting of spinners with desktop-scaling and non-opengl backends
+- fix 'terminate server when command exits' from html5 client
+- fix SSL socket timeouts in proxy server
+- drop invalid client connections without showing errors (desktop mode)
 - support building with Python 3.7 (some features made optional until ported over)
 - disable webcam forwarding with MS Windows client (broken upstream)
 - add missing RPM dependencies for running unit tests
 - prevent Python Pillow debug log spam
 - don't show spurious import errors during printing subsystem cleanup
 - show another possible reason for connection failures
+- make remote ssh command easier to parse
 - abort tests if build fails
 - use free colour profiles in all icon files
 - add missing man page entry for 'forward-xdg-open'
 - add missing files to manifest
+- man page typos
 
 * Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-1
 - fix value shown in frame extents warning

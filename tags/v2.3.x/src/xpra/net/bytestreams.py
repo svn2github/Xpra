@@ -93,9 +93,6 @@ def can_retry(e):
         if code=="The read operation timed out":
             return str(code)
 
-        if code in ("The read operation timed out",):
-            return str(code)
-
         if isinstance(e, CAN_RETRY_EXCEPTIONS):
             return str(e)
 
