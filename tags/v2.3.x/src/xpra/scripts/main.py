@@ -2105,7 +2105,7 @@ def run_list_mdns(error_cb, extra_args):
                         print(" uuid=%s" % uuid)
                 print(" + %s endpoint on host %s, port %i, interface %s" % (mode, address, port, iface))
                 dstr = ""
-                if display.startswith(":"):
+                if display and display.startswith(":"):
                     dstr = display[1:]
                 uri = "%s/%s@%s:%s/%s" % (mode, username, address, port, dstr)
                 print("   \"%s\"" % uri)
