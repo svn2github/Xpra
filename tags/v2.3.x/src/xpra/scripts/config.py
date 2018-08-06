@@ -635,6 +635,9 @@ BIND_OPTIONS = ["bind", "bind-tcp", "bind-udp", "bind-ssl", "bind-ws", "bind-wss
 OPTIONS_ADDED_SINCE_V1 = ["attach", "open-files", "open-url", "pixel-depth", "uid", "gid", "chdir", "min-port", "rfb-upgrade", "bandwidth-limit",
                     "forward-xdg-open",
                           ]
+OPTIONS_COMPAT_NAMES = {
+    "--compression_level=" : "-z"
+    }
 
 CLIENT_OPTIONS = ["title", "username", "password", "session-name",
                   "dock-icon", "tray-icon", "window-icon",
