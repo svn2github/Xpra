@@ -2,6 +2,7 @@ xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix value shown in frame extents warning
   * fix HTML5 relative URLs for window control icons
   * fix HTML5 pointer events missing modifier keys
+  * fix parsing errors when no display is specified
   * fix URL parsing with Python 3
   * fix tray setup errors on early client exit
   * fix putty plink PATH lookup issue
@@ -21,6 +22,11 @@ xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix painting of spinners with desktop-scaling and non-opengl backends
   * fix 'terminate server when command exits' from html5 client
   * fix SSL socket timeouts in proxy server
+  * fix errors starting proxy instances if the user's home directory does not exist
+  * fix ssh start remote command line compatibility mode
+  * fix command line backwards compatibility
+  * support cx_Freeze 5.x on MS Windows
+  * don't require local user accounts with pam logins
   * drop invalid client connections without showing errors (desktop mode)
   * support building with Python 3.7 (some features made optional until ported over)
   * disable webcam forwarding with MS Windows client (broken upstream)
@@ -35,7 +41,7 @@ xpra (2.3.3-1) UNRELEASED; urgency=low
   * add missing files to manifest
   * man page typos
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 02 Aug 2018 23:46:20 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 06 Aug 2018 21:21:04 +0200
 
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix tray setup errors on early client exit
