@@ -189,7 +189,6 @@ EnumDisplayMonitors = user32.EnumDisplayMonitors
 MonitorFromWindow = user32.MonitorFromWindow
 MonitorFromWindow.restype = HMONITOR
 GetMonitorInfoW = user32.GetMonitorInfoW
-GetMonitorInfoW.argtypes = [HMONITOR, POINTER(MONITORINFOEX)]
 GetMonitorInfoW.restype = BOOL
 UnhookWindowsHookEx = user32.UnhookWindowsHookEx
 CallNextHookEx = user32.CallNextHookEx

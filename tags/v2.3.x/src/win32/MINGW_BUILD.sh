@@ -245,7 +245,6 @@ for x in openblas gfortran quadmath; do
 	mv -f ./lib/numpy/core/lib$x*.dll ./lib/
 	mv -f ./lib/numpy/linalg/lib$x*.dll ./lib/
 done
-mv lib/nacl/libsodium*dll ./lib/
 #gstreamer uses its own lib dir, so this does not belong in the root:
 mv ./libgst*.dll ./lib/gstreamer-1.0/
 #but the main gstreamer lib does:

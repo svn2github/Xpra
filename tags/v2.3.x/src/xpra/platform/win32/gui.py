@@ -34,7 +34,7 @@ from xpra.platform.win32.common import (GetSystemMetrics, SetWindowLongW, GetWin
                                         GetDeviceCaps,
                                         GetIntSystemParametersInfo,
                                         GetUserObjectInformationA, OpenInputDesktop, CloseDesktop,
-                                        user32)
+                                        user32, HMONITOR)
 from xpra.util import AdHocStruct, csv, envint, envbool
 from xpra.os_util import PYTHON2, PYTHON3
 
@@ -87,6 +87,7 @@ def GetMonitorInfo(hmonitor):
     info = MONITORINFOEX()
     info.szDevice = ""
     info.cbSize = MONITORINFOEX_size
+    GetMonitorInfoW.argtypes = [HMONITOR, POINTER(MONITORINFOEX)]
     if not GetMonitorInfoW(hmonitor, byref(info)):
         raise ctypes.WinError(ctypes.get_last_error())
     monitor = info.rcMonitor.left, info.rcMonitor.top, info.rcMonitor.right, info.rcMonitor.bottom
