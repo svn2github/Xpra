@@ -785,7 +785,7 @@ fi
 
 
 %changelog
-* Mon Aug 06 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-2
+* Sat Aug 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-2
 - fix value shown in frame extents warning
 - fix HTML5 relative URLs for window control icons
 - fix HTML5 pointer events missing modifier keys
@@ -812,6 +812,10 @@ fi
 - fix errors starting proxy instances if the user's home directory does not exist
 - fix ssh start remote command line compatibility mode
 - fix command line backwards compatibility
+- fix handling of tray geometry and keyboard detection failures
+- fix bandwidth-limit changes from the system tray menu
+- fix system version warnings on MacOS
+- force GTK3 Posix clients to use X11 backend (native Wayland crashes)
 - support cx_Freeze 5.x on MS Windows
 - don't require local user accounts with pam logins
 - drop invalid client connections without showing errors (desktop mode)

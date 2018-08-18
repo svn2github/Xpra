@@ -25,6 +25,10 @@ xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix errors starting proxy instances if the user's home directory does not exist
   * fix ssh start remote command line compatibility mode
   * fix command line backwards compatibility
+  * fix handling of tray geometry and keyboard detection failures
+  * fix bandwidth-limit changes from the system tray menu
+  * fix system version warnings on MacOS
+  * force GTK3 Posix clients to use X11 backend (native Wayland crashes)
   * support cx_Freeze 5.x on MS Windows
   * don't require local user accounts with pam logins
   * drop invalid client connections without showing errors (desktop mode)
@@ -41,7 +45,7 @@ xpra (2.3.3-1) UNRELEASED; urgency=low
   * add missing files to manifest
   * man page typos
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 06 Aug 2018 21:21:04 +0200
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 18 Aug 2018 19:57:10 +0200
 
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix tray setup errors on early client exit
