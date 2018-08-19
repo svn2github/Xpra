@@ -20,7 +20,7 @@ from xpra.exit_codes import (EXIT_OK, EXIT_CONNECTION_LOST, EXIT_TIMEOUT, EXIT_I
 FLATTEN_INFO = envint("XPRA_FLATTEN_INFO", 1)
 
 
-class GObjectXpraClient(XpraClientBase, gobject.GObject):
+class GObjectXpraClient(gobject.GObject, XpraClientBase):
     """
         Utility superclass for GObject clients
     """
