@@ -1,3 +1,10 @@
+xpra (2.3.4-1) UNRELEASED; urgency=low
+  * fix signals not emitted (ie: delay-tray command line option)
+  * fix client desktop-scaling corner cases
+  * fix handling of mixed clicks on system tray and the menu entries
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 20 Aug 2018 12:54:57 +0700
+
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix value shown in frame extents warning
   * fix HTML5 relative URLs for window control icons

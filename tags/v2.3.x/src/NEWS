@@ -1,3 +1,10 @@
+v2.3.4 (2018-08-20)
+======================
+	-- fix signals not emitted (ie: delay-tray command line option)
+	-- fix client desktop-scaling corner cases
+	-- fix handling of mixed clicks on system tray and the menu entries
+
+
 v2.3.3 (2018-08-18)
 ======================
 	-- fix value shown in frame extents warning

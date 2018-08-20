@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.3.3
+%define version 2.3.4
 %if ! %{defined build_no}
 %define build_no 2
 %endif
@@ -785,7 +785,12 @@ fi
 
 
 %changelog
-* Sat Aug 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-2
+* Mon Aug 20 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+- fix signals not emitted (ie: delay-tray command line option)
+- fix client desktop-scaling corner cases
+- fix handling of mixed clicks on system tray and the menu entries
+
+* Sat Aug 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix value shown in frame extents warning
 - fix HTML5 relative URLs for window control icons
 - fix HTML5 pointer events missing modifier keys
@@ -832,7 +837,7 @@ fi
 - add missing files to manifest
 - man page typos
 
-* Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-1
+* Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix value shown in frame extents warning
 
 * Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-4
