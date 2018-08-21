@@ -75,6 +75,8 @@ def get_root_window_size():
 
 def get_cursor_data(hCursor):
     #w, h = get_fixed_cursor_size()
+    if not hCursor:
+        return None
     x, y = 0, 0
     dc = None
     memdc = None
@@ -88,7 +90,10 @@ def get_cursor_data(hCursor):
             raise WindowsError()
         x = ii.xHotspot
         y = ii.yHotspot
-        cursorlog("get_cursor_data(%#x) hotspot at %ix%i, hbmColor=%#x, hbmMask=%#x", hCursor, x, y, ii.hbmColor, ii.hbmMask)
+        cursorlog("get_cursor_data(%#x) hotspot at %ix%i, hbmColor=%#x, hbmMask=%#x", hCursor, x, y, ii.hbmColor or 0, ii.hbmMask or 0)
+        if not ii.hbmColor:
+            #FIXME: we don't handle black and white cursors
+            return None
         iie = ICONINFOEXW()
         iie.cbSize = ctypes.sizeof(ICONINFOEXW)
         if not GetIconInfoExW(hCursor, ctypes.byref(iie)):
@@ -130,6 +135,7 @@ def get_cursor_data(hCursor):
             cursorlog.warn("Warning: invalid cursor buffer size, got %i bytes but expected %i", r, buf_size)
             return None
         else:
+            #32-bit data:
             pixels = bytearray(strtobytes(buf.raw))
             has_alpha = False
             has_pixels = False
@@ -147,7 +153,7 @@ def get_cursor_data(hCursor):
     except Exception as e:
         cursorlog("get_cursor_data(%#x)", hCursor, exc_info=True)
         cursorlog.error("Error: failed to grab cursor:")
-        cursorlog.error(" %s", e)
+        cursorlog.error(" %s", str(e) or type(e))
         return None
     finally:
         if old_handle:
