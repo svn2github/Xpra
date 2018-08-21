@@ -183,17 +183,17 @@ def parse_URL(url):
         params_str = url[qpos+1:]
         params = parse_qs(params_str, keep_blank_values=True)
         f_params = {}
-        #print("params=%s" % str(params))
         for k,v in params.items():
             t = OPTION_TYPES.get(k)
             if t is not None and t!=list:
                 v = v[0]
             f_params[k] = v
         options = validate_config(f_params)
-    al = address.lower()
-    if not al.startswith(":") and not al.startswith("tcp") and not al.startswith("ssh"):
-        #assume tcp if not specified
-        address = "tcp:%s" % address
+    mode = "tcp"
+    if up.scheme.startswith("xpra+"):
+        mode = up.scheme[len("xpra+"):]
+    if mode in ("tcp", "ssl", "ssh", "ws", "wss"):
+        address = "%s://%s" % (mode, address)
     return address, options
 
 

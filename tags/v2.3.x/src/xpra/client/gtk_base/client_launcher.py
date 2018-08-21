@@ -134,6 +134,8 @@ class ApplicationWindow:
         if "AES" in ENCRYPTION_CIPHERS:
             modes.append("tcp + aes")
         modes.append("tcp")
+        modes.append("ws")
+        modes.append("wss")
         return modes
 
     def get_launcher_validation(self):
@@ -618,7 +620,7 @@ class ApplicationWindow:
             params["display"] = ":%s" % self.config.port
             params["display_name"] = "unix-domain:%s" % self.config.port
         else:
-            assert self.config.mode in ("tcp", "ssl"), "invalid / unsupported mode %s" % self.config.mode
+            assert self.config.mode in ("tcp", "ssl", "ws", "wss"), "invalid / unsupported mode %s" % self.config.mode
             params["host"] = self.config.host
             params["local"] = is_local(self.config.host)
             params["port"] = int(self.config.port)
@@ -774,15 +776,14 @@ class ApplicationWindow:
         self.config.port = pint(self.port_entry.get_text())
         self.config.username = self.username_entry.get_text()
         self.config.encoding = self.get_selected_encoding() or self.config.encoding
-        mode_enc = self.mode_combo.get_active_text().upper()
-        if mode_enc.startswith("TCP"):
+        mode_enc = self.mode_combo.get_active_text().lower()
+        if mode_enc.startswith("tcp"):
             self.config.mode = "tcp"
-            if mode_enc.find("AES")>0 and "AES" in ENCRYPTION_CIPHERS:
+            if mode_enc.find("aes")>0:
                 self.config.encryption = "AES"
-        elif mode_enc=="SSL":
-            self.config.mode = "ssl"
-        else:
-            self.config.mode = "ssh"
+        elif mode_enc in ("ssl", "ssh", "ws", "wss"):
+            self.config.mode = mode_enc
+            self.config.encryption = ""
         self.config.password = self.password_entry.get_text()
         log("update_options_from_gui() %s", (self.config.username, self.config.password, self.config.mode, self.config.encryption, self.config.host, self.config.port, self.config.ssh_port, self.config.encoding))
 
@@ -834,17 +835,20 @@ class ApplicationWindow:
     def update_options_from_URL(self, url):
         from xpra.scripts.parsing import parse_URL
         address, props = parse_URL(url)
-        pa = address.split(":")
-        if pa[0] in ("tcp", "ssh") and len(pa)>=2:
-            props["mode"] = pa
+        pa = address.split("://")
+        if pa[0] in ("tcp", "ssh", "ssl", "ws", "wss") and len(pa)>=2:
+            props["mode"] = pa[0]
             host = pa[1]
-            ph = host.split("@", 1)
-            if len(ph)==2:
-                username, host = ph
+            if host.find("@")>0:
+                username, host = host.rsplit("@", 1)
+                if username.find(":")>0:
+                    username, password = username.rsplit(":", 1)
+                    props["password"] = password
                 props["username"] = username
+            if host.find(":")>0:
+                host, port = host.rsplit(":", 1)
+                props["port"] = int(port)
             props["host"] = host
-            if len(pa)>=3:
-                props["port"] = pa[2]
         self._apply_props(props)
 
     def update_options_from_file(self, filename):
