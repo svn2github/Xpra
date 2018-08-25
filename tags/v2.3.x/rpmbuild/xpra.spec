@@ -785,12 +785,20 @@ fi
 
 
 %changelog
-* Mon Aug 20 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Sat Aug 2r52018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix signals not emitted (ie: delay-tray command line option)
 - fix client desktop-scaling corner cases
 - fix handling of mixed clicks on system tray and the menu entries
+- fix MS Windows shadow server's cursor capture
+- fix URL parsing from launcher (ie: MacOS URL association)
+- fix MacOS crash with GTK3 builds and file chooser
+- fix non-opengl windows missing spinner with GTK3
+- fix RPM license information
+- fix mDNS zeroconf library version on MS Windows with Python 2
+- limit the amount of information exposed via the proxy server's dbus service
+- support base64 encoded SSL certificate data
 
-* Sat Aug 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Sat Aug 18 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.3-1
 - fix value shown in frame extents warning
 - fix HTML5 relative URLs for window control icons
 - fix HTML5 pointer events missing modifier keys
