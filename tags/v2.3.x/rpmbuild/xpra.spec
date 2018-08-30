@@ -785,7 +785,7 @@ fi
 
 
 %changelog
-* Sat Aug 2r52018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Thu Aug 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix signals not emitted (ie: delay-tray command line option)
 - fix client desktop-scaling corner cases
 - fix handling of mixed clicks on system tray and the menu entries
@@ -795,6 +795,9 @@ fi
 - fix non-opengl windows missing spinner with GTK3
 - fix RPM license information
 - fix mDNS zeroconf library version on MS Windows with Python 2
+- fix connection errors from making the client launcher exit
+- fix python3 errors in dbus server code 
+- fix spurious error messages caused by video pipeline changes
 - limit the amount of information exposed via the proxy server's dbus service
 - support base64 encoded SSL certificate data
 

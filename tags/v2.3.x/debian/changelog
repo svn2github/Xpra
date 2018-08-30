@@ -8,10 +8,13 @@ xpra (2.3.4-1) UNRELEASED; urgency=low
   * fix non-opengl windows missing spinner with GTK3
   * fix RPM license information
   * fix mDNS zeroconf library version on MS Windows with Python 2
+  * fix connection errors from making the client launcher exit
+  * fix python3 errors in dbus server code 
+  * fix spurious error messages caused by video pipeline changes
   * limit the amount of information exposed via the proxy server's dbus service
   * support base64 encoded SSL certificate data
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 25 Aug 2018 13:54:21 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 30 Aug 2018 14:46:00 +0700
 
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix value shown in frame extents warning
