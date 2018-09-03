@@ -358,6 +358,8 @@ class ClientConnection(AudioMixin, ClipboardConnection, FilePrintMixin, NetworkS
         merge_dicts(info, EncodingsMixin.get_info(self))
         merge_dicts(info, AVSyncMixin.get_info(self))
         merge_dicts(info, ClientDisplayMixin.get_info(self))
+        merge_dicts(info, IdleMixin.get_info(self))
+        merge_dicts(info, ClipboardConnection.get_info(self))
         return info
 
     def get_features_info(self):
