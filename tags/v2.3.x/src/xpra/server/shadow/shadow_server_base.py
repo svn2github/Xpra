@@ -52,6 +52,10 @@ class ShadowServerBase(RFBServer):
         self.notifications = bool(opts.notifications)
         if self.notifications:
             self.make_notifier()
+        if opts.session_name:
+            self.session_name = opts.session_name
+        else:
+            self.guess_session_name()
 
     def cleanup(self):
         self.stop_refresh()
@@ -65,7 +69,7 @@ class ShadowServerBase(RFBServer):
             capture.clean()
 
 
-    def guess_session_name(self, _procs):
+    def guess_session_name(self, _procs=None):
         self.session_name = get_wm_name()
 
     def get_server_mode(self):
