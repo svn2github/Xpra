@@ -37,7 +37,7 @@ class RFBProtocol(object):
         self._process_packet_cb = process_packet_cb
         self._get_rfb_pixelformat = get_rfb_pixelformat
         self.session_name = session_name
-        self._write_queue = Queue(2)
+        self._write_queue = Queue()
         self._buffer = b""
         self._challenge = None
         self.share = False
@@ -217,6 +217,9 @@ class RFBProtocol(object):
         #no such packet in RFB, just close
         self.close()
 
+
+    def queue_size(self):
+        return self._write_queue.qsize()
 
     def send(self, packet):
         log("send(%i bytes: %s..)", len(packet), hexstr(packet[:16]))
