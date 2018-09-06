@@ -471,7 +471,7 @@ class ShadowServer(GTKShadowServerBase):
             keystate = (BYTE*256)()
             SetKeyboardState(keystate)
 
-    def get_keyboard_config(self, props):
+    def get_keyboard_config(self, _props=None):
         return KeyboardConfig()
 
     def fake_key(self, keycode, press):
