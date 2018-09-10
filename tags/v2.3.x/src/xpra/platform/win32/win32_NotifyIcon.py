@@ -226,6 +226,7 @@ class win32NotifyIcon(object):
         self.exit_callback = exit_callback
         self.command_callback = command_callback
         self.reset_function = None
+        self.image_cache = {}
 
     def create_tray_window(self):
         self.create_window()
@@ -337,6 +338,13 @@ class win32NotifyIcon(object):
             icon_flags = win32con.LR_LOADFROMFILE | win32con.LR_DEFAULTSIZE
             try:
                 img_type = win32con.IMAGE_ICON
+        image = self.image_cache.get(iconPathName)
+        if not image:
+            image = self.doLoadImage(iconPathName)
+            self.image_cache[iconPathName] = image
+        return image
+
+    def doLoadImage(self, iconPathName):
                 if iconPathName.lower().split(".")[-1] in ("png", "bmp"):
                     img_type = win32con.IMAGE_BITMAP
                     icon_flags |= win32con.LR_CREATEDIBSECTION | win32con.LR_LOADTRANSPARENT
