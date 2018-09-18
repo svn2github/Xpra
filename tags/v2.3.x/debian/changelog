@@ -1,4 +1,5 @@
 xpra (2.3.4-1) UNRELEASED; urgency=low
+  * fix server does not shutdown cleanly (Xvfb not killed)
   * fix signals not emitted (ie: delay-tray command line option)
   * fix client desktop-scaling corner cases
   * fix handling of mixed clicks on system tray and the menu entries
@@ -11,10 +12,38 @@ xpra (2.3.4-1) UNRELEASED; urgency=low
   * fix connection errors from making the client launcher exit
   * fix python3 errors in dbus server code 
   * fix spurious error messages caused by video pipeline changes
+  * fix proxy-video-encoders=all substitution
+  * fix unicode string errors with RFB protocol and Python 3
+  * fix missing idle and clipboard server information
+  * fix .xpra file association with DEB packaging
+  * fix pointer polling error with RFB connections (pointer going AWOL)
+  * fix handling of closed RFB connections
+  * fix unmanaged X11 call from shadow servers (potential crashes)
+  * fix fallback pynotify notification handler
+  * fix Python 3 shadow servers with RFB
+  * fix Python 3 string errors writing run-xpra scripts
+  * fix deadlocks with RFB connections
+  * fix missing key mapping errors with RFB clients
+  * fix session name not honoured or exposed via mdns for shadow servers
+  * fix X11 display detection (socket may be owned by root with some display managers)
+  * fix compatibility with csh and tcsh
+  * fix spurious modifier key events from the HTML5 client
+  * fix tray icon corruption on MS Windows
+  * fix Motif WM hints parsing
+  * fix DEB packaging dependencies
+  * fix NVENC encoder wrongly exposing encodings which are not available
+  * Fedora 29 compatibility
+  * fix race condition in unit tests which was causing random failures
+  * add dependency required for running the unit tests with rpmbuild
+  * prevent repeated clipboard warnings
+  * add missing entries in man page
+  * add missing desktop file icons
+  * shadow the current display if none is specified and we find more than one display
+  * remove unneeded import, spurious debug logging
   * limit the amount of information exposed via the proxy server's dbus service
   * support base64 encoded SSL certificate data
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 30 Aug 2018 14:46:00 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 19 Sep 2018 00:28:27 +0700
 
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix value shown in frame extents warning
