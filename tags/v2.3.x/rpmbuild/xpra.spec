@@ -786,7 +786,7 @@ fi
 
 
 %changelog
-* Wed Sep 19 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Wed Sep 20 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix server does not shutdown cleanly (Xvfb not killed)
 - fix signals not emitted (ie: delay-tray command line option)
 - fix client desktop-scaling corner cases
@@ -820,10 +820,16 @@ fi
 - fix Motif WM hints parsing
 - fix DEB packaging dependencies
 - fix NVENC encoder wrongly exposing encodings which are not available
+- fix error running unit tests on MS Windows
+- fix potential file descriptor leak
+- fix valid XAuthority path potentially not found because unexpanded
+- fix proxy servers not honouring passwords in connection strings
 - Fedora 29 compatibility
 - fix race condition in unit tests which was causing random failures
 - add dependency required for running the unit tests with rpmbuild
 - prevent repeated clipboard warnings
+- let the server chooose the best initial quality to use
+- add file missing from clean build target
 - add missing entries in man page
 - add missing desktop file icons
 - shadow the current display if none is specified and we find more than one display

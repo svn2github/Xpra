@@ -32,10 +32,16 @@ xpra (2.3.4-1) UNRELEASED; urgency=low
   * fix Motif WM hints parsing
   * fix DEB packaging dependencies
   * fix NVENC encoder wrongly exposing encodings which are not available
+  * fix error running unit tests on MS Windows
+  * fix potential file descriptor leak
+  * fix valid XAuthority path potentially not found because unexpanded
+  * fix proxy servers not honouring passwords in connection strings
   * Fedora 29 compatibility
   * fix race condition in unit tests which was causing random failures
   * add dependency required for running the unit tests with rpmbuild
   * prevent repeated clipboard warnings
+  * let the server chooose the best initial quality to use
+  * add file missing from clean build target
   * add missing entries in man page
   * add missing desktop file icons
   * shadow the current display if none is specified and we find more than one display
@@ -43,7 +49,7 @@ xpra (2.3.4-1) UNRELEASED; urgency=low
   * limit the amount of information exposed via the proxy server's dbus service
   * support base64 encoded SSL certificate data
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 19 Sep 2018 00:28:27 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Thu, 20 Sep 2018 22:02:58 +0700
 
 xpra (2.3.3-1) UNRELEASED; urgency=low
   * fix value shown in frame extents warning
