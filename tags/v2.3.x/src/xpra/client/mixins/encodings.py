@@ -204,10 +204,6 @@ class Encodings(StubClientMixin):
                         caps["%s.%s.profile" % (h264_name, old_csc_name)] = profile
                         caps["%s.%s.profile" % (h264_name, csc_name)] = profile
             log("x264 encoding options: %s", str([(k,v) for k,v in caps.items() if k.startswith("x264.")]))
-        iq = max(self.min_quality, self.quality)
-        if iq<0:
-            iq = 70
-        caps["initial_quality"] = iq
         log("encoding capabilities: %s", caps)
         return caps
 
