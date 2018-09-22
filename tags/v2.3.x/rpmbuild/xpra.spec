@@ -786,7 +786,7 @@ fi
 
 
 %changelog
-* Wed Sep 20 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Sat Sep 22 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix server does not shutdown cleanly (Xvfb not killed)
 - fix signals not emitted (ie: delay-tray command line option)
 - fix client desktop-scaling corner cases
@@ -824,6 +824,8 @@ fi
 - fix potential file descriptor leak
 - fix valid XAuthority path potentially not found because unexpanded
 - fix proxy servers not honouring passwords in connection strings
+- fix sqlite authentication backend issue with identical usernames
+- support CUDA 10 and optimizations for Volta GPUs
 - Fedora 29 compatibility
 - fix race condition in unit tests which was causing random failures
 - add dependency required for running the unit tests with rpmbuild

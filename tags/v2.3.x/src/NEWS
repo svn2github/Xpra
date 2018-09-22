@@ -1,4 +1,4 @@
-v2.3.4 (2018-09-20)
+v2.3.4 (2018-09-22)
 ======================
 	-- fix server does not shutdown cleanly (Xvfb not killed)
 	-- fix signals not emitted (ie: delay-tray command line option)
@@ -37,6 +37,8 @@ v2.3.4 (2018-09-20)
 	-- fix potential file descriptor leak
 	-- fix valid XAuthority path potentially not found because unexpanded
 	-- fix proxy servers not honouring passwords in connection strings
+	-- fix sqlite authentication backend issue with identical usernames
+	-- support CUDA 10 and optimizations for Volta GPUs
 	-- Fedora 29 compatibility
 	-- fix race condition in unit tests which was causing random failures
 	-- add dependency required for running the unit tests with rpmbuild
