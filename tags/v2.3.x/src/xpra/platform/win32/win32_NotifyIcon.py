@@ -226,6 +226,7 @@ class win32NotifyIcon(object):
         self.exit_callback = exit_callback
         self.command_callback = command_callback
         self.reset_function = None
+        self.image_cache = {}
 
     def create_tray_window(self):
         self.create_window()
@@ -341,7 +342,7 @@ class win32NotifyIcon(object):
         return image
 
     def doLoadImage(self, iconPathName):
-        v = fallback
+        v = None
         if iconPathName:
             icon_flags = win32con.LR_LOADFROMFILE | win32con.LR_DEFAULTSIZE
             try:
