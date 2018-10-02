@@ -1,3 +1,13 @@
+xpra (2.3.5-1) UNRELEASED; urgency=low
+  * fix connection errors with bencoder and missing hostnames
+  * fix sync-xvfb making all windows unresponsive
+  * fix wedged keys
+  * fix AltGr handling with HTML5 client
+  * fix clipboard and system tray issues with MS Windows clients
+  * safer clipboard sanitization code
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Tue, 02 Oct 2018 13:32:19 +0700
+
 xpra (2.3.4-1) UNRELEASED; urgency=low
   * fix server does not shutdown cleanly (Xvfb not killed)
   * fix signals not emitted (ie: delay-tray command line option)

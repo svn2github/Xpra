@@ -1,3 +1,13 @@
+v2.3.5 (2018-10-02)
+======================
+	-- fix connection errors with bencoder and missing hostnames
+	-- fix sync-xvfb making all windows unresponsive
+	-- fix wedged keys
+	-- fix AltGr handling with HTML5 client
+	-- fix clipboard and system tray issues with MS Windows clients
+	-- safer clipboard sanitization code
+
+
 v2.3.4 (2018-09-22)
 ======================
 	-- fix server does not shutdown cleanly (Xvfb not killed)

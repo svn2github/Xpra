@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.3.4
+%define version 2.3.5
 %if ! %{defined build_no}
 %define build_no 2
 %endif
@@ -786,6 +786,14 @@ fi
 
 
 %changelog
+* Tue Oct 02 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.5-1
+- fix connection errors with bencoder and missing hostnames
+- fix sync-xvfb making all windows unresponsive
+- fix wedged keys
+- fix AltGr handling with HTML5 client
+- fix clipboard and system tray issues with MS Windows clients
+- safer clipboard sanitization code
+
 * Sat Sep 22 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
 - fix server does not shutdown cleanly (Xvfb not killed)
 - fix signals not emitted (ie: delay-tray command line option)
@@ -886,7 +894,7 @@ fi
 - add missing files to manifest
 - man page typos
 
-* Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.4-1
+* Sun Jul 01 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.5-1
 - fix value shown in frame extents warning
 
 * Sat Jun 30 2018 Antoine Martin <antoine@devloop.org.uk> 2.3.2-4
