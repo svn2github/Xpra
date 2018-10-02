@@ -478,7 +478,10 @@ XpraClient.prototype.init_keyboard = function() {
 	this.num_lock = true;
 	this.num_lock_mod = null;
 	this.alt_modifier = null;
+	this.control_modifier = "control";
 	this.meta_modifier = null;
+	this.altgr_modifier = null;
+	this.altgr_state = false;
 	// assign the keypress callbacks
 	// if we detect jQuery, use that to assign them instead
 	// to allow multiple clients on the same page
@@ -525,26 +528,38 @@ XpraClient.prototype.translate_modifiers = function(modifiers) {
 	 * And also swap keys for macos clients.
 	 */
 	//convert generic modifiers "meta" and "alt" into their x11 name:
-	//FIXME: look them up!
-	var alt = "mod1";
-	var meta = "mod1";
-	var control = "control";
-	//swap
+	var alt = this.alt_modifier;
+	var control = this.control_modifier;
+	var meta = this.meta_modifier;
+	var altgr = this.altgr_modifier;
 	if (this.swap_keys) {
-		meta = "control";
-		control = "mod1";
+		meta = this.control_modifier;
+		control = this.meta_modifier;
 	}
+
 	var new_modifiers = modifiers.slice();
-	var index = modifiers.indexOf("alt");
-	if (index>=0)
-		new_modifiers[index] = alt;
-	index = modifiers.indexOf("meta");
-	if (index>=0)
+	var index = modifiers.indexOf("meta");
+	if (index>=0 && meta)
 		new_modifiers[index] = meta;
 	index = modifiers.indexOf("control");
-	if (index>=0)
+	if (index>=0 && control)
 		new_modifiers[index] = control;
-	//show("get_modifiers() modifiers="+modifiers.toSource());
+	index = modifiers.indexOf("alt");
+	if (index>=0 && alt)
+		new_modifiers[index] = alt;
+	
+	//add altgr?
+	if (this.altgr_state && altgr && new_modifiers.indexOf(altgr)<0) {
+		new_modifiers.push(altgr);
+		//remove spurious modifiers:
+		index = new_modifiers.indexOf(alt);
+		if (index>=0)
+			new_modifiers.splice(index, 1);
+		index = new_modifiers.indexOf(control);
+		if (index>=0)
+			new_modifiers.splice(index, 1);
+	}
+	console.log("altgr_state=", this.altgr_state, ", altgr_modifier=", this.altgr_modifier, ", modifiers=", new_modifiers);
 	return new_modifiers;
 }
 
@@ -640,11 +655,19 @@ XpraClient.prototype._keyb_process = function(pressed, event) {
 
 	this._check_browser_language(key_language);
 
-	//if (this.num_lock && keycode>=96 && keycode<106)
-	//	keyname = "KP_"+(keycode-96);
 	var DOM_KEY_LOCATION_RIGHT = 2;
 	if (keyname.match("_L$") && event.location==DOM_KEY_LOCATION_RIGHT)
 		keyname = keyname.replace("_L", "_R")
+
+	//AltGr: keep track of pressed state
+	if (str=="AltGraph" || (keyname=="Alt_R" && Utilities.isWindows())) {
+		this.altgr_state = pressed;
+		keyname = "ISO_Level3_Shift";
+		str = "AltGraph"
+	}
+
+	//if (this.num_lock && keycode>=96 && keycode<106)
+	//	keyname = "KP_"+(keycode-96);
 
 	var raw_modifiers = get_event_modifiers(event);
 	var modifiers = this._keyb_get_modifiers(event);
@@ -674,7 +697,7 @@ XpraClient.prototype._keyb_process = function(pressed, event) {
 			str = "control";
 		}
 	}
-
+	
 	if (this.topwindow != null) {
 		//send via a timer so we get a chance to capture the clipboard value,
 		//before we send control-V to the server:
@@ -1529,8 +1552,12 @@ XpraClient.prototype._process_hello = function(packet, ctx) {
 				for (var j=0; j<key.length; j++) {
 					if ("Alt_L"==key[j])
 						ctx.alt_modifier = mod;
-					if ("Meta_L"==key[j])
+					else if ("Meta_L"==key[j])
 						ctx.meta_modifier = mod;
+					else if ("ISO_Level3_Shift"==key[j] || "Mode_switch"==key[j])
+						ctx.altgr_modifier = mod;
+					else if ("Control_L"==key[j])
+						ctx.control_modifier = mod;
 				}
 			}
 		}
