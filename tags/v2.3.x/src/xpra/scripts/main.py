@@ -662,6 +662,7 @@ def parse_display_name(error_cb, opts, display_name, session_name_lookup=False):
             sockfile = parts[-1]
         else:
             sockfile = afterproto
+        assert not WIN32, "unix-domain sockets are not supported on MS Windows"
         desc.update({
                 "type"          : "unix-domain",
                 "local"         : True,
@@ -673,6 +674,7 @@ def parse_display_name(error_cb, opts, display_name, session_name_lookup=False):
         opts.display = display_name
         return desc
     elif display_name.startswith(":"):
+        assert not WIN32, "unix-domain sockets are not supported on MS Windows"
         desc.update({
                 "type"          : "unix-domain",
                 "local"         : True,
