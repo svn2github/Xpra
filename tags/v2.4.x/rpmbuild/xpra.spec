@@ -58,7 +58,7 @@ exit 1
 
 Name:				xpra
 Version:			%{version}
-Release:			0%{?revision_no}%{?dist}
+Release:			2%{?revision_no}%{?dist}
 Summary:			Xpra gives you "persistent remote applications" for X.
 Group:				Networking
 License:			GPL-2.0+ AND BSD-3-Clause AND LGPL-3.0+ AND MIT
@@ -822,6 +822,9 @@ fi
 
 
 %changelog
+* Mon Oct 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
+- force rebuild on CentOS 7.x
+
 * Sat Oct 13 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-1
 - SSH client integration (paramiko)
 - builtin server support for TCP socket upgrades to SSH (paramiko)
