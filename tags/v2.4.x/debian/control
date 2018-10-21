@@ -73,6 +73,8 @@ Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
         ,python-lz4
 # if you use Ubuntu, you will "want" this mess:
 #xenial:        ,python-appindicator
+#bionic:        ,python-appindicator
+#cosmic:        ,python-appindicator
 #newer distros should use the system ffmpeg,
 #so make sure that we don't install our private library:
 #bionic:Conflicts: ffmpeg-xpra
