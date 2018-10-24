@@ -11,7 +11,6 @@ import binascii
 import os
 import sys
 import numpy
-import array
 from collections import deque, OrderedDict
 
 from pycuda import driver
@@ -1092,13 +1091,13 @@ cdef guidstr(GUID guid):
     #is this even endian safe? do we care? (always on the same system)
     parts = []
     for v, s in ((guid.Data1, 4), (guid.Data2, 2), (guid.Data3, 2)):
-        b = array.array('B', [0 for _ in range(s)])
+        b = bytearray(s)
         for j in range(s):
             b[s-j-1] = v % 256
             v = v // 256
-        parts.append(atob(b))
-    parts.append(atob(array.array('B', guid.get("Data4")[:2])))
-    parts.append(atob(array.array('B', guid.get("Data4")[2:8])))
+        parts.append(b)
+    parts.append(bytearray(guid.get("Data4")[:2]))
+    parts.append(bytearray(guid.get("Data4")[2:8]))
     s = b"-".join(binascii.hexlify(b).upper() for b in parts)
     #log.info("guidstr(%s)=%s", guid, s)
     return bytestostr(s)
@@ -1106,30 +1105,38 @@ cdef guidstr(GUID guid):
 cdef GUID c_parseguid(src) except *:
     #just as ugly as above - shoot me now
     #only this format is allowed:
-    sample_guid = "CE788D20-AAA9-4318-92BB-AC7E858C8D36"
-    if len(src)!=len(sample_guid):
+    sample_guid = b"CE788D20-AAA9-4318-92BB-AC7E858C8D36"
+    bsrc = strtobytes(src.upper())
+    if len(bsrc)!=len(sample_guid):
         raise Exception("invalid GUID format: expected %s characters but got %s" % (len(sample_guid), len(src)))
-    cdef int i, s
-    src = bytestostr(src)
+    cdef int i
+    #deal with differences between python 2 and 3:
+    def _ord(c):
+        try:
+            return ord(c)
+        except:
+            return c
+    #validate the input bytestring:
+    hexords = tuple(_ord(x) for x in b"0123456789ABCDEF")
     for i in range(len(sample_guid)):
-        if sample_guid[i]=="-":
+        if _ord(sample_guid[i])==_ord(b"-"):
             #dash must be in the same place:
-            if src[i]!="-":
+            if _ord(bsrc[i])!=_ord(b"-"):
                 raise Exception("invalid GUID format: character at position %s is not '-': %s" % (i, src[i]))
         else:
             #must be an hex number:
-            c = src.upper()[i]
-            if c not in ("0123456789ABCDEF"):
-                raise Exception("invalid GUID format: character at position %s is not in hex: %s" % (i, c))
-    parts = src.split("-")    #ie: ["CE788D20", "AAA9", ...]
+            c = _ord(bsrc[i])
+            if c not in hexords:
+                raise Exception("invalid GUID format: character at position %s is not in hex: %s" % (i, chr(c)))
+    parts = bsrc.split(b"-")    #ie: ["CE788D20", "AAA9", ...]
     nparts = []
     for i, s in (0, 4), (1, 2), (2, 2), (3, 2), (4, 6):
-        b = atob(array.array('B', binascii.unhexlify(strtobytes(parts[i]))))
+        part = parts[i]
+        binv = binascii.unhexlify(part)
+        log("c_parseguid bytes(%s)=%r", part, binv)
         v = 0
         for j in range(s):
-            c = b[j]
-            if not PYTHON3:
-                c = ord(c)
+            c = _ord(binv[j])
             v += c<<((s-j-1)*8)
         nparts.append(v)
     cdef GUID guid
@@ -1138,7 +1145,8 @@ cdef GUID c_parseguid(src) except *:
     guid.Data3 = nparts[2]
     v = (nparts[3]<<48) + nparts[4]
     for i in range(8):
-        guid.Data4[i] = (v>>((7-i)*8)) % 256
+        guid.Data4[i] = <uint8_t> ((v>>((7-i)*8)) % 256)
+    log("c_parseguid(%s)=%s", src, guid)
     return guid
 
 def parseguid(s):
