@@ -822,6 +822,9 @@ fi
 
 
 %changelog
+* Fri Oct 26 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
+- TODO
+
 * Mon Oct 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
 - force rebuild on CentOS 7.x
 
