@@ -1,5 +1,29 @@
 xpra (2.4.1-1) UNRELEASED; urgency=low
-  * TODO
+  * fix popup window focus for some Java applications
+  * fix popup window focus issue (ie: xterm menu)
+  * fix system tray errors when mmap is disabled
+  * fix missing system tray under Ubuntu's Unity (DEB dependency issue)
+  * fix error in debug logging on MS Windows
+  * fix missing codecs (numpy was blocked from loading)
+  * fix nvenc compatibility with more python / cython / OS versions
+  * fix backwards compatibility in keyboard mapping
+  * fix session info errors when connecting to older servers
+  * fix man page typo
+  * fix default value 'auto' for ssh option, better compatibility
+  * fix dead code triggering some debug warnings
+  * fix rare race condition when closing a connection
+  * fix 'flush' client encoding options parsing
+  * fix overzealous clipboard sanitization code
+  * fix missing notification messages
+  * fix ssh client authentication: try all keys found
+  * fix version update check
+  * fix usability issues with GTK3, especially on MS Windows
+  * fix cython compilation warnings
+  * fix x264 dependency for Debian Buster
+  * update default DEB build options for newer distributions
+  * removed outdated DEB dependency on xvidcore
+  * avoid ethtool warning spam
+  * use correct headers for building python3 cairo workaround module
 
  -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 26 Oct 2018 00:37:29 +0700
 

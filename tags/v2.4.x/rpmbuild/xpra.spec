@@ -58,7 +58,7 @@ exit 1
 
 Name:				xpra
 Version:			%{version}
-Release:			2%{?revision_no}%{?dist}
+Release:			1%{?revision_no}%{?dist}
 Summary:			Xpra gives you "persistent remote applications" for X.
 Group:				Networking
 License:			GPL-2.0+ AND BSD-3-Clause AND LGPL-3.0+ AND MIT
@@ -822,8 +822,32 @@ fi
 
 
 %changelog
-* Fri Oct 26 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
-- TODO
+* Wed Oct 31 2018 Antoine Martin <antoine@devloop.org.uk> 2.4.1-1
+- fix popup window focus for some Java applications
+- fix popup window focus issue (ie: xterm menu)
+- fix system tray errors when mmap is disabled
+- fix missing system tray under Ubuntu's Unity (DEB dependency issue)
+- fix error in debug logging on MS Windows
+- fix missing codecs (numpy was blocked from loading)
+- fix nvenc compatibility with more python / cython / OS versions
+- fix backwards compatibility in keyboard mapping
+- fix session info errors when connecting to older servers
+- fix man page typo
+- fix default value 'auto' for ssh option, better compatibility
+- fix dead code triggering some debug warnings
+- fix rare race condition when closing a connection
+- fix 'flush' client encoding options parsing
+- fix overzealous clipboard sanitization code
+- fix missing notification messages
+- fix ssh client authentication: try all keys found
+- fix version update check
+- fix usability issues with GTK3, especially on MS Windows
+- fix cython compilation warnings
+- fix x264 dependency for Debian Buster
+- update default DEB build options for newer distributions
+- removed outdated DEB dependency on xvidcore
+- avoid ethtool warning spam
+- use correct headers for building python3 cairo workaround module
 
 * Mon Oct 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
 - force rebuild on CentOS 7.x
