@@ -1,3 +1,15 @@
+v2.4.2 (2018-11-05)
+======================
+	-- fix server crash with application setting invalid X11 atoms
+	-- fix missing windows with some mono applications (ignore invalid X11 atoms)
+	-- fix small X11 memory leak
+	-- fix encoding of empty areas (hard to trigger)
+	-- fix client hangs due to signal-watcher (now disabled with python2)
+	-- handle property change handlers errors more gracefully
+	-- avoid recycling video contexts unnecessarily
+	-- don't flush video encoders when doing a regular content refresh
+
+
 v2.4.1 (2018-10-31)
 ======================
 	-- fix popup window focus for some Java applications

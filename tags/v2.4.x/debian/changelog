@@ -1,3 +1,15 @@
+xpra (2.4.2-1) UNRELEASED; urgency=low
+  * fix server crash with application setting invalid X11 atoms
+  * fix missing windows with some mono applications (ignore invalid X11 atoms)
+  * fix small X11 memory leak
+  * fix encoding of empty areas (hard to trigger)
+  * fix client hangs due to signal-watcher (now disabled with python2)
+  * handle property change handlers errors more gracefully
+  * avoid recycling video contexts unnecessarily
+  * don't flush video encoders when doing a regular content refresh
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 05 Nov 2018 02:17:03 +0700
+
 xpra (2.4.1-1) UNRELEASED; urgency=low
   * fix popup window focus for some Java applications
   * fix popup window focus issue (ie: xterm menu)

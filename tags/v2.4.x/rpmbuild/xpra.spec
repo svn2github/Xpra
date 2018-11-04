@@ -3,7 +3,7 @@
 # Xpra is released under the terms of the GNU GPL v2, or, at your option, any
 # later version. See the file COPYING for details.
 
-%define version 2.4.1
+%define version 2.4.2
 
 %{!?__python2: %global __python2 python2}
 %{!?__python3: %define __python3 python3}
@@ -822,6 +822,16 @@ fi
 
 
 %changelog
+* Mon Nov 05 2018 Antoine Martin <antoine@devloop.org.uk> 2.4.2-1
+- fix server crash with application setting invalid X11 atoms
+- fix missing windows with some mono applications (ignore invalid X11 atoms)
+- fix small X11 memory leak
+- fix encoding of empty areas (hard to trigger)
+- fix client hangs due to signal-watcher (now disabled with python2)
+- handle property change handlers errors more gracefully
+- avoid recycling video contexts unnecessarily
+- don't flush video encoders when doing a regular content refresh
+
 * Wed Oct 31 2018 Antoine Martin <antoine@devloop.org.uk> 2.4.1-1
 - fix popup window focus for some Java applications
 - fix popup window focus issue (ie: xterm menu)
@@ -852,7 +862,7 @@ fi
 * Mon Oct 15 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-2
 - force rebuild on CentOS 7.x
 
-* Sat Oct 13 2018 Antoine Martin <antoine@devloop.org.uk> 2.4-1
+* Sat Oct 13 2018 Antoine Martin <antoine@devloop.org.uk> 2.4.2
 - SSH client integration (paramiko)
 - builtin server support for TCP socket upgrades to SSH (paramiko)
 - automatic TCP port allocation
@@ -1284,7 +1294,7 @@ fi
 - fix exception handling in client when called from the launcher
 - fix libav dependencies for Debian and Ubuntu builds
 
-* Wed Apr 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.4-1
+* Wed Apr 23 2014 Antoine Martin <antoine@devloop.org.uk> 0.12.4.2
 - fix xpra shadow subcommand
 - fix xpra shadow keyboard mapping support for non-posix clients
 - avoid Xorg dummy warning in log
