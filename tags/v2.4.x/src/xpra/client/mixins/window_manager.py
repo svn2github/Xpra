@@ -32,7 +32,7 @@ from xpra.platform.features import SYSTEM_TRAY_SUPPORTED
 from xpra.platform.paths import get_icon_filename
 from xpra.scripts.config import FALSE_OPTIONS
 from xpra.make_thread import make_thread
-from xpra.os_util import BytesIOClass, Queue, bytestostr, monotonic_time, memoryview_to_bytes, OSX, POSIX, is_Ubuntu
+from xpra.os_util import BytesIOClass, Queue, bytestostr, monotonic_time, memoryview_to_bytes, OSX, POSIX, PYTHON3, is_Ubuntu
 from xpra.util import iround, envint, envbool, typedict, make_instance, updict
 from xpra.client.mixins.stub_client_mixin import StubClientMixin
 
@@ -59,6 +59,7 @@ ICON_SHRINKAGE = envint("XPRA_ICON_SHRINKAGE", 75)
 SAVE_WINDOW_ICONS = envbool("XPRA_SAVE_WINDOW_ICONS", False)
 SAVE_CURSORS = envbool("XPRA_SAVE_CURSORS", False)
 MODAL_WINDOWS = envbool("XPRA_MODAL_WINDOWS", False)
+SIGNAL_WATCHER = envbool("XPRA_SIGNAL_WATCHER", PYTHON3)
 
 
 DRAW_TYPES = {bytes : "bytes", str : "bytes", tuple : "arrays", list : "arrays"}
@@ -720,6 +721,8 @@ class WindowClient(StubClientMixin):
     ######################################################################
     # listen for process signals using a watcher process:
     def assign_signal_watcher_pid(self, wid, pid):
+        if not SIGNAL_WATCHER:
+            return 0
         if not POSIX or OSX or not pid:
             return 0
         proc = self._pid_to_signalwatcher.get(pid)
