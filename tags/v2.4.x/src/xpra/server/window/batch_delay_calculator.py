@@ -220,8 +220,8 @@ def get_target_quality(window_dimensions, batch, global_statistics, statistics, 
     # here we try minimize client-latency, packet-backlog and batch.delay
     # the compression ratio tells us if we can increase the quality
     packets_backlog, pixels_backlog, _ = statistics.get_client_backlog()
-    pb_ratio = pixels_backlog/low_limit
-    pixels_bl = 1.0 - logp(pb_ratio//4)     #4 frames behind -> min quality
+    pb_ratio = float(pixels_backlog)/low_limit
+    pixels_bl = 1.0 - logp(pb_ratio/4.0)     #4 frames behind -> min quality
     info["backlog_factor"] = packets_backlog, pixels_backlog, low_limit, int(pb_ratio), int(100.0*pixels_bl)
     target = pixels_bl
     if batch is not None:
