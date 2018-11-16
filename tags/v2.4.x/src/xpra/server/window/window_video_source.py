@@ -431,7 +431,7 @@ class WindowVideoSource(WindowSource):
             #raise the quality as the areas around video tend to not be graphics
             return nonvideo(quality+30, "not the video region")
 
-        if now-self.global_statistics.last_congestion_time>5:
+        if now-self.global_statistics.last_congestion_time>5 and not self.is_shadow:
             lde = tuple(self.statistics.last_damage_events)
             lim = now-4
             pixels_last_4secs = sum(w*h for when,_,_,w,h in lde if when>lim)
