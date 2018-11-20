@@ -1498,13 +1498,11 @@ class WindowSource(WindowIconSource):
                 return
             elif len(regions)==1:
                 merged = regions[0]
-            else:
-                merged = merge_all(regions)
-            #if we find one region covering almost the entire window,
-            #refresh the whole window (ie: when the video encoder mask rounded the dimensions down)
-            if merged.x<=1 and merged.y<=1 and abs(ww-merged.width)<2 and abs(wh-merged.height)<2:
-                send_full_window_update()
-                return
+                #if we find one region covering almost the entire window,
+                #refresh the whole window (ie: when the video encoder mask rounded the dimensions down)
+                if merged.x<=1 and merged.y<=1 and abs(ww-merged.width)<2 and abs(wh-merged.height)<2:
+                    send_full_window_update()
+                    return
 
         #we're processing a number of regions separately,
         #start by removing the exclude region if there is one:
