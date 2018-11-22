@@ -4,11 +4,23 @@ xpra (2.4.2-1) UNRELEASED; urgency=low
   * fix small X11 memory leak
   * fix encoding of empty areas (hard to trigger)
   * fix client hangs due to signal-watcher (now disabled with python2)
+  * fix virtual printer cleanup errors
+  * fix leaking xvfb processes when displayfd times out
+  * fix window size hints not being sanitized correctly
+  * fix cpu waste and automatic quality calculations
+  * fix statistics used by shadow servers
+  * fix error capturing screenshots on MS Windows
+  * fix logging error in modifier state change failure code path
+  * fix nvenc errors with odd image heights
+  * fix over aggressive screen update rectangle merging
+  * fix race condition causing the connection cleanup code to run twice
+  * ensure Qt applications use the X11 backend so we can intercept them
+  * skip unnecessary video tests when mmap is enabled
   * handle property change handlers errors more gracefully
   * avoid recycling video contexts unnecessarily
   * don't flush video encoders when doing a regular content refresh
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 05 Nov 2018 02:17:03 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 23 Nov 2018 00:39:08 +0700
 
 xpra (2.4.1-1) UNRELEASED; urgency=low
   * fix popup window focus for some Java applications

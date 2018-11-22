@@ -1,10 +1,22 @@
-v2.4.2 (2018-11-05)
+v2.4.2 (2018-11-23)
 ======================
 	-- fix server crash with application setting invalid X11 atoms
 	-- fix missing windows with some mono applications (ignore invalid X11 atoms)
 	-- fix small X11 memory leak
 	-- fix encoding of empty areas (hard to trigger)
 	-- fix client hangs due to signal-watcher (now disabled with python2)
+	-- fix virtual printer cleanup errors
+	-- fix leaking xvfb processes when displayfd times out
+	-- fix window size hints not being sanitized correctly
+	-- fix cpu waste and automatic quality calculations
+	-- fix statistics used by shadow servers
+	-- fix error capturing screenshots on MS Windows
+	-- fix logging error in modifier state change failure code path
+	-- fix nvenc errors with odd image heights
+	-- fix over aggressive screen update rectangle merging
+	-- fix race condition causing the connection cleanup code to run twice
+	-- ensure Qt applications use the X11 backend so we can intercept them
+	-- skip unnecessary video tests when mmap is enabled
 	-- handle property change handlers errors more gracefully
 	-- avoid recycling video contexts unnecessarily
 	-- don't flush video encoders when doing a regular content refresh
