@@ -838,6 +838,7 @@ fi
 - fix nvenc errors with odd image heights
 - fix over aggressive screen update rectangle merging
 - fix race condition causing the connection cleanup code to run twice
+- fix ssh dialog button actions
 - ensure Qt applications use the X11 backend so we can intercept them
 - skip unnecessary video tests when mmap is enabled
 - handle property change handlers errors more gracefully
