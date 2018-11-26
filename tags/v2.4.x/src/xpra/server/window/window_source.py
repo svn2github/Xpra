@@ -1296,8 +1296,9 @@ class WindowSource(WindowIconSource):
             #NOTE: this should never happen...
             #the region should now get sent when we eventually receive the pending ACKs
             #but if somehow they go missing... clean it up from a timeout:
-            delayed_region_time = delayed[0]
-            self.timeout_timer = self.timeout_add(self.batch_config.timeout_delay, self.delayed_region_timeout, delayed_region_time)
+            if not self.timeout_timer:
+                delayed_region_time = delayed[0]
+                self.timeout_timer = self.timeout_add(self.batch_config.timeout_delay, self.delayed_region_timeout, delayed_region_time)
         return False
 
     def delayed_region_soft_timeout(self):
