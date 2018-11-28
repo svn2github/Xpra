@@ -21,7 +21,7 @@ from xpra.gtk_common.gobject_util import no_arg_signal, SIGNAL_RUN_LAST
 from xpra.gtk_common.gtk_util import GetClipboard, selection_owner_set, selection_add_target, selectiondata_get_selection, selectiondata_get_target, selectiondata_get_data, selectiondata_get_data_type, selectiondata_get_format, selectiondata_set, clipboard_request_contents, PROPERTY_CHANGE_MASK
 from xpra.gtk_common.nested_main import NestedMainLoop
 from xpra.net.compression import Compressible
-from xpra.os_util import WIN32, POSIX, monotonic_time, strtobytes, bytestostr, hexstr, get_hex_uuid, is_X11, is_Wayland
+from xpra.os_util import WIN32, OSX, POSIX, monotonic_time, strtobytes, bytestostr, hexstr, get_hex_uuid, is_X11, is_Wayland
 from xpra.util import csv, envint, envbool, repr_ellipsized, typedict, first_time
 from xpra.platform.features import CLIPBOARD_GREEDY
 
@@ -100,7 +100,7 @@ def _filter_targets(targets):
 
 
 def set_string(clipboard, thestring):
-    if is_gtk3():
+    if is_gtk3() or OSX:
         #no other way?
         clipboard.set_text(thestring, len(thestring))
         return
