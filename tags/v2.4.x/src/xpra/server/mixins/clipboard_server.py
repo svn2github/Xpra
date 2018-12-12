@@ -69,6 +69,7 @@ class ClipboardServer(StubServerMixin):
             "clipboard" : {
                 ""                  : True,
                 "enable-selections" : True,
+                "contents-slice-fix": True,
                 },
             }
         if self._clipboard_helper:

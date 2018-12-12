@@ -62,6 +62,7 @@ class ClipboardClient(StubClientMixin):
                 #buggy osx and win32 clipboards:
                 "greedy"                    : CLIPBOARD_GREEDY,
                 "set_enabled"               : True,
+                "contents-slice-fix"        : True,
                 },
              })
         caps["clipboard"] = self.client_supports_clipboard
