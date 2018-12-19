@@ -1,3 +1,25 @@
+xpra (2.4.3-1) UNRELEASED; urgency=low
+  * fix minor glib timer handle leak and unnecessary timer scheduling
+  * fix keyboard backwards compatibility with older 1.0 servers
+  * fix error in keyboard debug logging
+  * fix h264 decoding in HTML5 client
+  * fix session info and bug report windows not getting dismissed in HTML5 client
+  * fix precise wheel motion events with HTML5 client
+  * fix clipboard with MacOS GTK2 clients
+  * fix swap-keys menu entry wrongly disabled
+  * fix potential memory leaks and errors in codecs due to cast error
+  * fix crashy codecs on MS Windows: disable x264, 32-bit vpx with large sizes
+  * fix validation errors with some quality and speed control commands
+  * fix buggy parsing of clipboard-contents packets
+  * fix jpeg encoder and decoder library version requirements (ie: for CentOS 7.x)
+  * fix starting sessions via ssh on Ubuntu (workaround buggy systemd-run)
+  * fix MS Windows clients handling system tray icons without an alpha channel
+  * workaround SSH errors with Windows Services for Linux
+  * reduce impact of fullscreen and maxmimized attributes on window refresh rate
+  * never lock the batch delay when mmap is enabled
+
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 19 Dec 2018 14:46:58 -0800
+
 xpra (2.4.2-1) UNRELEASED; urgency=low
   * fix server crash with application setting invalid X11 atoms
   * fix missing windows with some mono applications (ignore invalid X11 atoms)
