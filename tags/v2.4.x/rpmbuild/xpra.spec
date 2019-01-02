@@ -841,6 +841,9 @@ fi
 - fix jpeg encoder and decoder library version requirements (ie: for CentOS 7.x)
 - fix starting sessions via ssh on Ubuntu (workaround buggy systemd-run)
 - fix MS Windows clients handling system tray icons without an alpha channel
+- fix error in video exception message formating
+- fix errors handling pointer events with extra relative pointer data
+- fix potential string substitution errors with python2
 - workaround SSH errors with Windows Services for Linux
 - reduce impact of fullscreen and maxmimized attributes on window refresh rate
 - never lock the batch delay when mmap is enabled

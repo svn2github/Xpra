@@ -14,11 +14,14 @@ xpra (2.4.3-1) UNRELEASED; urgency=low
   * fix jpeg encoder and decoder library version requirements (ie: for CentOS 7.x)
   * fix starting sessions via ssh on Ubuntu (workaround buggy systemd-run)
   * fix MS Windows clients handling system tray icons without an alpha channel
+  * fix error in video exception message formating
+  * fix errors handling pointer events with extra relative pointer data
+  * fix potential string substitution errors with python2
   * workaround SSH errors with Windows Services for Linux
   * reduce impact of fullscreen and maxmimized attributes on window refresh rate
   * never lock the batch delay when mmap is enabled
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 19 Dec 2018 14:46:58 -0800
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 02 Jan 2019 20:36:04 -0800
 
 xpra (2.4.2-1) UNRELEASED; urgency=low
   * fix server crash with application setting invalid X11 atoms
