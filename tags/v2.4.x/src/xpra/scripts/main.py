@@ -896,8 +896,10 @@ def socket_connect(dtype, host, port, ipv6=None):
             socket.AF_INET6 : " IPv6",
             socket.AF_INET  : " IPv4",
             }.get(family, ""), (host, port), e))
-    #default to the last one:
-    sockaddr = addrinfo[0][-1]
+    #default to the first one:
+    addr = addrinfo[0]
+    sockaddr = addr[-1]
+    family = family or addr[0]
     sock = socket.socket(family, socktype)    
     if dtype!="udp":
         from xpra.net.bytestreams import SOCKET_TIMEOUT
