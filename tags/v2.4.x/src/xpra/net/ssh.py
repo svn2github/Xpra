@@ -188,7 +188,7 @@ def ssh_paramiko_connect_to(display_desc):
     dtype = display_desc["type"]
     host = display_desc["host"]
     port = display_desc.get("ssh-port", 22)
-    ipv6 = display_desc.get("ipv6", False)
+    ipv6 = display_desc.get("ipv6", None)
     from xpra.scripts.main import socket_connect
     sock = socket_connect(dtype, host, port, ipv6)
     #ssh and command attributes:
