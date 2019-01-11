@@ -80,6 +80,12 @@ class Authenticator(SysAuthenticator):
         log("exec auth.command_timedout()")
         self.timeout_event = True
         self.timer = None
+        proc = self.proc
+        if proc:
+            try:
+                proc.terminate()
+            except:
+                log("error trying to terminate exec auth process %s", proc, exc_info=True)
 
     def __repr__(self):
         return "exec"
