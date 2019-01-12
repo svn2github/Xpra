@@ -825,7 +825,7 @@ fi
 
 
 %changelog
-* Thu Dec 19 2018 Antoine Martin <antoine@devloop.org.uk> 2.4.3-1
+* Sat Jan 12 2019 Antoine Martin <antoine@devloop.org.uk> 2.4.3-1
 - fix minor glib timer handle leak and unnecessary timer scheduling
 - fix keyboard backwards compatibility with older 1.0 servers
 - fix error in keyboard debug logging
@@ -844,6 +844,12 @@ fi
 - fix error in video exception message formating
 - fix errors handling pointer events with extra relative pointer data
 - fix potential string substitution errors with python2
+- fix connection to hosts that resolve to ipv6 only addresses
+- fix dbus mixin attributes initialized twice (wrong values)
+- fix race condition error with network congestion events
+- fix compatibility with newer ArchLinux Xorg path
+- fix exec-auth module timeout not being honoured
+- fix exec-auth wrongly returning success on MacOS
 - workaround SSH errors with Windows Services for Linux
 - reduce impact of fullscreen and maxmimized attributes on window refresh rate
 - never lock the batch delay when mmap is enabled

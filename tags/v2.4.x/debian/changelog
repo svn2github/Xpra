@@ -17,11 +17,17 @@ xpra (2.4.3-1) UNRELEASED; urgency=low
   * fix error in video exception message formating
   * fix errors handling pointer events with extra relative pointer data
   * fix potential string substitution errors with python2
+  * fix connection to hosts that resolve to ipv6 only addresses
+  * fix dbus mixin attributes initialized twice (wrong values)
+  * fix race condition error with network congestion events
+  * fix compatibility with newer ArchLinux Xorg path
+  * fix exec-auth module timeout not being honoured
+  * fix exec-auth wrongly returning success on MacOS
   * workaround SSH errors with Windows Services for Linux
   * reduce impact of fullscreen and maxmimized attributes on window refresh rate
   * never lock the batch delay when mmap is enabled
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 02 Jan 2019 20:36:04 -0800
+ -- Antoine Martin <antoine@nagafix.co.uk>  Sat, 12 Jan 2019 17:59:26 -0800
 
 xpra (2.4.2-1) UNRELEASED; urgency=low
   * fix server crash with application setting invalid X11 atoms
