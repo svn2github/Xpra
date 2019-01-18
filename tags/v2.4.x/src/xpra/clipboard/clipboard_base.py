@@ -99,7 +99,7 @@ def _filter_targets(targets):
     return f
 
 
-def set_string(clipboard, thestring):
+def set_string(clipboard, thestring, vtype="STRING"):
     if is_gtk3() or OSX:
         #no other way?
         clipboard.set_text(thestring, len(thestring))
@@ -109,13 +109,13 @@ def set_string(clipboard, thestring):
         log("get_func%s value=%s", (clipboard, selection, info, targets), value[0])
         s = value[0]
         if s:
-            selection.set("STRING", 8, s)
+            selection.set(vtype, 8, s)
         else:
             clipboard.clear()
     def clear_func(*args):
         log("clear_func%s value=%s", args, value[0])
         value[0] = ""
-    clipboard.set_with_data([("STRING", 0, 0)], get_func, clear_func)
+    clipboard.set_with_data([(vtype, 0, 0)], get_func, clear_func)
 
 
 class ClipboardProtocolHelperBase(object):
@@ -863,7 +863,7 @@ class ClipboardProxy(gtk.Invisible):
                     if text_target in target_data:
                         text_data = target_data.get(text_target)
                         log("clipboard %s set to '%s'", self._selection, repr_ellipsized(text_data))
-                        set_string(self._clipboard, text_data)
+                        set_string(self._clipboard, text_data, text_target)
         if not claim:
             log("token packet without claim, not setting the token flag")
             #the other end is just telling us to send the token again next time something changes,
